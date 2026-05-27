@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contactez SeikoMods — Questions, commandes, devis. FAQ complète sur les montres Seiko custom.">
+  <title>Contact — SeikoMods</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="promo-bar">🚚 LIVRAISON OFFERTE EN FRANCE</div>
+
+<nav class="nav scrolled" id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Seiko<span>Mods</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="collection.html">Collection</a></li>
+      <li><a href="configurateur.html">Configurateur</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <a href="configurateur.html" class="btn btn-gold nav-cta-btn">✦ Créer la mienne</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Accueil</a>
+  <a href="collection.html">Collection</a>
+  <a href="configurateur.html">Configurateur</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="label">On est là</span>
+    <div class="divider center"></div>
+    <h1>Contact & FAQ</h1>
+    <p>Une question ? Un devis ? Écris-moi par WhatsApp ou via le formulaire. Je réponds sous 24h.</p>
+  </div>
+</div>
+
+<!-- CONTACT + FORMULAIRE -->
+<section class="section" style="padding-top:48px" id="contact">
+  <div class="container">
+    <div class="contact-layout">
+
+      <!-- INFO CONTACT -->
+      <div>
+        <div class="sh">
+          <span class="label">Prends contact</span>
+          <div class="divider"></div>
+          <h2>Me contacter</h2>
+        </div>
+
+        <div class="contact-info-block">
+          <div class="contact-info-icon">💬</div>
+          <h4>WhatsApp (réponse rapide)</h4>
+          <p>Le plus rapide pour une question, un devis ou pour passer commande directement.</p>
+        </div>
+
+        <a href="https://wa.me/TON_NUMERO?text=Bonjour%2C%20j%27ai%20une%20question%20sur%20vos%20SeikoMods%20!"
+           class="btn btn-whatsapp" target="_blank" rel="noopener"
+           style="margin-bottom:32px">
+          💬 Écrire sur WhatsApp
+        </a>
+
+        <div class="contact-info-block" style="margin-top:32px">
+          <div class="contact-info-icon">📧</div>
+          <h4>Email</h4>
+          <p>Pour les commandes, devis ou SAV — je réponds sous 24h en semaine.</p>
+        </div>
+
+        <div class="contact-info-block">
+          <div class="contact-info-icon">📦</div>
+          <h4>Délai de fabrication</h4>
+          <p>7 à 10 jours ouvrés après confirmation de commande. Livraison Colissimo suivi.</p>
+        </div>
+
+        <div class="contact-info-block">
+          <div class="contact-info-icon">🛡️</div>
+          <h4>Garantie & SAV</h4>
+          <p>Garantie 1 an sur le mouvement. En cas de problème, je prends en charge la réparation.</p>
+        </div>
+
+        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;margin-top:12px">
+          <div style="font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px">Paiement</div>
+          <p style="font-size:.88rem;margin:0">Paiement via PayPal, virement ou Lydia après confirmation de commande. 100% sécurisé.</p>
+        </div>
+      </div>
+
+      <!-- FORMULAIRE -->
+      <div>
+        <div class="sh">
+          <span class="label">Formulaire</span>
+          <div class="divider"></div>
+          <h2>Envoie un message</h2>
+        </div>
+        <!-- Remplace YOUR_FORM_ID par ton ID Formspree (gratuit sur formspree.io) -->
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Prénom *</label>
+              <input type="text" name="prenom" placeholder="Ton prénom" required>
+            </div>
+            <div class="form-group">
+              <label>Nom *</label>
+              <input type="text" name="nom" placeholder="Ton nom" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="email" placeholder="ton@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>Sujet</label>
+            <select name="sujet">
+              <option value="">Sélectionne un sujet</option>
+              <option value="commande">Passer une commande</option>
+              <option value="devis">Demande de devis</option>
+              <option value="sav">SAV / Garantie</option>
+              <option value="question">Question générale</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message *</label>
+            <textarea name="message" placeholder="Décris ta demande, le modèle qui t'intéresse, tes questions..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-gold btn-full" style="padding:15px">
+            ✦ Envoyer mon message
+          </button>
+          <p style="font-size:.75rem;text-align:center;margin-top:12px;color:var(--muted)">
+            Réponse garantie sous 24h en semaine.
+          </p>
+        </form>
+        <div id="formSuccess" style="display:none;background:rgba(201,168,76,.1);border:1px solid var(--gold);border-radius:var(--radius);padding:20px;text-align:center;margin-top:16px">
+          <p style="color:var(--gold);font-weight:600;margin:0">✓ Message envoyé ! Je te réponds dans les 24h.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:var(--bg-card);border-top:1px solid var(--border)" id="faq">
+  <div class="container">
+    <div class="sh center">
+      <span class="label">Foire aux questions</span>
+      <div class="divider center"></div>
+      <h2>Questions fréquentes</h2>
+    </div>
+
+    <div style="max-width:760px;margin:0 auto">
+
+      <div class="faq-item open">
+        <button class="faq-q">
+          C'est quoi une SeikoMod ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Une SeikoMod est une montre Seiko entièrement personnalisée : on part d'un boîtier Seiko de qualité, puis on y monte des composants custom — cadran, aiguilles, bracelet — choisis par le client. Le résultat est une montre unique avec l'esthétique d'une grande maison, à une fraction du prix.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Quel est le délai de fabrication ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Après confirmation de ta commande et réception du paiement, le délai d'assemblage est de 7 à 10 jours ouvrés. Si certaines pièces doivent être commandées spécifiquement, je t'en informe au préalable. La livraison Colissimo suivi prend 1-2 jours supplémentaires.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Quel mouvement est utilisé ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          La majorité de nos montres utilisent le mouvement automatique NH35A de Seiko — un calibre reconnu dans le monde horloger pour sa fiabilité. Il offre 41h de réserve de marche, 21 rubis, et une fréquence de 21 600 Alt/h. Certains modèles spéciaux (GMT, Chronographe) utilisent d'autres calibres Seiko (NH34, VK63).
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          La montre est-elle étanche ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Oui, les montres SeikoMods sont étanches à 5 ATM (50 mètres). Cela signifie qu'elles résistent aux projections d'eau, à la pluie et au lavage des mains, mais ne sont pas conçues pour la natation ou la plongée.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Comment se passe le paiement ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Après avoir validé ta configuration par message ou formulaire, je te contacte pour confirmer les détails. Le paiement s'effectue ensuite via PayPal (protégé acheteur), virement bancaire ou Lydia. Je ne commence l'assemblage qu'après réception du paiement complet.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Puis-je retourner ma montre ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Chaque montre étant fabriquée sur mesure, les retours ne sont pas acceptés sauf en cas de défaut de fabrication. En cas de problème constaté à la réception, je prends en charge la réparation ou le remplacement dans le cadre de la garantie d'un an.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Proposez-vous des réparations ou des mods sur mes propres montres ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Oui ! Si tu as une Seiko et que tu souhaites la modifier (changer le cadran, les aiguilles, le bracelet), contacte-moi directement. Je donne un devis selon les pièces souhaitées.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Les montres sont-elles disponibles en France uniquement ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          Non ! J'expédie dans toute l'Europe. La livraison est offerte en France métropolitaine. Pour les autres pays, un supplément de port peut s'appliquer — contacte-moi pour un devis.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Seiko<span>Mods</span></div>
+        <p>Montres Seiko custom assemblées à la main. Chaque pièce est unique, créée selon tes désirs.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social">Instagram</a>
+          <a href="#" class="footer-social">TikTok</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="collection.html">Collection</a></li>
+          <li><a href="configurateur.html">Configurateur</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Informations</h5>
+        <ul>
+          <li><a href="contact.html#faq">FAQ</a></li>
+          <li><a href="contact.html">Livraison & retours</a></li>
+          <li><a href="contact.html">Garantie</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Légal</h5>
+        <ul>
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">CGV</a></li>
+          <li><a href="#">Confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SeikoMods. Tous droits réservés.</span>
+      <span>Fait avec ❤️ en France</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav
+  document.getElementById('navbar').classList.add('scrolled');
+  const toggle = document.getElementById('navToggle');
+  const mobile = document.getElementById('navMobile');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    mobile.classList.toggle('open');
+  });
+  mobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    mobile.classList.remove('open');
+  }));
+
+  // FAQ accordéon
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Form fallback si Formspree pas configuré
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    if (this.action.includes('YOUR_FORM_ID')) {
+      e.preventDefault();
+      window.location.href = 'https://wa.me/TON_NUMERO?text=' +
+        encodeURIComponent('Bonjour, j\'ai une question sur vos SeikoMods !');
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Configurez votre SeikoMod sur mesure — choisissez votre boîtier, cadran, aiguilles et bracelet.">
+  <title>Configurateur — SeikoMods</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="promo-bar">🚚 LIVRAISON OFFERTE EN FRANCE</div>
+
+<nav class="nav scrolled" id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Seiko<span>Mods</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="collection.html">Collection</a></li>
+      <li><a href="configurateur.html" class="active">Configurateur</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="configurateur.html" class="btn btn-gold nav-cta-btn">✦ Créer la mienne</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Accueil</a>
+  <a href="collection.html">Collection</a>
+  <a href="configurateur.html">Configurateur</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="label">Sur mesure</span>
+    <div class="divider center"></div>
+    <h1>Configure ta montre</h1>
+    <p>Choisis chaque composant. Je l'assemble à la main et te l'expédie sous 7-10 jours.</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:48px">
+  <div class="container">
+    <div class="config-wrapper">
+
+      <!-- ÉTAPES DE SÉLECTION -->
+      <div class="config-steps" id="configSteps">
+
+        <!-- ÉTAPE 1 : MODÈLE -->
+        <div class="config-step">
+          <div class="config-step-header">
+            <div class="step-dot">1</div>
+            <h3>Choisis ton modèle</h3>
+          </div>
+          <div class="options-grid">
+            <div class="option-card selected" data-step="model" data-value="datejust-39" data-label="DateJust 39mm" data-price="0" data-img="images/dayjust-steel-jubilee.png">
+              <div class="opt-icon">⌚</div>
+              <div class="opt-name">DateJust 39mm</div>
+              <div class="opt-price">à partir de 149 €</div>
+            </div>
+            <div class="option-card" data-step="model" data-value="datejust-36" data-label="DateJust 36mm" data-price="0" data-img="images/3639mm-steel-jubilee.png">
+              <div class="opt-icon">⌚</div>
+              <div class="opt-name">DateJust 36mm</div>
+              <div class="opt-price">à partir de 139 €</div>
+            </div>
+            <div class="option-card" data-step="model" data-value="royaloak" data-label="Royal Oak" data-price="20" data-img="images/royaloak-steel.png">
+              <div class="opt-icon">⌚</div>
+              <div class="opt-name">Royal Oak</div>
+              <div class="opt-price">à partir de 179 €</div>
+            </div>
+            <div class="option-card" data-step="model" data-value="gmt" data-label="GMT 40mm" data-price="10" data-img="images/40mm-steel-gmt-jubilee.png">
+              <div class="opt-icon">⌚</div>
+              <div class="opt-name">GMT 40mm</div>
+              <div class="opt-price">à partir de 169 €</div>
+            </div>
+            <div class="option-card" data-step="model" data-value="submariner" data-label="Submariner" data-price="0" data-img="images/submariner-steel.png">
+              <div class="opt-icon">⌚</div>
+              <div class="opt-name">Submariner</div>
+              <div class="opt-price">à partir de 149 €</div>
+            </div>
+            <div class="option-card" data-step="model" data-value="nautilus" data-label="Nautilus" data-price="30" data-img="images/nautilus-steel.png">
+              <div class="opt-icon">⌚</div>
+              <div class="opt-name">Nautilus</div>
+              <div class="opt-price">à partir de 189 €</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ÉTAPE 2 : FINITION BOÎTIER -->
+        <div class="config-step">
+          <div class="config-step-header">
+            <div class="step-dot">2</div>
+            <h3>Finition du boîtier</h3>
+          </div>
+          <div class="options-grid">
+            <div class="option-card selected" data-step="finish" data-value="steel" data-label="Acier" data-price="0">
+              <div class="color-swatch" style="background:linear-gradient(135deg,#c8c8c8,#888)"></div>
+              <div class="opt-name">Acier</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="finish" data-value="bicolor" data-label="Bicolore Acier/Or" data-price="20">
+              <div class="color-swatch" style="background:linear-gradient(135deg,#c8c8c8 50%,#c9a84c 50%)"></div>
+              <div class="opt-name">Bicolore</div>
+              <div class="opt-price">+20 €</div>
+            </div>
+            <div class="option-card" data-step="finish" data-value="gold" data-label="Or jaune" data-price="40">
+              <div class="color-swatch" style="background:linear-gradient(135deg,#e0c87a,#9a7a2e)"></div>
+              <div class="opt-name">Or jaune</div>
+              <div class="opt-price">+40 €</div>
+            </div>
+            <div class="option-card" data-step="finish" data-value="rosegold" data-label="Or rose" data-price="40">
+              <div class="color-swatch" style="background:linear-gradient(135deg,#e8b4a0,#c07860)"></div>
+              <div class="opt-name">Or rose</div>
+              <div class="opt-price">+40 €</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ÉTAPE 3 : CADRAN -->
+        <div class="config-step">
+          <div class="config-step-header">
+            <div class="step-dot">3</div>
+            <h3>Couleur du cadran</h3>
+          </div>
+          <div class="options-grid">
+            <div class="option-card selected" data-step="dial" data-value="white" data-label="Blanc" data-price="0">
+              <div class="color-swatch" style="background:linear-gradient(135deg,#fff,#ddd)"></div>
+              <div class="opt-name">Blanc</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="dial" data-value="black" data-label="Noir" data-price="0">
+              <div class="color-swatch" style="background:linear-gradient(135deg,#222,#000)"></div>
+              <div class="opt-name">Noir</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="dial" data-value="blue" data-label="Bleu nuit" data-price="0">
+              <div class="color-swatch" style="background:linear-gradient(135deg,#1a3a6e,#0a1a3e)"></div>
+              <div class="opt-name">Bleu nuit</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="dial" data-value="green" data-label="Vert forêt" data-price="0">
+              <div class="color-swatch" style="background:linear-gradient(135deg,#1a4a2a,#0a2010)"></div>
+              <div class="opt-name">Vert forêt</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="dial" data-value="champagne" data-label="Champagne" data-price="10">
+              <div class="color-swatch" style="background:linear-gradient(135deg,#f5e8c0,#c9a84c)"></div>
+              <div class="opt-name">Champagne</div>
+              <div class="opt-price">+10 €</div>
+            </div>
+            <div class="option-card" data-step="dial" data-value="arabic" data-label="Arabic Dial" data-price="15">
+              <div class="color-swatch" style="background:linear-gradient(135deg,#8B0000,#4a0000)"></div>
+              <div class="opt-name">Arabic Dial</div>
+              <div class="opt-price">+15 €</div>
+            </div>
+            <div class="option-card" data-step="dial" data-value="silver" data-label="Argenté" data-price="0">
+              <div class="color-swatch" style="background:linear-gradient(135deg,#e8e8e8,#b0b0b0)"></div>
+              <div class="opt-name">Argenté</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="dial" data-value="anthracite" data-label="Anthracite" data-price="0">
+              <div class="color-swatch" style="background:linear-gradient(135deg,#444,#222)"></div>
+              <div class="opt-name">Anthracite</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ÉTAPE 4 : AIGUILLES -->
+        <div class="config-step">
+          <div class="config-step-header">
+            <div class="step-dot">4</div>
+            <h3>Style des aiguilles</h3>
+          </div>
+          <div class="options-grid">
+            <div class="option-card selected" data-step="hands" data-value="baton-silver" data-label="Bâton argenté" data-price="0">
+              <div class="opt-icon">🕐</div>
+              <div class="opt-name">Bâton argenté</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="hands" data-value="baton-gold" data-label="Bâton doré" data-price="10">
+              <div class="opt-icon">🕐</div>
+              <div class="opt-name">Bâton doré</div>
+              <div class="opt-price">+10 €</div>
+            </div>
+            <div class="option-card" data-step="hands" data-value="dauphine-silver" data-label="Dauphin argenté" data-price="10">
+              <div class="opt-icon">🕐</div>
+              <div class="opt-name">Dauphin argenté</div>
+              <div class="opt-price">+10 €</div>
+            </div>
+            <div class="option-card" data-step="hands" data-value="dauphine-gold" data-label="Dauphin doré" data-price="15">
+              <div class="opt-icon">🕐</div>
+              <div class="opt-name">Dauphin doré</div>
+              <div class="opt-price">+15 €</div>
+            </div>
+            <div class="option-card" data-step="hands" data-value="royal-silver" data-label="Royal argenté" data-price="10">
+              <div class="opt-icon">🕐</div>
+              <div class="opt-name">Royal argenté</div>
+              <div class="opt-price">+10 €</div>
+            </div>
+            <div class="option-card" data-step="hands" data-value="mercedez" data-label="Mercedes" data-price="0">
+              <div class="opt-icon">🕐</div>
+              <div class="opt-name">Mercedes</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ÉTAPE 5 : BRACELET -->
+        <div class="config-step">
+          <div class="config-step-header">
+            <div class="step-dot">5</div>
+            <h3>Type de bracelet</h3>
+          </div>
+          <div class="options-grid">
+            <div class="option-card selected" data-step="strap" data-value="jubilee-steel" data-label="Jubilé acier" data-price="0">
+              <div class="opt-icon">⛓️</div>
+              <div class="opt-name">Jubilé acier</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="strap" data-value="oyster-steel" data-label="Oyster acier" data-price="0">
+              <div class="opt-icon">⛓️</div>
+              <div class="opt-name">Oyster acier</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="strap" data-value="president" data-label="Président acier" data-price="15">
+              <div class="opt-icon">⛓️</div>
+              <div class="opt-name">Président</div>
+              <div class="opt-price">+15 €</div>
+            </div>
+            <div class="option-card" data-step="strap" data-value="jubilee-gold" data-label="Jubilé bicolore" data-price="25">
+              <div class="opt-icon">⛓️</div>
+              <div class="opt-name">Jubilé bicolore</div>
+              <div class="opt-price">+25 €</div>
+            </div>
+            <div class="option-card" data-step="strap" data-value="nato" data-label="NATO tissu" data-price="-10">
+              <div class="opt-icon">🎽</div>
+              <div class="opt-name">NATO tissu</div>
+              <div class="opt-price">-10 €</div>
+            </div>
+            <div class="option-card" data-step="strap" data-value="leather" data-label="Cuir noir" data-price="-5">
+              <div class="opt-icon">🪢</div>
+              <div class="opt-name">Cuir noir</div>
+              <div class="opt-price">-5 €</div>
+            </div>
+            <div class="option-card" data-step="strap" data-value="rubber" data-label="Caoutchouc" data-price="-5">
+              <div class="opt-icon">⬛</div>
+              <div class="opt-name">Caoutchouc</div>
+              <div class="opt-price">-5 €</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ÉTAPE 6 : COMMANDE -->
+        <div class="order-form-section">
+          <div class="config-step-header">
+            <div class="step-dot">6</div>
+            <h3>Finalise ta commande</h3>
+          </div>
+          <p style="margin-bottom:20px;font-size:.88rem">Remplis le formulaire et je te recontacte sous 24h pour confirmer et organiser le paiement.</p>
+          <form id="orderForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <!-- Champs cachés pour la config -->
+            <input type="hidden" name="modele" id="f-modele">
+            <input type="hidden" name="finition" id="f-finition">
+            <input type="hidden" name="cadran" id="f-cadran">
+            <input type="hidden" name="aiguilles" id="f-aiguilles">
+            <input type="hidden" name="bracelet" id="f-bracelet">
+            <input type="hidden" name="prix_total" id="f-prix">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Prénom *</label>
+                <input type="text" name="prenom" placeholder="Ton prénom" required>
+              </div>
+              <div class="form-group">
+                <label>Nom *</label>
+                <input type="text" name="nom" placeholder="Ton nom" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email *</label>
+              <input type="email" name="email" placeholder="ton@email.com" required>
+            </div>
+            <div class="form-group">
+              <label>Téléphone / WhatsApp</label>
+              <input type="tel" name="telephone" placeholder="+33 6 XX XX XX XX">
+            </div>
+            <div class="form-group">
+              <label>Message complémentaire</label>
+              <textarea name="message" placeholder="Des souhaits particuliers ? Une couleur spécifique ? Pose toutes tes questions..."></textarea>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+              <button type="submit" class="btn btn-gold" style="flex:1;justify-content:center;padding:15px">
+                ✦ Envoyer ma commande
+              </button>
+              <a href="#" id="whatsappBtn" class="btn btn-whatsapp" target="_blank" rel="noopener" style="flex:1;justify-content:center;padding:15px">
+                💬 Commander via WhatsApp
+              </a>
+            </div>
+            <p style="font-size:.75rem;text-align:center;margin-top:12px;color:var(--muted)">
+              Je te recontacte sous 24h pour confirmer et organiser le paiement sécurisé.
+            </p>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- PANNEAU DE PRÉVISUALISATION -->
+      <div class="config-panel" id="configPanel">
+
+        <div class="config-preview-box">
+          <div class="config-watch-img">
+            <img src="images/dayjust-steel-jubilee.png" alt="Aperçu" id="previewImg">
+          </div>
+          <div class="config-preview-name" id="previewName">DateJust 39mm</div>
+          <div class="config-preview-sub" id="previewSub">Acier · Blanc · Bâton argenté</div>
+        </div>
+
+        <div class="config-summary-box">
+          <h4>Récapitulatif</h4>
+          <div class="summary-line"><span class="lbl">Modèle</span><span class="val" id="s-modele">DateJust 39mm</span></div>
+          <div class="summary-line"><span class="lbl">Finition</span><span class="val" id="s-finition">Acier</span></div>
+          <div class="summary-line"><span class="lbl">Cadran</span><span class="val" id="s-cadran">Blanc</span></div>
+          <div class="summary-line"><span class="lbl">Aiguilles</span><span class="val" id="s-aiguilles">Bâton argenté</span></div>
+          <div class="summary-line"><span class="lbl">Bracelet</span><span class="val" id="s-bracelet">Jubilé acier</span></div>
+          <div class="summary-total">
+            <span>Total estimé</span>
+            <span class="summary-price" id="s-prix">149 €</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Seiko<span>Mods</span></div>
+        <p>Montres Seiko custom assemblées à la main. Chaque pièce est unique, créée selon tes désirs.</p>
+        <div class="footer-socials">
+          <a href="#" class="footer-social">Instagram</a>
+          <a href="#" class="footer-social">TikTok</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="collection.html">Collection</a></li>
+          <li><a href="configurateur.html">Configurateur</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Informations</h5>
+        <ul>
+          <li><a href="contact.html#faq">FAQ</a></li>
+          <li><a href="contact.html">Livraison</a></li>
+          <li><a href="contact.html">Garantie</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Légal</h5>
+        <ul>
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">CGV</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SeikoMods. Tous droits réservés.</span>
+      <span>Fait avec ❤️ en France</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav
+  document.getElementById('navbar').classList.add('scrolled');
+  const toggle = document.getElementById('navToggle');
+  const mobile = document.getElementById('navMobile');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    mobile.classList.toggle('open');
+  });
+
+  // ── CONFIG STATE ──
+  const BASE_PRICES = {
+    'datejust-39': 149, 'datejust-36': 139,
+    'royaloak': 179, 'gmt': 169,
+    'submariner': 149, 'nautilus': 189
+  };
+
+  const MODEL_IMAGES = {
+    'datejust-39': 'images/dayjust-steel-jubilee.png',
+    'datejust-36': 'images/3639mm-steel-jubilee.png',
+    'royaloak':    'images/royaloak-steel.png',
+    'gmt':         'images/40mm-steel-gmt-jubilee.png',
+    'submariner':  'images/submariner-steel.png',
+    'nautilus':    'images/nautilus-steel.png'
+  };
+
+  const state = {
+    model:   { value: 'datejust-39', label: 'DateJust 39mm',   price: 0 },
+    finish:  { value: 'steel',       label: 'Acier',            price: 0 },
+    dial:    { value: 'white',       label: 'Blanc',            price: 0 },
+    hands:   { value: 'baton-silver',label: 'Bâton argenté',   price: 0 },
+    strap:   { value: 'jubilee-steel',label: 'Jubilé acier',    price: 0 }
+  };
+
+  function getTotal() {
+    const base = BASE_PRICES[state.model.value] || 149;
+    return base + state.finish.price + state.dial.price + state.hands.price + state.strap.price;
+  }
+
+  function updateUI() {
+    // Preview image
+    const img = document.getElementById('previewImg');
+    img.style.opacity = '0.4';
+    setTimeout(() => {
+      img.src = MODEL_IMAGES[state.model.value] || 'images/dayjust-steel-jubilee.png';
+      img.style.opacity = '1';
+    }, 200);
+
+    // Preview name/sub
+    document.getElementById('previewName').textContent = state.model.label;
+    document.getElementById('previewSub').textContent =
+      `${state.finish.label} · ${state.dial.label} · ${state.hands.label}`;
+
+    // Summary lines
+    document.getElementById('s-modele').textContent   = state.model.label;
+    document.getElementById('s-finition').textContent = state.finish.label;
+    document.getElementById('s-cadran').textContent   = state.dial.label;
+    document.getElementById('s-aiguilles').textContent = state.hands.label;
+    document.getElementById('s-bracelet').textContent = state.strap.label;
+    document.getElementById('s-prix').textContent     = getTotal() + ' €';
+
+    // Hidden form fields
+    document.getElementById('f-modele').value   = state.model.label;
+    document.getElementById('f-finition').value = state.finish.label;
+    document.getElementById('f-cadran').value   = state.dial.label;
+    document.getElementById('f-aiguilles').value = state.hands.label;
+    document.getElementById('f-bracelet').value = state.strap.label;
+    document.getElementById('f-prix').value     = getTotal() + ' €';
+
+    // WhatsApp button
+    const waMsg = encodeURIComponent(
+      `Bonjour ! Je souhaite commander une SeikoMods :\n` +
+      `• Modèle : ${state.model.label}\n` +
+      `• Finition : ${state.finish.label}\n` +
+      `• Cadran : ${state.dial.label}\n` +
+      `• Aiguilles : ${state.hands.label}\n` +
+      `• Bracelet : ${state.strap.label}\n` +
+      `• Prix estimé : ${getTotal()} €\n\n` +
+      `Pouvez-vous confirmer la disponibilité ?`
+    );
+    // Remplace TON_NUMERO par ton numéro WhatsApp au format international (ex: 33612345678)
+    document.getElementById('whatsappBtn').href = `https://wa.me/TON_NUMERO?text=${waMsg}`;
+  }
+
+  // Click on option cards
+  document.querySelectorAll('.option-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const step = card.dataset.step;
+      // Deselect siblings
+      document.querySelectorAll(`[data-step="${step}"]`).forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      // Update state
+      state[step] = {
+        value: card.dataset.value,
+        label: card.dataset.label,
+        price: parseInt(card.dataset.price) || 0
+      };
+      updateUI();
+    });
+  });
+
+  // Form submit feedback
+  const form = document.getElementById('orderForm');
+  form.addEventListener('submit', function(e) {
+    // If Formspree not configured, prevent and show WhatsApp fallback
+    if (form.action.includes('YOUR_FORM_ID')) {
+      e.preventDefault();
+      document.getElementById('whatsappBtn').click();
+    }
+  });
+
+  updateUI();
+</script>
+</body>
+</html>
