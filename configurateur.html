@@ -286,8 +286,8 @@
               <input type="email" name="email" placeholder="ton@email.com" required>
             </div>
             <div class="form-group">
-              <label>Téléphone / WhatsApp</label>
-              <input type="tel" name="telephone" placeholder="+33 6 XX XX XX XX">
+              <label>Instagram (optionnel)</label>
+              <input type="text" name="instagram" placeholder="@ton_pseudo">
             </div>
             <div class="form-group">
               <label>Message complémentaire</label>
@@ -297,8 +297,8 @@
               <button type="submit" class="btn btn-gold" style="flex:1;justify-content:center;padding:15px">
                 ✦ Envoyer ma commande
               </button>
-              <a href="#" id="whatsappBtn" class="btn btn-whatsapp" target="_blank" rel="noopener" style="flex:1;justify-content:center;padding:15px">
-                💬 Commander via WhatsApp
+              <a href="https://www.instagram.com/seikomods_louis/" id="instagramBtn" class="btn btn-outline" target="_blank" rel="noopener" style="flex:1;justify-content:center;padding:15px">
+                📸 Commander via Instagram
               </a>
             </div>
             <p style="font-size:.75rem;text-align:center;margin-top:12px;color:var(--muted)">
@@ -346,7 +346,7 @@
         <div class="footer-logo">Seiko<span>Mods</span></div>
         <p>Montres Seiko custom assemblées à la main. Chaque pièce est unique, créée selon tes désirs.</p>
         <div class="footer-socials">
-          <a href="#" class="footer-social">Instagram</a>
+          <a href="https://www.instagram.com/seikomods_louis/" class="footer-social" target="_blank">Instagram</a>
           <a href="#" class="footer-social">TikTok</a>
         </div>
       </div>
@@ -451,19 +451,8 @@
     document.getElementById('f-bracelet').value = state.strap.label;
     document.getElementById('f-prix').value     = getTotal() + ' €';
 
-    // WhatsApp button
-    const waMsg = encodeURIComponent(
-      `Bonjour ! Je souhaite commander une SeikoMods :\n` +
-      `• Modèle : ${state.model.label}\n` +
-      `• Finition : ${state.finish.label}\n` +
-      `• Cadran : ${state.dial.label}\n` +
-      `• Aiguilles : ${state.hands.label}\n` +
-      `• Bracelet : ${state.strap.label}\n` +
-      `• Prix estimé : ${getTotal()} €\n\n` +
-      `Pouvez-vous confirmer la disponibilité ?`
-    );
-    // Remplace TON_NUMERO par ton numéro WhatsApp au format international (ex: 33612345678)
-    document.getElementById('whatsappBtn').href = `https://wa.me/TON_NUMERO?text=${waMsg}`;
+    // Instagram button (lien direct vers le profil)
+    document.getElementById('instagramBtn').href = 'https://www.instagram.com/seikomods_louis/';
   }
 
   // Click on option cards
@@ -486,10 +475,9 @@
   // Form submit feedback
   const form = document.getElementById('orderForm');
   form.addEventListener('submit', function(e) {
-    // If Formspree not configured, prevent and show WhatsApp fallback
     if (form.action.includes('YOUR_FORM_ID')) {
       e.preventDefault();
-      document.getElementById('whatsappBtn').click();
+      window.open('https://www.instagram.com/seikomods_louis/', '_blank');
     }
   });
 
