@@ -492,12 +492,30 @@
           label: card.dataset.label,
           price: parseInt(card.dataset.price) || 0
         };
+        renderFinishes(modelValue, card.dataset.value);
         updateUI();
       });
     });
     const first = STRAP_OPTIONS[straps[0]];
     state.strap = { value: straps[0], label: first.label, price: first.price };
   }
+
+  // Photos boîtier DateJust par finition + bracelet
+  const DJ_CASE_PHOTOS = {
+    'steel': {
+      'jubilee-steel': 'images/dj-steel-jubilee.jpg',
+      'oyster-steel':  'images/dj-steel-oyster.jpg',
+      'president':     'images/dj-steel-president.jpg',
+    },
+    // Autres finitions à venir
+  };
+
+  // Finitions disponibles par bracelet pour la DateJust
+  const DJ_FINISHES_BY_STRAP = {
+    'jubilee-steel': ['steel'],
+    'oyster-steel':  ['steel'],
+    'president':     ['steel'],
+  };
 
   const FINISH_OPTIONS = {
     'steel':            { label: 'Acier',         price: 0,  gradient: 'linear-gradient(135deg,#c8c8c8,#888)' },
@@ -515,18 +533,29 @@
     'nautilus':    ['steel', 'gold', 'rose-gold', 'steel-gold', 'steel-rose-gold']
   };
 
-  function renderFinishes(modelValue) {
+  function renderFinishes(modelValue, strapValue) {
     const grid = document.getElementById('finishGrid');
-    const finishes = MODEL_FINISHES[modelValue] || ['steel'];
+    // Pour la DateJust, filtrer par bracelet si disponible
+    let finishes;
+    if (modelValue === 'datejust-39' && strapValue && DJ_FINISHES_BY_STRAP[strapValue]) {
+      finishes = DJ_FINISHES_BY_STRAP[strapValue];
+    } else {
+      finishes = MODEL_FINISHES[modelValue] || ['steel'];
+    }
     grid.innerHTML = finishes.map((key, i) => {
       const f = FINISH_OPTIONS[key];
-      return `<div class="option-card${i === 0 ? ' selected' : ''}" data-step="finish" data-value="${key}" data-label="${f.label}" data-price="${f.price}">
-        <div class="color-swatch" style="background:${f.gradient}"></div>
+      // Photo boîtier si dispo, sinon swatch couleur
+      const casePhoto = modelValue === 'datejust-39' && strapValue && DJ_CASE_PHOTOS[key]?.[strapValue];
+      const visual = casePhoto
+        ? `<div class="dial-thumb-wrap"><img src="${casePhoto}" alt="${f.label}" class="dial-thumb" style="border-radius:8px"><span class="dial-zoom">&#x2922;</span></div>`
+        : `<div class="color-swatch" style="background:${f.gradient}"></div>`;
+      return `<div class="option-card${i === 0 ? ' selected' : ''}" data-step="finish" data-value="${key}" data-label="${f.label}" data-price="${f.price}" data-img="${casePhoto || ''}">
+        ${visual}
         <div class="opt-name">${f.label}</div>
         <div class="opt-price">${f.price > 0 ? '+' + f.price + ' €' : '+0 €'}</div>
       </div>`;
     }).join('');
-    // Rebind click listeners on new cards
+    // Rebind click listeners
     grid.querySelectorAll('.option-card').forEach(card => {
       card.addEventListener('click', () => {
         document.querySelectorAll('[data-step="finish"]').forEach(c => c.classList.remove('selected'));
@@ -538,8 +567,17 @@
         };
         updateUI();
       });
+      // Lightbox sur la photo boîtier
+      const wrap = card.querySelector('.dial-thumb-wrap');
+      if (wrap) {
+        wrap.addEventListener('click', e => {
+          e.stopPropagation();
+          const img = card.dataset.img;
+          if (img) { document.getElementById('dialLightboxImg').src = img; lightbox.classList.add('open'); }
+        });
+      }
     });
-    // Auto-select first finish
+    // Auto-select first
     const first = FINISH_OPTIONS[finishes[0]];
     state.finish = { value: finishes[0], label: first.label, price: first.price };
   }
@@ -627,7 +665,7 @@
       // Si on change de modèle, re-render les bracelets, finitions et types de cadran
       if (step === 'model') {
         renderStraps(card.dataset.value);
-        renderFinishes(card.dataset.value);
+        renderFinishes(card.dataset.value, state.strap.value);
         renderDialType(card.dataset.value);
       }
       updateUI();
@@ -644,8 +682,8 @@
   });
 
   renderStraps(state.model.value);
-  renderFinishes(state.model.value);
-  renderDialType(state.model.value); // appelle aussi renderDialColors en interne
+  renderFinishes(state.model.value, state.strap.value);
+  renderDialType(state.model.value);
   updateUI();
 </script>
 </body>
