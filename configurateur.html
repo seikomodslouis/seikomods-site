@@ -400,10 +400,10 @@
   }
 
   const DIALTYPE_OPTIONS = {
-    'no-number': { label: 'No Number Dial', price: 0,  icon: '🕐' },
-    'arabic':    { label: 'Arabic Dial',    price: 15, icon: '🕐' },
-    'roman':     { label: 'Roman Dial',     price: 15, icon: '🕐' },
-    'diamant':   { label: 'Diamant Dial',   price: 30, icon: '💎' }
+    'no-number': { label: 'No Number Dial', price: 0,  icon: '' },
+    'arabic':    { label: 'Arabic Dial',    price: 15, icon: '' },
+    'roman':     { label: 'Roman Dial',     price: 15, icon: '' },
+    'diamant':   { label: 'Diamant Dial',   price: 30, icon: '' }
   };
 
   const MODEL_DIALTYPES = {
@@ -434,7 +434,6 @@
       const d = DIALTYPE_OPTIONS[key];
       const priceStr = d.price > 0 ? '+' + d.price + ' €' : '+0 €';
       return `<div class="option-card${i === 0 ? ' selected' : ''}" data-step="dialtype" data-value="${key}" data-label="${d.label}" data-price="${d.price}">
-        <div class="opt-icon">${d.icon}</div>
         <div class="opt-name">${d.label}</div>
         <div class="opt-price">${priceStr}</div>
       </div>`;
