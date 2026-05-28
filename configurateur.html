@@ -344,17 +344,20 @@
       // Ajoute ici les cadrans Diamant — nomme tes photos dial-dia-[couleur].jpg
     ]
   };
-  // Pour les modèles sans type de cadran, on utilise les no-number
-  DIAL_COLORS_BY_TYPE['standard'] = DIAL_COLORS_BY_TYPE['no-number'];
+  // Pour les modèles sans type de cadran, pas de cadrans affichés
+  DIAL_COLORS_BY_TYPE['standard'] = [];
 
   function renderDialColors(dialtypeValue) {
     const grid = document.getElementById('dialGrid');
-    const dials = DIAL_COLORS_BY_TYPE[dialtypeValue] || DIAL_COLORS_BY_TYPE['no-number'];
+    const dialStep = grid.closest('.config-step');
+    const dials = DIAL_COLORS_BY_TYPE[dialtypeValue] || [];
     if (dials.length === 0) {
-      grid.innerHTML = '<p style="color:var(--muted);font-size:.85rem;padding:16px 0;grid-column:1/-1">Cadrans bientôt disponibles pour ce type.</p>';
+      dialStep.style.display = 'none';
       state.dial = { value: '', label: '—', price: 0 };
+      updateUI();
       return;
     }
+    dialStep.style.display = '';
     grid.innerHTML = dials.map((d, i) => `
       <div class="option-card${i === 0 ? ' selected' : ''}" data-step="dial" data-value="${d.value}" data-label="${d.label}" data-price="${d.price}" data-img="${d.img}">
         <div class="dial-thumb-wrap"><img src="${d.img}" alt="${d.label}" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
@@ -401,10 +404,10 @@
     if (!types) {
       step.style.display = 'none';
       state.dialtype = { value: 'standard', label: 'Standard', price: 0 };
-      // Renumber: dial color = 4, hands = 5, order = 6
+      // Renumber: strap=2, finish=3, dial color=4 (hidden), hands=4, order=5
       document.getElementById('dialColorDot').textContent = '4';
-      document.getElementById('handsDot').textContent = '5';
-      document.getElementById('orderDot').textContent = '6';
+      document.getElementById('handsDot').textContent = '4';
+      document.getElementById('orderDot').textContent = '5';
       renderDialColors('standard');
       return;
     }
