@@ -500,7 +500,7 @@
       braceletBtns[0].classList.add('active');
       const isDJ = currentCollection === 'datejust';
       subfilters.style.display = isDJ ? 'flex' : 'none';
-      braceletfilters.style.display = isDJ ? 'flex' : 'none';
+      braceletfilters.style.display = 'none';
       applyFilters();
     });
   });
@@ -510,6 +510,10 @@
       subfilterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentFinish = btn.dataset.finish;
+      currentBracelet = 'all';
+      braceletBtns.forEach(b => b.classList.remove('active'));
+      braceletBtns[0].classList.add('active');
+      braceletfilters.style.display = currentFinish === 'all' ? 'none' : 'flex';
       applyFilters();
     });
   });
