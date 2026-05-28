@@ -351,13 +351,13 @@
     const grid = document.getElementById('dialGrid');
     const dialStep = grid.closest('.config-step');
     const dials = DIAL_COLORS_BY_TYPE[dialtypeValue] || [];
+    dialStep.style.display = '';
     if (dials.length === 0) {
-      dialStep.style.display = 'none';
+      grid.innerHTML = '<p style="color:var(--muted);font-size:.85rem;padding:16px 0;grid-column:1/-1">Cadrans bientôt disponibles pour ce modèle.</p>';
       state.dial = { value: '', label: '—', price: 0 };
       updateUI();
       return;
     }
-    dialStep.style.display = '';
     grid.innerHTML = dials.map((d, i) => `
       <div class="option-card${i === 0 ? ' selected' : ''}" data-step="dial" data-value="${d.value}" data-label="${d.label}" data-price="${d.price}" data-img="${d.img}">
         <div class="dial-thumb-wrap"><img src="${d.img}" alt="${d.label}" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
