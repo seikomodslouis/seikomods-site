@@ -90,27 +90,8 @@
             <div class="step-dot">2</div>
             <h3>Finition du boîtier</h3>
           </div>
-          <div class="options-grid">
-            <div class="option-card selected" data-step="finish" data-value="steel" data-label="Acier" data-price="0">
-              <div class="color-swatch" style="background:linear-gradient(135deg,#c8c8c8,#888)"></div>
-              <div class="opt-name">Acier</div>
-              <div class="opt-price">+0 €</div>
-            </div>
-            <div class="option-card" data-step="finish" data-value="bicolor" data-label="Bicolore Acier/Or" data-price="20">
-              <div class="color-swatch" style="background:linear-gradient(135deg,#c8c8c8 50%,#c9a84c 50%)"></div>
-              <div class="opt-name">Bicolore</div>
-              <div class="opt-price">+20 €</div>
-            </div>
-            <div class="option-card" data-step="finish" data-value="gold" data-label="Or jaune" data-price="40">
-              <div class="color-swatch" style="background:linear-gradient(135deg,#e0c87a,#9a7a2e)"></div>
-              <div class="opt-name">Or jaune</div>
-              <div class="opt-price">+40 €</div>
-            </div>
-            <div class="option-card" data-step="finish" data-value="rosegold" data-label="Or rose" data-price="40">
-              <div class="color-swatch" style="background:linear-gradient(135deg,#e8b4a0,#c07860)"></div>
-              <div class="opt-name">Or rose</div>
-              <div class="opt-price">+40 €</div>
-            </div>
+          <div class="options-grid" id="finishGrid">
+            <!-- Rempli dynamiquement par JS selon le modèle sélectionné -->
           </div>
         </div>
 
@@ -388,10 +369,55 @@
 
   // ── CONFIG STATE ──
   const BASE_PRICES = {
-    'datejust-39': 149, 'datejust-36': 139,
+    'datejust-39': 149,
     'royaloak': 179, 'gmt': 169,
     'submariner': 149, 'nautilus': 189
   };
+
+  const FINISH_OPTIONS = {
+    'steel':            { label: 'Acier',         price: 0,  gradient: 'linear-gradient(135deg,#c8c8c8,#888)' },
+    'gold':             { label: 'Or',             price: 40, gradient: 'linear-gradient(135deg,#e0c87a,#9a7a2e)' },
+    'rose-gold':        { label: 'Or Rose',        price: 40, gradient: 'linear-gradient(135deg,#e8b4a0,#c07860)' },
+    'steel-gold':       { label: 'Acier Or',       price: 20, gradient: 'linear-gradient(135deg,#c8c8c8 50%,#c9a84c 50%)' },
+    'steel-rose-gold':  { label: 'Acier Or Rose',  price: 20, gradient: 'linear-gradient(135deg,#c8c8c8 50%,#e8b4a0 50%)' }
+  };
+
+  const MODEL_FINISHES = {
+    'datejust-39': ['steel', 'gold', 'rose-gold', 'steel-gold', 'steel-rose-gold'],
+    'royaloak':    ['steel', 'gold', 'rose-gold'],
+    'gmt':         ['steel', 'steel-gold', 'steel-rose-gold', 'rose-gold'],
+    'submariner':  ['steel', 'gold', 'steel-gold'],
+    'nautilus':    ['steel', 'gold', 'rose-gold', 'steel-gold', 'steel-rose-gold']
+  };
+
+  function renderFinishes(modelValue) {
+    const grid = document.getElementById('finishGrid');
+    const finishes = MODEL_FINISHES[modelValue] || ['steel'];
+    grid.innerHTML = finishes.map((key, i) => {
+      const f = FINISH_OPTIONS[key];
+      return `<div class="option-card${i === 0 ? ' selected' : ''}" data-step="finish" data-value="${key}" data-label="${f.label}" data-price="${f.price}">
+        <div class="color-swatch" style="background:${f.gradient}"></div>
+        <div class="opt-name">${f.label}</div>
+        <div class="opt-price">${f.price > 0 ? '+' + f.price + ' €' : '+0 €'}</div>
+      </div>`;
+    }).join('');
+    // Rebind click listeners on new cards
+    grid.querySelectorAll('.option-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('[data-step="finish"]').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        state.finish = {
+          value: card.dataset.value,
+          label: card.dataset.label,
+          price: parseInt(card.dataset.price) || 0
+        };
+        updateUI();
+      });
+    });
+    // Auto-select first finish
+    const first = FINISH_OPTIONS[finishes[0]];
+    state.finish = { value: finishes[0], label: first.label, price: first.price };
+  }
 
   const MODEL_IMAGES = {
     'datejust-39': 'images/dayjust-steel-jubilee.png',
@@ -448,19 +474,21 @@
     document.getElementById('instagramBtn').href = 'https://www.instagram.com/seikomods_louis/';
   }
 
-  // Click on option cards
+  // Click on option cards (all except finish which is dynamic)
   document.querySelectorAll('.option-card').forEach(card => {
     card.addEventListener('click', () => {
       const step = card.dataset.step;
-      // Deselect siblings
       document.querySelectorAll(`[data-step="${step}"]`).forEach(c => c.classList.remove('selected'));
       card.classList.add('selected');
-      // Update state
       state[step] = {
         value: card.dataset.value,
         label: card.dataset.label,
         price: parseInt(card.dataset.price) || 0
       };
+      // Si on change de modèle, re-render les finitions
+      if (step === 'model') {
+        renderFinishes(card.dataset.value);
+      }
       updateUI();
     });
   });
@@ -474,6 +502,7 @@
     }
   });
 
+  renderFinishes(state.model.value);
   updateUI();
 </script>
 </body>
