@@ -84,10 +84,21 @@
           </div>
         </div>
 
-        <!-- ÉTAPE 2 : FINITION BOÎTIER -->
+        <!-- ÉTAPE 2 : BRACELET -->
         <div class="config-step">
           <div class="config-step-header">
             <div class="step-dot">2</div>
+            <h3>Type de bracelet</h3>
+          </div>
+          <div class="options-grid" id="strapGrid">
+            <!-- Rempli dynamiquement par JS selon le modèle sélectionné -->
+          </div>
+        </div>
+
+        <!-- ÉTAPE 3 : FINITION BOÎTIER -->
+        <div class="config-step">
+          <div class="config-step-header">
+            <div class="step-dot">3</div>
             <h3>Finition du boîtier</h3>
           </div>
           <div class="options-grid" id="finishGrid">
@@ -95,10 +106,10 @@
           </div>
         </div>
 
-        <!-- ÉTAPE 3 : CADRAN -->
+        <!-- ÉTAPE 4 : CADRAN -->
         <div class="config-step">
           <div class="config-step-header">
-            <div class="step-dot">3</div>
+            <div class="step-dot">4</div>
             <h3>Couleur du cadran</h3>
           </div>
           <div class="options-grid">
@@ -145,10 +156,10 @@
           </div>
         </div>
 
-        <!-- ÉTAPE 4 : AIGUILLES -->
+        <!-- ÉTAPE 5 : AIGUILLES -->
         <div class="config-step">
           <div class="config-step-header">
-            <div class="step-dot">4</div>
+            <div class="step-dot">5</div>
             <h3>Style des aiguilles</h3>
           </div>
           <div class="options-grid">
@@ -181,51 +192,6 @@
               <div class="opt-icon">🕐</div>
               <div class="opt-name">Mercedes</div>
               <div class="opt-price">+0 €</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ÉTAPE 5 : BRACELET -->
-        <div class="config-step">
-          <div class="config-step-header">
-            <div class="step-dot">5</div>
-            <h3>Type de bracelet</h3>
-          </div>
-          <div class="options-grid">
-            <div class="option-card selected" data-step="strap" data-value="jubilee-steel" data-label="Jubilé acier" data-price="0">
-              <div class="opt-icon">⛓️</div>
-              <div class="opt-name">Jubilé acier</div>
-              <div class="opt-price">+0 €</div>
-            </div>
-            <div class="option-card" data-step="strap" data-value="oyster-steel" data-label="Oyster acier" data-price="0">
-              <div class="opt-icon">⛓️</div>
-              <div class="opt-name">Oyster acier</div>
-              <div class="opt-price">+0 €</div>
-            </div>
-            <div class="option-card" data-step="strap" data-value="president" data-label="Président acier" data-price="15">
-              <div class="opt-icon">⛓️</div>
-              <div class="opt-name">Président</div>
-              <div class="opt-price">+15 €</div>
-            </div>
-            <div class="option-card" data-step="strap" data-value="jubilee-gold" data-label="Jubilé bicolore" data-price="25">
-              <div class="opt-icon">⛓️</div>
-              <div class="opt-name">Jubilé bicolore</div>
-              <div class="opt-price">+25 €</div>
-            </div>
-            <div class="option-card" data-step="strap" data-value="nato" data-label="NATO tissu" data-price="-10">
-              <div class="opt-icon">🎽</div>
-              <div class="opt-name">NATO tissu</div>
-              <div class="opt-price">-10 €</div>
-            </div>
-            <div class="option-card" data-step="strap" data-value="leather" data-label="Cuir noir" data-price="-5">
-              <div class="opt-icon">🪢</div>
-              <div class="opt-name">Cuir noir</div>
-              <div class="opt-price">-5 €</div>
-            </div>
-            <div class="option-card" data-step="strap" data-value="rubber" data-label="Caoutchouc" data-price="-5">
-              <div class="opt-icon">⬛</div>
-              <div class="opt-name">Caoutchouc</div>
-              <div class="opt-price">-5 €</div>
             </div>
           </div>
         </div>
@@ -374,6 +340,53 @@
     'submariner': 149, 'nautilus': 189
   };
 
+  const STRAP_OPTIONS = {
+    'jubilee-steel':  { label: 'Jubilé acier',    price: 0,   icon: '⛓️' },
+    'oyster-steel':   { label: 'Oyster acier',     price: 0,   icon: '⛓️' },
+    'president':      { label: 'Président',        price: 15,  icon: '⛓️' },
+    'jubilee-gold':   { label: 'Jubilé bicolore',  price: 25,  icon: '⛓️' },
+    'integrated':     { label: 'Intégré',          price: 0,   icon: '⛓️' },
+    'rubber':         { label: 'Caoutchouc',       price: -5,  icon: '⬛' },
+    'nato':           { label: 'NATO tissu',       price: -10, icon: '🎽' },
+    'leather':        { label: 'Cuir noir',        price: -5,  icon: '🪢' }
+  };
+
+  const MODEL_STRAPS = {
+    'datejust-39': ['jubilee-steel', 'oyster-steel', 'president', 'jubilee-gold', 'nato', 'leather', 'rubber'],
+    'royaloak':    ['integrated', 'rubber'],
+    'gmt':         ['jubilee-steel', 'oyster-steel', 'nato', 'leather', 'rubber'],
+    'submariner':  ['jubilee-steel', 'oyster-steel', 'nato', 'leather', 'rubber'],
+    'nautilus':    ['integrated', 'jubilee-steel', 'leather', 'rubber']
+  };
+
+  function renderStraps(modelValue) {
+    const grid = document.getElementById('strapGrid');
+    const straps = MODEL_STRAPS[modelValue] || ['jubilee-steel'];
+    grid.innerHTML = straps.map((key, i) => {
+      const s = STRAP_OPTIONS[key];
+      const priceStr = s.price > 0 ? '+' + s.price + ' €' : s.price < 0 ? s.price + ' €' : '+0 €';
+      return `<div class="option-card${i === 0 ? ' selected' : ''}" data-step="strap" data-value="${key}" data-label="${s.label}" data-price="${s.price}">
+        <div class="opt-icon">${s.icon}</div>
+        <div class="opt-name">${s.label}</div>
+        <div class="opt-price">${priceStr}</div>
+      </div>`;
+    }).join('');
+    grid.querySelectorAll('.option-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('[data-step="strap"]').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        state.strap = {
+          value: card.dataset.value,
+          label: card.dataset.label,
+          price: parseInt(card.dataset.price) || 0
+        };
+        updateUI();
+      });
+    });
+    const first = STRAP_OPTIONS[straps[0]];
+    state.strap = { value: straps[0], label: first.label, price: first.price };
+  }
+
   const FINISH_OPTIONS = {
     'steel':            { label: 'Acier',         price: 0,  gradient: 'linear-gradient(135deg,#c8c8c8,#888)' },
     'gold':             { label: 'Or',             price: 40, gradient: 'linear-gradient(135deg,#e0c87a,#9a7a2e)' },
@@ -485,8 +498,9 @@
         label: card.dataset.label,
         price: parseInt(card.dataset.price) || 0
       };
-      // Si on change de modèle, re-render les finitions
+      // Si on change de modèle, re-render les bracelets et les finitions
       if (step === 'model') {
+        renderStraps(card.dataset.value);
         renderFinishes(card.dataset.value);
       }
       updateUI();
@@ -502,6 +516,7 @@
     }
   });
 
+  renderStraps(state.model.value);
   renderFinishes(state.model.value);
   updateUI();
 </script>
