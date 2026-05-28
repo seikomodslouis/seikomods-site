@@ -76,6 +76,13 @@
       <button class="subfilter-btn" data-variant="chronograph">Royal Oak Chronograph</button>
     </div>
 
+    <div class="filters" id="royaloakcolorfilters" style="display:none;margin-top:8px;padding-top:12px">
+      <button class="bracelet-btn subfilter-btn active" data-rocolor="all">Toutes couleurs</button>
+      <button class="bracelet-btn subfilter-btn" data-rocolor="acier">Acier</button>
+      <button class="bracelet-btn subfilter-btn" data-rocolor="or">Or</button>
+      <button class="bracelet-btn subfilter-btn" data-rocolor="or-rose">Or Rose</button>
+    </div>
+
     <div class="grid-4" id="productsGrid">
 
       <!-- DATEJUST -->
@@ -172,7 +179,7 @@
       </article>
 
       <!-- ROYAL OAK -->
-      <article class="product-card" data-collection="royaloak" data-variant="royaloak">
+      <article class="product-card" data-collection="royaloak" data-variant="royaloak" data-rocolor="acier">
         <div class="product-card-img">
           <img src="images/royaloak-steel.png" alt="Royal Oak Acier">
           <span class="product-card-badge badge-bestseller">Bestseller</span>
@@ -188,7 +195,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="royaloak" data-variant="royaloak">
+      <article class="product-card" data-collection="royaloak" data-variant="royaloak" data-rocolor="acier">
         <div class="product-card-img">
           <img src="images/royaloak-acier.png" alt="Royal Oak Acier Verre">
         </div>
@@ -203,7 +210,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="royaloak" data-variant="chronograph">
+      <article class="product-card" data-collection="royaloak" data-variant="chronograph" data-rocolor="acier">
         <div class="product-card-img">
           <img src="images/vk63-royaloak-rubber.png" alt="Royal Oak Rubber VK63">
           <span class="product-card-badge badge-new">Nouveau</span>
@@ -476,16 +483,19 @@
   // Filters
   const filterBtns = document.querySelectorAll('.filter-btn');
   const subfilterBtns = document.querySelectorAll('#subfilters .subfilter-btn');
-  const braceletBtns = document.querySelectorAll('.bracelet-btn');
+  const braceletBtns = document.querySelectorAll('#braceletfilters .bracelet-btn');
   const royaloakBtns = document.querySelectorAll('#royaloakfilters .subfilter-btn');
+  const royaloakColorBtns = document.querySelectorAll('#royaloakcolorfilters .bracelet-btn');
   const subfilters = document.getElementById('subfilters');
   const braceletfilters = document.getElementById('braceletfilters');
   const royaloakfilters = document.getElementById('royaloakfilters');
+  const royaloakcolorfilters = document.getElementById('royaloakcolorfilters');
   const cards = document.querySelectorAll('[data-collection]');
   let currentCollection = 'all';
   let currentFinish = 'all';
   let currentBracelet = 'all';
   let currentVariant = 'all';
+  let currentROColor = 'all';
 
   function applyFilters() {
     cards.forEach(card => {
@@ -493,7 +503,8 @@
       const matchFin = currentFinish === 'all' || card.dataset.finish === currentFinish;
       const matchBra = currentBracelet === 'all' || card.dataset.bracelet === currentBracelet;
       const matchVar = currentVariant === 'all' || card.dataset.variant === currentVariant;
-      card.style.display = (matchCol && matchFin && matchBra && matchVar) ? '' : 'none';
+      const matchROC = currentROColor === 'all' || card.dataset.rocolor === currentROColor;
+      card.style.display = (matchCol && matchFin && matchBra && matchVar && matchROC) ? '' : 'none';
     });
   }
 
@@ -502,18 +513,19 @@
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentCollection = btn.dataset.filter;
-      currentFinish = 'all';
-      currentBracelet = 'all';
-      currentVariant = 'all';
+      currentFinish = 'all'; currentBracelet = 'all'; currentVariant = 'all'; currentROColor = 'all';
       subfilterBtns.forEach(b => b.classList.remove('active'));
       if (subfilterBtns[0]) subfilterBtns[0].classList.add('active');
       braceletBtns.forEach(b => b.classList.remove('active'));
       if (braceletBtns[0]) braceletBtns[0].classList.add('active');
       royaloakBtns.forEach(b => b.classList.remove('active'));
       if (royaloakBtns[0]) royaloakBtns[0].classList.add('active');
+      royaloakColorBtns.forEach(b => b.classList.remove('active'));
+      if (royaloakColorBtns[0]) royaloakColorBtns[0].classList.add('active');
       subfilters.style.display = currentCollection === 'datejust' ? 'flex' : 'none';
       braceletfilters.style.display = 'none';
       royaloakfilters.style.display = currentCollection === 'royaloak' ? 'flex' : 'none';
+      royaloakcolorfilters.style.display = 'none';
       applyFilters();
     });
   });
@@ -545,6 +557,19 @@
       royaloakBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentVariant = btn.dataset.variant;
+      currentROColor = 'all';
+      royaloakColorBtns.forEach(b => b.classList.remove('active'));
+      if (royaloakColorBtns[0]) royaloakColorBtns[0].classList.add('active');
+      royaloakcolorfilters.style.display = currentVariant === 'all' ? 'none' : 'flex';
+      applyFilters();
+    });
+  });
+
+  royaloakColorBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      royaloakColorBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentROColor = btn.dataset.rocolor;
       applyFilters();
     });
   });
