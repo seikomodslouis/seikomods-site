@@ -64,10 +64,16 @@
       <button class="subfilter-btn" data-finish="steel-rose-gold">Steel Rose Gold</button>
     </div>
 
+    <div class="filters" id="braceletfilters" style="display:none;margin-top:8px;padding-top:12px">
+      <button class="bracelet-btn active" data-bracelet="all">Tous bracelets</button>
+      <button class="bracelet-btn" data-bracelet="jubilee">Jubilé</button>
+      <button class="bracelet-btn" data-bracelet="president">Président</button>
+    </div>
+
     <div class="grid-4" id="productsGrid">
 
       <!-- DATEJUST -->
-      <article class="product-card" data-collection="datejust" data-finish="steel">
+      <article class="product-card" data-collection="datejust" data-finish="steel" data-bracelet="jubilee">
         <div class="product-card-img">
           <img src="images/dayjust-noir-jubilee.png" alt="DateJust Acier Jubilé">
           <span class="product-card-badge badge-bestseller">Bestseller</span>
@@ -83,7 +89,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="datejust" data-finish="steel">
+      <article class="product-card" data-collection="datejust" data-finish="steel" data-bracelet="jubilee">
         <div class="product-card-img">
           <img src="images/dayjust-steel-oyster.png" alt="DateJust Acier Oyster">
         </div>
@@ -98,7 +104,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="datejust" data-finish="steel">
+      <article class="product-card" data-collection="datejust" data-finish="steel" data-bracelet="president">
         <div class="product-card-img">
           <img src="images/dayjust-steel-president.png" alt="DateJust Acier Président">
         </div>
@@ -113,7 +119,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="datejust" data-finish="gold">
+      <article class="product-card" data-collection="datejust" data-finish="gold" data-bracelet="jubilee">
         <div class="product-card-img">
           <img src="images/dayjust-gold-jubilee.png" alt="DateJust Or Jubilé">
           <span class="product-card-badge badge-new">Nouveau</span>
@@ -129,7 +135,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="datejust" data-finish="rose-gold">
+      <article class="product-card" data-collection="datejust" data-finish="rose-gold" data-bracelet="jubilee">
         <div class="product-card-img">
           <img src="images/dayjust-rosegold.png" alt="DateJust Or Rose">
         </div>
@@ -144,7 +150,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="datejust" data-finish="steel">
+      <article class="product-card" data-collection="datejust" data-finish="steel" data-bracelet="jubilee">
         <div class="product-card-img">
           <img src="images/3639mm-steel-jubilee.png" alt="DateJust 36mm Jubilé">
         </div>
@@ -464,16 +470,20 @@
   // Filters
   const filterBtns = document.querySelectorAll('.filter-btn');
   const subfilterBtns = document.querySelectorAll('.subfilter-btn');
+  const braceletBtns = document.querySelectorAll('.bracelet-btn');
   const subfilters = document.getElementById('subfilters');
+  const braceletfilters = document.getElementById('braceletfilters');
   const cards = document.querySelectorAll('[data-collection]');
   let currentCollection = 'all';
   let currentFinish = 'all';
+  let currentBracelet = 'all';
 
   function applyFilters() {
     cards.forEach(card => {
       const matchCol = currentCollection === 'all' || card.dataset.collection === currentCollection;
       const matchFin = currentFinish === 'all' || card.dataset.finish === currentFinish;
-      card.style.display = (matchCol && matchFin) ? '' : 'none';
+      const matchBra = currentBracelet === 'all' || card.dataset.bracelet === currentBracelet;
+      card.style.display = (matchCol && matchFin && matchBra) ? '' : 'none';
     });
   }
 
@@ -483,9 +493,14 @@
       btn.classList.add('active');
       currentCollection = btn.dataset.filter;
       currentFinish = 'all';
+      currentBracelet = 'all';
       subfilterBtns.forEach(b => b.classList.remove('active'));
       subfilterBtns[0].classList.add('active');
-      subfilters.style.display = currentCollection === 'datejust' ? 'flex' : 'none';
+      braceletBtns.forEach(b => b.classList.remove('active'));
+      braceletBtns[0].classList.add('active');
+      const isDJ = currentCollection === 'datejust';
+      subfilters.style.display = isDJ ? 'flex' : 'none';
+      braceletfilters.style.display = isDJ ? 'flex' : 'none';
       applyFilters();
     });
   });
@@ -495,6 +510,15 @@
       subfilterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentFinish = btn.dataset.finish;
+      applyFilters();
+    });
+  });
+
+  braceletBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      braceletBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentBracelet = btn.dataset.bracelet;
       applyFilters();
     });
   });
