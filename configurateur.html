@@ -218,8 +218,11 @@
       <div class="config-panel" id="configPanel">
 
         <div class="config-preview-box">
-          <div class="config-watch-img">
-            <img src="images/dayjust-steel-jubilee.png" alt="Aperçu" id="previewImg">
+          <div class="config-watch-img" id="watchComposite">
+            <img src="images/dj-steel-jubilee.jpg" alt="Aperçu boîtier" id="previewCaseImg">
+            <div class="preview-dial-ring" id="previewDialRing">
+              <img src="" alt="Cadran" id="previewDialImg">
+            </div>
           </div>
           <div class="config-preview-name" id="previewName">DateJust 39mm</div>
           <div class="config-preview-sub" id="previewSub">Acier · Argenté · Argent</div>
@@ -383,7 +386,7 @@
       card.addEventListener('click', () => {
         grid.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
-        state.dial = { value: card.dataset.value, label: card.dataset.label, price: parseInt(card.dataset.price) || 0 };
+        state.dial = { value: card.dataset.value, label: card.dataset.label, price: parseInt(card.dataset.price) || 0, img: card.dataset.img || '' };
         updateUI();
       });
     });
@@ -396,7 +399,7 @@
       });
     });
     // Auto-sélectionner le premier
-    state.dial = { value: dials[0].value, label: dials[0].label, price: dials[0].price };
+    state.dial = { value: dials[0].value, label: dials[0].label, price: dials[0].price, img: dials[0].img || '' };
   }
 
   const DIALTYPE_OPTIONS = {
@@ -599,7 +602,7 @@
     strap:    { value: 'jubilee-steel',label: 'Jubilé acier',   price: 0 },
     finish:   { value: 'steel',        label: 'Acier',           price: 0 },
     dialtype: { value: 'no-number',    label: 'No Number Dial',  price: 0 },
-    dial:     { value: 'silver',        label: 'Argenté',         price: 0 },
+    dial:     { value: 'silver',        label: 'Argenté',         price: 0, img: 'images/dial-silver.jpg' },
     hands:    { value: 'argent',        label: 'Argent',          price: 0 }
   };
 
@@ -609,13 +612,29 @@
   }
 
   function updateUI() {
-    // Preview image
-    const img = document.getElementById('previewImg');
-    img.style.opacity = '0.4';
+    // Preview boîtier
+    const caseImg = document.getElementById('previewCaseImg');
+    const dialRing = document.getElementById('previewDialRing');
+    const dialPreviewImg = document.getElementById('previewDialImg');
+
+    // Photo du boîtier selon modèle + bracelet + finition
+    let casePhoto = MODEL_IMAGES[state.model.value] || 'images/dj-steel-jubilee.jpg';
+    if (state.model.value === 'datejust-39' && DJ_CASE_PHOTOS[state.finish.value]?.[state.strap.value]) {
+      casePhoto = DJ_CASE_PHOTOS[state.finish.value][state.strap.value];
+    }
+    caseImg.style.opacity = '0.4';
     setTimeout(() => {
-      img.src = MODEL_IMAGES[state.model.value] || 'images/dayjust-steel-jubilee.png';
-      img.style.opacity = '1';
+      caseImg.src = casePhoto;
+      caseImg.style.opacity = '1';
     }, 200);
+
+    // Overlay cadran (DateJust uniquement si un cadran est sélectionné)
+    if (state.model.value === 'datejust-39' && state.dial.img) {
+      dialPreviewImg.src = state.dial.img;
+      dialRing.classList.add('visible');
+    } else {
+      dialRing.classList.remove('visible');
+    }
 
     // Preview name/sub
     document.getElementById('previewName').textContent = state.model.label;
