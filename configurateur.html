@@ -408,22 +408,18 @@
   }
 
   const STRAP_OPTIONS = {
-    'jubilee-steel':  { label: 'Jubilé acier',    price: 0,   icon: '⛓️' },
-    'oyster-steel':   { label: 'Oyster acier',     price: 0,   icon: '⛓️' },
-    'president':      { label: 'Président',        price: 15,  icon: '⛓️' },
-    'jubilee-gold':   { label: 'Jubilé bicolore',  price: 25,  icon: '⛓️' },
-    'integrated':     { label: 'Intégré',          price: 0,   icon: '⛓️' },
-    'rubber':         { label: 'Caoutchouc',       price: -5,  icon: '⬛' },
-    'nato':           { label: 'NATO tissu',       price: -10, icon: '🎽' },
-    'leather':        { label: 'Cuir noir',        price: -5,  icon: '🪢' }
+    'jubilee-steel':  { label: 'Jubilée',   price: 0,  icon: '⛓️' },
+    'oyster-steel':   { label: 'Oyster',    price: 0,  icon: '⛓️' },
+    'president':      { label: 'Président', price: 15, icon: '⛓️' },
+    'integrated':     { label: 'Intégré',   price: 0,  icon: '⛓️' }
   };
 
   const MODEL_STRAPS = {
-    'datejust-39': ['jubilee-steel', 'oyster-steel', 'president', 'jubilee-gold', 'nato', 'leather', 'rubber'],
-    'royaloak':    ['integrated', 'rubber'],
-    'gmt':         ['jubilee-steel', 'oyster-steel', 'nato', 'leather', 'rubber'],
-    'submariner':  ['jubilee-steel', 'oyster-steel', 'nato', 'leather', 'rubber'],
-    'nautilus':    ['integrated', 'jubilee-steel', 'leather', 'rubber']
+    'datejust-39': ['jubilee-steel', 'president'],
+    'royaloak':    ['integrated'],
+    'gmt':         ['jubilee-steel', 'oyster-steel'],
+    'submariner':  ['jubilee-steel', 'oyster-steel'],
+    'nautilus':    ['integrated']
   };
 
   function renderStraps(modelValue) {
