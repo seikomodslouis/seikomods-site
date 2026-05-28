@@ -211,11 +211,13 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 .config-wrapper{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:start}
 .config-panel{position:sticky;top:100px;display:flex;flex-direction:column;gap:16px}
 .config-preview-box{background:var(--bg-card);border:1px solid var(--border);padding:32px;text-align:center}
-.config-watch-img{width:260px;height:260px;margin:0 auto 16px;position:relative;overflow:hidden;border-radius:8px}
-.config-watch-img>#previewCaseImg{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .3s}
-.preview-dial-ring{position:absolute;top:11%;left:27%;width:46%;aspect-ratio:1;border-radius:50%;overflow:hidden;transform:rotate(-38deg) skewX(-8deg) scaleY(0.84);box-shadow:0 2px 16px rgba(0,0,0,.35);display:none;pointer-events:none}
-.preview-dial-ring img{width:100%;height:100%;object-fit:cover;border-radius:50%}
-.preview-dial-ring.visible{display:block}
+.config-watch-img{width:100%;margin:0 auto 16px}
+.config-watch-img>#previewCaseImg{width:100%;max-height:260px;object-fit:cover;border-radius:8px;display:block;transition:opacity .3s}
+.preview-components{display:flex;gap:12px;justify-content:center;margin-top:12px}
+.preview-component{display:flex;flex-direction:column;align-items:center;gap:6px}
+.preview-component-img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--border);background:var(--bg-card)}
+.preview-component-img.hidden{display:none}
+.preview-component-label{font-size:.6rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
 .config-preview-name{font-family:var(--serif);font-size:1.1rem;color:var(--black);margin-bottom:4px}
 .config-preview-sub{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
 .config-summary-box{background:var(--white);border:1px solid var(--border);padding:22px}

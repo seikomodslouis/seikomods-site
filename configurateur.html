@@ -218,10 +218,17 @@
       <div class="config-panel" id="configPanel">
 
         <div class="config-preview-box">
-          <div class="config-watch-img" id="watchComposite">
+          <div class="config-watch-img">
             <img src="images/dj-steel-jubilee.jpg" alt="Aperçu boîtier" id="previewCaseImg">
-            <div class="preview-dial-ring" id="previewDialRing">
-              <img src="" alt="Cadran" id="previewDialImg">
+            <div class="preview-components" id="previewComponents">
+              <div class="preview-component" id="previewDialWrap" style="display:none">
+                <img src="" alt="Cadran" id="previewDialImg" class="preview-component-img">
+                <span class="preview-component-label">Cadran</span>
+              </div>
+              <div class="preview-component" id="previewHandsWrap" style="display:none">
+                <img src="" alt="Aiguilles" id="previewHandsImg" class="preview-component-img">
+                <span class="preview-component-label">Aiguilles</span>
+              </div>
             </div>
           </div>
           <div class="config-preview-name" id="previewName">DateJust 39mm</div>
@@ -618,8 +625,6 @@
   function updateUI() {
     // Preview boîtier
     const caseImg = document.getElementById('previewCaseImg');
-    const dialRing = document.getElementById('previewDialRing');
-    const dialPreviewImg = document.getElementById('previewDialImg');
 
     // Photo du boîtier selon modèle + bracelet + finition
     let casePhoto = MODEL_IMAGES[state.model.value] || 'images/dj-steel-jubilee.jpg';
@@ -632,12 +637,23 @@
       caseImg.style.opacity = '1';
     }, 200);
 
-    // Overlay cadran (DateJust uniquement si un cadran est sélectionné)
-    if (state.model.value === 'datejust-39' && state.dial.img) {
-      dialPreviewImg.src = state.dial.img;
-      dialRing.classList.add('visible');
+    // Miniature cadran
+    const dialWrap = document.getElementById('previewDialWrap');
+    if (state.dial.img) {
+      document.getElementById('previewDialImg').src = state.dial.img;
+      dialWrap.style.display = 'flex';
     } else {
-      dialRing.classList.remove('visible');
+      dialWrap.style.display = 'none';
+    }
+
+    // Miniature aiguilles
+    const handsWrap = document.getElementById('previewHandsWrap');
+    const handsImgMap = { 'argent': 'images/hands-argent.jpg', 'or': 'images/hands-or.jpg', 'or-rose': 'images/hands-or-rose.jpg' };
+    if (handsImgMap[state.hands.value]) {
+      document.getElementById('previewHandsImg').src = handsImgMap[state.hands.value];
+      handsWrap.style.display = 'flex';
+    } else {
+      handsWrap.style.display = 'none';
     }
 
     // Preview name/sub
