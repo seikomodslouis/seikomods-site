@@ -337,6 +337,9 @@
     'arabic': [
       // Ajoute ici les cadrans Arabic — nomme tes photos dial-ar-[couleur].jpg
     ],
+    'roman': [
+      // Ajoute ici les cadrans Roman — nomme tes photos dial-rom-[couleur].jpg
+    ],
     'diamant': [
       // Ajoute ici les cadrans Diamant — nomme tes photos dial-dia-[couleur].jpg
     ]
@@ -382,11 +385,12 @@
   const DIALTYPE_OPTIONS = {
     'no-number': { label: 'No Number Dial', price: 0,  icon: '🕐' },
     'arabic':    { label: 'Arabic Dial',    price: 15, icon: '🕐' },
+    'roman':     { label: 'Roman Dial',     price: 15, icon: '🕐' },
     'diamant':   { label: 'Diamant Dial',   price: 30, icon: '💎' }
   };
 
   const MODEL_DIALTYPES = {
-    'datejust-39': ['no-number', 'arabic', 'diamant']
+    'datejust-39': ['no-number', 'arabic', 'roman', 'diamant']
     // autres modèles : pas de type de cadran spécifique
   };
 
