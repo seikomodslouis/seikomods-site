@@ -200,6 +200,9 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 .filter-btn{padding:8px 20px;border-radius:0;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:.72rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all var(--transition)}
 .filter-btn:hover{border-color:var(--black);color:var(--black)}
 .filter-btn.active{background:var(--black);color:var(--white);border-color:var(--black)}
+.subfilter-btn{padding:6px 16px;border-radius:0;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:.68rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all var(--transition)}
+.subfilter-btn:hover{border-color:var(--black);color:var(--black)}
+.subfilter-btn.active{background:var(--black);color:var(--white);border-color:var(--black)}
 
 /* ── Configurateur ───────────────────────────── */
 .config-wrapper{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:start}

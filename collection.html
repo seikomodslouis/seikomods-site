@@ -55,10 +55,19 @@
       <button class="filter-btn" data-filter="daytona">Daytona</button>
     </div>
 
+    <div class="filters" id="subfilters" style="display:none;margin-top:12px;border-top:1px solid var(--border);padding-top:16px">
+      <button class="subfilter-btn active" data-finish="all">Toutes finitions</button>
+      <button class="subfilter-btn" data-finish="steel">Acier</button>
+      <button class="subfilter-btn" data-finish="gold">Or</button>
+      <button class="subfilter-btn" data-finish="rose-gold">Or Rose</button>
+      <button class="subfilter-btn" data-finish="steel-gold">Steel Gold</button>
+      <button class="subfilter-btn" data-finish="steel-rose-gold">Steel Rose Gold</button>
+    </div>
+
     <div class="grid-4" id="productsGrid">
 
       <!-- DATEJUST -->
-      <article class="product-card" data-collection="datejust">
+      <article class="product-card" data-collection="datejust" data-finish="steel">
         <div class="product-card-img">
           <img src="images/dayjust-noir-jubilee.png" alt="DateJust Acier Jubilé">
           <span class="product-card-badge badge-bestseller">Bestseller</span>
@@ -74,7 +83,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="datejust">
+      <article class="product-card" data-collection="datejust" data-finish="steel">
         <div class="product-card-img">
           <img src="images/dayjust-steel-oyster.png" alt="DateJust Acier Oyster">
         </div>
@@ -89,7 +98,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="datejust">
+      <article class="product-card" data-collection="datejust" data-finish="steel">
         <div class="product-card-img">
           <img src="images/dayjust-steel-president.png" alt="DateJust Acier Président">
         </div>
@@ -104,7 +113,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="datejust">
+      <article class="product-card" data-collection="datejust" data-finish="gold">
         <div class="product-card-img">
           <img src="images/dayjust-gold-jubilee.png" alt="DateJust Or Jubilé">
           <span class="product-card-badge badge-new">Nouveau</span>
@@ -120,7 +129,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="datejust">
+      <article class="product-card" data-collection="datejust" data-finish="rose-gold">
         <div class="product-card-img">
           <img src="images/dayjust-rosegold.png" alt="DateJust Or Rose">
         </div>
@@ -135,7 +144,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="datejust">
+      <article class="product-card" data-collection="datejust" data-finish="steel">
         <div class="product-card-img">
           <img src="images/3639mm-steel-jubilee.png" alt="DateJust 36mm Jubilé">
         </div>
@@ -454,20 +463,39 @@
 
   // Filters
   const filterBtns = document.querySelectorAll('.filter-btn');
+  const subfilterBtns = document.querySelectorAll('.subfilter-btn');
+  const subfilters = document.getElementById('subfilters');
   const cards = document.querySelectorAll('[data-collection]');
+  let currentCollection = 'all';
+  let currentFinish = 'all';
+
+  function applyFilters() {
+    cards.forEach(card => {
+      const matchCol = currentCollection === 'all' || card.dataset.collection === currentCollection;
+      const matchFin = currentFinish === 'all' || card.dataset.finish === currentFinish;
+      card.style.display = (matchCol && matchFin) ? '' : 'none';
+    });
+  }
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      cards.forEach(card => {
-        if (filter === 'all' || card.dataset.collection === filter) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+      currentCollection = btn.dataset.filter;
+      currentFinish = 'all';
+      subfilterBtns.forEach(b => b.classList.remove('active'));
+      subfilterBtns[0].classList.add('active');
+      subfilters.style.display = currentCollection === 'datejust' ? 'flex' : 'none';
+      applyFilters();
+    });
+  });
+
+  subfilterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      subfilterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentFinish = btn.dataset.finish;
+      applyFilters();
     });
   });
 
