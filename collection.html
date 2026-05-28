@@ -70,6 +70,13 @@
       <button class="bracelet-btn subfilter-btn" data-bracelet="president">Président</button>
     </div>
 
+    <div class="filters" id="dialfilters" style="display:none;margin-top:8px;padding-top:12px">
+      <button class="bracelet-btn subfilter-btn active" data-dial="all">Tous cadrans</button>
+      <button class="bracelet-btn subfilter-btn" data-dial="no-number">No Number Dial</button>
+      <button class="bracelet-btn subfilter-btn" data-dial="arabic">Arabic Dial</button>
+      <button class="bracelet-btn subfilter-btn" data-dial="diamant">Diamant Dial</button>
+    </div>
+
     <div class="filters" id="royaloakfilters" style="display:none;margin-top:12px;border-top:1px solid var(--border);padding-top:16px">
       <button class="subfilter-btn active" data-variant="all">Tout voir</button>
       <button class="subfilter-btn" data-variant="royaloak">Royal Oak</button>
@@ -142,7 +149,7 @@
     <div class="grid-4" id="productsGrid">
 
       <!-- DATEJUST -->
-      <article class="product-card" data-collection="datejust" data-finish="steel" data-bracelet="jubilee">
+      <article class="product-card" data-collection="datejust" data-finish="steel" data-bracelet="jubilee" data-dial="no-number">
         <div class="product-card-img">
           <img src="images/dayjust-noir-jubilee.png" alt="DateJust Acier Jubilé">
           <span class="product-card-badge badge-bestseller">Bestseller</span>
@@ -158,7 +165,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="datejust" data-finish="steel" data-bracelet="jubilee">
+      <article class="product-card" data-collection="datejust" data-finish="steel" data-bracelet="jubilee" data-dial="no-number">
         <div class="product-card-img">
           <img src="images/dayjust-steel-oyster.png" alt="DateJust Acier Oyster">
         </div>
@@ -173,7 +180,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="datejust" data-finish="steel" data-bracelet="president">
+      <article class="product-card" data-collection="datejust" data-finish="steel" data-bracelet="president" data-dial="no-number">
         <div class="product-card-img">
           <img src="images/dayjust-steel-president.png" alt="DateJust Acier Président">
         </div>
@@ -188,7 +195,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="datejust" data-finish="gold" data-bracelet="jubilee">
+      <article class="product-card" data-collection="datejust" data-finish="gold" data-bracelet="jubilee" data-dial="no-number">
         <div class="product-card-img">
           <img src="images/dayjust-gold-jubilee.png" alt="DateJust Or Jubilé">
           <span class="product-card-badge badge-new">Nouveau</span>
@@ -204,7 +211,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="datejust" data-finish="rose-gold" data-bracelet="jubilee">
+      <article class="product-card" data-collection="datejust" data-finish="rose-gold" data-bracelet="jubilee" data-dial="no-number">
         <div class="product-card-img">
           <img src="images/dayjust-rosegold.png" alt="DateJust Or Rose">
         </div>
@@ -219,7 +226,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="datejust" data-finish="steel" data-bracelet="jubilee">
+      <article class="product-card" data-collection="datejust" data-finish="steel" data-bracelet="jubilee" data-dial="no-number">
         <div class="product-card-img">
           <img src="images/3639mm-steel-jubilee.png" alt="DateJust 36mm Jubilé">
         </div>
@@ -549,6 +556,7 @@
   const gmtBtns = document.querySelectorAll('#gmtfilters .subfilter-btn');
   const dayColorBtns = document.querySelectorAll('#daycolorfilters .subfilter-btn');
   const dayBraceletBtns = document.querySelectorAll('#daybraceletfilters .bracelet-btn');
+  const dialBtns = document.querySelectorAll('#dialfilters .bracelet-btn');
   const subfilters = document.getElementById('subfilters');
   const braceletfilters = document.getElementById('braceletfilters');
   const royaloakfilters = document.getElementById('royaloakfilters');
@@ -561,6 +569,7 @@
   const gmtbraceletfilters = document.getElementById('gmtbraceletfilters');
   const daycolorfilters = document.getElementById('daycolorfilters');
   const daybraceletfilters = document.getElementById('daybraceletfilters');
+  const dialfilters = document.getElementById('dialfilters');
   const cards = document.querySelectorAll('[data-collection]');
   let currentCollection = 'all';
   let currentFinish = 'all';
@@ -575,6 +584,7 @@
   let currentNautColor = 'all';
   let currentDayColor = 'all';
   let currentDayBracelet = 'all';
+  let currentDial = 'all';
 
   function applyFilters() {
     cards.forEach(card => {
@@ -591,7 +601,8 @@
       const matchNautColor = currentNautColor === 'all' || card.dataset.nautcolor === currentNautColor;
       const matchDayColor = currentDayColor === 'all' || card.dataset.daycolor === currentDayColor;
       const matchDayBracelet = currentDayBracelet === 'all' || card.dataset.daybracelet === currentDayBracelet;
-      card.style.display = (matchCol && matchFin && matchBra && matchVar && matchROC && matchGMT && matchSubColor && matchSubBracelet && matchGMTColor && matchGMTBracelet && matchNautColor && matchDayColor && matchDayBracelet) ? '' : 'none';
+      const matchDial = currentDial === 'all' || card.dataset.dial === currentDial;
+      card.style.display = (matchCol && matchFin && matchBra && matchVar && matchROC && matchGMT && matchSubColor && matchSubBracelet && matchGMTColor && matchGMTBracelet && matchNautColor && matchDayColor && matchDayBracelet && matchDial) ? '' : 'none';
     });
   }
 
@@ -600,7 +611,7 @@
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentCollection = btn.dataset.filter;
-      currentFinish = 'all'; currentBracelet = 'all'; currentVariant = 'all'; currentROColor = 'all'; currentGMT = 'all'; currentSubColor = 'all'; currentSubBracelet = 'all'; currentGMTColor = 'all'; currentGMTBracelet = 'all'; currentNautColor = 'all'; currentDayColor = 'all'; currentDayBracelet = 'all';
+      currentFinish = 'all'; currentBracelet = 'all'; currentVariant = 'all'; currentROColor = 'all'; currentGMT = 'all'; currentSubColor = 'all'; currentSubBracelet = 'all'; currentGMTColor = 'all'; currentGMTBracelet = 'all'; currentNautColor = 'all'; currentDayColor = 'all'; currentDayBracelet = 'all'; currentDial = 'all';
       subfilterBtns.forEach(b => b.classList.remove('active'));
       if (subfilterBtns[0]) subfilterBtns[0].classList.add('active');
       braceletBtns.forEach(b => b.classList.remove('active'));
@@ -637,6 +648,9 @@
       if (dayColorBtns[0]) dayColorBtns[0].classList.add('active');
       dayBraceletBtns.forEach(b => b.classList.remove('active'));
       if (dayBraceletBtns[0]) dayBraceletBtns[0].classList.add('active');
+      dialfilters.style.display = 'none';
+      dialBtns.forEach(b => b.classList.remove('active'));
+      if (dialBtns[0]) dialBtns[0].classList.add('active');
       applyFilters();
     });
   });
@@ -647,9 +661,13 @@
       btn.classList.add('active');
       currentFinish = btn.dataset.finish;
       currentBracelet = 'all';
+      currentDial = 'all';
       braceletBtns.forEach(b => b.classList.remove('active'));
       if (braceletBtns[0]) braceletBtns[0].classList.add('active');
+      dialBtns.forEach(b => b.classList.remove('active'));
+      if (dialBtns[0]) dialBtns[0].classList.add('active');
       braceletfilters.style.display = currentFinish === 'all' ? 'none' : 'flex';
+      dialfilters.style.display = 'none';
       applyFilters();
     });
   });
@@ -659,6 +677,10 @@
       braceletBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentBracelet = btn.dataset.bracelet;
+      currentDial = 'all';
+      dialBtns.forEach(b => b.classList.remove('active'));
+      if (dialBtns[0]) dialBtns[0].classList.add('active');
+      dialfilters.style.display = currentBracelet === 'all' ? 'none' : 'flex';
       applyFilters();
     });
   });
@@ -755,6 +777,15 @@
       subBraceletBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentSubBracelet = btn.dataset.subbracelet;
+      applyFilters();
+    });
+  });
+
+  dialBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      dialBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentDial = btn.dataset.dial;
       applyFilters();
     });
   });
