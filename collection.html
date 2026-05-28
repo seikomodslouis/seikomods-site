@@ -125,6 +125,20 @@
       <button class="bracelet-btn subfilter-btn" data-rocolor="or-rose">Or Rose</button>
     </div>
 
+    <div class="filters" id="daycolorfilters" style="display:none;margin-top:12px;border-top:1px solid var(--border);padding-top:16px">
+      <button class="subfilter-btn active" data-daycolor="all">Toutes finitions</button>
+      <button class="subfilter-btn" data-daycolor="acier">Acier</button>
+      <button class="subfilter-btn" data-daycolor="or">Or</button>
+      <button class="subfilter-btn" data-daycolor="or-rose">Or Rose</button>
+      <button class="subfilter-btn" data-daycolor="acier-or-rose">Acier Or Rose</button>
+    </div>
+
+    <div class="filters" id="daybraceletfilters" style="display:none;margin-top:8px;padding-top:12px">
+      <button class="bracelet-btn subfilter-btn active" data-daybracelet="all">Tous bracelets</button>
+      <button class="bracelet-btn subfilter-btn" data-daybracelet="jubilee">Jubilée</button>
+      <button class="bracelet-btn subfilter-btn" data-daybracelet="oyster">Oyster</button>
+    </div>
+
     <div class="grid-4" id="productsGrid">
 
       <!-- DATEJUST -->
@@ -364,7 +378,7 @@
       </article>
 
       <!-- DAYTONA -->
-      <article class="product-card" data-collection="daytona">
+      <article class="product-card" data-collection="daytona" data-daycolor="acier" data-daybracelet="jubilee">
         <div class="product-card-img">
           <img src="images/daytona-steel.png" alt="Daytona Acier">
           <span class="product-card-badge badge-new">Nouveau</span>
@@ -380,7 +394,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="daytona">
+      <article class="product-card" data-collection="daytona" data-daycolor="or" data-daybracelet="jubilee">
         <div class="product-card-img">
           <img src="images/daytona-gold.png" alt="Daytona Or">
         </div>
@@ -395,7 +409,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="daytona">
+      <article class="product-card" data-collection="daytona" data-daycolor="or-rose" data-daybracelet="jubilee">
         <div class="product-card-img">
           <img src="images/daytona-rosegold.png" alt="Daytona Or Rose">
         </div>
@@ -533,6 +547,8 @@
   const gmtColorBtns = document.querySelectorAll('#gmtcolorfilters .bracelet-btn');
   const gmtBraceletBtns = document.querySelectorAll('#gmtbraceletfilters .bracelet-btn');
   const gmtBtns = document.querySelectorAll('#gmtfilters .subfilter-btn');
+  const dayColorBtns = document.querySelectorAll('#daycolorfilters .subfilter-btn');
+  const dayBraceletBtns = document.querySelectorAll('#daybraceletfilters .bracelet-btn');
   const subfilters = document.getElementById('subfilters');
   const braceletfilters = document.getElementById('braceletfilters');
   const royaloakfilters = document.getElementById('royaloakfilters');
@@ -543,6 +559,8 @@
   const gmtfilters = document.getElementById('gmtfilters');
   const gmtcolorfilters = document.getElementById('gmtcolorfilters');
   const gmtbraceletfilters = document.getElementById('gmtbraceletfilters');
+  const daycolorfilters = document.getElementById('daycolorfilters');
+  const daybraceletfilters = document.getElementById('daybraceletfilters');
   const cards = document.querySelectorAll('[data-collection]');
   let currentCollection = 'all';
   let currentFinish = 'all';
@@ -555,6 +573,8 @@
   let currentGMTColor = 'all';
   let currentGMTBracelet = 'all';
   let currentNautColor = 'all';
+  let currentDayColor = 'all';
+  let currentDayBracelet = 'all';
 
   function applyFilters() {
     cards.forEach(card => {
@@ -569,7 +589,9 @@
       const matchGMTColor = currentGMTColor === 'all' || card.dataset.gmtcolor === currentGMTColor;
       const matchGMTBracelet = currentGMTBracelet === 'all' || card.dataset.gmtbracelet === currentGMTBracelet;
       const matchNautColor = currentNautColor === 'all' || card.dataset.nautcolor === currentNautColor;
-      card.style.display = (matchCol && matchFin && matchBra && matchVar && matchROC && matchGMT && matchSubColor && matchSubBracelet && matchGMTColor && matchGMTBracelet && matchNautColor) ? '' : 'none';
+      const matchDayColor = currentDayColor === 'all' || card.dataset.daycolor === currentDayColor;
+      const matchDayBracelet = currentDayBracelet === 'all' || card.dataset.daybracelet === currentDayBracelet;
+      card.style.display = (matchCol && matchFin && matchBra && matchVar && matchROC && matchGMT && matchSubColor && matchSubBracelet && matchGMTColor && matchGMTBracelet && matchNautColor && matchDayColor && matchDayBracelet) ? '' : 'none';
     });
   }
 
@@ -578,7 +600,7 @@
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentCollection = btn.dataset.filter;
-      currentFinish = 'all'; currentBracelet = 'all'; currentVariant = 'all'; currentROColor = 'all'; currentGMT = 'all'; currentSubColor = 'all'; currentSubBracelet = 'all'; currentGMTColor = 'all'; currentGMTBracelet = 'all'; currentNautColor = 'all';
+      currentFinish = 'all'; currentBracelet = 'all'; currentVariant = 'all'; currentROColor = 'all'; currentGMT = 'all'; currentSubColor = 'all'; currentSubBracelet = 'all'; currentGMTColor = 'all'; currentGMTBracelet = 'all'; currentNautColor = 'all'; currentDayColor = 'all'; currentDayBracelet = 'all';
       subfilterBtns.forEach(b => b.classList.remove('active'));
       if (subfilterBtns[0]) subfilterBtns[0].classList.add('active');
       braceletBtns.forEach(b => b.classList.remove('active'));
@@ -609,6 +631,12 @@
       if (subColorBtns[0]) subColorBtns[0].classList.add('active');
       subBraceletBtns.forEach(b => b.classList.remove('active'));
       if (subBraceletBtns[0]) subBraceletBtns[0].classList.add('active');
+      daycolorfilters.style.display = currentCollection === 'daytona' ? 'flex' : 'none';
+      daybraceletfilters.style.display = 'none';
+      dayColorBtns.forEach(b => b.classList.remove('active'));
+      if (dayColorBtns[0]) dayColorBtns[0].classList.add('active');
+      dayBraceletBtns.forEach(b => b.classList.remove('active'));
+      if (dayBraceletBtns[0]) dayBraceletBtns[0].classList.add('active');
       applyFilters();
     });
   });
@@ -727,6 +755,28 @@
       subBraceletBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentSubBracelet = btn.dataset.subbracelet;
+      applyFilters();
+    });
+  });
+
+  dayColorBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      dayColorBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentDayColor = btn.dataset.daycolor;
+      currentDayBracelet = 'all';
+      dayBraceletBtns.forEach(b => b.classList.remove('active'));
+      if (dayBraceletBtns[0]) dayBraceletBtns[0].classList.add('active');
+      daybraceletfilters.style.display = currentDayColor === 'all' ? 'none' : 'flex';
+      applyFilters();
+    });
+  });
+
+  dayBraceletBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      dayBraceletBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentDayBracelet = btn.dataset.daybracelet;
       applyFilters();
     });
   });
