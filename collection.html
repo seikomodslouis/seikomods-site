@@ -89,6 +89,12 @@
       <button class="bracelet-btn subfilter-btn" data-subcolor="acier-or">Acier Or</button>
     </div>
 
+    <div class="filters" id="subbraceletfilters" style="display:none;margin-top:8px;padding-top:12px">
+      <button class="bracelet-btn subfilter-btn active" data-subbracelet="all">Tous bracelets</button>
+      <button class="bracelet-btn subfilter-btn" data-subbracelet="jubilee">Jubilée</button>
+      <button class="bracelet-btn subfilter-btn" data-subbracelet="oyster">Oyster</button>
+    </div>
+
     <div class="filters" id="royaloakcolorfilters" style="display:none;margin-top:8px;padding-top:12px">
       <button class="bracelet-btn subfilter-btn active" data-rocolor="all">Toutes couleurs</button>
       <button class="bracelet-btn subfilter-btn" data-rocolor="acier">Acier</button>
@@ -240,7 +246,7 @@
       </article>
 
       <!-- GMT / SUBMARINER -->
-      <article class="product-card" data-collection="gmt" data-gmtsub="submariner" data-subcolor="acier">
+      <article class="product-card" data-collection="gmt" data-gmtsub="submariner" data-subcolor="acier" data-subbracelet="oyster">
         <div class="product-card-img">
           <img src="images/submariner-steel.png" alt="Submariner Acier">
           <span class="product-card-badge badge-bestseller">Bestseller</span>
@@ -256,7 +262,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="gmt" data-gmtsub="submariner" data-subcolor="acier-or">
+      <article class="product-card" data-collection="gmt" data-gmtsub="submariner" data-subcolor="acier-or" data-subbracelet="jubilee">
         <div class="product-card-img">
           <img src="images/submariner-bicolore-jubilee.png" alt="Sub Bicolore Jubilé">
           <span class="product-card-badge badge-sale">Promo</span>
@@ -304,7 +310,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="gmt" data-gmtsub="submariner" data-subcolor="acier-or">
+      <article class="product-card" data-collection="gmt" data-gmtsub="submariner" data-subcolor="acier-or" data-subbracelet="jubilee">
         <div class="product-card-img">
           <img src="images/40mm-steelgold-sub-jubilee.png" alt="Sub Bicolore Jubilé">
         </div>
@@ -319,7 +325,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="gmt" data-gmtsub="submariner" data-subcolor="or">
+      <article class="product-card" data-collection="gmt" data-gmtsub="submariner" data-subcolor="or" data-subbracelet="oyster">
         <div class="product-card-img">
           <img src="images/submariner-gold.png" alt="Submariner Or">
           <span class="product-card-badge badge-new">Nouveau</span>
@@ -500,12 +506,14 @@
   const royaloakBtns = document.querySelectorAll('#royaloakfilters .subfilter-btn');
   const royaloakColorBtns = document.querySelectorAll('#royaloakcolorfilters .bracelet-btn');
   const subColorBtns = document.querySelectorAll('#subcolorfilters .bracelet-btn');
+  const subBraceletBtns = document.querySelectorAll('#subbraceletfilters .bracelet-btn');
   const gmtBtns = document.querySelectorAll('#gmtfilters .subfilter-btn');
   const subfilters = document.getElementById('subfilters');
   const braceletfilters = document.getElementById('braceletfilters');
   const royaloakfilters = document.getElementById('royaloakfilters');
   const royaloakcolorfilters = document.getElementById('royaloakcolorfilters');
   const subcolorfilters = document.getElementById('subcolorfilters');
+  const subbraceletfilters = document.getElementById('subbraceletfilters');
   const gmtfilters = document.getElementById('gmtfilters');
   const cards = document.querySelectorAll('[data-collection]');
   let currentCollection = 'all';
@@ -515,6 +523,7 @@
   let currentROColor = 'all';
   let currentGMT = 'all';
   let currentSubColor = 'all';
+  let currentSubBracelet = 'all';
 
   function applyFilters() {
     cards.forEach(card => {
@@ -525,7 +534,8 @@
       const matchROC = currentROColor === 'all' || card.dataset.rocolor === currentROColor;
       const matchGMT = currentGMT === 'all' || card.dataset.gmtsub === currentGMT;
       const matchSubColor = currentSubColor === 'all' || card.dataset.subcolor === currentSubColor;
-      card.style.display = (matchCol && matchFin && matchBra && matchVar && matchROC && matchGMT && matchSubColor) ? '' : 'none';
+      const matchSubBracelet = currentSubBracelet === 'all' || card.dataset.subbracelet === currentSubBracelet;
+      card.style.display = (matchCol && matchFin && matchBra && matchVar && matchROC && matchGMT && matchSubColor && matchSubBracelet) ? '' : 'none';
     });
   }
 
@@ -534,7 +544,7 @@
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentCollection = btn.dataset.filter;
-      currentFinish = 'all'; currentBracelet = 'all'; currentVariant = 'all'; currentROColor = 'all'; currentGMT = 'all'; currentSubColor = 'all';
+      currentFinish = 'all'; currentBracelet = 'all'; currentVariant = 'all'; currentROColor = 'all'; currentGMT = 'all'; currentSubColor = 'all'; currentSubBracelet = 'all';
       subfilterBtns.forEach(b => b.classList.remove('active'));
       if (subfilterBtns[0]) subfilterBtns[0].classList.add('active');
       braceletBtns.forEach(b => b.classList.remove('active'));
@@ -551,8 +561,11 @@
       royaloakcolorfilters.style.display = 'none';
       gmtfilters.style.display = currentCollection === 'gmt' ? 'flex' : 'none';
       subcolorfilters.style.display = 'none';
+      subbraceletfilters.style.display = 'none';
       subColorBtns.forEach(b => b.classList.remove('active'));
       if (subColorBtns[0]) subColorBtns[0].classList.add('active');
+      subBraceletBtns.forEach(b => b.classList.remove('active'));
+      if (subBraceletBtns[0]) subBraceletBtns[0].classList.add('active');
       applyFilters();
     });
   });
@@ -619,6 +632,19 @@
       subColorBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentSubColor = btn.dataset.subcolor;
+      currentSubBracelet = 'all';
+      subBraceletBtns.forEach(b => b.classList.remove('active'));
+      if (subBraceletBtns[0]) subBraceletBtns[0].classList.add('active');
+      subbraceletfilters.style.display = currentSubColor === 'all' ? 'none' : 'flex';
+      applyFilters();
+    });
+  });
+
+  subBraceletBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      subBraceletBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentSubBracelet = btn.dataset.subbracelet;
       applyFilters();
     });
   });
