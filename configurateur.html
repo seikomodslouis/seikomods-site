@@ -140,19 +140,19 @@
             <div class="step-dot" id="handsDot">6</div>
             <h3>Style des aiguilles</h3>
           </div>
-          <div class="options-grid">
-            <div class="option-card selected" data-step="hands" data-value="argent" data-label="Argent" data-price="0">
-              <div class="color-swatch" style="background:linear-gradient(135deg,#e8e8e8,#a0a0a0)"></div>
+          <div class="options-grid dial-grid">
+            <div class="option-card selected" data-step="hands" data-value="argent" data-label="Argent" data-price="0" data-img="images/hands-argent.jpg">
+              <div class="dial-thumb-wrap"><img src="images/hands-argent.jpg" alt="Argent" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Argent</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="hands" data-value="or" data-label="Or" data-price="0">
-              <div class="color-swatch" style="background:linear-gradient(135deg,#e0c87a,#9a7a2e)"></div>
+            <div class="option-card" data-step="hands" data-value="or" data-label="Or" data-price="0" data-img="images/hands-or.jpg">
+              <div class="dial-thumb-wrap"><img src="images/hands-or.jpg" alt="Or" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Or</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="hands" data-value="or-rose" data-label="Or Rose" data-price="0">
-              <div class="color-swatch" style="background:linear-gradient(135deg,#e8b4a0,#c07860)"></div>
+            <div class="option-card" data-step="hands" data-value="or-rose" data-label="Or Rose" data-price="0" data-img="images/hands-or-rose.jpg">
+              <div class="dial-thumb-wrap"><img src="images/hands-or-rose.jpg" alt="Or Rose" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Or Rose</div>
               <div class="opt-price">+0 €</div>
             </div>
@@ -604,6 +604,15 @@
     // Instagram button (lien direct vers le profil)
     document.getElementById('instagramBtn').href = 'https://www.instagram.com/seikomods_louis/';
   }
+
+  // Lightbox pour les aiguilles (statiques)
+  document.querySelectorAll('[data-step="hands"] .dial-thumb-wrap').forEach(wrap => {
+    wrap.addEventListener('click', e => {
+      e.stopPropagation();
+      const img = wrap.closest('[data-img]')?.dataset.img;
+      if (img) { document.getElementById('dialLightboxImg').src = img; lightbox.classList.add('open'); }
+    });
+  });
 
   // Click on option cards (all except finish which is dynamic)
   document.querySelectorAll('.option-card').forEach(card => {
