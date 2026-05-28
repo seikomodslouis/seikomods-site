@@ -495,14 +495,20 @@
     }).join('');
     grid.querySelectorAll('.option-card').forEach(card => {
       card.addEventListener('click', () => {
-        document.querySelectorAll('[data-step="strap"]').forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        state.strap = {
-          value: card.dataset.value,
-          label: card.dataset.label,
-          price: parseInt(card.dataset.price) || 0
-        };
-        renderFinishes(modelValue, card.dataset.value);
+        if (card.classList.contains('selected')) {
+          card.classList.remove('selected');
+          state.strap = { value: '', label: '—', price: 0 };
+          renderFinishes(modelValue, '');
+        } else {
+          document.querySelectorAll('[data-step="strap"]').forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          state.strap = {
+            value: card.dataset.value,
+            label: card.dataset.label,
+            price: parseInt(card.dataset.price) || 0
+          };
+          renderFinishes(modelValue, card.dataset.value);
+        }
         updateUI();
       });
     });
