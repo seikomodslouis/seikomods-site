@@ -99,7 +99,8 @@
           <h2>Envoie un message</h2>
         </div>
         <!-- Remplace YOUR_FORM_ID par ton ID Formspree (gratuit sur formspree.io) -->
-        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" id="contactForm">
+        <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+          <input type="hidden" name="access_key" value="da5772b9-47e9-4634-8d86-c1ef1849bf18">
           <div class="form-row">
             <div class="form-group">
               <label>Prénom *</label>
@@ -307,12 +308,18 @@
     });
   });
 
-  // Form fallback si Formspree pas configuré
+  // Web3Forms
   document.getElementById('contactForm').addEventListener('submit', function(e) {
-    if (this.action.includes('YOUR_FORM_ID')) {
-      e.preventDefault();
-      window.open('https://www.instagram.com/seikomods_louis/', '_blank');
-    }
+    e.preventDefault();
+    const data = new FormData(this);
+    fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+      .then(res => res.json())
+      .then(json => {
+        if (json.success) {
+          document.getElementById('contactForm').reset();
+          document.getElementById('formSuccess').style.display = 'block';
+        }
+      });
   });
 </script>
 </body>
