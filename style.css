@@ -240,6 +240,22 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 .color-swatch{width:30px;height:30px;border-radius:50%;margin:0 auto 7px;border:2px solid transparent;outline:2px solid transparent;transition:all var(--transition)}
 .option-card.selected .color-swatch{outline-color:var(--black);outline-offset:2px}
 
+/* Dial thumbnails */
+.dial-grid{grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px}
+.dial-thumb-wrap{position:relative;width:72px;height:72px;margin:0 auto 8px;cursor:pointer}
+.dial-thumb{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--border);transition:transform .2s,border-color .2s;display:block}
+.dial-thumb:hover{transform:scale(1.06)}
+.option-card.selected .dial-thumb{border-color:var(--black);outline:2px solid var(--black);outline-offset:2px}
+.dial-zoom{position:absolute;bottom:0;right:0;width:20px;height:20px;background:var(--black);color:#fff;border-radius:50%;font-size:.65rem;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s;pointer-events:none}
+.dial-thumb-wrap:hover .dial-zoom{opacity:1}
+
+/* Lightbox */
+.dial-lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out}
+.dial-lightbox.open{display:flex}
+.dial-lightbox img{max-width:min(420px,85vw);max-height:85vh;border-radius:50%;box-shadow:0 0 80px rgba(0,0,0,.6);pointer-events:none}
+.dial-lightbox-close{position:absolute;top:24px;right:28px;background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer;line-height:1;opacity:.7;transition:opacity .2s}
+.dial-lightbox-close:hover{opacity:1}
+
 /* Order form */
 .order-form-section{background:var(--bg-card);border:1px solid var(--border);padding:28px}
 .form-group{margin-bottom:16px}

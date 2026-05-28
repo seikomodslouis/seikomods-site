@@ -123,48 +123,54 @@
             <div class="step-dot" id="dialColorDot">5</div>
             <h3>Couleur du cadran</h3>
           </div>
-          <div class="options-grid">
-            <div class="option-card selected" data-step="dial" data-value="white" data-label="Blanc" data-price="0">
-              <div class="color-swatch" style="background:linear-gradient(135deg,#fff,#ddd)"></div>
+          <div class="options-grid dial-grid">
+            <div class="option-card selected" data-step="dial" data-value="white" data-label="Blanc" data-price="0" data-img="images/dial-white.jpg">
+              <div class="dial-thumb-wrap"><img src="images/dial-white.jpg" alt="Blanc" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Blanc</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="dial" data-value="black" data-label="Noir" data-price="0">
-              <div class="color-swatch" style="background:linear-gradient(135deg,#222,#000)"></div>
+            <div class="option-card" data-step="dial" data-value="black" data-label="Noir" data-price="0" data-img="images/dial-black.jpg">
+              <div class="dial-thumb-wrap"><img src="images/dial-black.jpg" alt="Noir" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Noir</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="dial" data-value="blue" data-label="Bleu nuit" data-price="0">
-              <div class="color-swatch" style="background:linear-gradient(135deg,#1a3a6e,#0a1a3e)"></div>
+            <div class="option-card" data-step="dial" data-value="blue" data-label="Bleu nuit" data-price="0" data-img="images/dial-blue.jpg">
+              <div class="dial-thumb-wrap"><img src="images/dial-blue.jpg" alt="Bleu nuit" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Bleu nuit</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="dial" data-value="green" data-label="Vert forêt" data-price="0">
-              <div class="color-swatch" style="background:linear-gradient(135deg,#1a4a2a,#0a2010)"></div>
+            <div class="option-card" data-step="dial" data-value="green" data-label="Vert forêt" data-price="0" data-img="images/dial-green.jpg">
+              <div class="dial-thumb-wrap"><img src="images/dial-green.jpg" alt="Vert forêt" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Vert forêt</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="dial" data-value="champagne" data-label="Champagne" data-price="10">
-              <div class="color-swatch" style="background:linear-gradient(135deg,#f5e8c0,#c9a84c)"></div>
+            <div class="option-card" data-step="dial" data-value="champagne" data-label="Champagne" data-price="10" data-img="images/dial-champagne.jpg">
+              <div class="dial-thumb-wrap"><img src="images/dial-champagne.jpg" alt="Champagne" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Champagne</div>
               <div class="opt-price">+10 €</div>
             </div>
-            <div class="option-card" data-step="dial" data-value="arabic" data-label="Arabic Dial" data-price="15">
-              <div class="color-swatch" style="background:linear-gradient(135deg,#8B0000,#4a0000)"></div>
+            <div class="option-card" data-step="dial" data-value="arabic" data-label="Arabic Dial" data-price="15" data-img="images/dial-arabic.jpg">
+              <div class="dial-thumb-wrap"><img src="images/dial-arabic.jpg" alt="Arabic Dial" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Arabic Dial</div>
               <div class="opt-price">+15 €</div>
             </div>
-            <div class="option-card" data-step="dial" data-value="silver" data-label="Argenté" data-price="0">
-              <div class="color-swatch" style="background:linear-gradient(135deg,#e8e8e8,#b0b0b0)"></div>
+            <div class="option-card" data-step="dial" data-value="silver" data-label="Argenté" data-price="0" data-img="images/dial-silver.jpg">
+              <div class="dial-thumb-wrap"><img src="images/dial-silver.jpg" alt="Argenté" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Argenté</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="dial" data-value="anthracite" data-label="Anthracite" data-price="0">
-              <div class="color-swatch" style="background:linear-gradient(135deg,#444,#222)"></div>
+            <div class="option-card" data-step="dial" data-value="anthracite" data-label="Anthracite" data-price="0" data-img="images/dial-anthracite.jpg">
+              <div class="dial-thumb-wrap"><img src="images/dial-anthracite.jpg" alt="Anthracite" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Anthracite</div>
               <div class="opt-price">+0 €</div>
             </div>
           </div>
+        </div>
+
+        <!-- LIGHTBOX CADRAN -->
+        <div id="dialLightbox" class="dial-lightbox">
+          <button class="dial-lightbox-close" id="dialLightboxClose">✕</button>
+          <img id="dialLightboxImg" src="" alt="">
         </div>
 
         <!-- ÉTAPE 6 : AIGUILLES -->
@@ -337,6 +343,22 @@
     'royaloak': 179, 'gmt': 169,
     'submariner': 149, 'nautilus': 189
   };
+
+  // Lightbox cadran
+  const lightbox = document.getElementById('dialLightbox');
+  document.getElementById('dialLightboxClose').addEventListener('click', () => lightbox.classList.remove('open'));
+  lightbox.addEventListener('click', e => { if(e.target === lightbox) lightbox.classList.remove('open'); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') lightbox.classList.remove('open'); });
+  document.querySelectorAll('.dial-thumb-wrap').forEach(wrap => {
+    wrap.addEventListener('click', e => {
+      e.stopPropagation();
+      const img = wrap.closest('[data-img]')?.dataset.img;
+      if(img) {
+        document.getElementById('dialLightboxImg').src = img;
+        lightbox.classList.add('open');
+      }
+    });
+  });
 
   const DIALTYPE_OPTIONS = {
     'no-number': { label: 'No Number Dial', price: 0,  icon: '🕐' },
