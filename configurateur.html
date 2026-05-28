@@ -106,10 +106,21 @@
           </div>
         </div>
 
-        <!-- ÉTAPE 4 : CADRAN -->
-        <div class="config-step">
+        <!-- ÉTAPE 4 : TYPE DE CADRAN (DateJust uniquement) -->
+        <div class="config-step" id="dialtypeStep" style="display:none">
           <div class="config-step-header">
             <div class="step-dot">4</div>
+            <h3>Type de cadran</h3>
+          </div>
+          <div class="options-grid" id="dialtypeGrid">
+            <!-- Rempli dynamiquement par JS -->
+          </div>
+        </div>
+
+        <!-- ÉTAPE 5 : COULEUR CADRAN -->
+        <div class="config-step">
+          <div class="config-step-header">
+            <div class="step-dot" id="dialColorDot">5</div>
             <h3>Couleur du cadran</h3>
           </div>
           <div class="options-grid">
@@ -156,10 +167,10 @@
           </div>
         </div>
 
-        <!-- ÉTAPE 5 : AIGUILLES -->
+        <!-- ÉTAPE 6 : AIGUILLES -->
         <div class="config-step">
           <div class="config-step-header">
-            <div class="step-dot">5</div>
+            <div class="step-dot" id="handsDot">6</div>
             <h3>Style des aiguilles</h3>
           </div>
           <div class="options-grid">
@@ -196,10 +207,10 @@
           </div>
         </div>
 
-        <!-- ÉTAPE 6 : COMMANDE -->
+        <!-- ÉTAPE 7 : COMMANDE -->
         <div class="order-form-section">
           <div class="config-step-header">
-            <div class="step-dot">6</div>
+            <div class="step-dot" id="orderDot">7</div>
             <h3>Finalise ta commande</h3>
           </div>
           <p style="margin-bottom:20px;font-size:.88rem">Remplis le formulaire et je te recontacte sous 24h pour confirmer et organiser le paiement.</p>
@@ -207,6 +218,7 @@
             <!-- Champs cachés pour la config -->
             <input type="hidden" name="modele" id="f-modele">
             <input type="hidden" name="finition" id="f-finition">
+            <input type="hidden" name="type_cadran" id="f-dialtype">
             <input type="hidden" name="cadran" id="f-cadran">
             <input type="hidden" name="aiguilles" id="f-aiguilles">
             <input type="hidden" name="bracelet" id="f-bracelet">
@@ -265,6 +277,7 @@
           <h4>Récapitulatif</h4>
           <div class="summary-line"><span class="lbl">Modèle</span><span class="val" id="s-modele">DateJust 39mm</span></div>
           <div class="summary-line"><span class="lbl">Finition</span><span class="val" id="s-finition">Acier</span></div>
+          <div class="summary-line" id="s-dialtype-line"><span class="lbl">Type cadran</span><span class="val" id="s-dialtype">No Number Dial</span></div>
           <div class="summary-line"><span class="lbl">Cadran</span><span class="val" id="s-cadran">Blanc</span></div>
           <div class="summary-line"><span class="lbl">Aiguilles</span><span class="val" id="s-aiguilles">Bâton argenté</span></div>
           <div class="summary-line"><span class="lbl">Bracelet</span><span class="val" id="s-bracelet">Jubilé acier</span></div>
@@ -339,6 +352,60 @@
     'royaloak': 179, 'gmt': 169,
     'submariner': 149, 'nautilus': 189
   };
+
+  const DIALTYPE_OPTIONS = {
+    'no-number': { label: 'No Number Dial', price: 0,  icon: '🕐' },
+    'arabic':    { label: 'Arabic Dial',    price: 15, icon: '🕐' },
+    'diamant':   { label: 'Diamant Dial',   price: 30, icon: '💎' }
+  };
+
+  const MODEL_DIALTYPES = {
+    'datejust-39': ['no-number', 'arabic', 'diamant']
+    // autres modèles : pas de type de cadran spécifique
+  };
+
+  function renderDialType(modelValue) {
+    const step = document.getElementById('dialtypeStep');
+    const grid = document.getElementById('dialtypeGrid');
+    const types = MODEL_DIALTYPES[modelValue];
+    if (!types) {
+      step.style.display = 'none';
+      state.dialtype = { value: 'standard', label: 'Standard', price: 0 };
+      // Renumber: dial color = 4, hands = 5, order = 6
+      document.getElementById('dialColorDot').textContent = '4';
+      document.getElementById('handsDot').textContent = '5';
+      document.getElementById('orderDot').textContent = '6';
+      return;
+    }
+    step.style.display = '';
+    // Renumber: dialtype = 4, dial color = 5, hands = 6, order = 7
+    document.getElementById('dialColorDot').textContent = '5';
+    document.getElementById('handsDot').textContent = '6';
+    document.getElementById('orderDot').textContent = '7';
+    grid.innerHTML = types.map((key, i) => {
+      const d = DIALTYPE_OPTIONS[key];
+      const priceStr = d.price > 0 ? '+' + d.price + ' €' : '+0 €';
+      return `<div class="option-card${i === 0 ? ' selected' : ''}" data-step="dialtype" data-value="${key}" data-label="${d.label}" data-price="${d.price}">
+        <div class="opt-icon">${d.icon}</div>
+        <div class="opt-name">${d.label}</div>
+        <div class="opt-price">${priceStr}</div>
+      </div>`;
+    }).join('');
+    grid.querySelectorAll('.option-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('[data-step="dialtype"]').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        state.dialtype = {
+          value: card.dataset.value,
+          label: card.dataset.label,
+          price: parseInt(card.dataset.price) || 0
+        };
+        updateUI();
+      });
+    });
+    const first = DIALTYPE_OPTIONS[types[0]];
+    state.dialtype = { value: types[0], label: first.label, price: first.price };
+  }
 
   const STRAP_OPTIONS = {
     'jubilee-steel':  { label: 'Jubilé acier',    price: 0,   icon: '⛓️' },
@@ -441,16 +508,17 @@
   };
 
   const state = {
-    model:   { value: 'datejust-39', label: 'DateJust 39mm',   price: 0 },
-    finish:  { value: 'steel',       label: 'Acier',            price: 0 },
-    dial:    { value: 'white',       label: 'Blanc',            price: 0 },
-    hands:   { value: 'baton-silver',label: 'Bâton argenté',   price: 0 },
-    strap:   { value: 'jubilee-steel',label: 'Jubilé acier',    price: 0 }
+    model:    { value: 'datejust-39',  label: 'DateJust 39mm',  price: 0 },
+    strap:    { value: 'jubilee-steel',label: 'Jubilé acier',   price: 0 },
+    finish:   { value: 'steel',        label: 'Acier',           price: 0 },
+    dialtype: { value: 'no-number',    label: 'No Number Dial',  price: 0 },
+    dial:     { value: 'white',        label: 'Blanc',           price: 0 },
+    hands:    { value: 'baton-silver', label: 'Bâton argenté',  price: 0 }
   };
 
   function getTotal() {
     const base = BASE_PRICES[state.model.value] || 149;
-    return base + state.finish.price + state.dial.price + state.hands.price + state.strap.price;
+    return base + state.strap.price + state.finish.price + (state.dialtype ? state.dialtype.price : 0) + state.dial.price + state.hands.price;
   }
 
   function updateUI() {
@@ -470,18 +538,22 @@
     // Summary lines
     document.getElementById('s-modele').textContent   = state.model.label;
     document.getElementById('s-finition').textContent = state.finish.label;
+    const hasDialType = MODEL_DIALTYPES[state.model.value];
+    document.getElementById('s-dialtype-line').style.display = hasDialType ? '' : 'none';
+    if (hasDialType && state.dialtype) document.getElementById('s-dialtype').textContent = state.dialtype.label;
     document.getElementById('s-cadran').textContent   = state.dial.label;
     document.getElementById('s-aiguilles').textContent = state.hands.label;
     document.getElementById('s-bracelet').textContent = state.strap.label;
     document.getElementById('s-prix').textContent     = getTotal() + ' €';
 
     // Hidden form fields
-    document.getElementById('f-modele').value   = state.model.label;
-    document.getElementById('f-finition').value = state.finish.label;
-    document.getElementById('f-cadran').value   = state.dial.label;
+    document.getElementById('f-modele').value    = state.model.label;
+    document.getElementById('f-finition').value  = state.finish.label;
+    document.getElementById('f-dialtype').value  = hasDialType && state.dialtype ? state.dialtype.label : '';
+    document.getElementById('f-cadran').value    = state.dial.label;
     document.getElementById('f-aiguilles').value = state.hands.label;
-    document.getElementById('f-bracelet').value = state.strap.label;
-    document.getElementById('f-prix').value     = getTotal() + ' €';
+    document.getElementById('f-bracelet').value  = state.strap.label;
+    document.getElementById('f-prix').value      = getTotal() + ' €';
 
     // Instagram button (lien direct vers le profil)
     document.getElementById('instagramBtn').href = 'https://www.instagram.com/seikomods_louis/';
@@ -498,10 +570,11 @@
         label: card.dataset.label,
         price: parseInt(card.dataset.price) || 0
       };
-      // Si on change de modèle, re-render les bracelets et les finitions
+      // Si on change de modèle, re-render les bracelets, finitions et types de cadran
       if (step === 'model') {
         renderStraps(card.dataset.value);
         renderFinishes(card.dataset.value);
+        renderDialType(card.dataset.value);
       }
       updateUI();
     });
@@ -518,6 +591,7 @@
 
   renderStraps(state.model.value);
   renderFinishes(state.model.value);
+  renderDialType(state.model.value);
   updateUI();
 </script>
 </body>
