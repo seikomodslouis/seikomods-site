@@ -569,6 +569,14 @@
     'royaloak-chronograph': ['steel', 'gold', 'rose-gold'],
   };
 
+  const NAUTILUS_CASE_PHOTOS = {
+    'steel':           'images/nautilus-finish-steel.jpg',
+    'gold':            'images/nautilus-finish-gold.jpg',
+    'rose-gold':       'images/nautilus-finish-rosegold.jpg',
+    'steel-gold':      'images/nautilus-finish-steel-gold.jpg',
+    'steel-rose-gold': 'images/nautilus-finish-steel-rosegold.jpg',
+  };
+
   const FINISH_OPTIONS = {
     'steel':            { label: 'Acier',         price: 0,  gradient: 'linear-gradient(135deg,#c8c8c8,#888)' },
     'gold':             { label: 'Or',             price: 40, gradient: 'linear-gradient(135deg,#e0c87a,#9a7a2e)' },
@@ -601,6 +609,7 @@
       // Photo boîtier si dispo, sinon swatch couleur
       const casePhoto = (modelValue === 'datejust-39' && strapValue && DJ_CASE_PHOTOS[key]?.[strapValue])
         || (modelValue === 'royaloak' && strapValue && RO_CASE_PHOTOS[strapValue]?.[key])
+        || (modelValue === 'nautilus' && NAUTILUS_CASE_PHOTOS[key])
         || null;
       const visual = casePhoto
         ? `<div class="dial-thumb-wrap"><img src="${casePhoto}" alt="${f.label}" class="dial-thumb" style="border-radius:8px"><span class="dial-zoom">&#x2922;</span></div>`
