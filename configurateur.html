@@ -375,6 +375,14 @@
     { value: 'ro-blue-rosegold',  label: 'Bleu Or Rose',   price: 0, img: 'images/dial-royaloak-blue-rosegold.jpg'  },
   ];
 
+  const SUBMARINER_DIALS = [
+    { value: 'sub-blue',       label: 'Bleu',         price: 0, img: 'images/dial-sub-blue.jpg' },
+    { value: 'sub-cyan',       label: 'Bleu Clair',   price: 0, img: 'images/dial-sub-cyan.jpg' },
+    { value: 'sub-green',      label: 'Vert',         price: 0, img: 'images/dial-sub-green.jpg' },
+    { value: 'sub-black-gold', label: 'Noir Or',      price: 0, img: 'images/dial-sub-black-gold.jpg' },
+    { value: 'sub-black',      label: 'Noir',         price: 0, img: 'images/dial-sub-black.jpg' },
+  ];
+
   const NAUTILUS_DIALS = [
     { value: 'naut-brown-rg',  label: 'Brun Or Rose',       price: 0, img: 'images/dial-nautilus-brown-rosegold.jpg' },
     { value: 'naut-grey-rg',   label: 'Gris Or Rose',       price: 0, img: 'images/dial-nautilus-grey-rosegold.jpg' },
@@ -401,6 +409,8 @@
       dials = state.strap.value === 'royaloak-classic' ? RO_DIALS : [];
     } else if (state.model.value === 'nautilus') {
       dials = NAUTILUS_DIALS;
+    } else if (state.model.value === 'submariner') {
+      dials = SUBMARINER_DIALS;
     } else {
       dials = DIAL_COLORS_BY_TYPE[dialtypeValue] || [];
     }
