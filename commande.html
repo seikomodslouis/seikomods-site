@@ -96,17 +96,44 @@
             <label>Instagram (optionnel)</label>
             <input type="text" name="instagram" placeholder="@ton_pseudo">
           </div>
+
+          <div style="margin:28px 0 12px;font-family:var(--serif);font-size:.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)">Adresse de livraison</div>
+
           <div class="form-group">
+            <label>Adresse *</label>
+            <input type="text" name="adresse" placeholder="12 rue des Montres" required>
+          </div>
+          <div class="form-group">
+            <label>Complément d'adresse</label>
+            <input type="text" name="adresse2" placeholder="Appartement, bâtiment...">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Code postal *</label>
+              <input type="text" name="code_postal" placeholder="75001" required>
+            </div>
+            <div class="form-group">
+              <label>Ville *</label>
+              <input type="text" name="ville" placeholder="Paris" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Pays *</label>
+            <input type="text" name="pays" placeholder="France" value="France" required>
+          </div>
+          <div class="form-group">
+            <label>Téléphone</label>
+            <input type="tel" name="telephone" placeholder="+33 6 00 00 00 00">
+          </div>
+
+          <div class="form-group" style="margin-top:8px">
             <label>Message complémentaire</label>
             <textarea name="message" placeholder="Des souhaits particuliers ? Une couleur spécifique ? Pose toutes tes questions..."></textarea>
           </div>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
-            <button type="submit" class="btn btn-gold" style="flex:1;justify-content:center;padding:15px">
+          <div style="margin-top:8px">
+            <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;padding:15px">
               ✦ Envoyer ma commande
             </button>
-            <a href="https://www.instagram.com/seikomods_louis/" class="btn btn-outline" target="_blank" rel="noopener" style="flex:1;justify-content:center;padding:15px">
-              📸 Commander via Instagram
-            </a>
           </div>
           <p style="font-size:.75rem;text-align:center;margin-top:12px;color:var(--muted)">
             Je te recontacte sous 24h pour confirmer et organiser le paiement sécurisé.
