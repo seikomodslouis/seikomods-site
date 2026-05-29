@@ -85,7 +85,7 @@
         </div>
 
         <!-- ÉTAPE 2 : BRACELET -->
-        <div class="config-step">
+        <div class="config-step" id="strapStep" style="display:none">
           <div class="config-step-header">
             <div class="step-dot">2</div>
             <h3>Type de bracelet</h3>
@@ -96,7 +96,7 @@
         </div>
 
         <!-- ÉTAPE 3 : FINITION BOÎTIER -->
-        <div class="config-step">
+        <div class="config-step" id="finishStep" style="display:none">
           <div class="config-step-header">
             <div class="step-dot">3</div>
             <h3>Finition du boîtier</h3>
@@ -640,9 +640,12 @@
     const hasDialType = MODEL_DIALTYPES[state.model.value];
     document.getElementById('s-dialtype-line').style.display = hasDialType ? '' : 'none';
     if (hasDialType && state.dialtype) document.getElementById('s-dialtype').textContent = state.dialtype.label;
-    // Aiguilles — uniquement pour DateJust
-    const handsStep = document.getElementById('handsStep');
-    if (handsStep) handsStep.style.display = state.model.value === 'datejust-39' ? '' : 'none';
+    // Afficher/masquer les steps selon le modèle sélectionné
+    const isModelSelected = state.model.value !== '';
+    const isDateJust = state.model.value === 'datejust-39';
+    document.getElementById('strapStep').style.display    = isModelSelected ? '' : 'none';
+    document.getElementById('finishStep').style.display   = isModelSelected ? '' : 'none';
+    document.getElementById('handsStep').style.display    = isDateJust ? '' : 'none';
     document.getElementById('s-cadran').textContent   = state.dial.label;
     document.getElementById('s-aiguilles').textContent = state.hands.label;
     document.getElementById('s-bracelet').textContent = state.strap.label;
