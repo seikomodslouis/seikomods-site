@@ -665,7 +665,8 @@
       state[step] = {
         value: card.dataset.value,
         label: card.dataset.label,
-        price: parseInt(card.dataset.price) || 0
+        price: parseInt(card.dataset.price) || 0,
+        img:   card.dataset.img || ''
       };
       // Si on change de modèle, re-render les bracelets, finitions et types de cadran
       if (step === 'model') {
@@ -698,8 +699,9 @@
         aiguilles: state.hands.value   !== '' ? state.hands.label   : null,
       },
       {
-        dial: state.dial.img || null,
-        case: caseImg,
+        dial:  state.dial.img   || null,
+        case:  caseImg,
+        hands: state.hands.img  || null,
       }
     );
   });
