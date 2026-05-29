@@ -512,6 +512,19 @@
     'president':     ['steel', 'gold', 'rose-gold', 'steel-gold', 'steel-rose-gold'],
   };
 
+  const RO_CASE_PHOTOS = {
+    'royaloak-classic': {
+      'steel':     'images/royaloak-classic-steel.jpg',
+      'gold':      'images/royaloak-classic-gold.jpg',
+      'rose-gold': 'images/royaloak-classic-rosegold.jpg',
+    },
+  };
+
+  const RO_FINISHES_BY_STRAP = {
+    'royaloak-classic':     ['steel', 'gold', 'rose-gold'],
+    'royaloak-chronograph': ['steel', 'gold', 'rose-gold'],
+  };
+
   const FINISH_OPTIONS = {
     'steel':            { label: 'Acier',         price: 0,  gradient: 'linear-gradient(135deg,#c8c8c8,#888)' },
     'gold':             { label: 'Or',             price: 40, gradient: 'linear-gradient(135deg,#e0c87a,#9a7a2e)' },
@@ -530,17 +543,21 @@
 
   function renderFinishes(modelValue, strapValue) {
     const grid = document.getElementById('finishGrid');
-    // Pour la DateJust, filtrer par bracelet si disponible
+    // Filtrer les finitions par bracelet si disponible
     let finishes;
     if (modelValue === 'datejust-39' && strapValue && DJ_FINISHES_BY_STRAP[strapValue]) {
       finishes = DJ_FINISHES_BY_STRAP[strapValue];
+    } else if (modelValue === 'royaloak' && strapValue && RO_FINISHES_BY_STRAP[strapValue]) {
+      finishes = RO_FINISHES_BY_STRAP[strapValue];
     } else {
       finishes = MODEL_FINISHES[modelValue] || ['steel'];
     }
     grid.innerHTML = finishes.map((key, i) => {
       const f = FINISH_OPTIONS[key];
       // Photo boîtier si dispo, sinon swatch couleur
-      const casePhoto = modelValue === 'datejust-39' && strapValue && DJ_CASE_PHOTOS[key]?.[strapValue];
+      const casePhoto = (modelValue === 'datejust-39' && strapValue && DJ_CASE_PHOTOS[key]?.[strapValue])
+        || (modelValue === 'royaloak' && strapValue && RO_CASE_PHOTOS[strapValue]?.[key])
+        || null;
       const visual = casePhoto
         ? `<div class="dial-thumb-wrap"><img src="${casePhoto}" alt="${f.label}" class="dial-thumb" style="border-radius:8px"><span class="dial-zoom">&#x2922;</span></div>`
         : `<div class="color-swatch" style="background:${f.gradient}"></div>`;
@@ -687,9 +704,14 @@
       state.hands.value   !== '' ? state.hands.label   : null,
       state.strap.value   !== '' ? state.strap.label   : null,
     ].filter(Boolean);
-    const caseImg = (state.finish.value && state.strap.value && DJ_CASE_PHOTOS[state.finish.value])
-      ? DJ_CASE_PHOTOS[state.finish.value][state.strap.value] || null
-      : null;
+    let caseImg = null;
+    if (state.finish.value && state.strap.value) {
+      if (state.model.value === 'datejust-39' && DJ_CASE_PHOTOS[state.finish.value]) {
+        caseImg = DJ_CASE_PHOTOS[state.finish.value][state.strap.value] || null;
+      } else if (state.model.value === 'royaloak' && RO_CASE_PHOTOS[state.strap.value]) {
+        caseImg = RO_CASE_PHOTOS[state.strap.value][state.finish.value] || null;
+      }
+    }
     addToCart(
       state.model.label,
       getTotal(),
