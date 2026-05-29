@@ -310,9 +310,6 @@
       { value: 'rom-brown-rose',   label: 'Marron Or Rose',    price: 0, img: 'images/dial-rom-brown-rose.jpg' },
       { value: 'rom-grey',         label: 'Gris Anthracite',   price: 0, img: 'images/dial-rom-grey.jpg' },
     ],
-    'diamant': [
-      // Ajoute ici les cadrans Diamant — nomme tes photos dial-dia-[couleur].jpg
-    ]
   };
   // Pour les modèles sans type de cadran, pas de cadrans affichés
   DIAL_COLORS_BY_TYPE['standard'] = [];
@@ -363,12 +360,11 @@
   const DIALTYPE_OPTIONS = {
     'no-number': { label: 'No Number Dial', price: 0,  icon: '' },
     'arabic':    { label: 'Arabic Dial',    price: 15, icon: '' },
-    'roman':     { label: 'Roman Dial',     price: 15, icon: '' },
-    'diamant':   { label: 'Diamant Dial',   price: 30, icon: '' }
+    'roman':     { label: 'Roman Dial',     price: 15, icon: '' }
   };
 
   const MODEL_DIALTYPES = {
-    'datejust-39': ['no-number', 'arabic', 'roman', 'diamant']
+    'datejust-39': ['no-number', 'arabic', 'roman']
     // autres modèles : pas de type de cadran spécifique
   };
 
