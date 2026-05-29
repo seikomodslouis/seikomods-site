@@ -888,5 +888,38 @@
       });
     });
   </script>
+
+  <!-- LIGHTBOX -->
+  <div id="collectionLightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:2000;align-items:center;justify-content:center;cursor:zoom-out">
+    <button id="lightboxClose" style="position:fixed;top:20px;left:24px;background:none;border:none;cursor:pointer;color:#fff;font-size:1.6rem;line-height:1;z-index:2001">✕</button>
+    <img id="lightboxImg" src="" alt="" style="max-width:90vw;max-height:88vh;object-fit:contain;box-shadow:0 8px 48px rgba(0,0,0,.6)">
+  </div>
+
+  <script>
+    const lightbox    = document.getElementById('collectionLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt;
+      lightbox.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    // Clic sur les images des cartes
+    document.querySelectorAll('.product-card-img img').forEach(img => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    });
+
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox || e.target === lightboxImg) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
 </body>
 </html>
