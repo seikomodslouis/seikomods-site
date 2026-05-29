@@ -449,7 +449,6 @@
       const s = STRAP_OPTIONS[key];
       const priceStr = s.price > 0 ? '+' + s.price + ' €' : s.price < 0 ? s.price + ' €' : '+0 €';
       return `<div class="option-card${''}" data-step="strap" data-value="${key}" data-label="${s.label}" data-price="${s.price}">
-        <div class="opt-icon">${s.icon}</div>
         <div class="opt-name">${s.label}</div>
         <div class="opt-price">${priceStr}</div>
       </div>`;
