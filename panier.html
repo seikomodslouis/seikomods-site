@@ -76,54 +76,6 @@
 
       </div>
 
-      <!-- FORMULAIRE DE COMMANDE -->
-      <div class="order-form-section" style="margin-top:64px;max-width:680px">
-        <div class="config-step-header" style="margin-bottom:20px">
-          <div class="step-dot">✦</div>
-          <h3>Finalise ta commande</h3>
-        </div>
-        <p style="margin-bottom:24px;font-size:.88rem;color:var(--muted)">Remplis le formulaire et je te recontacte sous 24h pour confirmer et organiser le paiement.</p>
-        <form id="orderForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <!-- Champs cachés pour la config (pré-remplis depuis le panier) -->
-          <input type="hidden" name="commande" id="f-commande">
-          <input type="hidden" name="prix_total" id="f-prix">
-
-          <div class="form-row">
-            <div class="form-group">
-              <label>Prénom *</label>
-              <input type="text" name="prenom" placeholder="Ton prénom" required>
-            </div>
-            <div class="form-group">
-              <label>Nom *</label>
-              <input type="text" name="nom" placeholder="Ton nom" required>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Email *</label>
-            <input type="email" name="email" placeholder="ton@email.com" required>
-          </div>
-          <div class="form-group">
-            <label>Instagram (optionnel)</label>
-            <input type="text" name="instagram" placeholder="@ton_pseudo">
-          </div>
-          <div class="form-group">
-            <label>Message complémentaire</label>
-            <textarea name="message" placeholder="Des souhaits particuliers ? Une couleur spécifique ? Pose toutes tes questions..."></textarea>
-          </div>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
-            <button type="submit" class="btn btn-gold" style="flex:1;justify-content:center;padding:15px">
-              ✦ Envoyer ma commande
-            </button>
-            <a href="https://www.instagram.com/seikomods_louis/" class="btn btn-outline" target="_blank" rel="noopener" style="flex:1;justify-content:center;padding:15px">
-              📸 Commander via Instagram
-            </a>
-          </div>
-          <p style="font-size:.75rem;text-align:center;margin-top:12px;color:var(--muted)">
-            Je te recontacte sous 24h pour confirmer et organiser le paiement sécurisé.
-          </p>
-        </form>
-      </div>
-
     </div>
 
   </div>
@@ -177,25 +129,7 @@
   function goToCheckout() {
     const cart = getCart();
     if (cart.length === 0) return;
-    const total = getCartTotal(cart);
-    const desc  = cart.map(i => i.name).join(' + ');
-    const paypalEmail = 'louislacarrere@gmail.com';
-    const form = document.createElement('form');
-    form.method = 'post';
-    form.action = 'https://www.paypal.com/cgi-bin/webscr';
-    form.target = '_blank';
-    const fields = {
-      cmd: '_xclick', business: paypalEmail, item_name: desc,
-      amount: total.toFixed(2), currency_code: 'EUR', no_shipping: '1',
-    };
-    Object.entries(fields).forEach(([name, value]) => {
-      const input = document.createElement('input');
-      input.type = 'hidden'; input.name = name; input.value = value;
-      form.appendChild(input);
-    });
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
+    window.location.href = 'commande.html';
   }
 
   function renderPage() {
@@ -244,42 +178,6 @@
   }
 
   document.getElementById('checkoutBtn').addEventListener('click', goToCheckout);
-
-  // Pré-remplir les champs cachés du formulaire depuis le panier
-  function prefillOrderForm() {
-    const cart = getCart();
-    if (cart.length === 0) return;
-    const commandeDesc = cart.map(item => {
-      const opts = [];
-      if (item.opts.bracelet)  opts.push('Bracelet : ' + item.opts.bracelet);
-      if (item.opts.cadran)    opts.push('Cadran : ' + item.opts.cadran);
-      if (item.opts.aiguilles) opts.push('Aiguilles : ' + item.opts.aiguilles);
-      return item.name + (opts.length ? ' (' + opts.join(', ') + ')' : '');
-    }).join(' | ');
-    const total = getCartTotal(cart);
-    const fCommande = document.getElementById('f-commande');
-    const fPrix     = document.getElementById('f-prix');
-    if (fCommande) fCommande.value = commandeDesc;
-    if (fPrix)     fPrix.value     = total + ' €';
-  }
-
-  // Feedback sur la soumission du formulaire
-  const orderForm = document.getElementById('orderForm');
-  if (orderForm) {
-    prefillOrderForm();
-    orderForm.addEventListener('submit', function(e) {
-      if (orderForm.action.includes('YOUR_FORM_ID')) {
-        e.preventDefault();
-        window.open('https://www.instagram.com/seikomods_louis/', '_blank');
-        return;
-      }
-      // Vider le panier après envoi réussi (Formspree redirige, donc on vide avant submit)
-      const cart = getCart();
-      if (cart.length > 0) {
-        saveCart([]);
-      }
-    });
-  }
 
   renderPage();
 </script>
