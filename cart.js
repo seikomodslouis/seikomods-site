@@ -126,7 +126,7 @@ function goToCheckout() {
   const desc  = cart.map(i => i.name).join(' + ');
 
   // ⚠️  REMPLACE "TON_PAYPAL_EMAIL" par ton email PayPal
-  const paypalEmail = 'louislacarrere@gmail.com';
+  const paypalEmail = 'seikomods.louis@gmail.com';
 
   // Crée un formulaire PayPal dynamique
   const form = document.createElement('form');
