@@ -158,6 +158,21 @@
               <div class="opt-name">Or Rose</div>
               <div class="opt-price">+0 €</div>
             </div>
+            <div class="option-card" data-step="hands" data-value="ro-argent" data-label="Royal Oak Argent" data-price="0" data-img="images/hands-royaloak-argent.jpg" data-model="royaloak">
+              <div class="dial-thumb-wrap"><img src="images/hands-royaloak-argent.jpg" alt="Royal Oak Argent" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+              <div class="opt-name">Argent</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="hands" data-value="ro-or" data-label="Royal Oak Or" data-price="0" data-img="images/hands-royaloak-or.jpg" data-model="royaloak">
+              <div class="dial-thumb-wrap"><img src="images/hands-royaloak-or.jpg" alt="Royal Oak Or" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+              <div class="opt-name">Or</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="hands" data-value="ro-rosegold" data-label="Royal Oak Or Rose" data-price="0" data-img="images/hands-royaloak-rosegold.jpg" data-model="royaloak">
+              <div class="dial-thumb-wrap"><img src="images/hands-royaloak-rosegold.jpg" alt="Royal Oak Or Rose" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+              <div class="opt-name">Or Rose</div>
+              <div class="opt-price">+0 €</div>
+            </div>
           </div>
         </div>
 
@@ -654,11 +669,22 @@
     if (hasDialType && state.dialtype) document.getElementById('s-dialtype').textContent = state.dialtype.label;
     // Afficher/masquer les steps selon le modèle sélectionné
     const isModelSelected = state.model.value !== '';
-    const isDateJust = state.model.value === 'datejust-39';
+    const isDateJust  = state.model.value === 'datejust-39';
+    const isRoyalOak  = state.model.value === 'royaloak';
+    const showHands   = isDateJust || isRoyalOak;
     document.getElementById('strapStep').style.display      = isModelSelected ? '' : 'none';
     document.getElementById('finishStep').style.display     = isModelSelected ? '' : 'none';
     document.getElementById('dialColorStep').style.display  = isModelSelected ? '' : 'none';
-    document.getElementById('handsStep').style.display      = isDateJust ? '' : 'none';
+    document.getElementById('handsStep').style.display      = showHands ? '' : 'none';
+    // Filtrer les aiguilles selon le modèle
+    document.querySelectorAll('[data-step="hands"]').forEach(card => {
+      const forModel = card.dataset.model;
+      if (!forModel) {
+        card.style.display = isDateJust ? '' : 'none';
+      } else {
+        card.style.display = state.model.value === forModel ? '' : 'none';
+      }
+    });
     document.getElementById('addToCartStep').style.display  = isModelSelected ? '' : 'none';
     document.getElementById('s-cadran').textContent   = state.dial.label;
     document.getElementById('s-aiguilles').textContent = state.hands.label;
