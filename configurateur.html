@@ -169,58 +169,6 @@
           </button>
         </div>
 
-        <!-- ÉTAPE 7 : COMMANDE -->
-        <div class="order-form-section" id="orderStep" style="display:none">
-          <div class="config-step-header">
-            <div class="step-dot" id="orderDot">7</div>
-            <h3>Finalise ta commande</h3>
-          </div>
-          <p style="margin-bottom:20px;font-size:.88rem">Remplis le formulaire et je te recontacte sous 24h pour confirmer et organiser le paiement.</p>
-          <form id="orderForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <!-- Champs cachés pour la config -->
-            <input type="hidden" name="modele" id="f-modele">
-            <input type="hidden" name="finition" id="f-finition">
-            <input type="hidden" name="type_cadran" id="f-dialtype">
-            <input type="hidden" name="cadran" id="f-cadran">
-            <input type="hidden" name="aiguilles" id="f-aiguilles">
-            <input type="hidden" name="bracelet" id="f-bracelet">
-            <input type="hidden" name="prix_total" id="f-prix">
-
-            <div class="form-row">
-              <div class="form-group">
-                <label>Prénom *</label>
-                <input type="text" name="prenom" placeholder="Ton prénom" required>
-              </div>
-              <div class="form-group">
-                <label>Nom *</label>
-                <input type="text" name="nom" placeholder="Ton nom" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Email *</label>
-              <input type="email" name="email" placeholder="ton@email.com" required>
-            </div>
-            <div class="form-group">
-              <label>Instagram (optionnel)</label>
-              <input type="text" name="instagram" placeholder="@ton_pseudo">
-            </div>
-            <div class="form-group">
-              <label>Message complémentaire</label>
-              <textarea name="message" placeholder="Des souhaits particuliers ? Une couleur spécifique ? Pose toutes tes questions..."></textarea>
-            </div>
-            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
-              <button type="submit" class="btn btn-gold" style="flex:1;justify-content:center;padding:15px">
-                ✦ Envoyer ma commande
-              </button>
-              <a href="https://www.instagram.com/seikomods_louis/" id="instagramBtn" class="btn btn-outline" target="_blank" rel="noopener" style="flex:1;justify-content:center;padding:15px">
-                📸 Commander via Instagram
-              </a>
-            </div>
-            <p style="font-size:.75rem;text-align:center;margin-top:12px;color:var(--muted)">
-              Je te recontacte sous 24h pour confirmer et organiser le paiement sécurisé.
-            </p>
-          </form>
-        </div>
 
       </div>
 
@@ -428,15 +376,13 @@
       // Renumber: strap=2, finish=3, dial color=4 (hidden), hands=4, order=5
       document.getElementById('dialColorDot').textContent = '4';
       document.getElementById('handsDot').textContent = '4';
-      document.getElementById('orderDot').textContent = '5';
       renderDialColors('standard');
       return;
     }
     step.style.display = '';
-    // Renumber: dialtype = 4, dial color = 5, hands = 6, order = 7
+    // Renumber: dialtype = 4, dial color = 5, hands = 6
     document.getElementById('dialColorDot').textContent = '5';
     document.getElementById('handsDot').textContent = '6';
-    document.getElementById('orderDot').textContent = '7';
     grid.innerHTML = types.map((key, i) => {
       const d = DIALTYPE_OPTIONS[key];
       const priceStr = d.price > 0 ? '+' + d.price + ' €' : '+0 €';
@@ -661,7 +607,6 @@
     document.getElementById('finishStep').style.display     = isModelSelected ? '' : 'none';
     document.getElementById('dialColorStep').style.display  = isModelSelected ? '' : 'none';
     document.getElementById('handsStep').style.display      = isDateJust ? '' : 'none';
-    document.getElementById('orderStep').style.display      = isModelSelected ? '' : 'none';
     document.getElementById('addToCartStep').style.display  = isModelSelected ? '' : 'none';
     document.getElementById('s-cadran').textContent   = state.dial.label;
     document.getElementById('s-aiguilles').textContent = state.hands.label;
@@ -674,14 +619,6 @@
       summaryTotal.style.display = 'none';
     }
 
-    // Hidden form fields
-    document.getElementById('f-modele').value    = state.model.label;
-    document.getElementById('f-finition').value  = state.finish.label;
-    document.getElementById('f-dialtype').value  = hasDialType && state.dialtype ? state.dialtype.label : '';
-    document.getElementById('f-cadran').value    = state.dial.label;
-    document.getElementById('f-aiguilles').value = state.hands.label;
-    document.getElementById('f-bracelet').value  = state.strap.label;
-    document.getElementById('f-prix').value      = getTotal() + ' €';
 
     // Instagram button (lien direct vers le profil)
     document.getElementById('instagramBtn').href = 'https://www.instagram.com/seikomods_louis/';
@@ -747,15 +684,6 @@
         aiguilles: state.hands.value   !== '' ? state.hands.label   : null,
       }
     );
-  });
-
-  // Form submit feedback
-  const form = document.getElementById('orderForm');
-  form.addEventListener('submit', function(e) {
-    if (form.action.includes('YOUR_FORM_ID')) {
-      e.preventDefault();
-      window.open('https://www.instagram.com/seikomods_louis/', '_blank');
-    }
   });
 
   renderStraps(state.model.value);
