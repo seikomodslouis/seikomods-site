@@ -479,11 +479,17 @@
     'royaloak':    ['royaloak-classic', 'royaloak-chronograph'],
     'gmt':         ['jubilee-steel', 'oyster-steel'],
     'submariner':  ['jubilee-steel', 'oyster-steel'],
-    'nautilus':    ['integrated']
   };
+  // Nautilus : pas de choix de bracelet, on pré-sélectionne automatiquement
 
   function renderStraps(modelValue) {
     const grid = document.getElementById('strapGrid');
+    // Nautilus : pas de bracelet à choisir
+    if (modelValue === 'nautilus') {
+      grid.innerHTML = '';
+      renderFinishes(modelValue, 'nautilus-integrated');
+      return;
+    }
     const straps = MODEL_STRAPS[modelValue] || ['jubilee-steel'];
     grid.innerHTML = straps.map((key, i) => {
       const s = STRAP_OPTIONS[key];
@@ -688,11 +694,16 @@
     if (hasDialType && state.dialtype) document.getElementById('s-dialtype').textContent = state.dialtype.label;
     // Afficher/masquer les steps selon le modèle sélectionné
     const isModelSelected = state.model.value !== '';
+    const isNautilus = state.model.value === 'nautilus';
+    // Nautilus : pas de choix bracelet, on pré-sélectionne automatiquement
+    if (isNautilus && state.strap.value === '') {
+      state.strap = { value: 'nautilus-integrated', label: 'Intégré', price: 0, img: '' };
+    }
     const isDateJust  = state.model.value === 'datejust-39';
     const isRoyalOak  = state.model.value === 'royaloak';
     const isROClassic = isRoyalOak && state.strap.value === 'royaloak-classic';
     const showHands   = isDateJust || isROClassic;
-    document.getElementById('strapStep').style.display      = isModelSelected ? '' : 'none';
+    document.getElementById('strapStep').style.display      = (isModelSelected && !isNautilus) ? '' : 'none';
     document.getElementById('finishStep').style.display     = isModelSelected ? '' : 'none';
     document.getElementById('dialColorStep').style.display  = isModelSelected ? '' : 'none';
     document.getElementById('handsStep').style.display      = showHands ? '' : 'none';
