@@ -20,6 +20,7 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <a href="configurateur.html" class="btn btn-gold nav-cta-btn">✦ Créer la mienne</a>
+    <button class="cart-btn" id="cartBtn" aria-label="Panier"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span class="cart-badge" id="cartBadge">0</span></button>
     <button class="nav-toggle" id="navToggle" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -815,5 +816,24 @@
     obs.observe(el);
   });
 </script>
+
+  <!-- Panier overlay + sidebar -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Mon Panier <span class="cart-count-badge" id="cartCount">0</span></h3>
+      <button class="cart-close" id="cartClose">&#x2715;</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total-line">
+        <span>Total estimé</span>
+        <span id="cartTotal">0 &#x20AC;</span>
+      </div>
+      <button class="cart-checkout-btn" id="checkoutBtn">Procéder au paiement</button>
+    </div>
+  </div>
+  <div id="toast"><span id="toastMsg"></span></div>
+  <script src="cart.js"></script>
 </body>
 </html>

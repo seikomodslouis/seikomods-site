@@ -27,8 +27,8 @@ function removeFromCart(id) {
   saveCart();
 }
 
-// ── Calcul du total ──────────────────────────────────────────
-function getTotal() {
+// ── Calcul du total du panier ────────────────────────────────
+function getCartTotal() {
   return cart.reduce((sum, i) => sum + i.price, 0);
 }
 
@@ -80,7 +80,7 @@ function renderCart() {
 
   if (footer) {
     footer.style.display = 'block';
-    if (totalEl) totalEl.textContent = `${getTotal()} €`;
+    if (totalEl) totalEl.textContent = `${getCartTotal()} €`;
   }
 }
 
@@ -116,7 +116,7 @@ function showToast(msg) {
 function goToCheckout() {
   if (cart.length === 0) { showToast('Votre panier est vide !'); return; }
 
-  const total = getTotal();
+  const total = getCartTotal();
   const desc  = cart.map(i => i.name).join(' + ');
 
   // ⚠️  REMPLACE "TON_PAYPAL_EMAIL" par ton email PayPal
