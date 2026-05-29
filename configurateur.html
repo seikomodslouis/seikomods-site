@@ -677,6 +677,9 @@
       state.hands.value   !== '' ? state.hands.label   : null,
       state.strap.value   !== '' ? state.strap.label   : null,
     ].filter(Boolean);
+    const caseImg = (state.finish.value && state.strap.value && DJ_CASE_PHOTOS[state.finish.value])
+      ? DJ_CASE_PHOTOS[state.finish.value][state.strap.value] || null
+      : null;
     addToCart(
       state.model.label,
       getTotal(),
@@ -684,6 +687,10 @@
         bracelet:  state.strap.value   !== '' ? state.strap.label   : null,
         cadran:    state.dial.value    !== '' ? state.dial.label     : null,
         aiguilles: state.hands.value   !== '' ? state.hands.label   : null,
+      },
+      {
+        dial: state.dial.img || null,
+        case: caseImg,
       }
     );
   });

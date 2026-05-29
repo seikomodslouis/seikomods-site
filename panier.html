@@ -151,8 +151,16 @@
     content.style.display = 'block';
 
     // Articles
-    document.getElementById('panierItems').innerHTML = cart.map(item => `
+    document.getElementById('panierItems').innerHTML = cart.map(item => {
+      const imgs = item.imgs || {};
+      const hasImgs = imgs.dial || imgs.case;
+      return `
       <div class="panier-item">
+        ${hasImgs ? `
+        <div class="panier-item-visuals">
+          ${imgs.case ? `<div class="panier-item-visual-wrap"><img src="${imgs.case}" alt="Boîtier" class="panier-item-img"><span class="panier-img-label">Boîtier</span></div>` : ''}
+          ${imgs.dial ? `<div class="panier-item-visual-wrap"><img src="${imgs.dial}" alt="Cadran" class="panier-item-img"><span class="panier-img-label">Cadran</span></div>` : ''}
+        </div>` : ''}
         <div class="panier-item-info">
           <div class="panier-item-name">${item.name}</div>
           <div class="panier-item-opts">
@@ -163,8 +171,8 @@
           <div class="panier-item-price">${item.price} €</div>
         </div>
         <button class="panier-item-remove" onclick="removeItem(${item.id})" title="Supprimer">✕</button>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
 
     // Résumé
     const total = getCartTotal(cart);

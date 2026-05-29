@@ -13,8 +13,8 @@ function saveCart() {
 }
 
 // ── Ajouter un article ───────────────────────────────────────
-function addToCart(name, price, opts = {}) {
-  const item = { id: Date.now(), name, price, opts };
+function addToCart(name, price, opts = {}, imgs = {}) {
+  const item = { id: Date.now(), name, price, opts, imgs };
   cart.push(item);
   saveCart();
   showToast(`✓ "${name}" ajouté au panier`);
