@@ -323,13 +323,11 @@
   DIAL_COLORS_BY_TYPE['standard'] = [];
 
   // Cadrans Royal Oak par finition
-  const RO_DIALS_BY_FINISH = {
-    'steel': [
-      { value: 'ro-white', label: 'Blanc', price: 0, img: 'images/dial-royaloak-white.jpg' },
-      { value: 'ro-black', label: 'Noir',  price: 0, img: 'images/dial-royaloak-black.jpg' },
-      { value: 'ro-blue',  label: 'Bleu',  price: 0, img: 'images/dial-royaloak-blue.jpg'  },
-    ],
-  };
+  const RO_DIALS = [
+    { value: 'ro-white', label: 'Blanc', price: 0, img: 'images/dial-royaloak-white.jpg' },
+    { value: 'ro-black', label: 'Noir',  price: 0, img: 'images/dial-royaloak-black.jpg' },
+    { value: 'ro-blue',  label: 'Bleu',  price: 0, img: 'images/dial-royaloak-blue.jpg'  },
+  ];
 
   function renderDialColors(dialtypeValue) {
     const grid = document.getElementById('dialGrid');
@@ -337,7 +335,7 @@
     // Royal Oak : cadrans selon la finition choisie
     let dials;
     if (state.model.value === 'royaloak') {
-      dials = RO_DIALS_BY_FINISH[state.finish.value] || [];
+      dials = RO_DIALS;
     } else {
       dials = DIAL_COLORS_BY_TYPE[dialtypeValue] || [];
     }
