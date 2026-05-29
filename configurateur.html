@@ -310,6 +310,9 @@
       { value: 'rom-brown-rose',   label: 'Marron Or Rose',    price: 0, img: 'images/dial-rom-brown-rose.jpg' },
       { value: 'rom-grey',         label: 'Gris Anthracite',   price: 0, img: 'images/dial-rom-grey.jpg' },
     ],
+    'wimbledon': [
+      // Ajoute ici les cadrans Wimbledon — nomme tes photos dial-wimbledon-[couleur].jpg
+    ],
   };
   // Pour les modèles sans type de cadran, pas de cadrans affichés
   DIAL_COLORS_BY_TYPE['standard'] = [];
@@ -360,11 +363,12 @@
   const DIALTYPE_OPTIONS = {
     'no-number': { label: 'No Number Dial', price: 0,  icon: '' },
     'arabic':    { label: 'Arabic Dial',    price: 15, icon: '' },
-    'roman':     { label: 'Roman Dial',     price: 15, icon: '' }
+    'roman':     { label: 'Roman Dial',     price: 15, icon: '' },
+    'wimbledon': { label: 'Wimbledon Dial', price: 15, icon: '' }
   };
 
   const MODEL_DIALTYPES = {
-    'datejust-39': ['no-number', 'arabic', 'roman']
+    'datejust-39': ['no-number', 'arabic', 'roman', 'wimbledon']
     // autres modèles : pas de type de cadran spécifique
   };
 
