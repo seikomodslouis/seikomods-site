@@ -134,8 +134,8 @@
           <img id="dialLightboxImg" src="" alt="">
         </div>
 
-        <!-- ÉTAPE 6 : AIGUILLES -->
-        <div class="config-step">
+        <!-- ÉTAPE 6 : AIGUILLES (DateJust uniquement) -->
+        <div class="config-step" id="handsStep" style="display:none">
           <div class="config-step-header">
             <div class="step-dot" id="handsDot">6</div>
             <h3>Style des aiguilles</h3>
@@ -662,6 +662,9 @@
     const hasDialType = MODEL_DIALTYPES[state.model.value];
     document.getElementById('s-dialtype-line').style.display = hasDialType ? '' : 'none';
     if (hasDialType && state.dialtype) document.getElementById('s-dialtype').textContent = state.dialtype.label;
+    // Aiguilles — uniquement pour DateJust
+    const handsStep = document.getElementById('handsStep');
+    if (handsStep) handsStep.style.display = state.model.value === 'datejust-39' ? '' : 'none';
     document.getElementById('s-cadran').textContent   = state.dial.label;
     document.getElementById('s-aiguilles').textContent = state.hands.label;
     document.getElementById('s-bracelet').textContent = state.strap.label;
