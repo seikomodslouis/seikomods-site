@@ -214,16 +214,8 @@
 
       </div>
 
-      <!-- PANNEAU DE PRÉVISUALISATION -->
+      <!-- PANNEAU RÉCAPITULATIF -->
       <div class="config-panel" id="configPanel">
-
-        <div class="config-preview-box">
-          <div class="config-watch-img">
-            <img src="images/dj-steel-jubilee.jpg" alt="Aperçu boîtier" id="previewCaseImg">
-          </div>
-          <div class="config-preview-name" id="previewName">DateJust 39mm</div>
-          <div class="config-preview-sub" id="previewSub">Acier · Argenté · Argent</div>
-        </div>
 
         <div class="config-summary-box">
           <h4>Récapitulatif</h4>
@@ -641,20 +633,6 @@
   }
 
   function updateUI() {
-
-    // Photo boîtier
-    const caseImg = document.getElementById('previewCaseImg');
-    let casePhoto = MODEL_IMAGES[state.model.value] || 'images/dj-steel-jubilee.jpg';
-    if (state.model.value === 'datejust-39' && DJ_CASE_PHOTOS[state.finish.value]?.[state.strap.value]) {
-      casePhoto = DJ_CASE_PHOTOS[state.finish.value][state.strap.value];
-    }
-    caseImg.style.opacity = '0.4';
-    setTimeout(() => { caseImg.src = casePhoto; caseImg.style.opacity = '1'; }, 200);
-
-    // Preview name/sub
-    document.getElementById('previewName').textContent = state.model.label;
-    document.getElementById('previewSub').textContent =
-      `${state.finish.label} · ${state.dial.label}`;
 
     // Summary lines
     document.getElementById('s-modele').textContent   = state.model.label;
