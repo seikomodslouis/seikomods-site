@@ -356,7 +356,7 @@
     // Royal Oak : cadrans selon la finition choisie
     let dials;
     if (state.model.value === 'royaloak') {
-      dials = RO_DIALS;
+      dials = state.strap.value === 'royaloak-classic' ? RO_DIALS : [];
     } else {
       dials = DIAL_COLORS_BY_TYPE[dialtypeValue] || [];
     }
@@ -676,7 +676,8 @@
     const isModelSelected = state.model.value !== '';
     const isDateJust  = state.model.value === 'datejust-39';
     const isRoyalOak  = state.model.value === 'royaloak';
-    const showHands   = isDateJust || isRoyalOak;
+    const isROClassic = isRoyalOak && state.strap.value === 'royaloak-classic';
+    const showHands   = isDateJust || isROClassic;
     document.getElementById('strapStep').style.display      = isModelSelected ? '' : 'none';
     document.getElementById('finishStep').style.display     = isModelSelected ? '' : 'none';
     document.getElementById('dialColorStep').style.display  = isModelSelected ? '' : 'none';
