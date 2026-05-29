@@ -178,6 +178,21 @@
               <div class="opt-name">Or Rose</div>
               <div class="opt-price">+0 €</div>
             </div>
+            <div class="option-card" data-step="hands" data-value="naut-argent" data-label="Nautilus Argent" data-price="0" data-img="images/hands-nautilus-argent.jpg" data-model="nautilus">
+              <div class="dial-thumb-wrap"><img src="images/hands-nautilus-argent.jpg" alt="Nautilus Argent" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+              <div class="opt-name">Argent</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="hands" data-value="naut-or" data-label="Nautilus Or" data-price="0" data-img="images/hands-nautilus-or.jpg" data-model="nautilus">
+              <div class="dial-thumb-wrap"><img src="images/hands-nautilus-or.jpg" alt="Nautilus Or" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+              <div class="opt-name">Or</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="hands" data-value="naut-rosegold" data-label="Nautilus Or Rose" data-price="0" data-img="images/hands-nautilus-rosegold.jpg" data-model="nautilus">
+              <div class="dial-thumb-wrap"><img src="images/hands-nautilus-rosegold.jpg" alt="Nautilus Or Rose" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+              <div class="opt-name">Or Rose</div>
+              <div class="opt-price">+0 €</div>
+            </div>
           </div>
         </div>
 
@@ -721,7 +736,8 @@
     const isDateJust  = state.model.value === 'datejust-39';
     const isRoyalOak  = state.model.value === 'royaloak';
     const isROClassic = isRoyalOak && state.strap.value === 'royaloak-classic';
-    const showHands   = isDateJust || isROClassic;
+    const isNautilus  = state.model.value === 'nautilus';
+    const showHands   = isDateJust || isROClassic || isNautilus;
     document.getElementById('strapStep').style.display      = (isModelSelected && !isNautilus) ? '' : 'none';
     document.getElementById('finishStep').style.display     = isModelSelected ? '' : 'none';
     document.getElementById('dialColorStep').style.display  = isModelSelected ? '' : 'none';
@@ -732,7 +748,7 @@
       if (!forModel) {
         card.style.display = isDateJust ? '' : 'none';
       } else {
-        card.style.display = state.model.value === forModel ? '' : 'none';
+        card.style.display = (state.model.value === forModel) ? '' : 'none';
       }
     });
     document.getElementById('addToCartStep').style.display  = isModelSelected ? '' : 'none';
