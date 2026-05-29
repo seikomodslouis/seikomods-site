@@ -218,17 +218,37 @@
       <div class="config-panel" id="configPanel">
 
         <div class="config-preview-box">
-          <div class="config-watch-img">
-            <img src="images/dj-steel-jubilee.jpg" alt="Aperçu boîtier" id="previewCaseImg">
-            <div class="preview-components" id="previewComponents">
-              <div class="preview-component" id="previewDialWrap" style="display:none">
-                <img src="" alt="Cadran" id="previewDialImg" class="preview-component-img">
-                <span class="preview-component-label">Cadran</span>
+          <!-- Aperçu montre assemblée -->
+          <div class="wfp-wrap">
+            <!-- Face cadran + aiguilles -->
+            <div class="wfp-face" id="wfpFace">
+              <div class="wfp-bezel">
+                <div class="wfp-dial-wrap" id="wfpDialWrap">
+                  <img src="images/dial-silver.jpg" alt="Cadran" id="wfpDialImg" class="wfp-dial-img">
+                  <!-- Aiguilles SVG au 10h10 -->
+                  <svg class="wfp-hands-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Aiguille des heures (10h10 → 305°) -->
+                    <rect x="46.5" y="20" width="7" height="30" rx="3.5"
+                          id="wfpHourHand" fill="#d0d0d0"
+                          transform="rotate(305 50 50)"/>
+                    <!-- Aiguille des minutes (10 min → 60°) -->
+                    <rect x="47.5" y="13" width="5" height="37" rx="2.5"
+                          id="wfpMinuteHand" fill="#d0d0d0"
+                          transform="rotate(60 50 50)"/>
+                    <!-- Trotteuse (décorative ~6s → 36°) -->
+                    <line x1="50" y1="64" x2="50" y2="14"
+                          id="wfpSecondsHand" stroke="#c0392b" stroke-width="1"
+                          transform="rotate(36 50 50)"/>
+                    <!-- Cabochon central -->
+                    <circle cx="50" cy="50" r="4.5" id="wfpCenterCap" fill="#d0d0d0"/>
+                    <circle cx="50" cy="50" r="2" fill="#1a1a1a"/>
+                  </svg>
+                </div>
               </div>
-              <div class="preview-component" id="previewHandsWrap" style="display:none">
-                <img src="" alt="Aiguilles" id="previewHandsImg" class="preview-component-img">
-                <span class="preview-component-label">Aiguilles</span>
-              </div>
+            </div>
+            <!-- Mini photo boîtier -->
+            <div class="wfp-case-thumb-wrap">
+              <img src="images/dj-steel-jubilee.jpg" alt="Boîtier" id="wfpCaseThumb" class="wfp-case-thumb">
             </div>
           </div>
           <div class="config-preview-name" id="previewName">DateJust 39mm</div>
@@ -630,39 +650,59 @@
     return base + state.strap.price + state.finish.price + (state.dialtype ? state.dialtype.price : 0) + state.dial.price + state.hands.price;
   }
 
+  // ── Gradients côniques par finition ──────────────────────────────────────
+  const WFP_FINISH_GRADIENTS = {
+    'steel':     'conic-gradient(from 5deg, #707070, #d8d8d8, #f2f2f2, #a8a8a8, #dedede, #808080, #d8d8d8, #f0f0f0, #707070)',
+    'gold':      'conic-gradient(from 5deg, #987010, #f0d040, #fce870, #c89020, #f4dc50, #987010, #f0d040, #fce870, #987010)',
+    'rose-gold': 'conic-gradient(from 5deg, #885040, #d89080, #edbaaa, #aa6858, #d89080, #885040, #d89080, #edbaaa, #885040)',
+    'steel-gold':'conic-gradient(from 5deg, #707070, #d8d8d8, #f0d040, #a8a8a8, #f4dc50, #707070, #d8d8d8, #f0f0f0, #707070)',
+    'steel-rose':'conic-gradient(from 5deg, #707070, #d8d8d8, #edbaaa, #a8a8a8, #d89080, #707070, #d8d8d8, #f0f0f0, #707070)',
+  };
+  const WFP_HANDS_COLORS = {
+    'argent':  '#d8d8d8',
+    'or':      '#c89018',
+    'or-rose': '#c07060',
+  };
+
+  function updateWatchPreview() {
+    // Lunette — couleur finition
+    const face = document.getElementById('wfpFace');
+    if (face) face.style.background = WFP_FINISH_GRADIENTS[state.finish.value] || WFP_FINISH_GRADIENTS['steel'];
+
+    // Photo cadran
+    const dialImg = document.getElementById('wfpDialImg');
+    if (dialImg) {
+      if (state.dial.img) {
+        dialImg.style.opacity = '0';
+        setTimeout(() => { dialImg.src = state.dial.img; dialImg.style.opacity = '1'; }, 150);
+      }
+    }
+
+    // Couleur aiguilles
+    const hColor = WFP_HANDS_COLORS[state.hands.value] || '#d8d8d8';
+    const hourHand   = document.getElementById('wfpHourHand');
+    const minHand    = document.getElementById('wfpMinuteHand');
+    const centerCap  = document.getElementById('wfpCenterCap');
+    if (hourHand)  hourHand.setAttribute('fill', hColor);
+    if (minHand)   minHand.setAttribute('fill', hColor);
+    if (centerCap) centerCap.setAttribute('fill', hColor);
+
+    // Mini photo boîtier
+    const caseThumb = document.getElementById('wfpCaseThumb');
+    if (caseThumb) {
+      let casePhoto = MODEL_IMAGES[state.model.value] || 'images/dj-steel-jubilee.jpg';
+      if (state.model.value === 'datejust-39' && DJ_CASE_PHOTOS[state.finish.value]?.[state.strap.value]) {
+        casePhoto = DJ_CASE_PHOTOS[state.finish.value][state.strap.value];
+      }
+      caseThumb.style.opacity = '0.3';
+      setTimeout(() => { caseThumb.src = casePhoto; caseThumb.style.opacity = '0.9'; }, 200);
+    }
+  }
+
   function updateUI() {
-    // Preview boîtier
-    const caseImg = document.getElementById('previewCaseImg');
 
-    // Photo du boîtier selon modèle + bracelet + finition
-    let casePhoto = MODEL_IMAGES[state.model.value] || 'images/dj-steel-jubilee.jpg';
-    if (state.model.value === 'datejust-39' && DJ_CASE_PHOTOS[state.finish.value]?.[state.strap.value]) {
-      casePhoto = DJ_CASE_PHOTOS[state.finish.value][state.strap.value];
-    }
-    caseImg.style.opacity = '0.4';
-    setTimeout(() => {
-      caseImg.src = casePhoto;
-      caseImg.style.opacity = '1';
-    }, 200);
-
-    // Miniature cadran
-    const dialWrap = document.getElementById('previewDialWrap');
-    if (state.dial.img) {
-      document.getElementById('previewDialImg').src = state.dial.img;
-      dialWrap.style.display = 'flex';
-    } else {
-      dialWrap.style.display = 'none';
-    }
-
-    // Miniature aiguilles
-    const handsWrap = document.getElementById('previewHandsWrap');
-    const handsImgMap = { 'argent': 'images/hands-argent.jpg', 'or': 'images/hands-or.jpg', 'or-rose': 'images/hands-or-rose.jpg' };
-    if (handsImgMap[state.hands.value]) {
-      document.getElementById('previewHandsImg').src = handsImgMap[state.hands.value];
-      handsWrap.style.display = 'flex';
-    } else {
-      handsWrap.style.display = 'none';
-    }
+    // Aperçu assemblé
+    updateWatchPreview();
 
     // Preview name/sub
     document.getElementById('previewName').textContent = state.model.label;
