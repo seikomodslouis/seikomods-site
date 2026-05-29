@@ -878,11 +878,13 @@
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.add-to-cart-collection').forEach(btn => {
         btn.addEventListener('click', () => {
-          const card = btn.closest('.product-card-body');
-          const name  = card.querySelector('h3')?.textContent.trim() || 'Montre';
+          const article = btn.closest('article');
+          const card    = article.querySelector('.product-card-body');
+          const name      = card.querySelector('h3')?.textContent.trim() || 'Montre';
           const priceText = card.querySelector('.price')?.textContent.trim() || '0 €';
-          const price = parseInt(priceText.replace(/[^\d]/g, ''), 10) || 0;
-          addToCart(name, price, {});
+          const price     = parseInt(priceText.replace(/[^\d]/g, ''), 10) || 0;
+          const imgSrc    = article.querySelector('.product-card-img img')?.getAttribute('src') || null;
+          addToCart(name, price, {}, { collection: imgSrc });
         });
       });
     });

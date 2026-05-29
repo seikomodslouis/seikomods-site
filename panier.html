@@ -153,10 +153,14 @@
     // Articles
     document.getElementById('panierItems').innerHTML = cart.map(item => {
       const imgs = item.imgs || {};
-      const hasImgs = imgs.dial || imgs.case || imgs.hands;
+      const hasImgs = imgs.dial || imgs.case || imgs.hands || imgs.collection;
       return `
       <div class="panier-item">
-        ${hasImgs ? `
+        ${imgs.collection ? `
+        <div class="panier-item-visual-wrap" style="flex-shrink:0">
+          <img src="${imgs.collection}" alt="${item.name}" class="panier-item-img" style="width:100px;height:100px;object-fit:cover">
+        </div>` : ''}
+        ${(imgs.dial || imgs.case || imgs.hands) ? `
         <div class="panier-item-visuals">
           ${imgs.case  ? `<div class="panier-item-visual-wrap"><img src="${imgs.case}"  alt="Boîtier"  class="panier-item-img"><span class="panier-img-label">Boîtier</span></div>`  : ''}
           ${imgs.dial  ? `<div class="panier-item-visual-wrap"><img src="${imgs.dial}"  alt="Cadran"   class="panier-item-img"><span class="panier-img-label">Cadran</span></div>`   : ''}
