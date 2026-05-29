@@ -74,7 +74,9 @@
         <p style="margin-bottom:24px;font-size:.88rem;color:var(--muted)">
           Remplis le formulaire et je te recontacte sous 24h pour confirmer et organiser le paiement.
         </p>
-        <form id="orderForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="da5772b9-47e9-4634-8d86-c1ef1849bf18">
+          <input type="hidden" name="subject" value="Nouvelle commande SeikoMods">
           <input type="hidden" name="commande" id="f-commande">
           <input type="hidden" name="prix_total" id="f-prix">
 
@@ -232,13 +234,25 @@
   // Soumission du formulaire
   const orderForm = document.getElementById('orderForm');
   orderForm.addEventListener('submit', function(e) {
-    if (orderForm.action.includes('YOUR_FORM_ID')) {
-      e.preventDefault();
-      window.open('https://www.instagram.com/seikomods_louis/', '_blank');
-      return;
-    }
-    // Vider le panier après envoi
-    saveCart([]);
+    e.preventDefault();
+    const data = new FormData(orderForm);
+    fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+      .then(res => res.json())
+      .then(json => {
+        if (json.success) {
+          saveCart([]);
+          document.getElementById('cartContent').innerHTML = `
+            <div style="text-align:center;padding:80px 20px">
+              <div style="font-size:2rem;margin-bottom:16px">✦</div>
+              <h2 style="font-family:var(--serif);margin-bottom:12px">Commande envoyée !</h2>
+              <p style="color:var(--muted);margin-bottom:28px">Je te recontacte sous 24h pour confirmer et organiser le paiement.</p>
+              <a href="index.html" class="btn btn-gold">Retour à l'accueil</a>
+            </div>`;
+        } else {
+          alert('Une erreur est survenue. Réessaie ou contacte-moi sur Instagram.');
+        }
+      })
+      .catch(() => alert('Une erreur est survenue. Vérifie ta connexion.'));
   });
 
   updateBadge();
