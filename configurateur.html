@@ -355,6 +355,23 @@
     { value: 'ro-blue-rosegold',  label: 'Bleu Or Rose',   price: 0, img: 'images/dial-royaloak-blue-rosegold.jpg'  },
   ];
 
+  const NAUTILUS_DIALS = [
+    { value: 'naut-brown-rg',  label: 'Brun Or Rose',       price: 0, img: 'images/dial-nautilus-brown-rosegold.jpg' },
+    { value: 'naut-grey-rg',   label: 'Gris Or Rose',       price: 0, img: 'images/dial-nautilus-grey-rosegold.jpg' },
+    { value: 'naut-white-rg',  label: 'Blanc Or Rose',      price: 0, img: 'images/dial-nautilus-white-rosegold.jpg' },
+    { value: 'naut-black-rg',  label: 'Noir Or Rose',       price: 0, img: 'images/dial-nautilus-black-rosegold.jpg' },
+    { value: 'naut-red-dark',  label: 'Rouge Sombre',       price: 0, img: 'images/dial-nautilus-red-dark.jpg' },
+    { value: 'naut-blue',      label: 'Bleu',               price: 0, img: 'images/dial-nautilus-blue.jpg' },
+    { value: 'naut-brown',     label: 'Brun',               price: 0, img: 'images/dial-nautilus-brown.jpg' },
+    { value: 'naut-navy',      label: 'Bleu Nuit',          price: 0, img: 'images/dial-nautilus-navy.jpg' },
+    { value: 'naut-grey',      label: 'Gris',               price: 0, img: 'images/dial-nautilus-grey.jpg' },
+    { value: 'naut-tiffany',   label: 'Tiffany',            price: 0, img: 'images/dial-nautilus-tiffany.jpg' },
+    { value: 'naut-yellow',    label: 'Jaune',              price: 0, img: 'images/dial-nautilus-yellow.jpg' },
+    { value: 'naut-white',     label: 'Blanc',              price: 0, img: 'images/dial-nautilus-white.jpg' },
+    { value: 'naut-red',       label: 'Rouge',              price: 0, img: 'images/dial-nautilus-red.jpg' },
+    { value: 'naut-green',     label: 'Vert',               price: 0, img: 'images/dial-nautilus-green.jpg' },
+  ];
+
   function renderDialColors(dialtypeValue) {
     const grid = document.getElementById('dialGrid');
     const dialStep = grid.closest('.config-step');
@@ -362,6 +379,8 @@
     let dials;
     if (state.model.value === 'royaloak') {
       dials = state.strap.value === 'royaloak-classic' ? RO_DIALS : [];
+    } else if (state.model.value === 'nautilus') {
+      dials = NAUTILUS_DIALS;
     } else {
       dials = DIAL_COLORS_BY_TYPE[dialtypeValue] || [];
     }
@@ -642,8 +661,8 @@
           label: card.dataset.label,
           price: parseInt(card.dataset.price) || 0
         };
-        // Royal Oak : recharger les cadrans selon la nouvelle finition
-        if (state.model.value === 'royaloak') {
+        // Royal Oak / Nautilus : recharger les cadrans selon la nouvelle finition
+        if (state.model.value === 'royaloak' || state.model.value === 'nautilus') {
           state.dial = { value: '', label: '—', price: 0, img: '' };
           renderDialColors('');
         }
