@@ -322,10 +322,25 @@
   // Pour les modèles sans type de cadran, pas de cadrans affichés
   DIAL_COLORS_BY_TYPE['standard'] = [];
 
+  // Cadrans Royal Oak par finition
+  const RO_DIALS_BY_FINISH = {
+    'steel': [
+      { value: 'ro-white', label: 'Blanc', price: 0, img: 'images/dial-royaloak-white.jpg' },
+      { value: 'ro-black', label: 'Noir',  price: 0, img: 'images/dial-royaloak-black.jpg' },
+      { value: 'ro-blue',  label: 'Bleu',  price: 0, img: 'images/dial-royaloak-blue.jpg'  },
+    ],
+  };
+
   function renderDialColors(dialtypeValue) {
     const grid = document.getElementById('dialGrid');
     const dialStep = grid.closest('.config-step');
-    const dials = DIAL_COLORS_BY_TYPE[dialtypeValue] || [];
+    // Royal Oak : cadrans selon la finition choisie
+    let dials;
+    if (state.model.value === 'royaloak') {
+      dials = RO_DIALS_BY_FINISH[state.finish.value] || [];
+    } else {
+      dials = DIAL_COLORS_BY_TYPE[dialtypeValue] || [];
+    }
     dialStep.style.display = '';
     if (dials.length === 0) {
       grid.innerHTML = '<p style="color:var(--muted);font-size:.85rem;padding:16px 0;grid-column:1/-1">Cadrans bientôt disponibles pour ce modèle.</p>';
@@ -583,6 +598,11 @@
           label: card.dataset.label,
           price: parseInt(card.dataset.price) || 0
         };
+        // Royal Oak : recharger les cadrans selon la nouvelle finition
+        if (state.model.value === 'royaloak') {
+          state.dial = { value: '', label: '—', price: 0, img: '' };
+          renderDialColors('');
+        }
         updateUI();
       });
       // Lightbox sur la photo boîtier
