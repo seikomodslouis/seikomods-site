@@ -736,7 +736,6 @@
     const isDateJust  = state.model.value === 'datejust-39';
     const isRoyalOak  = state.model.value === 'royaloak';
     const isROClassic = isRoyalOak && state.strap.value === 'royaloak-classic';
-    const isNautilus  = state.model.value === 'nautilus';
     const showHands   = isDateJust || isROClassic || isNautilus;
     document.getElementById('strapStep').style.display      = (isModelSelected && !isNautilus) ? '' : 'none';
     document.getElementById('finishStep').style.display     = isModelSelected ? '' : 'none';
