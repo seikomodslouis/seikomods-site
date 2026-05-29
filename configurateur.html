@@ -56,7 +56,7 @@
             <h3>Choisis ton modèle</h3>
           </div>
           <div class="options-grid">
-            <div class="option-card selected" data-step="model" data-value="datejust-39" data-label="DateJust 39mm" data-price="0" data-img="images/dayjust-steel-jubilee.png">
+            <div class="option-card" data-step="model" data-value="datejust-39" data-label="DateJust 39mm" data-price="0" data-img="images/dayjust-steel-jubilee.png">
               <div class="opt-icon">⌚</div>
               <div class="opt-name">DateJust 39mm</div>
               <div class="opt-price">à partir de 149 €</div>
@@ -141,7 +141,7 @@
             <h3>Style des aiguilles</h3>
           </div>
           <div class="options-grid dial-grid">
-            <div class="option-card selected" data-step="hands" data-value="argent" data-label="Argent" data-price="0" data-img="images/hands-argent.jpg">
+            <div class="option-card" data-step="hands" data-value="argent" data-label="Argent" data-price="0" data-img="images/hands-argent.jpg">
               <div class="dial-thumb-wrap"><img src="images/hands-argent.jpg" alt="Argent" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Argent</div>
               <div class="opt-price">+0 €</div>
@@ -365,7 +365,7 @@
       return;
     }
     grid.innerHTML = dials.map((d, i) => `
-      <div class="option-card${i === 0 ? ' selected' : ''}" data-step="dial" data-value="${d.value}" data-label="${d.label}" data-price="${d.price}" data-img="${d.img}">
+      <div class="option-card${''}" data-step="dial" data-value="${d.value}" data-label="${d.label}" data-price="${d.price}" data-img="${d.img}">
         <div class="dial-thumb-wrap"><img src="${d.img}" alt="${d.label}" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
         <div class="opt-name">${d.label}</div>
         <div class="opt-price">+${d.price} €</div>
@@ -393,8 +393,7 @@
         if (img) { document.getElementById('dialLightboxImg').src = img; lightbox.classList.add('open'); }
       });
     });
-    // Auto-sélectionner le premier
-    state.dial = { value: dials[0].value, label: dials[0].label, price: dials[0].price, img: dials[0].img || '' };
+    state.dial = { value: '', label: '—', price: 0, img: '' };
   }
 
   const DIALTYPE_OPTIONS = {
@@ -431,7 +430,7 @@
     grid.innerHTML = types.map((key, i) => {
       const d = DIALTYPE_OPTIONS[key];
       const priceStr = d.price > 0 ? '+' + d.price + ' €' : '+0 €';
-      return `<div class="option-card${i === 0 ? ' selected' : ''}" data-step="dialtype" data-value="${key}" data-label="${d.label}" data-price="${d.price}">
+      return `<div class="option-card${''}" data-step="dialtype" data-value="${key}" data-label="${d.label}" data-price="${d.price}">
         <div class="opt-name">${d.label}</div>
         <div class="opt-price">${priceStr}</div>
       </div>`;
@@ -457,9 +456,8 @@
         updateUI();
       });
     });
-    const first = DIALTYPE_OPTIONS[types[0]];
-    state.dialtype = { value: types[0], label: first.label, price: first.price };
-    renderDialColors(types[0]);
+    state.dialtype = { value: '', label: '—', price: 0 };
+    renderDialColors('');
   }
 
   const STRAP_OPTIONS = {
@@ -483,7 +481,7 @@
     grid.innerHTML = straps.map((key, i) => {
       const s = STRAP_OPTIONS[key];
       const priceStr = s.price > 0 ? '+' + s.price + ' €' : s.price < 0 ? s.price + ' €' : '+0 €';
-      return `<div class="option-card${i === 0 ? ' selected' : ''}" data-step="strap" data-value="${key}" data-label="${s.label}" data-price="${s.price}">
+      return `<div class="option-card${''}" data-step="strap" data-value="${key}" data-label="${s.label}" data-price="${s.price}">
         <div class="opt-icon">${s.icon}</div>
         <div class="opt-name">${s.label}</div>
         <div class="opt-price">${priceStr}</div>
@@ -508,8 +506,7 @@
         updateUI();
       });
     });
-    const first = STRAP_OPTIONS[straps[0]];
-    state.strap = { value: straps[0], label: first.label, price: first.price };
+    state.strap = { value: '', label: '—', price: 0 };
   }
 
   // Photos boîtier DateJust par finition + bracelet
@@ -571,7 +568,7 @@
       const visual = casePhoto
         ? `<div class="dial-thumb-wrap"><img src="${casePhoto}" alt="${f.label}" class="dial-thumb" style="border-radius:8px"><span class="dial-zoom">&#x2922;</span></div>`
         : `<div class="color-swatch" style="background:${f.gradient}"></div>`;
-      return `<div class="option-card${i === 0 ? ' selected' : ''}" data-step="finish" data-value="${key}" data-label="${f.label}" data-price="${f.price}" data-img="${casePhoto || ''}">
+      return `<div class="option-card${''}" data-step="finish" data-value="${key}" data-label="${f.label}" data-price="${f.price}" data-img="${casePhoto || ''}">
         ${visual}
         <div class="opt-name">${f.label}</div>
         <div class="opt-price">${f.price > 0 ? '+' + f.price + ' €' : '+0 €'}</div>
@@ -605,9 +602,7 @@
         });
       }
     });
-    // Auto-select first
-    const first = FINISH_OPTIONS[finishes[0]];
-    state.finish = { value: finishes[0], label: first.label, price: first.price };
+    state.finish = { value: '', label: '—', price: 0 };
   }
 
   const MODEL_IMAGES = {
@@ -619,12 +614,12 @@
   };
 
   const state = {
-    model:    { value: 'datejust-39',  label: 'DateJust 39mm',  price: 0 },
-    strap:    { value: 'jubilee-steel',label: 'Jubilé acier',   price: 0 },
-    finish:   { value: 'steel',        label: 'Acier',           price: 0 },
-    dialtype: { value: 'no-number',    label: 'No Number Dial',  price: 0 },
-    dial:     { value: 'silver',        label: 'Argenté',         price: 0, img: 'images/dial-silver.jpg' },
-    hands:    { value: 'argent',        label: 'Argent',          price: 0 }
+    model:    { value: '', label: '—', price: 0 },
+    strap:    { value: '', label: '—', price: 0 },
+    finish:   { value: '', label: '—', price: 0 },
+    dialtype: { value: '', label: '—', price: 0 },
+    dial:     { value: '', label: '—', price: 0, img: '' },
+    hands:    { value: '', label: '—', price: 0 }
   };
 
   function getTotal() {
