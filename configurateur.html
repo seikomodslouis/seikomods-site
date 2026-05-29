@@ -408,9 +408,15 @@
         <div class="opt-name">${d.label}</div>
         <div class="opt-price">+${d.price} €</div>
       </div>`).join('');
-    // Bind sélection cadran
+    // Bind sélection cadran (toggle)
     grid.querySelectorAll('.option-card').forEach(card => {
       card.addEventListener('click', () => {
+        if (card.classList.contains('selected')) {
+          card.classList.remove('selected');
+          state.dial = { value: '', label: '—', price: 0, img: '' };
+          updateUI();
+          return;
+        }
         grid.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
         state.dial = { value: card.dataset.value, label: card.dataset.label, price: parseInt(card.dataset.price) || 0, img: card.dataset.img || '' };
@@ -470,6 +476,14 @@
     }).join('');
     grid.querySelectorAll('.option-card').forEach(card => {
       card.addEventListener('click', () => {
+        if (card.classList.contains('selected')) {
+          card.classList.remove('selected');
+          state.dialtype = { value: '', label: '—', price: 0 };
+          state.dial = { value: '', label: '—', price: 0, img: '' };
+          renderDialColors('');
+          updateUI();
+          return;
+        }
         document.querySelectorAll('[data-step="dialtype"]').forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
         state.dialtype = {
@@ -601,9 +615,15 @@
         <div class="opt-price">${f.price > 0 ? '+' + f.price + ' €' : '+0 €'}</div>
       </div>`;
     }).join('');
-    // Rebind click listeners
+    // Rebind click listeners (toggle)
     grid.querySelectorAll('.option-card').forEach(card => {
       card.addEventListener('click', () => {
+        if (card.classList.contains('selected')) {
+          card.classList.remove('selected');
+          state.finish = { value: '', label: '—', price: 0 };
+          updateUI();
+          return;
+        }
         document.querySelectorAll('[data-step="finish"]').forEach(c => c.classList.remove('selected'));
         card.classList.add('selected');
         state.finish = {
@@ -742,10 +762,22 @@
     });
   });
 
-  // Click on option cards (all except finish which is dynamic)
+  // Click on option cards (all except finish/strap/dial/dialtype which are dynamic)
   document.querySelectorAll('.option-card').forEach(card => {
     card.addEventListener('click', () => {
       const step = card.dataset.step;
+      // Toggle : re-clic sur la carte déjà sélectionnée → désélection
+      if (card.classList.contains('selected')) {
+        card.classList.remove('selected');
+        state[step] = { value: '', label: '—', price: 0 };
+        if (step === 'model') {
+          renderStraps('');
+          renderFinishes('', '');
+          renderDialType('');
+        }
+        updateUI();
+        return;
+      }
       document.querySelectorAll(`[data-step="${step}"]`).forEach(c => c.classList.remove('selected'));
       card.classList.add('selected');
       state[step] = {
