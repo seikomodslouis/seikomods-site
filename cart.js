@@ -17,8 +17,9 @@ function addToCart(name, price, opts = {}) {
   const item = { id: Date.now(), name, price, opts };
   cart.push(item);
   saveCart();
-  openCart();
-  showToast(`"${name}" ajouté au panier`);
+  showToast(`✓ "${name}" ajouté au panier`);
+  // Mettre à jour le badge nav
+  updateCartCount();
 }
 
 // ── Supprimer un article ─────────────────────────────────────
@@ -98,8 +99,13 @@ function closeCart() {
 
 // ── Compteur de la nav ───────────────────────────────────────
 function updateCartCount() {
-  const counts = document.querySelectorAll('#cartCount');
-  counts.forEach(el => { el.textContent = cart.length; });
+  const count = cart.length;
+  ['cartBadge', 'cartCount'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = count;
+    el.style.display = count > 0 ? 'flex' : 'none';
+  });
 }
 
 // ── Toast notification ───────────────────────────────────────

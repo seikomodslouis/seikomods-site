@@ -362,3 +362,18 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 .add-to-cart-btn{width:100%;padding:16px;background:var(--black);color:#fff;border:none;font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background var(--transition)}
 .add-to-cart-btn:hover{background:#333}
 .add-to-cart-btn svg{stroke:#fff}
+
+/* ── Page Panier ─────────────────────────────────────────────── */
+.panier-layout{display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:start}
+.panier-items{display:flex;flex-direction:column;gap:0}
+.panier-item{display:flex;align-items:center;gap:20px;padding:24px 0;border-bottom:1px solid var(--border)}
+.panier-item:first-child{border-top:1px solid var(--border)}
+.panier-item-icon{flex-shrink:0}
+.panier-item-info{flex:1}
+.panier-item-name{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--black);margin-bottom:6px}
+.panier-item-opts{display:flex;flex-direction:column;gap:2px;font-size:.75rem;color:var(--muted);margin-bottom:10px}
+.panier-item-price{font-family:var(--serif);font-size:1.1rem;font-weight:700;color:var(--black)}
+.panier-item-remove{background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;font-size:.8rem;padding:6px 10px;transition:all var(--transition);flex-shrink:0}
+.panier-item-remove:hover{border-color:var(--black);color:var(--black)}
+.panier-summary{position:sticky;top:100px}
+@media(max-width:768px){.panier-layout{grid-template-columns:1fr}}
