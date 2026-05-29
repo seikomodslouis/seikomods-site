@@ -226,7 +226,7 @@
           <div class="summary-line"><span class="lbl">Cadran</span><span class="val" id="s-cadran">Blanc</span></div>
           <div class="summary-line"><span class="lbl">Aiguilles</span><span class="val" id="s-aiguilles">Bâton argenté</span></div>
           <div class="summary-line"><span class="lbl">Bracelet</span><span class="val" id="s-bracelet">Jubilé acier</span></div>
-          <div class="summary-total">
+          <div class="summary-total" id="summaryTotal" style="display:none">
             <span>Total estimé</span>
             <span class="summary-price" id="s-prix">149 €</span>
           </div>
@@ -656,7 +656,13 @@
     document.getElementById('s-cadran').textContent   = state.dial.label;
     document.getElementById('s-aiguilles').textContent = state.hands.label;
     document.getElementById('s-bracelet').textContent = state.strap.label;
-    document.getElementById('s-prix').textContent     = getTotal() + ' €';
+    const summaryTotal = document.getElementById('summaryTotal');
+    if (state.model.value !== '') {
+      summaryTotal.style.display = '';
+      document.getElementById('s-prix').textContent = getTotal() + ' €';
+    } else {
+      summaryTotal.style.display = 'none';
+    }
 
     // Hidden form fields
     document.getElementById('f-modele').value    = state.model.label;
