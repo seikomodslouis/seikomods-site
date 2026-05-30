@@ -408,6 +408,17 @@
     { value: 'naut-green',     label: 'Vert',               price: 0, img: 'images/dial-nautilus-green.jpg' },
   ];
 
+  const GMT_DIALS = [
+    { value: 'gmt-black-blue',    label: 'Noir · Texte Bleu',     price: 0, img: 'images/dial-gmt-black-blue.jpg' },
+    { value: 'gmt-black-red',     label: 'Noir · Texte Rouge',    price: 0, img: 'images/dial-gmt-black-red.jpg' },
+    { value: 'gmt-black-green',   label: 'Noir · Texte Vert',     price: 0, img: 'images/dial-gmt-black-green.jpg' },
+    { value: 'gmt-black-silver',  label: 'Noir · Texte Argent',   price: 0, img: 'images/dial-gmt-black-silver.jpg' },
+    { value: 'gmt-black-gold',    label: 'Noir · Indices Or',     price: 0, img: 'images/dial-gmt-black-gold.jpg' },
+    { value: 'gmt-black-rosegold',label: 'Noir · Indices Or Rose',price: 0, img: 'images/dial-gmt-black-rosegold.jpg' },
+    { value: 'gmt-green-gold',    label: 'Vert · Indices Or',     price: 0, img: 'images/dial-gmt-green-gold.jpg' },
+    { value: 'gmt-blue-silver',   label: 'Bleu · Indices Argent', price: 0, img: 'images/dial-gmt-blue-silver.jpg' },
+  ];
+
   function renderDialColors(dialtypeValue) {
     const grid = document.getElementById('dialGrid');
     const dialStep = grid.closest('.config-step');
@@ -419,6 +430,8 @@
       dials = NAUTILUS_DIALS;
     } else if (state.model.value === 'submariner') {
       dials = SUBMARINER_DIALS;
+    } else if (state.model.value === 'gmt') {
+      dials = GMT_DIALS;
     } else {
       dials = DIAL_COLORS_BY_TYPE[dialtypeValue] || [];
     }
