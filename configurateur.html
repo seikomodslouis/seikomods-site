@@ -108,7 +108,7 @@
           <div class="options-grid" id="finishGrid">
             <!-- Rempli dynamiquement par JS selon le modèle sélectionné -->
           </div>
-          <p id="fondBoiteNote" style="font-size:.72rem;color:var(--muted);margin-top:12px">Fond de boite transparent ou non disponible.</p>
+          <p id="fondBoiteNote" style="font-size:.72rem;color:var(--muted);margin-top:12px;display:none">Fond de boite transparent ou non disponible.</p>
         </div>
 
         <!-- ÉTAPE 4 : TYPE DE CADRAN (DateJust uniquement) -->
@@ -937,7 +937,7 @@
     // Affichage progressif : chaque étape n'apparaît qu'après la précédente
     document.getElementById('strapStep').style.display     = (isModelSelected && !isNautilus) ? '' : 'none';
     document.getElementById('finishStep').style.display    = (isModelSelected && (isNautilus || strapSelected)) ? '' : 'none';
-    document.getElementById('fondBoiteNote').style.display = ['daytona','santos'].includes(state.model.value) ? 'none' : '';
+    document.getElementById('fondBoiteNote').style.display = (isModelSelected && !['daytona','santos'].includes(state.model.value)) ? '' : 'none';
     document.getElementById('dialColorStep').style.display = (isModelSelected && finishSelected) ? '' : 'none';
 
     // Filtrer les aiguilles selon le modèle
