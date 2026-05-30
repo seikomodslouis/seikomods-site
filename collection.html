@@ -1949,7 +1949,7 @@
       currentDial = 'all';
       dialBtns.forEach(b => b.classList.remove('active'));
       if (dialBtns[0]) dialBtns[0].classList.add('active');
-      dialfilters.style.display = currentBracelet === 'all' ? 'none' : 'flex';
+      dialfilters.style.display = 'flex';
       applyFilters();
     });
   });
