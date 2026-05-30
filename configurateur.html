@@ -191,6 +191,21 @@
               <div class="opt-name">Or Rose</div>
               <div class="opt-price">+0 €</div>
             </div>
+            <div class="option-card" data-step="hands" data-value="daytona-argent" data-label="Argent" data-price="0" data-img="images/hands-daytona-argent.jpg" data-model="daytona">
+              <div class="dial-thumb-wrap"><img src="images/hands-daytona-argent.jpg" alt="Argent" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+              <div class="opt-name">Argent</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="hands" data-value="daytona-or" data-label="Or" data-price="0" data-img="images/hands-daytona-or.jpg" data-model="daytona">
+              <div class="dial-thumb-wrap"><img src="images/hands-daytona-or.jpg" alt="Or" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+              <div class="opt-name">Or</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="hands" data-value="daytona-or-rose" data-label="Or Rose" data-price="0" data-img="images/hands-daytona-or-rose.jpg" data-model="daytona">
+              <div class="dial-thumb-wrap"><img src="images/hands-daytona-or-rose.jpg" alt="Or Rose" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+              <div class="opt-name">Or Rose</div>
+              <div class="opt-price">+0 €</div>
+            </div>
             <div class="option-card" data-step="hands" data-value="sub-argent" data-label="Argent" data-price="0" data-img="images/hands-sub-argent.jpg" data-model="submariner gmt">
               <div class="dial-thumb-wrap"><img src="images/hands-sub-argent.jpg" alt="Argent" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Argent</div>
@@ -930,7 +945,7 @@
       }
     });
     // Afficher l'étape aiguilles pour le Submariner et le GMT aussi
-    if (state.model.value === 'submariner' || state.model.value === 'gmt') {
+    if (state.model.value === 'submariner' || state.model.value === 'gmt' || state.model.value === 'daytona') {
       document.getElementById('handsStep').style.display = '';
     }
     document.getElementById('addToCartStep').style.display  = isModelSelected ? '' : 'none';
