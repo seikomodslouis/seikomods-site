@@ -1736,6 +1736,9 @@
     lightboxClose.addEventListener('click', closeLightbox);
     lightbox.addEventListener('click', e => { if (e.target === lightbox || e.target === lightboxImg) closeLightbox(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // Tri initial : bestsellers en premier
+    applyFilters();
   </script>
 </body>
 </html>
