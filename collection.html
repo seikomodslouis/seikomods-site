@@ -1847,26 +1847,76 @@
   let currentSantos = 'all';
 
   function updateVisibleFilterBtns() {
-    const djCards = Array.from(cards).filter(c => c.dataset.collection === 'datejust');
-    // Bracelet buttons
-    braceletBtns.forEach(btn => {
-      if (btn.dataset.bracelet === 'all') return;
-      const hasResults = djCards.some(c =>
-        (currentFinish === 'all' || c.dataset.finish === currentFinish) &&
-        c.dataset.bracelet === btn.dataset.bracelet
-      );
-      btn.style.display = hasResults ? '' : 'none';
-    });
-    // Dial buttons
-    dialBtns.forEach(btn => {
-      if (btn.dataset.dial === 'all') return;
-      const hasResults = djCards.some(c =>
-        (currentFinish === 'all' || c.dataset.finish === currentFinish) &&
-        (currentBracelet === 'all' || c.dataset.bracelet === currentBracelet) &&
-        c.dataset.dial === btn.dataset.dial
-      );
-      btn.style.display = hasResults ? '' : 'none';
-    });
+    const colCards = Array.from(cards).filter(c => currentCollection === 'all' || c.dataset.collection === currentCollection);
+
+    function hide(btns, attrFn, parentFn) {
+      btns.forEach(btn => {
+        const val = attrFn(btn);
+        if (val === 'all') return;
+        const has = colCards.some(c => parentFn(c) && attrFn(c) === val);
+        btn.style.display = has ? '' : 'none';
+      });
+    }
+
+    // DateJust — finish, bracelet, dial
+    hide(braceletBtns,
+      b => b.dataset.bracelet || b.dataset.bracelet,
+      c => currentFinish === 'all' || c.dataset.finish === currentFinish
+    );
+    hide(dialBtns,
+      b => b.dataset.dial,
+      c => (currentFinish === 'all' || c.dataset.finish === currentFinish) &&
+           (currentBracelet === 'all' || c.dataset.bracelet === currentBracelet)
+    );
+
+    // Royal Oak — color
+    hide(document.querySelectorAll('#royaloakcolorfilters .bracelet-btn'),
+      b => b.dataset.rocolor,
+      c => currentVariant === 'all' || c.dataset.variant === currentVariant
+    );
+
+    // Nautilus — color
+    hide(document.querySelectorAll('#nautiluscolorfilters .bracelet-btn'),
+      b => b.dataset.nautcolor,
+      c => currentNautVariant === 'all' || c.dataset.nautvariant === currentNautVariant
+    );
+
+    // GMT — color, bracelet
+    hide(document.querySelectorAll('#gmtcolorfilters .bracelet-btn'),
+      b => b.dataset.gmtcolor,
+      c => currentGMT === 'all' || c.dataset.gmtsub === currentGMT
+    );
+    hide(document.querySelectorAll('#gmtbraceletfilters .bracelet-btn'),
+      b => b.dataset.gmtbracelet,
+      c => (currentGMT === 'all' || c.dataset.gmtsub === currentGMT) &&
+           (currentGMTColor === 'all' || c.dataset.gmtcolor === currentGMTColor)
+    );
+
+    // Submariner — color, bracelet
+    hide(document.querySelectorAll('#subcolorfilters .bracelet-btn'),
+      b => b.dataset.subcolor,
+      c => true
+    );
+    hide(document.querySelectorAll('#subbraceletfilters .bracelet-btn'),
+      b => b.dataset.subbracelet,
+      c => currentSubColor === 'all' || c.dataset.subcolor === currentSubColor
+    );
+
+    // Daytona — color, bracelet
+    hide(document.querySelectorAll('#daycolorfilters .subfilter-btn'),
+      b => b.dataset.daycolor,
+      c => true
+    );
+    hide(document.querySelectorAll('#daybraceletfilters .bracelet-btn'),
+      b => b.dataset.daybracelet,
+      c => currentDayColor === 'all' || c.dataset.daycolor === currentDayColor
+    );
+
+    // Santos
+    hide(document.querySelectorAll('#santosfilters .santos-btn'),
+      b => b.dataset.santos,
+      c => true
+    );
   }
 
   function applyFilters() {
@@ -1895,6 +1945,7 @@
     const bestsellers = visible.filter(c => c.querySelector('.badge-bestseller'));
     const others = visible.filter(c => !c.querySelector('.badge-bestseller'));
     [...bestsellers, ...others].forEach(c => grid.appendChild(c));
+    updateVisibleFilterBtns();
   }
 
   filterBtns.forEach(btn => {
@@ -1962,7 +2013,6 @@
       braceletfilters.style.display = currentFinish === 'all' ? 'none' : 'flex';
       dialfilters.style.display = currentFinish === 'all' ? 'none' : 'flex';
       applyFilters();
-      updateVisibleFilterBtns();
     });
   });
 
@@ -1976,7 +2026,6 @@
       if (dialBtns[0]) dialBtns[0].classList.add('active');
       dialfilters.style.display = 'flex';
       applyFilters();
-      updateVisibleFilterBtns();
     });
   });
 
