@@ -624,6 +624,19 @@
     'royaloak-chronograph': ['steel', 'gold', 'rose-gold'],
   };
 
+  const SUB_CASE_PHOTOS = {
+    'oyster-steel': {
+      'steel':      'images/submariner-oyster-steel.jpg',
+      'gold':       'images/submariner-oyster-gold.jpg',
+      'steel-gold': 'images/submariner-oyster-steel-gold.jpg',
+    },
+  };
+
+  const SUB_FINISHES_BY_STRAP = {
+    'oyster-steel':  ['steel', 'gold', 'steel-gold'],
+    'jubilee-steel': ['steel', 'gold', 'steel-gold'],
+  };
+
   const NAUTILUS_CASE_PHOTOS = {
     'steel':           'images/nautilus-finish-steel.jpg',
     'gold':            'images/nautilus-finish-gold.jpg',
@@ -656,6 +669,8 @@
       finishes = DJ_FINISHES_BY_STRAP[strapValue];
     } else if (modelValue === 'royaloak' && strapValue && RO_FINISHES_BY_STRAP[strapValue]) {
       finishes = RO_FINISHES_BY_STRAP[strapValue];
+    } else if (modelValue === 'submariner' && strapValue && SUB_FINISHES_BY_STRAP[strapValue]) {
+      finishes = SUB_FINISHES_BY_STRAP[strapValue];
     } else {
       finishes = MODEL_FINISHES[modelValue] || ['steel'];
     }
@@ -665,6 +680,7 @@
       const casePhoto = (modelValue === 'datejust-39' && strapValue && DJ_CASE_PHOTOS[key]?.[strapValue])
         || (modelValue === 'royaloak' && strapValue && RO_CASE_PHOTOS[strapValue]?.[key])
         || (modelValue === 'nautilus' && NAUTILUS_CASE_PHOTOS[key])
+        || (modelValue === 'submariner' && strapValue && SUB_CASE_PHOTOS[strapValue]?.[key])
         || null;
       const visual = casePhoto
         ? `<div class="dial-thumb-wrap"><img src="${casePhoto}" alt="${f.label}" class="dial-thumb" style="border-radius:8px"><span class="dial-zoom">&#x2922;</span></div>`
