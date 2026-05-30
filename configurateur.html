@@ -521,15 +521,13 @@
     'president':      { label: 'Président', price: 15, icon: '⛓️' },
     'royaloak-classic':     { label: 'Classic',      price: 0,  icon: '' },
     'royaloak-chronograph': { label: 'Chronograph',  price: 0,  icon: '' },
-    'oyster-green':         { label: 'Oyster Vert',  price: 0,  icon: '' },
-    'oyster-blue':          { label: 'Oyster Bleu',  price: 0,  icon: '' }
   };
 
   const MODEL_STRAPS = {
     'datejust-39': ['jubilee-steel', 'oyster-steel', 'president'],
     'royaloak':    ['royaloak-classic', 'royaloak-chronograph'],
     'gmt':         ['jubilee-steel', 'oyster-steel'],
-    'submariner':  ['jubilee-steel', 'oyster-steel', 'oyster-green', 'oyster-blue'],
+    'submariner':  ['jubilee-steel', 'oyster-steel'],
   };
   // Nautilus : pas de choix de bracelet, on pré-sélectionne automatiquement
 
@@ -628,27 +626,32 @@
 
   const SUB_CASE_PHOTOS = {
     'oyster-steel': {
-      'steel':      'images/submariner-oyster-steel.jpg',
-      'gold':       'images/submariner-oyster-gold.jpg',
-      'steel-gold': 'images/submariner-oyster-steel-gold.jpg',
+      'sub-black-steel':      'images/submariner-oyster-steel.jpg',
+      'sub-black-gold':       'images/submariner-oyster-gold.jpg',
+      'sub-black-steel-gold': 'images/submariner-oyster-steel-gold.jpg',
+      'sub-green-steel':      'images/submariner-oyster-green-steel.jpg',
+      'sub-green-gold':       'images/submariner-oyster-green-gold.jpg',
+      'sub-green-steel-gold': 'images/submariner-oyster-green-steel-gold.jpg',
+      'sub-blue-steel':       'images/submariner-oyster-blue-steel.jpg',
+      'sub-blue-gold':        'images/submariner-oyster-blue-gold.jpg',
+      'sub-blue-steel-gold':  'images/submariner-oyster-blue-steel-gold.jpg',
     },
-    'oyster-green': {
-      'steel':      'images/submariner-oyster-green-steel.jpg',
-      'gold':       'images/submariner-oyster-green-gold.jpg',
-      'steel-gold': 'images/submariner-oyster-green-steel-gold.jpg',
-    },
-    'oyster-blue': {
-      'steel':      'images/submariner-oyster-blue-steel.jpg',
-      'gold':       'images/submariner-oyster-blue-gold.jpg',
-      'steel-gold': 'images/submariner-oyster-blue-steel-gold.jpg',
+    'jubilee-steel': {
+      'sub-black-steel':      'images/submariner-bicolore-jubilee.png',
+      'sub-black-gold':       'images/submariner-bicolore-jubilee.png',
+      'sub-black-steel-gold': 'images/submariner-bicolore-jubilee.png',
+      'sub-green-steel':      'images/submariner-bicolore-jubilee.png',
+      'sub-green-gold':       'images/submariner-bicolore-jubilee.png',
+      'sub-green-steel-gold': 'images/submariner-bicolore-jubilee.png',
+      'sub-blue-steel':       'images/submariner-bicolore-jubilee.png',
+      'sub-blue-gold':        'images/submariner-bicolore-jubilee.png',
+      'sub-blue-steel-gold':  'images/submariner-bicolore-jubilee.png',
     },
   };
 
   const SUB_FINISHES_BY_STRAP = {
-    'oyster-steel':  ['steel', 'gold', 'steel-gold'],
-    'oyster-green':  ['steel', 'gold', 'steel-gold'],
-    'oyster-blue':   ['steel', 'gold', 'steel-gold'],
-    'jubilee-steel': ['steel', 'gold', 'steel-gold'],
+    'oyster-steel':  ['sub-black-steel', 'sub-black-gold', 'sub-black-steel-gold', 'sub-green-steel', 'sub-green-gold', 'sub-green-steel-gold', 'sub-blue-steel', 'sub-blue-gold', 'sub-blue-steel-gold'],
+    'jubilee-steel': ['sub-black-steel', 'sub-black-gold', 'sub-black-steel-gold', 'sub-green-steel', 'sub-green-gold', 'sub-green-steel-gold', 'sub-blue-steel', 'sub-blue-gold', 'sub-blue-steel-gold'],
   };
 
   const NAUTILUS_CASE_PHOTOS = {
@@ -664,7 +667,16 @@
     'gold':             { label: 'Or',             price: 40, gradient: 'linear-gradient(135deg,#e0c87a,#9a7a2e)' },
     'rose-gold':        { label: 'Or Rose',        price: 40, gradient: 'linear-gradient(135deg,#e8b4a0,#c07860)' },
     'steel-gold':       { label: 'Acier Or',       price: 20, gradient: 'linear-gradient(135deg,#c8c8c8 50%,#c9a84c 50%)' },
-    'steel-rose-gold':  { label: 'Acier Or Rose',  price: 20, gradient: 'linear-gradient(135deg,#c8c8c8 50%,#e8b4a0 50%)' }
+    'steel-rose-gold':  { label: 'Acier Or Rose',  price: 20, gradient: 'linear-gradient(135deg,#c8c8c8 50%,#e8b4a0 50%)' },
+    'sub-black-steel':      { label: 'Acier · Lunette Noire',       price: 0, gradient: 'linear-gradient(135deg,#c8c8c8,#888)' },
+    'sub-black-gold':       { label: 'Or · Lunette Noire',          price: 0, gradient: 'linear-gradient(135deg,#e0c87a,#9a7a2e)' },
+    'sub-black-steel-gold': { label: 'Acier Or · Lunette Noire',    price: 0, gradient: 'linear-gradient(135deg,#c8c8c8 50%,#c9a84c 50%)' },
+    'sub-green-steel':      { label: 'Acier · Lunette Verte',       price: 0, gradient: 'linear-gradient(135deg,#c8c8c8,#888)' },
+    'sub-green-gold':       { label: 'Or · Lunette Verte',          price: 0, gradient: 'linear-gradient(135deg,#e0c87a,#9a7a2e)' },
+    'sub-green-steel-gold': { label: 'Acier Or · Lunette Verte',    price: 0, gradient: 'linear-gradient(135deg,#c8c8c8 50%,#c9a84c 50%)' },
+    'sub-blue-steel':       { label: 'Acier · Lunette Bleue',       price: 0, gradient: 'linear-gradient(135deg,#c8c8c8,#888)' },
+    'sub-blue-gold':        { label: 'Or · Lunette Bleue',          price: 0, gradient: 'linear-gradient(135deg,#e0c87a,#9a7a2e)' },
+    'sub-blue-steel-gold':  { label: 'Acier Or · Lunette Bleue',    price: 0, gradient: 'linear-gradient(135deg,#c8c8c8 50%,#c9a84c 50%)' }
   };
 
   const MODEL_FINISHES = {
