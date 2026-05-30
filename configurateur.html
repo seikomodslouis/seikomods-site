@@ -98,6 +98,24 @@
           </div>
         </div>
 
+        <!-- ÉTAPE 1b : TAILLE (DateJust uniquement) -->
+        <div class="config-step" id="sizeStep" style="display:none">
+          <div class="config-step-header">
+            <div class="step-dot">2</div>
+            <h3>Taille du boîtier</h3>
+          </div>
+          <div class="options-grid">
+            <div class="option-card" data-step="size" data-value="36mm" data-label="36mm" data-price="0">
+              <div class="opt-name">36mm</div>
+              <div class="opt-price">Standard</div>
+            </div>
+            <div class="option-card" data-step="size" data-value="39mm" data-label="39mm" data-price="0">
+              <div class="opt-name">39mm</div>
+              <div class="opt-price">Standard</div>
+            </div>
+          </div>
+        </div>
+
         <!-- ÉTAPE 2 : BRACELET -->
         <div class="config-step" id="strapStep" style="display:none">
           <div class="config-step-header">
@@ -252,6 +270,7 @@
         <div class="config-summary-box">
           <h4>Récapitulatif</h4>
           <div class="summary-line"><span class="lbl">Modèle</span><span class="val" id="s-modele">DateJust 39mm</span></div>
+          <div class="summary-line" id="s-size-line" style="display:none"><span class="lbl">Taille</span><span class="val" id="s-size">—</span></div>
           <div class="summary-line"><span class="lbl">Finition</span><span class="val" id="s-finition">Acier</span></div>
           <div class="summary-line" id="s-dialtype-line"><span class="lbl">Type cadran</span><span class="val" id="s-dialtype">No Number Dial</span></div>
           <div class="summary-line"><span class="lbl">Cadran</span><span class="val" id="s-cadran">Blanc</span></div>
@@ -911,6 +930,7 @@
 
   const state = {
     model:    { value: '', label: '—', price: 0 },
+    size:     { value: '', label: '—', price: 0 },
     strap:    { value: '', label: '—', price: 0 },
     finish:   { value: '', label: '—', price: 0 },
     dialtype: { value: '', label: '—', price: 0 },
@@ -927,6 +947,9 @@
 
     // Summary lines
     document.getElementById('s-modele').textContent   = state.model.label;
+    const hasSizeChoice = isDateJust;
+    document.getElementById('s-size-line').style.display = hasSizeChoice ? '' : 'none';
+    if (hasSizeChoice) document.getElementById('s-size').textContent = state.size && state.size.value ? state.size.label : '—';
     document.getElementById('s-finition').textContent = state.finish.label;
     const hasDialType = MODEL_DIALTYPES[state.model.value];
     document.getElementById('s-dialtype-line').style.display = hasDialType ? '' : 'none';
@@ -950,12 +973,16 @@
     const isRoyalOak  = state.model.value === 'royaloak';
     const isROClassic = isRoyalOak && state.strap.value === 'royaloak-classic';
     const showHands   = isDateJust || isROClassic || isNautilus;
+    const sizeSelected    = state.size && state.size.value !== '';
     const strapSelected   = state.strap.value !== '';
     const finishSelected  = state.finish.value !== '';
     const dialSelected    = state.dial.value !== '';
 
+    // Taille (DateJust uniquement)
+    document.getElementById('sizeStep').style.display = isDateJust ? '' : 'none';
+
     // Affichage progressif : chaque étape n'apparaît qu'après la précédente
-    document.getElementById('strapStep').style.display     = (isModelSelected && !isNautilus) ? '' : 'none';
+    document.getElementById('strapStep').style.display = (isModelSelected && !isNautilus && (!isDateJust || sizeSelected)) ? '' : 'none';
     document.getElementById('finishStep').style.display    = (isModelSelected && (isNautilus || strapSelected)) ? '' : 'none';
     const isChronoRO = state.model.value === 'royaloak' && state.strap.value === 'royaloak-chronograph';
     document.getElementById('fondBoiteNote').style.display = (isModelSelected && !['daytona','santos'].includes(state.model.value) && !isChronoRO) ? '' : 'none';
@@ -1038,9 +1065,15 @@
       };
       // Si on change de modèle, re-render les bracelets, finitions et types de cadran
       if (step === 'model') {
+        state.size = { value: '', label: '—', price: 0 };
+        document.querySelectorAll('[data-step="size"]').forEach(c => c.classList.remove('selected'));
         renderStraps(card.dataset.value);
         renderFinishes(card.dataset.value, state.strap.value);
         renderDialType(card.dataset.value);
+      }
+      if (step === 'size') {
+        state.strap = { value: '', label: '—', price: 0 };
+        document.querySelectorAll('[data-step="strap"]').forEach(c => c.classList.remove('selected'));
       }
       updateUI();
     });
