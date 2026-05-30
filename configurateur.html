@@ -664,6 +664,23 @@
     'jubilee-steel': ['sub-black-steel', 'sub-black-steel-gold', 'sub-green-steel', 'sub-green-steel-gold', 'sub-blue-steel-gold'],
   };
 
+  const GMT_CASE_PHOTOS = {
+    'oyster-steel': {
+      'gmt-green-black':  'images/gmt-oyster-green-black.jpg',
+      'gmt-purple-black': 'images/gmt-oyster-purple-black.jpg',
+      'gmt-red-black':    'images/gmt-oyster-red-black.jpg',
+      'gmt-blue-black':   'images/gmt-oyster-blue-black.jpg',
+      'gmt-red-blue':     'images/gmt-oyster-red-blue.jpg',
+      'gmt-grey-black':   'images/gmt-oyster-grey-black.jpg',
+    },
+    'jubilee-steel': {},
+  };
+
+  const GMT_FINISHES_BY_STRAP = {
+    'oyster-steel':  ['gmt-green-black', 'gmt-purple-black', 'gmt-red-black', 'gmt-blue-black', 'gmt-red-blue', 'gmt-grey-black'],
+    'jubilee-steel': [],
+  };
+
   const NAUTILUS_CASE_PHOTOS = {
     'steel':           'images/nautilus-finish-steel.jpg',
     'gold':            'images/nautilus-finish-gold.jpg',
@@ -688,6 +705,12 @@
     'sub-blue-gold':        { label: 'Or · Lunette Bleue',           price: 0, gradient: 'linear-gradient(135deg,#e0c87a,#9a7a2e)' },
     'sub-blue-steel-gold':  { label: 'Acier Or · Lunette Bleue',     price: 0, gradient: 'linear-gradient(135deg,#c8c8c8 50%,#c9a84c 50%)' },
     'sub-blue-silver':      { label: 'Argent · Lunette Bleue',       price: 0, gradient: 'linear-gradient(135deg,#e0e0e0,#a0a0a0)' },
+    'gmt-green-black':  { label: 'Lunette Verte/Noire',   price: 0, gradient: 'linear-gradient(135deg,#2d6a2d,#222)' },
+    'gmt-purple-black': { label: 'Lunette Violette/Noire', price: 0, gradient: 'linear-gradient(135deg,#6a2d8a,#222)' },
+    'gmt-red-black':    { label: 'Lunette Rouge/Noire',   price: 0, gradient: 'linear-gradient(135deg,#c0392b,#222)' },
+    'gmt-blue-black':   { label: 'Lunette Bleue/Noire',   price: 0, gradient: 'linear-gradient(135deg,#1a5276,#222)' },
+    'gmt-red-blue':     { label: 'Lunette Rouge/Bleue',   price: 0, gradient: 'linear-gradient(135deg,#c0392b,#1a5276)' },
+    'gmt-grey-black':   { label: 'Lunette Grise/Noire',   price: 0, gradient: 'linear-gradient(135deg,#888,#222)' },
   };
 
   const MODEL_FINISHES = {
@@ -708,6 +731,8 @@
       finishes = RO_FINISHES_BY_STRAP[strapValue];
     } else if (modelValue === 'submariner' && strapValue && SUB_FINISHES_BY_STRAP[strapValue]) {
       finishes = SUB_FINISHES_BY_STRAP[strapValue];
+    } else if (modelValue === 'gmt' && strapValue && GMT_FINISHES_BY_STRAP[strapValue]) {
+      finishes = GMT_FINISHES_BY_STRAP[strapValue];
     } else {
       finishes = MODEL_FINISHES[modelValue] || ['steel'];
     }
@@ -718,6 +743,7 @@
         || (modelValue === 'royaloak' && strapValue && RO_CASE_PHOTOS[strapValue]?.[key])
         || (modelValue === 'nautilus' && NAUTILUS_CASE_PHOTOS[key])
         || (modelValue === 'submariner' && strapValue && SUB_CASE_PHOTOS[strapValue]?.[key])
+        || (modelValue === 'gmt' && strapValue && GMT_CASE_PHOTOS[strapValue]?.[key])
         || null;
       const visual = casePhoto
         ? `<div class="dial-thumb-wrap"><img src="${casePhoto}" alt="${f.label}" class="dial-thumb" style="border-radius:8px"><span class="dial-zoom">&#x2922;</span></div>`
@@ -900,8 +926,8 @@
       caseImg = SUB_CASE_PHOTOS[state.strap.value]?.[state.finish.value] || null;
     } else if (state.model.value === 'nautilus' && state.finish.value) {
       caseImg = NAUTILUS_CASE_PHOTOS[state.finish.value] || null;
-    } else if (state.model.value === 'gmt') {
-      caseImg = 'images/40mm-steel-gmt-jubilee.png';
+    } else if (state.model.value === 'gmt' && state.strap.value) {
+      caseImg = GMT_CASE_PHOTOS[state.strap.value]?.[state.finish.value] || null;
     }
     addToCart(
       state.model.label,
