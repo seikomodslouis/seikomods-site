@@ -1281,7 +1281,7 @@
       royaloakfilters.style.display = currentCollection === 'royaloak' ? 'flex' : 'none';
       royaloakcolorfilters.style.display = 'none';
       nautilusfilters.style.display = currentCollection === 'nautilus' ? 'flex' : 'none';
-      nautiluscolorfilters.style.display = currentCollection === 'nautilus' ? 'flex' : 'none';
+      nautiluscolorfilters.style.display = 'none';
       nautilusBtns.forEach(b => b.classList.remove('active'));
       if (nautilusBtns[0]) nautilusBtns[0].classList.add('active');
       nautilusColorBtns.forEach(b => b.classList.remove('active'));
@@ -1397,6 +1397,7 @@
       currentNautColor = 'all';
       nautilusColorBtns.forEach(b => b.classList.remove('active'));
       if (nautilusColorBtns[0]) nautilusColorBtns[0].classList.add('active');
+      nautiluscolorfilters.style.display = (currentNautVariant !== 'all') ? 'flex' : 'none';
       applyFilters();
     });
   });
