@@ -165,6 +165,9 @@
       <button class="santos-btn subfilter-btn" data-santos="33mm">33mm</button>
     </div>
 
+    <div id="daytona-warning" style="display:none;background:#fff3cd;border:1px solid #ffc107;border-radius:10px;padding:14px 20px;margin-bottom:20px;color:#856404;font-size:0.9rem;">
+      ⚠️ <strong>Étanchéité non garantie</strong> sur les Daytona en raison des boutons du chronographe.
+    </div>
     <div class="grid-4" id="productsGrid">
 
       <!-- DATEJUST -->
@@ -1938,6 +1941,7 @@
       if (santosBtns[0]) santosBtns[0].classList.add('active');
       currentSantos = 'all';
       daycolorfilters.style.display = currentCollection === 'daytona' ? 'flex' : 'none';
+      document.getElementById('daytona-warning').style.display = currentCollection === 'daytona' ? 'block' : 'none';
       daybraceletfilters.style.display = 'none';
       dayColorBtns.forEach(b => b.classList.remove('active'));
       if (dayColorBtns[0]) dayColorBtns[0].classList.add('active');

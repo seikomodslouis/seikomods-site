@@ -88,6 +88,9 @@
               <div class="opt-price">à partir de 149 €</div>
             </div>
           </div>
+          <div id="daytona-warning-config" style="display:none;background:#fff3cd;border:1px solid #ffc107;border-radius:10px;padding:14px 20px;margin-top:16px;color:#856404;font-size:0.9rem;">
+            ⚠️ <strong>Étanchéité non garantie</strong> sur la Daytona en raison des boutons du chronographe.
+          </div>
         </div>
 
         <!-- ÉTAPE 2 : BRACELET -->
@@ -924,6 +927,8 @@
     document.getElementById('s-dialtype-line').style.display = hasDialType ? '' : 'none';
     if (hasDialType && state.dialtype) document.getElementById('s-dialtype').textContent = state.dialtype.label;
     // Afficher/masquer les steps selon le modèle sélectionné
+    const isDaytona = state.model.value === 'daytona';
+    document.getElementById('daytona-warning-config').style.display = isDaytona ? 'block' : 'none';
     const isModelSelected = state.model.value !== '';
     const isNautilus = state.model.value === 'nautilus';
     // Nautilus : pas de choix bracelet, on pré-sélectionne automatiquement
