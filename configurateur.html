@@ -408,6 +408,29 @@
     { value: 'naut-green',     label: 'Vert',               price: 0, img: 'images/dial-nautilus-green.jpg' },
   ];
 
+  const DAYTONA_DIALS = [
+    { value: 'daytona-iceblue-brown',    label: 'Bleu Glacier · Brun',       price: 0, img: 'images/dial-daytona-iceblue-brown.jpg' },
+    { value: 'daytona-black-gold',       label: 'Noir · Or',                 price: 0, img: 'images/dial-daytona-black-gold.jpg' },
+    { value: 'daytona-black-rosegold',   label: 'Noir · Or Rose',            price: 0, img: 'images/dial-daytona-black-rosegold.jpg' },
+    { value: 'daytona-black-silver',     label: 'Noir · Argent',             price: 0, img: 'images/dial-daytona-black-silver.jpg' },
+    { value: 'daytona-white-black',      label: 'Blanc · Noir (Panda)',      price: 0, img: 'images/dial-daytona-white-black.jpg' },
+    { value: 'daytona-black-red',        label: 'Noir · Rouge (Arabe)',      price: 0, img: 'images/dial-daytona-black-red.jpg' },
+    { value: 'daytona-brown-gold',       label: 'Brun · Or (Arabe)',         price: 0, img: 'images/dial-daytona-brown-gold.jpg' },
+    { value: 'daytona-marble-silver',    label: 'Marbre · Argent',           price: 0, img: 'images/dial-daytona-marble-silver.jpg' },
+    { value: 'daytona-black-diamond',    label: 'Noir · Diamants Or',        price: 0, img: 'images/dial-daytona-black-diamond.jpg' },
+    { value: 'daytona-marble-rosegold',  label: 'Marbre · Or Rose',          price: 0, img: 'images/dial-daytona-marble-rosegold.jpg' },
+    { value: 'daytona-white-diamond',    label: 'Blanc · Diamants Or',       price: 0, img: 'images/dial-daytona-white-diamond.jpg' },
+    { value: 'daytona-marble-gold',      label: 'Marbre · Or',               price: 0, img: 'images/dial-daytona-marble-gold.jpg' },
+    { value: 'daytona-darkbrown-rosegold', label: 'Brun Foncé · Or Rose',   price: 0, img: 'images/dial-daytona-darkbrown-rosegold.jpg' },
+    { value: 'daytona-silver-navy',      label: 'Argent · Bleu Marine',      price: 0, img: 'images/dial-daytona-silver-navy.jpg' },
+    { value: 'daytona-yellow-black',     label: 'Jaune · Noir',              price: 0, img: 'images/dial-daytona-yellow-black.jpg' },
+    { value: 'daytona-black-gold-red',   label: 'Noir Mat · Or/Rouge',       price: 0, img: 'images/dial-daytona-black-gold-red.jpg' },
+    { value: 'daytona-salmon-black',     label: 'Saumon · Noir',             price: 0, img: 'images/dial-daytona-salmon-black.jpg' },
+    { value: 'daytona-carbon-black',     label: 'Carbone · Argent',          price: 0, img: 'images/dial-daytona-carbon-black.jpg' },
+    { value: 'daytona-blue-brown',       label: 'Bleu Ciel · Brun',          price: 0, img: 'images/dial-daytona-blue-brown.jpg' },
+    { value: 'daytona-green-gold',       label: 'Vert · Or',                 price: 0, img: 'images/dial-daytona-green-gold.jpg' },
+  ];
+
   const GMT_DIALS = [
     { value: 'gmt-black-blue',    label: 'Noir · Texte Bleu',     price: 0, img: 'images/dial-gmt-black-blue.jpg' },
     { value: 'gmt-black-red',     label: 'Noir · Texte Rouge',    price: 0, img: 'images/dial-gmt-black-red.jpg' },
@@ -432,6 +455,8 @@
       dials = SUBMARINER_DIALS;
     } else if (state.model.value === 'gmt') {
       dials = GMT_DIALS;
+    } else if (state.model.value === 'daytona') {
+      dials = DAYTONA_DIALS;
     } else {
       dials = DIAL_COLORS_BY_TYPE[dialtypeValue] || [];
     }
