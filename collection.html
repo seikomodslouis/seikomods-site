@@ -1840,6 +1840,29 @@
   let currentDial = 'all';
   let currentSantos = 'all';
 
+  function updateVisibleFilterBtns() {
+    const djCards = Array.from(cards).filter(c => c.dataset.collection === 'datejust');
+    // Bracelet buttons
+    braceletBtns.forEach(btn => {
+      if (btn.dataset.bracelet === 'all') return;
+      const hasResults = djCards.some(c =>
+        (currentFinish === 'all' || c.dataset.finish === currentFinish) &&
+        c.dataset.bracelet === btn.dataset.bracelet
+      );
+      btn.style.display = hasResults ? '' : 'none';
+    });
+    // Dial buttons
+    dialBtns.forEach(btn => {
+      if (btn.dataset.dial === 'all') return;
+      const hasResults = djCards.some(c =>
+        (currentFinish === 'all' || c.dataset.finish === currentFinish) &&
+        (currentBracelet === 'all' || c.dataset.bracelet === currentBracelet) &&
+        c.dataset.dial === btn.dataset.dial
+      );
+      btn.style.display = hasResults ? '' : 'none';
+    });
+  }
+
   function applyFilters() {
     const grid = document.getElementById('productsGrid');
     cards.forEach(card => {
@@ -1932,6 +1955,7 @@
       braceletfilters.style.display = currentFinish === 'all' ? 'none' : 'flex';
       dialfilters.style.display = currentFinish === 'all' ? 'none' : 'flex';
       applyFilters();
+      updateVisibleFilterBtns();
     });
   });
 
@@ -1945,6 +1969,7 @@
       if (dialBtns[0]) dialBtns[0].classList.add('active');
       dialfilters.style.display = 'flex';
       applyFilters();
+      updateVisibleFilterBtns();
     });
   });
 
