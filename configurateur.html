@@ -88,8 +88,13 @@
               <div class="opt-price">à partir de 149 €</div>
             </div>
           </div>
-          <div id="daytona-warning-config" style="display:none;background:#fff3cd;border:1px solid #ffc107;border-radius:10px;padding:14px 20px;margin-top:16px;color:#856404;font-size:0.9rem;">
-            ⚠️ <strong>Étanchéité non garantie</strong> sur la Daytona en raison des boutons du chronographe.
+          <div id="daytona-modal-overlay-config" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;">
+            <div style="background:#fff;border-radius:16px;padding:40px 36px;max-width:480px;width:90%;position:relative;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+              <button id="daytona-modal-close-config" style="position:absolute;top:14px;left:16px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:#666;line-height:1;">✕</button>
+              <div style="font-size:3rem;margin-bottom:16px;">⚠️</div>
+              <h2 style="font-size:1.4rem;margin-bottom:12px;color:#333;">Étanchéité non garantie</h2>
+              <p style="color:#666;line-height:1.7;font-size:0.95rem;">Les montres Daytona sont équipées de boutons de chronographe qui peuvent compromettre l'étanchéité. Le lavage des mains et les projections d'eau sont déconseillés.</p>
+            </div>
           </div>
         </div>
 
@@ -928,7 +933,13 @@
     if (hasDialType && state.dialtype) document.getElementById('s-dialtype').textContent = state.dialtype.label;
     // Afficher/masquer les steps selon le modèle sélectionné
     const isDaytona = state.model.value === 'daytona';
-    document.getElementById('daytona-warning-config').style.display = isDaytona ? 'block' : 'none';
+    if (isDaytona) {
+      const overlay = document.getElementById('daytona-modal-overlay-config');
+      if (overlay.style.display !== 'flex') {
+        overlay.style.display = 'flex';
+        document.getElementById('daytona-modal-close-config').onclick = () => { overlay.style.display = 'none'; };
+      }
+    }
     const isModelSelected = state.model.value !== '';
     const isNautilus = state.model.value === 'nautilus';
     // Nautilus : pas de choix bracelet, on pré-sélectionne automatiquement
