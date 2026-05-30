@@ -897,6 +897,8 @@
         caseImg = DJ_CASE_PHOTOS[state.finish.value][state.strap.value] || null;
       } else if (state.model.value === 'royaloak' && RO_CASE_PHOTOS[state.strap.value]) {
         caseImg = RO_CASE_PHOTOS[state.strap.value][state.finish.value] || null;
+      } else if (state.model.value === 'submariner' && SUB_CASE_PHOTOS[state.strap.value]) {
+        caseImg = SUB_CASE_PHOTOS[state.strap.value][state.finish.value] || null;
       }
     }
     addToCart(

@@ -56,7 +56,9 @@ function renderCart() {
   container.innerHTML = cart.map(item => `
     <div class="cart-item">
       <div class="cart-item-img">
-        <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        ${item.imgs && item.imgs.case
+          ? `<img src="${item.imgs.case}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;border-radius:8px">`
+          : `<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
           <rect x="30" y="0"  width="20" height="12" rx="3" fill="#666"/>
           <circle cx="40" cy="45" r="28" fill="#c0c0c0"/>
           <circle cx="40" cy="45" r="24" fill="#0f2a55"/>
@@ -64,7 +66,7 @@ function renderCart() {
           <line x1="40" y1="45" x2="55" y2="35" stroke="#c9a84c" stroke-width="2" stroke-linecap="round"/>
           <circle cx="40" cy="45" r="3" fill="#c9a84c"/>
           <rect x="30" y="68"  width="20" height="12" rx="3" fill="#666"/>
-        </svg>
+        </svg>`}
       </div>
       <div class="cart-item-info">
         <h4>${item.name}</h4>
