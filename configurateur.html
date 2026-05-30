@@ -198,6 +198,21 @@
               <div class="opt-name">Or Rose</div>
               <div class="opt-price">+0 €</div>
             </div>
+            <div class="option-card" data-step="hands" data-value="sub-argent" data-label="Argent" data-price="0" data-img="images/hands-sub-argent.jpg" data-model="submariner">
+              <div class="dial-thumb-wrap"><img src="images/hands-sub-argent.jpg" alt="Argent" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+              <div class="opt-name">Argent</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="hands" data-value="sub-or" data-label="Or" data-price="0" data-img="images/hands-sub-or.jpg" data-model="submariner">
+              <div class="dial-thumb-wrap"><img src="images/hands-sub-or.jpg" alt="Or" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+              <div class="opt-name">Or</div>
+              <div class="opt-price">+0 €</div>
+            </div>
+            <div class="option-card" data-step="hands" data-value="sub-or-rose" data-label="Or Rose" data-price="0" data-img="images/hands-sub-or-rose.jpg" data-model="submariner">
+              <div class="dial-thumb-wrap"><img src="images/hands-sub-or-rose.jpg" alt="Or Rose" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+              <div class="opt-name">Or Rose</div>
+              <div class="opt-price">+0 €</div>
+            </div>
           </div>
         </div>
 
@@ -810,6 +825,10 @@
         card.style.display = (state.model.value === forModel) ? '' : 'none';
       }
     });
+    // Afficher l'étape aiguilles pour le Submariner aussi
+    if (state.model.value === 'submariner') {
+      document.getElementById('handsStep').style.display = '';
+    }
     document.getElementById('addToCartStep').style.display  = isModelSelected ? '' : 'none';
     document.getElementById('s-cadran').textContent   = state.dial.label;
     document.getElementById('s-aiguilles').textContent = state.hands.label;
