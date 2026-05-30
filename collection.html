@@ -86,12 +86,18 @@
     </div>
 
     <div class="filters" id="nautilusfilters" style="display:none;margin-top:12px;border-top:1px solid var(--border);padding-top:16px">
-      <button class="subfilter-btn active" data-nautcolor="all">Toutes finitions</button>
-      <button class="subfilter-btn" data-nautcolor="acier">Acier</button>
-      <button class="subfilter-btn" data-nautcolor="or">Or</button>
-      <button class="subfilter-btn" data-nautcolor="or-rose">Or Rose</button>
-      <button class="subfilter-btn" data-nautcolor="acier-or">Acier Or</button>
-      <button class="subfilter-btn" data-nautcolor="acier-or-rose">Acier Or Rose</button>
+      <button class="subfilter-btn active" data-nautvariant="all">Tout voir</button>
+      <button class="subfilter-btn" data-nautvariant="classic">Classic</button>
+      <button class="subfilter-btn" data-nautvariant="chronograph">Chronograph</button>
+    </div>
+
+    <div class="filters" id="nautiluscolorfilters" style="display:none;margin-top:8px;padding-top:12px">
+      <button class="bracelet-btn subfilter-btn active" data-nautcolor="all">Toutes finitions</button>
+      <button class="bracelet-btn subfilter-btn" data-nautcolor="acier">Acier</button>
+      <button class="bracelet-btn subfilter-btn" data-nautcolor="or">Or</button>
+      <button class="bracelet-btn subfilter-btn" data-nautcolor="or-rose">Or Rose</button>
+      <button class="bracelet-btn subfilter-btn" data-nautcolor="acier-or">Acier Or</button>
+      <button class="bracelet-btn subfilter-btn" data-nautcolor="acier-or-rose">Acier Or Rose</button>
     </div>
 
     <div class="filters" id="gmtfilters" style="display:none;margin-top:12px;border-top:1px solid var(--border);padding-top:16px">
@@ -774,7 +780,7 @@
       </article>
 
       <!-- NAUTILUS -->
-      <article class="product-card" data-collection="nautilus" data-nautcolor="acier">
+      <article class="product-card" data-collection="nautilus" data-nautvariant="classic" data-nautcolor="acier">
         <div class="product-card-img">
           <img src="images/nautilus-steel.png" alt="Nautilus Acier">
           <span class="product-card-badge badge-bestseller">Bestseller</span>
@@ -795,7 +801,7 @@
         </div>
       </article>
 
-      <article class="product-card" data-collection="nautilus" data-nautcolor="acier">
+      <article class="product-card" data-collection="nautilus" data-nautvariant="classic" data-nautcolor="acier">
         <div class="product-card-img">
           <img src="images/nautilus-acier.png" alt="Nautilus Acier Brossé">
         </div>
@@ -1082,6 +1088,7 @@
   const subColorBtns = document.querySelectorAll('#subcolorfilters .bracelet-btn');
   const subBraceletBtns = document.querySelectorAll('#subbraceletfilters .bracelet-btn');
   const nautilusBtns = document.querySelectorAll('#nautilusfilters .subfilter-btn');
+  const nautilusColorBtns = document.querySelectorAll('#nautiluscolorfilters .bracelet-btn');
   const gmtColorBtns = document.querySelectorAll('#gmtcolorfilters .bracelet-btn');
   const gmtBraceletBtns = document.querySelectorAll('#gmtbraceletfilters .bracelet-btn');
   const gmtBtns = document.querySelectorAll('#gmtfilters .subfilter-btn');
@@ -1095,6 +1102,7 @@
   const subcolorfilters = document.getElementById('subcolorfilters');
   const subbraceletfilters = document.getElementById('subbraceletfilters');
   const nautilusfilters = document.getElementById('nautilusfilters');
+  const nautiluscolorfilters = document.getElementById('nautiluscolorfilters');
   const gmtfilters = document.getElementById('gmtfilters');
   const gmtcolorfilters = document.getElementById('gmtcolorfilters');
   const gmtbraceletfilters = document.getElementById('gmtbraceletfilters');
@@ -1114,6 +1122,7 @@
   let currentSubBracelet = 'all';
   let currentGMTColor = 'all';
   let currentGMTBracelet = 'all';
+  let currentNautVariant = 'all';
   let currentNautColor = 'all';
   let currentDayColor = 'all';
   let currentDayBracelet = 'all';
@@ -1132,12 +1141,13 @@
       const matchSubBracelet = currentSubBracelet === 'all' || card.dataset.subbracelet === currentSubBracelet;
       const matchGMTColor = currentGMTColor === 'all' || card.dataset.gmtcolor === currentGMTColor;
       const matchGMTBracelet = currentGMTBracelet === 'all' || card.dataset.gmtbracelet === currentGMTBracelet;
+      const matchNautVariant = currentNautVariant === 'all' || card.dataset.nautvariant === currentNautVariant;
       const matchNautColor = currentNautColor === 'all' || card.dataset.nautcolor === currentNautColor;
       const matchDayColor = currentDayColor === 'all' || card.dataset.daycolor === currentDayColor;
       const matchDayBracelet = currentDayBracelet === 'all' || card.dataset.daybracelet === currentDayBracelet;
       const matchDial = currentDial === 'all' || card.dataset.dial === currentDial;
       const matchSantos = currentSantos === 'all' || card.dataset.santos === currentSantos;
-      card.style.display = (matchCol && matchFin && matchBra && matchVar && matchROC && matchGMT && matchSubColor && matchSubBracelet && matchGMTColor && matchGMTBracelet && matchNautColor && matchDayColor && matchDayBracelet && matchDial && matchSantos) ? '' : 'none';
+      card.style.display = (matchCol && matchFin && matchBra && matchVar && matchROC && matchGMT && matchSubColor && matchSubBracelet && matchGMTColor && matchGMTBracelet && matchNautVariant && matchNautColor && matchDayColor && matchDayBracelet && matchDial && matchSantos) ? '' : 'none';
     });
   }
 
@@ -1146,7 +1156,7 @@
       filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentCollection = btn.dataset.filter;
-      currentFinish = 'all'; currentBracelet = 'all'; currentVariant = 'all'; currentROColor = 'all'; currentGMT = 'all'; currentSubColor = 'all'; currentSubBracelet = 'all'; currentGMTColor = 'all'; currentGMTBracelet = 'all'; currentNautColor = 'all'; currentDayColor = 'all'; currentDayBracelet = 'all'; currentDial = 'all';
+      currentFinish = 'all'; currentBracelet = 'all'; currentVariant = 'all'; currentROColor = 'all'; currentGMT = 'all'; currentSubColor = 'all'; currentSubBracelet = 'all'; currentGMTColor = 'all'; currentGMTBracelet = 'all'; currentNautVariant = 'all'; currentNautColor = 'all'; currentDayColor = 'all'; currentDayBracelet = 'all'; currentDial = 'all';
       subfilterBtns.forEach(b => b.classList.remove('active'));
       if (subfilterBtns[0]) subfilterBtns[0].classList.add('active');
       braceletBtns.forEach(b => b.classList.remove('active'));
@@ -1162,8 +1172,11 @@
       royaloakfilters.style.display = currentCollection === 'royaloak' ? 'flex' : 'none';
       royaloakcolorfilters.style.display = 'none';
       nautilusfilters.style.display = currentCollection === 'nautilus' ? 'flex' : 'none';
+      nautiluscolorfilters.style.display = currentCollection === 'nautilus' ? 'flex' : 'none';
       nautilusBtns.forEach(b => b.classList.remove('active'));
       if (nautilusBtns[0]) nautilusBtns[0].classList.add('active');
+      nautilusColorBtns.forEach(b => b.classList.remove('active'));
+      if (nautilusColorBtns[0]) nautilusColorBtns[0].classList.add('active');
       gmtfilters.style.display = currentCollection === 'gmt' ? 'flex' : 'none';
       gmtcolorfilters.style.display = 'none';
       gmtbraceletfilters.style.display = 'none';
@@ -1270,6 +1283,18 @@
   nautilusBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       nautilusBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentNautVariant = btn.dataset.nautvariant;
+      currentNautColor = 'all';
+      nautilusColorBtns.forEach(b => b.classList.remove('active'));
+      if (nautilusColorBtns[0]) nautilusColorBtns[0].classList.add('active');
+      applyFilters();
+    });
+  });
+
+  nautilusColorBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      nautilusColorBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentNautColor = btn.dataset.nautcolor;
       applyFilters();
