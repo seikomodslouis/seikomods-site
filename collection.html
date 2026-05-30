@@ -1936,7 +1936,7 @@
       dialBtns.forEach(b => b.classList.remove('active'));
       if (dialBtns[0]) dialBtns[0].classList.add('active');
       braceletfilters.style.display = currentFinish === 'all' ? 'none' : 'flex';
-      dialfilters.style.display = 'none';
+      dialfilters.style.display = currentFinish === 'all' ? 'none' : 'flex';
       applyFilters();
     });
   });
