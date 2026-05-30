@@ -521,14 +521,15 @@
     'president':      { label: 'Président', price: 15, icon: '⛓️' },
     'royaloak-classic':     { label: 'Classic',      price: 0,  icon: '' },
     'royaloak-chronograph': { label: 'Chronograph',  price: 0,  icon: '' },
-    'oyster-green':         { label: 'Oyster Vert',  price: 0,  icon: '' }
+    'oyster-green':         { label: 'Oyster Vert',  price: 0,  icon: '' },
+    'oyster-blue':          { label: 'Oyster Bleu',  price: 0,  icon: '' }
   };
 
   const MODEL_STRAPS = {
     'datejust-39': ['jubilee-steel', 'oyster-steel', 'president'],
     'royaloak':    ['royaloak-classic', 'royaloak-chronograph'],
     'gmt':         ['jubilee-steel', 'oyster-steel'],
-    'submariner':  ['jubilee-steel', 'oyster-steel', 'oyster-green'],
+    'submariner':  ['jubilee-steel', 'oyster-steel', 'oyster-green', 'oyster-blue'],
   };
   // Nautilus : pas de choix de bracelet, on pré-sélectionne automatiquement
 
@@ -636,11 +637,17 @@
       'gold':       'images/submariner-oyster-green-gold.jpg',
       'steel-gold': 'images/submariner-oyster-green-steel-gold.jpg',
     },
+    'oyster-blue': {
+      'steel':      'images/submariner-oyster-blue-steel.jpg',
+      'gold':       'images/submariner-oyster-blue-gold.jpg',
+      'steel-gold': 'images/submariner-oyster-blue-steel-gold.jpg',
+    },
   };
 
   const SUB_FINISHES_BY_STRAP = {
     'oyster-steel':  ['steel', 'gold', 'steel-gold'],
     'oyster-green':  ['steel', 'gold', 'steel-gold'],
+    'oyster-blue':   ['steel', 'gold', 'steel-gold'],
     'jubilee-steel': ['steel', 'gold', 'steel-gold'],
   };
 
