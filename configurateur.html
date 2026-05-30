@@ -947,9 +947,6 @@
 
     // Summary lines
     document.getElementById('s-modele').textContent   = state.model.label;
-    const hasSizeChoice = isDateJust;
-    document.getElementById('s-size-line').style.display = hasSizeChoice ? '' : 'none';
-    if (hasSizeChoice) document.getElementById('s-size').textContent = state.size && state.size.value ? state.size.label : '—';
     document.getElementById('s-finition').textContent = state.finish.label;
     const hasDialType = MODEL_DIALTYPES[state.model.value];
     document.getElementById('s-dialtype-line').style.display = hasDialType ? '' : 'none';
@@ -980,6 +977,8 @@
 
     // Taille (DateJust uniquement)
     document.getElementById('sizeStep').style.display = isDateJust ? '' : 'none';
+    document.getElementById('s-size-line').style.display = isDateJust ? '' : 'none';
+    if (isDateJust) document.getElementById('s-size').textContent = state.size && state.size.value ? state.size.label : '—';
 
     // Affichage progressif : chaque étape n'apparaît qu'après la précédente
     document.getElementById('strapStep').style.display = (isModelSelected && !isNautilus && (!isDateJust || sizeSelected)) ? '' : 'none';
