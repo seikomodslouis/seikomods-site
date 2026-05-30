@@ -148,6 +148,12 @@
       <button class="bracelet-btn subfilter-btn" data-daybracelet="oyster">Oyster</button>
     </div>
 
+    <div class="filters" id="santosfilters" style="display:none;margin-top:12px;border-top:1px solid var(--border);padding-top:16px">
+      <button class="santos-btn subfilter-btn active" data-santos="all">Tous</button>
+      <button class="santos-btn subfilter-btn" data-santos="classic">Classic</button>
+      <button class="santos-btn subfilter-btn" data-santos="33mm">33mm</button>
+    </div>
+
     <div class="grid-4" id="productsGrid">
 
       <!-- DATEJUST -->
@@ -615,6 +621,8 @@
   const daycolorfilters = document.getElementById('daycolorfilters');
   const daybraceletfilters = document.getElementById('daybraceletfilters');
   const dialfilters = document.getElementById('dialfilters');
+  const santosfilters = document.getElementById('santosfilters');
+  const santosBtns = document.querySelectorAll('#santosfilters .santos-btn');
   const cards = document.querySelectorAll('[data-collection]');
   let currentCollection = 'all';
   let currentFinish = 'all';
@@ -630,6 +638,7 @@
   let currentDayColor = 'all';
   let currentDayBracelet = 'all';
   let currentDial = 'all';
+  let currentSantos = 'all';
 
   function applyFilters() {
     cards.forEach(card => {
@@ -647,7 +656,8 @@
       const matchDayColor = currentDayColor === 'all' || card.dataset.daycolor === currentDayColor;
       const matchDayBracelet = currentDayBracelet === 'all' || card.dataset.daybracelet === currentDayBracelet;
       const matchDial = currentDial === 'all' || card.dataset.dial === currentDial;
-      card.style.display = (matchCol && matchFin && matchBra && matchVar && matchROC && matchGMT && matchSubColor && matchSubBracelet && matchGMTColor && matchGMTBracelet && matchNautColor && matchDayColor && matchDayBracelet && matchDial) ? '' : 'none';
+      const matchSantos = currentSantos === 'all' || card.dataset.santos === currentSantos;
+      card.style.display = (matchCol && matchFin && matchBra && matchVar && matchROC && matchGMT && matchSubColor && matchSubBracelet && matchGMTColor && matchGMTBracelet && matchNautColor && matchDayColor && matchDayBracelet && matchDial && matchSantos) ? '' : 'none';
     });
   }
 
@@ -687,6 +697,10 @@
       if (subColorBtns[0]) subColorBtns[0].classList.add('active');
       subBraceletBtns.forEach(b => b.classList.remove('active'));
       if (subBraceletBtns[0]) subBraceletBtns[0].classList.add('active');
+      santosfilters.style.display = currentCollection === 'santos' ? 'flex' : 'none';
+      santosBtns.forEach(b => b.classList.remove('active'));
+      if (santosBtns[0]) santosBtns[0].classList.add('active');
+      currentSantos = 'all';
       daycolorfilters.style.display = currentCollection === 'daytona' ? 'flex' : 'none';
       daybraceletfilters.style.display = 'none';
       dayColorBtns.forEach(b => b.classList.remove('active'));
@@ -853,6 +867,15 @@
       dayBraceletBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentDayBracelet = btn.dataset.daybracelet;
+      applyFilters();
+    });
+  });
+
+  santosBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      santosBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentSantos = btn.dataset.santos;
       applyFilters();
     });
   });
