@@ -937,7 +937,8 @@
     // Affichage progressif : chaque étape n'apparaît qu'après la précédente
     document.getElementById('strapStep').style.display     = (isModelSelected && !isNautilus) ? '' : 'none';
     document.getElementById('finishStep').style.display    = (isModelSelected && (isNautilus || strapSelected)) ? '' : 'none';
-    document.getElementById('fondBoiteNote').style.display = (isModelSelected && !['daytona','santos'].includes(state.model.value)) ? '' : 'none';
+    const isChronoRO = state.model.value === 'royaloak' && state.strap.value === 'royaloak-chronograph';
+    document.getElementById('fondBoiteNote').style.display = (isModelSelected && !['daytona','santos'].includes(state.model.value) && !isChronoRO) ? '' : 'none';
     document.getElementById('dialColorStep').style.display = (isModelSelected && finishSelected) ? '' : 'none';
 
     // Filtrer les aiguilles selon le modèle
