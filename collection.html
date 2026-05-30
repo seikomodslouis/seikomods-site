@@ -1929,12 +1929,6 @@
       subfilterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       currentFinish = btn.dataset.finish;
-      currentBracelet = 'all';
-      currentDial = 'all';
-      braceletBtns.forEach(b => b.classList.remove('active'));
-      if (braceletBtns[0]) braceletBtns[0].classList.add('active');
-      dialBtns.forEach(b => b.classList.remove('active'));
-      if (dialBtns[0]) dialBtns[0].classList.add('active');
       braceletfilters.style.display = currentFinish === 'all' ? 'none' : 'flex';
       dialfilters.style.display = currentFinish === 'all' ? 'none' : 'flex';
       applyFilters();
