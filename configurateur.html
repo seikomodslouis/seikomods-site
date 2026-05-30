@@ -930,10 +930,15 @@
     const isRoyalOak  = state.model.value === 'royaloak';
     const isROClassic = isRoyalOak && state.strap.value === 'royaloak-classic';
     const showHands   = isDateJust || isROClassic || isNautilus;
-    document.getElementById('strapStep').style.display      = (isModelSelected && !isNautilus) ? '' : 'none';
-    document.getElementById('finishStep').style.display     = isModelSelected ? '' : 'none';
-    document.getElementById('dialColorStep').style.display  = isModelSelected ? '' : 'none';
-    document.getElementById('handsStep').style.display      = showHands ? '' : 'none';
+    const strapSelected   = state.strap.value !== '';
+    const finishSelected  = state.finish.value !== '';
+    const dialSelected    = state.dial.value !== '';
+
+    // Affichage progressif : chaque étape n'apparaît qu'après la précédente
+    document.getElementById('strapStep').style.display     = (isModelSelected && !isNautilus) ? '' : 'none';
+    document.getElementById('finishStep').style.display    = (isModelSelected && (isNautilus || strapSelected)) ? '' : 'none';
+    document.getElementById('dialColorStep').style.display = (isModelSelected && finishSelected) ? '' : 'none';
+
     // Filtrer les aiguilles selon le modèle
     document.querySelectorAll('[data-step="hands"]').forEach(card => {
       const forModel = card.dataset.model;
@@ -944,11 +949,11 @@
         card.style.display = models.includes(state.model.value) ? '' : 'none';
       }
     });
-    // Afficher l'étape aiguilles pour le Submariner et le GMT aussi
-    if (state.model.value === 'submariner' || state.model.value === 'gmt' || state.model.value === 'daytona') {
-      document.getElementById('handsStep').style.display = '';
-    }
-    document.getElementById('addToCartStep').style.display  = isModelSelected ? '' : 'none';
+    // Aiguilles : visible après le cadran
+    const showHandsProgressive = dialSelected && (showHands || ['submariner','gmt','daytona'].includes(state.model.value));
+    document.getElementById('handsStep').style.display = showHandsProgressive ? '' : 'none';
+
+    document.getElementById('addToCartStep').style.display = (isModelSelected && dialSelected) ? '' : 'none';
     document.getElementById('s-cadran').textContent   = state.dial.label;
     document.getElementById('s-aiguilles').textContent = state.hands.label;
     document.getElementById('s-bracelet').textContent = state.strap.label;
