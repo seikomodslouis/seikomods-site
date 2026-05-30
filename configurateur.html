@@ -892,14 +892,16 @@
       state.strap.value   !== '' ? state.strap.label   : null,
     ].filter(Boolean);
     let caseImg = null;
-    if (state.finish.value && state.strap.value) {
-      if (state.model.value === 'datejust-39' && DJ_CASE_PHOTOS[state.finish.value]) {
-        caseImg = DJ_CASE_PHOTOS[state.finish.value][state.strap.value] || null;
-      } else if (state.model.value === 'royaloak' && RO_CASE_PHOTOS[state.strap.value]) {
-        caseImg = RO_CASE_PHOTOS[state.strap.value][state.finish.value] || null;
-      } else if (state.model.value === 'submariner' && SUB_CASE_PHOTOS[state.strap.value]) {
-        caseImg = SUB_CASE_PHOTOS[state.strap.value][state.finish.value] || null;
-      }
+    if (state.model.value === 'datejust-39' && state.finish.value && state.strap.value) {
+      caseImg = DJ_CASE_PHOTOS[state.finish.value]?.[state.strap.value] || null;
+    } else if (state.model.value === 'royaloak' && state.strap.value) {
+      caseImg = RO_CASE_PHOTOS[state.strap.value]?.[state.finish.value] || null;
+    } else if (state.model.value === 'submariner' && state.strap.value) {
+      caseImg = SUB_CASE_PHOTOS[state.strap.value]?.[state.finish.value] || null;
+    } else if (state.model.value === 'nautilus' && state.finish.value) {
+      caseImg = NAUTILUS_CASE_PHOTOS[state.finish.value] || null;
+    } else if (state.model.value === 'gmt') {
+      caseImg = 'images/40mm-steel-gmt-jubilee.png';
     }
     addToCart(
       state.model.label,
