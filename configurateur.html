@@ -678,6 +678,22 @@
     'jubilee-steel': ['sub-black-steel', 'sub-black-steel-gold', 'sub-green-steel', 'sub-green-steel-gold', 'sub-blue-steel-gold'],
   };
 
+  const DAYTONA_CASE_PHOTOS = {
+    'oyster-steel': {
+      'daytona-gold-gold':          'images/daytona-oyster-gold-gold.jpg',
+      'daytona-gold-black':         'images/daytona-oyster-gold-black.jpg',
+      'daytona-rosegold-black':     'images/daytona-oyster-rosegold-black.jpg',
+      'daytona-rosegold-rosegold':  'images/daytona-oyster-rosegold-rosegold.jpg',
+      'daytona-steel-black':        'images/daytona-oyster-steel-black.jpg',
+      'daytona-steel-silver':       'images/daytona-oyster-steel-silver.jpg',
+      'daytona-steel-brown':        'images/daytona-oyster-steel-brown.jpg',
+    },
+  };
+
+  const DAYTONA_FINISHES_BY_STRAP = {
+    'oyster-steel': ['daytona-gold-gold', 'daytona-gold-black', 'daytona-rosegold-black', 'daytona-rosegold-rosegold', 'daytona-steel-black', 'daytona-steel-silver', 'daytona-steel-brown'],
+  };
+
   const GMT_CASE_PHOTOS = {
     'oyster-steel': {
       'gmt-green-black':  'images/gmt-oyster-green-black.jpg',
@@ -729,6 +745,13 @@
     'sub-blue-gold':        { label: 'Or · Lunette Bleue',           price: 0, gradient: 'linear-gradient(135deg,#e0c87a,#9a7a2e)' },
     'sub-blue-steel-gold':  { label: 'Acier Or · Lunette Bleue',     price: 0, gradient: 'linear-gradient(135deg,#c8c8c8 50%,#c9a84c 50%)' },
     'sub-blue-silver':      { label: 'Argent · Lunette Bleue',       price: 0, gradient: 'linear-gradient(135deg,#e0e0e0,#a0a0a0)' },
+    'daytona-gold-gold':         { label: 'Or · Lunette Or',           price: 0, gradient: 'linear-gradient(135deg,#e0c87a,#9a7a2e)' },
+    'daytona-gold-black':        { label: 'Or · Lunette Noire',        price: 0, gradient: 'linear-gradient(135deg,#e0c87a,#222)' },
+    'daytona-rosegold-black':    { label: 'Or Rose · Lunette Noire',   price: 0, gradient: 'linear-gradient(135deg,#e8b4a0,#222)' },
+    'daytona-rosegold-rosegold': { label: 'Or Rose · Lunette Or Rose', price: 0, gradient: 'linear-gradient(135deg,#e8b4a0,#c07860)' },
+    'daytona-steel-black':       { label: 'Acier · Lunette Noire',     price: 0, gradient: 'linear-gradient(135deg,#c8c8c8,#222)' },
+    'daytona-steel-silver':      { label: 'Acier · Lunette Argent',    price: 0, gradient: 'linear-gradient(135deg,#c8c8c8,#888)' },
+    'daytona-steel-brown':       { label: 'Acier · Lunette Marron',    price: 0, gradient: 'linear-gradient(135deg,#c8c8c8,#6b3a2a)' },
     'gmt-green-black':  { label: 'Lunette Verte/Noire',   price: 0, gradient: 'linear-gradient(135deg,#2d6a2d,#222)' },
     'gmt-purple-black': { label: 'Lunette Violette/Noire', price: 0, gradient: 'linear-gradient(135deg,#6a2d8a,#222)' },
     'gmt-red-black':    { label: 'Lunette Rouge/Noire',   price: 0, gradient: 'linear-gradient(135deg,#c0392b,#222)' },
@@ -766,6 +789,8 @@
       finishes = SUB_FINISHES_BY_STRAP[strapValue];
     } else if (modelValue === 'gmt' && strapValue && GMT_FINISHES_BY_STRAP[strapValue]) {
       finishes = GMT_FINISHES_BY_STRAP[strapValue];
+    } else if (modelValue === 'daytona' && strapValue && DAYTONA_FINISHES_BY_STRAP[strapValue]) {
+      finishes = DAYTONA_FINISHES_BY_STRAP[strapValue];
     } else {
       finishes = MODEL_FINISHES[modelValue] || ['steel'];
     }
@@ -777,6 +802,7 @@
         || (modelValue === 'nautilus' && NAUTILUS_CASE_PHOTOS[key])
         || (modelValue === 'submariner' && strapValue && SUB_CASE_PHOTOS[strapValue]?.[key])
         || (modelValue === 'gmt' && strapValue && GMT_CASE_PHOTOS[strapValue]?.[key])
+        || (modelValue === 'daytona' && strapValue && DAYTONA_CASE_PHOTOS[strapValue]?.[key])
         || null;
       const visual = casePhoto
         ? `<div class="dial-thumb-wrap"><img src="${casePhoto}" alt="${f.label}" class="dial-thumb" style="border-radius:8px"><span class="dial-zoom">&#x2922;</span></div>`
@@ -962,6 +988,8 @@
       caseImg = NAUTILUS_CASE_PHOTOS[state.finish.value] || null;
     } else if (state.model.value === 'gmt' && state.strap.value) {
       caseImg = GMT_CASE_PHOTOS[state.strap.value]?.[state.finish.value] || null;
+    } else if (state.model.value === 'daytona' && state.strap.value) {
+      caseImg = DAYTONA_CASE_PHOTOS[state.strap.value]?.[state.finish.value] || null;
     }
     addToCart(
       state.model.label,
