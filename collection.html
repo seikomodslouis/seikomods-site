@@ -1410,6 +1410,7 @@
   let currentSantos = 'all';
 
   function applyFilters() {
+    const grid = document.getElementById('productsGrid');
     cards.forEach(card => {
       const matchCol = currentCollection === 'all' || card.dataset.collection === currentCollection;
       const matchFin = currentFinish === 'all' || card.dataset.finish === currentFinish;
@@ -1429,6 +1430,11 @@
       const matchSantos = currentSantos === 'all' || card.dataset.santos === currentSantos;
       card.style.display = (matchCol && matchFin && matchBra && matchVar && matchROC && matchGMT && matchSubColor && matchSubBracelet && matchGMTColor && matchGMTBracelet && matchNautVariant && matchNautColor && matchDayColor && matchDayBracelet && matchDial && matchSantos) ? '' : 'none';
     });
+    // Remettre les bestsellers en premier
+    const visible = Array.from(cards).filter(c => c.style.display !== 'none');
+    const bestsellers = visible.filter(c => c.querySelector('.badge-bestseller'));
+    const others = visible.filter(c => !c.querySelector('.badge-bestseller'));
+    [...bestsellers, ...others].forEach(c => grid.appendChild(c));
   }
 
   filterBtns.forEach(btn => {
