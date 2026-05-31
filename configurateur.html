@@ -912,12 +912,27 @@
   };
 
   function getTotal() {
-    if (state.model.value === 'seikona') return 159;
-    if (state.model.value === 'gmt') return 199;
+    const finish = state.finish.value;
+
     if (state.model.value === 'seikojust-39') {
-      const steelFinishes = ['steel'];
-      return steelFinishes.includes(state.finish.value) ? 170 : 180;
+      return finish === 'steel' ? 170 : 180;
     }
+
+    if (state.model.value === 'seikosub') {
+      const subSteel = ['sub-black-steel', 'sub-green-steel', 'sub-blue-steel', 'sub-blue-silver'];
+      return subSteel.includes(finish) ? 185 : 190;
+    }
+
+    if (state.model.value === 'seikona') {
+      const seikonaSteel = ['seikona-steel-black', 'seikona-steel-silver', 'seikona-steel-brown'];
+      return seikonaSteel.includes(finish) ? 160 : 165;
+    }
+
+    if (state.model.value === 'gmt') {
+      const gmtGold = ['gmt-gold-black', 'gmt-steel-gold-black', 'gmt-steel-rosegold-brown-black', 'gmt-jubilee-steel-gold-black'];
+      return gmtGold.includes(finish) ? 220 : 215;
+    }
+
     return 179;
   }
 
