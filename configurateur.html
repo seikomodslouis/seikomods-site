@@ -912,7 +912,9 @@
   };
 
   function getTotal() {
-    return state.model.value === 'seikona' ? 159 : 179;
+    if (state.model.value === 'seikona') return 159;
+    if (state.model.value === 'gmt') return 199;
+    return 179;
     // eslint-disable-next-line no-unreachable
     const base = BASE_PRICES[state.model.value] || 149;
     return base + state.strap.price + state.finish.price + (state.dialtype ? state.dialtype.price : 0) + state.dial.price + state.hands.price;
