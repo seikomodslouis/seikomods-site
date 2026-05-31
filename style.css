@@ -95,8 +95,9 @@ p{color:var(--muted-light);line-height:1.75}
 .nav-toggle.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
 .nav-mobile{display:none;position:fixed;inset:0;background:var(--white);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:40px;padding:40px}
 .nav-mobile.open{display:flex}
-.nav-mobile a{font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--black)}
-.nav-mobile a:hover{font-style:italic}
+.nav-mobile a:not(.btn):not(#cartBtnMobile){font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--black)}
+.nav-mobile a:not(.btn):not(#cartBtnMobile):hover{font-style:italic}
+.nav-mobile .btn-gold{color:var(--white);font-size:.82rem;font-family:var(--sans);letter-spacing:1.5px}
 
 /* ── Hero ────────────────────────────────────── */
 .hero{min-height:100vh;display:flex;align-items:center;padding-top:100px;position:relative;background:var(--white)}
@@ -328,7 +329,7 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
   .nav-toggle{display:flex}
   /* Menu mobile */
   .nav-mobile{gap:32px;overflow-y:auto;-webkit-overflow-scrolling:touch}
-  .nav-mobile a{font-size:1.8rem}
+  .nav-mobile a:not(.btn):not(#cartBtnMobile){font-size:1.8rem}
   /* Lien Panier dans le menu mobile : distinct des autres liens */
   #cartBtnMobile{
     font-family:var(--sans) !important;
@@ -458,7 +459,7 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 
   /* ── Nav mobile compact ── */
   .nav-mobile{gap:22px;padding:28px 20px}
-  .nav-mobile a{font-size:1.4rem}
+  .nav-mobile a:not(.btn):not(#cartBtnMobile){font-size:1.4rem}
 
   /* ── Panier items ── */
   .panier-item-img{width:64px;height:64px}
@@ -544,7 +545,7 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
   .container{padding:0 12px}
   /* Nav mobile encore plus compact */
   .nav-mobile{gap:18px;padding:24px 16px}
-  .nav-mobile a{font-size:1.3rem}
+  .nav-mobile a:not(.btn):not(#cartBtnMobile){font-size:1.3rem}
   /* Garanties */
   .guarantee{padding:16px 12px}
   /* Product cards : body encore plus compact */
