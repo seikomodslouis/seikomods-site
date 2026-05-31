@@ -75,8 +75,8 @@
               <div class="opt-name">Submariner</div>
               <div class="opt-price">à partir de 149 €</div>
             </div>
-            <div class="option-card" data-step="model" data-value="nautilus" data-label="Nautilus" data-price="30" data-img="images/nautilus-steel.png">
-              <div class="opt-name">Nautilus</div>
+            <div class="option-card" data-step="model" data-value="sautilus" data-label="Sautilus" data-price="30" data-img="images/sautilus-steel.png">
+              <div class="opt-name">Sautilus</div>
               <div class="opt-price">à partir de 189 €</div>
             </div>
             <div class="option-card" data-step="model" data-value="santos" data-label="Santos" data-price="0" data-img="">
@@ -205,18 +205,18 @@
               <div class="opt-name">Or Rose</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="hands" data-value="naut-argent" data-label="Nautilus Argent" data-price="0" data-img="images/hands-nautilus-argent.jpg" data-model="nautilus">
-              <div class="dial-thumb-wrap"><img src="images/hands-nautilus-argent.jpg" alt="Nautilus Argent" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+            <div class="option-card" data-step="hands" data-value="naut-argent" data-label="Sautilus Argent" data-price="0" data-img="images/hands-sautilus-argent.jpg" data-model="sautilus">
+              <div class="dial-thumb-wrap"><img src="images/hands-sautilus-argent.jpg" alt="Sautilus Argent" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Argent</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="hands" data-value="naut-or" data-label="Nautilus Or" data-price="0" data-img="images/hands-nautilus-or.jpg" data-model="nautilus">
-              <div class="dial-thumb-wrap"><img src="images/hands-nautilus-or.jpg" alt="Nautilus Or" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+            <div class="option-card" data-step="hands" data-value="naut-or" data-label="Sautilus Or" data-price="0" data-img="images/hands-sautilus-or.jpg" data-model="sautilus">
+              <div class="dial-thumb-wrap"><img src="images/hands-sautilus-or.jpg" alt="Sautilus Or" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Or</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="hands" data-value="naut-rosegold" data-label="Nautilus Or Rose" data-price="0" data-img="images/hands-nautilus-rosegold.jpg" data-model="nautilus">
-              <div class="dial-thumb-wrap"><img src="images/hands-nautilus-rosegold.jpg" alt="Nautilus Or Rose" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+            <div class="option-card" data-step="hands" data-value="naut-rosegold" data-label="Sautilus Or Rose" data-price="0" data-img="images/hands-sautilus-rosegold.jpg" data-model="sautilus">
+              <div class="dial-thumb-wrap"><img src="images/hands-sautilus-rosegold.jpg" alt="Sautilus Or Rose" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Or Rose</div>
               <div class="opt-price">+0 €</div>
             </div>
@@ -346,7 +346,7 @@
   const BASE_PRICES = {
     'seikojust-39': 149,
     'seikooak': 179, 'gmt': 169,
-    'submariner': 149, 'nautilus': 189
+    'submariner': 149, 'sautilus': 189
   };
 
   // Lightbox cadran
@@ -437,21 +437,21 @@
     { value: 'sub-black',      label: 'Noir',         price: 0, img: 'images/dial-sub-black.jpg' },
   ];
 
-  const NAUTILUS_DIALS = [
-    { value: 'naut-brown-rg',  label: 'Brun Or Rose',       price: 0, img: 'images/dial-nautilus-brown-rosegold.jpg' },
-    { value: 'naut-grey-rg',   label: 'Gris Or Rose',       price: 0, img: 'images/dial-nautilus-grey-rosegold.jpg' },
-    { value: 'naut-white-rg',  label: 'Blanc Or Rose',      price: 0, img: 'images/dial-nautilus-white-rosegold.jpg' },
-    { value: 'naut-black-rg',  label: 'Noir Or Rose',       price: 0, img: 'images/dial-nautilus-black-rosegold.jpg' },
-    { value: 'naut-red-dark',  label: 'Rouge Sombre',       price: 0, img: 'images/dial-nautilus-red-dark.jpg' },
-    { value: 'naut-blue',      label: 'Bleu',               price: 0, img: 'images/dial-nautilus-blue.jpg' },
-    { value: 'naut-brown',     label: 'Brun',               price: 0, img: 'images/dial-nautilus-brown.jpg' },
-    { value: 'naut-navy',      label: 'Bleu Nuit',          price: 0, img: 'images/dial-nautilus-navy.jpg' },
-    { value: 'naut-grey',      label: 'Gris',               price: 0, img: 'images/dial-nautilus-grey.jpg' },
-    { value: 'naut-tiffany',   label: 'Tiffany',            price: 0, img: 'images/dial-nautilus-tiffany.jpg' },
-    { value: 'naut-yellow',    label: 'Jaune',              price: 0, img: 'images/dial-nautilus-yellow.jpg' },
-    { value: 'naut-white',     label: 'Blanc',              price: 0, img: 'images/dial-nautilus-white.jpg' },
-    { value: 'naut-red',       label: 'Rouge',              price: 0, img: 'images/dial-nautilus-red.jpg' },
-    { value: 'naut-green',     label: 'Vert',               price: 0, img: 'images/dial-nautilus-green.jpg' },
+  const SAUTILUS_DIALS = [
+    { value: 'naut-brown-rg',  label: 'Brun Or Rose',       price: 0, img: 'images/dial-sautilus-brown-rosegold.jpg' },
+    { value: 'naut-grey-rg',   label: 'Gris Or Rose',       price: 0, img: 'images/dial-sautilus-grey-rosegold.jpg' },
+    { value: 'naut-white-rg',  label: 'Blanc Or Rose',      price: 0, img: 'images/dial-sautilus-white-rosegold.jpg' },
+    { value: 'naut-black-rg',  label: 'Noir Or Rose',       price: 0, img: 'images/dial-sautilus-black-rosegold.jpg' },
+    { value: 'naut-red-dark',  label: 'Rouge Sombre',       price: 0, img: 'images/dial-sautilus-red-dark.jpg' },
+    { value: 'naut-blue',      label: 'Bleu',               price: 0, img: 'images/dial-sautilus-blue.jpg' },
+    { value: 'naut-brown',     label: 'Brun',               price: 0, img: 'images/dial-sautilus-brown.jpg' },
+    { value: 'naut-navy',      label: 'Bleu Nuit',          price: 0, img: 'images/dial-sautilus-navy.jpg' },
+    { value: 'naut-grey',      label: 'Gris',               price: 0, img: 'images/dial-sautilus-grey.jpg' },
+    { value: 'naut-tiffany',   label: 'Tiffany',            price: 0, img: 'images/dial-sautilus-tiffany.jpg' },
+    { value: 'naut-yellow',    label: 'Jaune',              price: 0, img: 'images/dial-sautilus-yellow.jpg' },
+    { value: 'naut-white',     label: 'Blanc',              price: 0, img: 'images/dial-sautilus-white.jpg' },
+    { value: 'naut-red',       label: 'Rouge',              price: 0, img: 'images/dial-sautilus-red.jpg' },
+    { value: 'naut-green',     label: 'Vert',               price: 0, img: 'images/dial-sautilus-green.jpg' },
   ];
 
   const SEIKONA_DIALS = [
@@ -495,8 +495,8 @@
     let dials;
     if (state.model.value === 'seikooak') {
       dials = state.strap.value === 'seikooak-classic' ? RO_DIALS : [];
-    } else if (state.model.value === 'nautilus') {
-      dials = NAUTILUS_DIALS;
+    } else if (state.model.value === 'sautilus') {
+      dials = SAUTILUS_DIALS;
     } else if (state.model.value === 'submariner') {
       dials = SUBMARINER_DIALS;
     } else if (state.model.value === 'gmt') {
@@ -622,14 +622,14 @@
     'submariner':  ['jubilee-steel', 'oyster-steel'],
     'seikona':     ['oyster-steel'],
   };
-  // Nautilus : pas de choix de bracelet, on pré-sélectionne automatiquement
+  // Sautilus : pas de choix de bracelet, on pré-sélectionne automatiquement
 
   function renderStraps(modelValue) {
     const grid = document.getElementById('strapGrid');
-    // Nautilus : pas de bracelet à choisir
-    if (modelValue === 'nautilus') {
+    // Sautilus : pas de bracelet à choisir
+    if (modelValue === 'sautilus') {
       grid.innerHTML = '';
-      renderFinishes(modelValue, 'nautilus-integrated');
+      renderFinishes(modelValue, 'sautilus-integrated');
       return;
     }
     const straps = MODEL_STRAPS[modelValue] || ['jubilee-steel'];
@@ -792,12 +792,12 @@
     'jubilee-steel': ['gmt-jubilee-grey-black', 'gmt-jubilee-red-black', 'gmt-jubilee-green-black', 'gmt-jubilee-red-blue', 'gmt-jubilee-blue-black', 'gmt-jubilee-steel-gold-black'],
   };
 
-  const NAUTILUS_CASE_PHOTOS = {
-    'steel':           'images/nautilus-finish-steel.jpg',
-    'gold':            'images/nautilus-finish-gold.jpg',
-    'rose-gold':       'images/nautilus-finish-rosegold.jpg',
-    'steel-gold':      'images/nautilus-finish-steel-gold.jpg',
-    'steel-rose-gold': 'images/nautilus-finish-steel-rosegold.jpg',
+  const SAUTILUS_CASE_PHOTOS = {
+    'steel':           'images/sautilus-finish-steel.jpg',
+    'gold':            'images/sautilus-finish-gold.jpg',
+    'rose-gold':       'images/sautilus-finish-rosegold.jpg',
+    'steel-gold':      'images/sautilus-finish-steel-gold.jpg',
+    'steel-rose-gold': 'images/sautilus-finish-steel-rosegold.jpg',
   };
 
   const FINISH_OPTIONS = {
@@ -845,7 +845,7 @@
     'seikooak':    ['steel', 'gold', 'rose-gold'],
     'gmt':         ['steel', 'steel-gold', 'steel-rose-gold', 'rose-gold'],
     'submariner':  ['steel', 'gold', 'steel-gold'],
-    'nautilus':    ['steel', 'gold', 'rose-gold', 'steel-gold', 'steel-rose-gold']
+    'sautilus':    ['steel', 'gold', 'rose-gold', 'steel-gold', 'steel-rose-gold']
   };
 
   function renderFinishes(modelValue, strapValue) {
@@ -870,7 +870,7 @@
       // Photo boîtier si dispo, sinon swatch couleur
       const casePhoto = (modelValue === 'seikojust-39' && strapValue && DJ_CASE_PHOTOS[key]?.[strapValue])
         || (modelValue === 'seikooak' && strapValue && RO_CASE_PHOTOS[strapValue]?.[key])
-        || (modelValue === 'nautilus' && NAUTILUS_CASE_PHOTOS[key])
+        || (modelValue === 'sautilus' && SAUTILUS_CASE_PHOTOS[key])
         || (modelValue === 'submariner' && strapValue && SUB_CASE_PHOTOS[strapValue]?.[key])
         || (modelValue === 'gmt' && strapValue && GMT_CASE_PHOTOS[strapValue]?.[key])
         || (modelValue === 'seikona' && strapValue && SEIKONA_CASE_PHOTOS[strapValue]?.[key])
@@ -900,8 +900,8 @@
           label: card.dataset.label,
           price: parseInt(card.dataset.price) || 0
         };
-        // Seiko Oak / Nautilus : recharger les cadrans selon la nouvelle finition
-        if (state.model.value === 'seikooak' || state.model.value === 'nautilus') {
+        // Seiko Oak / Sautilus : recharger les cadrans selon la nouvelle finition
+        if (state.model.value === 'seikooak' || state.model.value === 'sautilus') {
           state.dial = { value: '', label: '—', price: 0, img: '' };
           renderDialColors('');
         }
@@ -925,7 +925,7 @@
     'seikooak':    'images/seikooak-steel.png',
     'gmt':         'images/40mm-steel-gmt-jubilee.png',
     'submariner':  'images/submariner-steel.png',
-    'nautilus':    'images/nautilus-steel.png'
+    'sautilus':    'images/sautilus-steel.png'
   };
 
   const state = {
@@ -961,15 +961,15 @@
       }
     }
     const isModelSelected = state.model.value !== '';
-    const isNautilus = state.model.value === 'nautilus';
-    // Nautilus : pas de choix bracelet, on pré-sélectionne automatiquement
-    if (isNautilus && state.strap.value === '') {
-      state.strap = { value: 'nautilus-integrated', label: 'Intégré', price: 0, img: '' };
+    const isSautilus = state.model.value === 'sautilus';
+    // Sautilus : pas de choix bracelet, on pré-sélectionne automatiquement
+    if (isSautilus && state.strap.value === '') {
+      state.strap = { value: 'sautilus-integrated', label: 'Intégré', price: 0, img: '' };
     }
     const isSeikoJust  = state.model.value === 'seikojust-39';
     const isRoyalOak  = state.model.value === 'seikooak';
     const isROClassic = isRoyalOak && state.strap.value === 'seikooak-classic';
-    const showHands   = isSeikoJust || isROClassic || isNautilus;
+    const showHands   = isSeikoJust || isROClassic || isSautilus;
     const sizeSelected    = state.size && state.size.value !== '';
     const strapSelected   = state.strap.value !== '';
     const finishSelected  = state.finish.value !== '';
@@ -981,8 +981,8 @@
     if (isSeikoJust) document.getElementById('s-size').textContent = state.size && state.size.value ? state.size.label : '—';
 
     // Affichage progressif : chaque étape n'apparaît qu'après la précédente
-    document.getElementById('strapStep').style.display = (isModelSelected && !isNautilus && (!isSeikoJust || sizeSelected)) ? '' : 'none';
-    document.getElementById('finishStep').style.display    = (isModelSelected && (isNautilus || strapSelected)) ? '' : 'none';
+    document.getElementById('strapStep').style.display = (isModelSelected && !isSautilus && (!isSeikoJust || sizeSelected)) ? '' : 'none';
+    document.getElementById('finishStep').style.display    = (isModelSelected && (isSautilus || strapSelected)) ? '' : 'none';
     const isChronoRO = state.model.value === 'seikooak' && state.strap.value === 'seikooak-chronograph';
     document.getElementById('fondBoiteNote').style.display = (isModelSelected && !['seikona','santos'].includes(state.model.value) && !isChronoRO) ? '' : 'none';
     const collectionMap = {
@@ -990,7 +990,7 @@
       'seikooak':    'seikooak',
       'gmt':         'gmt',
       'submariner':  'gmt',
-      'nautilus':    'nautilus',
+      'sautilus':    'sautilus',
       'santos':      'santos',
       'seikona':     'seikona'
     };
@@ -1094,8 +1094,8 @@
       caseImg = RO_CASE_PHOTOS[state.strap.value]?.[state.finish.value] || null;
     } else if (state.model.value === 'submariner' && state.strap.value) {
       caseImg = SUB_CASE_PHOTOS[state.strap.value]?.[state.finish.value] || null;
-    } else if (state.model.value === 'nautilus' && state.finish.value) {
-      caseImg = NAUTILUS_CASE_PHOTOS[state.finish.value] || null;
+    } else if (state.model.value === 'sautilus' && state.finish.value) {
+      caseImg = SAUTILUS_CASE_PHOTOS[state.finish.value] || null;
     } else if (state.model.value === 'gmt' && state.strap.value) {
       caseImg = GMT_CASE_PHOTOS[state.strap.value]?.[state.finish.value] || null;
     } else if (state.model.value === 'seikona' && state.strap.value) {
