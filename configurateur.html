@@ -954,11 +954,14 @@
     if (hasDialType && state.dialtype) document.getElementById('s-dialtype').textContent = state.dialtype.label;
     // Afficher/masquer les steps selon le modèle sélectionné
     const isSeikona = state.model.value === 'seikona';
-    if (isSeikona) {
+    if (isSeikona && !sessionStorage.getItem('seikonaWarned')) {
       const overlay = document.getElementById('seikona-modal-overlay-config');
       if (overlay.style.display !== 'flex') {
         overlay.style.display = 'flex';
-        document.getElementById('seikona-modal-close-config').onclick = () => { overlay.style.display = 'none'; };
+        document.getElementById('seikona-modal-close-config').onclick = () => {
+          overlay.style.display = 'none';
+          sessionStorage.setItem('seikonaWarned', '1');
+        };
       }
     }
     const isModelSelected = state.model.value !== '';
