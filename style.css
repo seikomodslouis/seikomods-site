@@ -316,6 +316,9 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 }
 
 @media(max-width:768px){
+  /* Coupe tout débordement horizontal dans les containers */
+  .container{overflow-x:hidden}
+
   /* ── Espacements ── */
   .section{padding:64px 0}
   .section-sm{padding:48px 0}
