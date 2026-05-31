@@ -403,11 +403,13 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 
   /* ── Filtres scrollables horizontalement ── */
   .filters{
-    overflow-x:auto;
+    overflow-x:scroll;
     flex-wrap:nowrap;
     padding-bottom:10px;
     margin-bottom:24px;
     -webkit-overflow-scrolling:touch;
+    overscroll-behavior-x:contain;
+    touch-action:pan-x;
     scrollbar-width:none;
   }
   .filters::-webkit-scrollbar{display:none}
