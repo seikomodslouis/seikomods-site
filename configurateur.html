@@ -933,6 +933,14 @@
       return gmtGold.includes(finish) ? 220 : 215;
     }
 
+    if (state.model.value === 'seikooak') {
+      return finish === 'steel' ? 170 : 180;
+    }
+
+    if (state.model.value === 'sautilus') {
+      return finish === 'steel' ? 170 : 180;
+    }
+
     return 179;
   }
 
