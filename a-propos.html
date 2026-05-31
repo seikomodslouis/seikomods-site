@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="À propos de SeikoMods — Louis Lacarrere, artisan passionné d'horlogerie basé à Grasse. L'histoire derrière les montres Seiko custom assemblées à la main.">
+  <title>À propos — SeikoMods</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav scrolled" id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">Seiko<span>Mods</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="collection.html">Collection</a></li>
+      <li><a href="configurateur.html">Configurateur</a></li>
+      <li><a href="infos.html">Infos</a></li>
+      <li><a href="a-propos.html" class="active">À propos</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="configurateur.html" class="btn btn-gold nav-cta-btn">✦ Créer la mienne</a>
+    <a href="panier.html" class="btn btn-gold nav-cta-btn" id="cartBtn" aria-label="Panier" style="position:relative">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      Panier<span class="cart-badge" id="cartBadge" style="display:none">0</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-mobile" id="navMobile">
+  <a href="index.html">Accueil</a>
+  <a href="collection.html">Collection</a>
+  <a href="configurateur.html">Configurateur</a>
+  <a href="infos.html">Infos</a>
+  <a href="a-propos.html">À propos</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="label">L'histoire</span>
+    <div class="divider center"></div>
+    <h1>À propos</h1>
+    <p>La personne derrière chaque montre.</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:64px">
+  <div class="container" style="max-width:820px">
+
+    <!-- Photo + présentation -->
+    <div style="display:flex;gap:48px;align-items:flex-start;flex-wrap:wrap;margin-bottom:64px">
+      <div style="flex:0 0 220px;max-width:220px">
+        <div style="width:220px;height:260px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--muted)">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          <span style="font-size:.75rem;letter-spacing:.05em">Photo à venir</span>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:260px">
+        <span class="label" style="margin-bottom:12px;display:block">Bonjour, moi c'est Louis</span>
+        <h2 style="font-size:1.8rem;margin-bottom:20px;line-height:1.2">Passionné d'horlogerie,<br>artisan du sud de la France.</h2>
+        <p style="font-size:1.05rem;line-height:1.8;color:var(--muted);margin-bottom:16px">
+          Je suis basé à Grasse, dans le sud-est de la France, et j'ai lancé SeikoMods il y a deux mois avec une idée simple : allier ma passion pour l'horlogerie et mon goût pour le travail manuel.
+        </p>
+        <p style="font-size:1.05rem;line-height:1.8;color:var(--muted)">
+          Chaque montre que j'assemble est le résultat de plusieurs heures de travail minutieux — le choix des pièces, l'assemblage, les réglages. Ce n'est pas de la production en série. C'est de l'artisanat.
+        </p>
+      </div>
+    </div>
+
+    <div class="divider" style="margin-bottom:64px"></div>
+
+    <!-- Valeurs -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;margin-bottom:64px">
+      <div>
+        <div style="font-size:1.6rem;margin-bottom:12px">🔧</div>
+        <h4 style="margin-bottom:8px">Assemblé à la main</h4>
+        <p style="font-size:.9rem;line-height:1.7;color:var(--muted)">Chaque montre est assemblée pièce par pièce. Aucune chaîne de production, aucune automatisation — juste mes mains et mes outils.</p>
+      </div>
+      <div>
+        <div style="font-size:1.6rem;margin-bottom:12px">⌚</div>
+        <h4 style="margin-bottom:8px">Pièces de qualité</h4>
+        <p style="font-size:.9rem;line-height:1.7;color:var(--muted)">J'utilise exclusivement des mouvements Seiko NH — fiables, réparables partout dans le monde, éprouvés depuis des décennies.</p>
+      </div>
+      <div>
+        <div style="font-size:1.6rem;margin-bottom:12px">✦</div>
+        <h4 style="margin-bottom:8px">Sur mesure</h4>
+        <p style="font-size:.9rem;line-height:1.7;color:var(--muted)">Vous choisissez chaque composant. La montre que vous recevez est unique — elle n'existe nulle part ailleurs.</p>
+      </div>
+    </div>
+
+    <div class="divider" style="margin-bottom:64px"></div>
+
+    <!-- Citation -->
+    <div style="text-align:center;padding:48px 32px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:64px">
+      <div style="font-family:var(--serif);font-size:1.5rem;line-height:1.6;margin-bottom:20px;color:var(--text)">"J'ai toujours été fasciné par les montres — la précision d'un mécanisme qui tient dans la paume de la main. SeikoMods, c'est ma façon de rendre ça accessible et personnel."</div>
+      <div style="font-size:.85rem;color:var(--gold);font-weight:600;letter-spacing:.08em;text-transform:uppercase">Louis — Fondateur de SeikoMods</div>
+    </div>
+
+    <!-- CTA -->
+    <div style="text-align:center">
+      <p style="font-size:1rem;color:var(--muted);margin-bottom:24px">Une question ? Envie de créer votre montre ?</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="configurateur.html" class="btn btn-gold">✦ Créer ma montre</a>
+        <a href="contact.html" class="btn btn-outline">Me contacter</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">Seiko<span>Mods</span></div>
+        <p>Montres Seiko custom assemblées à la main. Chaque pièce est unique, créée selon vos désirs.</p>
+        <div class="footer-socials">
+          <a href="https://www.instagram.com/seikomods_louis/" class="footer-social" target="_blank">Instagram</a>
+          <a href="#" class="footer-social">TikTok</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="collection.html">Collection</a></li>
+          <li><a href="configurateur.html">Configurateur</a></li>
+          <li><a href="infos.html">Infos</a></li>
+          <li><a href="a-propos.html">À propos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Informations</h5>
+        <ul>
+          <li><a href="contact.html#faq">FAQ</a></li>
+          <li><a href="contact.html">Livraison & retours</a></li>
+          <li><a href="contact.html">Garantie</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Légal</h5>
+        <ul>
+          <li><a href="mentions-legales.html">Mentions légales</a></li>
+          <li><a href="cgv.html">CGV</a></li>
+          <li><a href="confidentialite.html">Confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SeikoMods. Tous droits réservés.</span>
+      <span>Fait avec ❤️ en France</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"><span id="toastMsg"></span></div>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const mobile = document.getElementById('navMobile');
+  toggle.addEventListener('click', () => {
+    toggle.classList.toggle('open');
+    mobile.classList.toggle('open');
+  });
+</script>
+<script src="cart.js"></script>
+</body>
+</html>
