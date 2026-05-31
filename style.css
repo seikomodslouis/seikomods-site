@@ -614,7 +614,6 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 .panier-item-img{width:80px;height:80px;object-fit:cover;border:1px solid var(--border)}
 .panier-img-label{font-size:.65rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
 .panier-summary{position:sticky;top:100px}
-/* panier-layout : responsive géré dans le bloc @media(max-width:768px) ci-dessus */
 
 /* ── Bouton retour en haut ───────────────────────────────────── */
 .back-to-top{
@@ -656,4 +655,21 @@ button,a,.option-card,.filter-btn,.subfilter-btn,.bracelet-btn,.faq-q{touch-acti
 /* Calculé pour le cas mobile : banner(30px) + nav(~56px) + marge(8px) */
 @media(max-width:768px){
   html{scroll-padding-top:100px}
+}
+
+/* ══════════════════════════════════════════════════════════════
+   OVERRIDES MOBILES — placés ICI après tous les styles composants
+   pour corriger le problème de cascade CSS (les styles définis
+   après le bloc responsive principal les écrasaient)
+   ══════════════════════════════════════════════════════════════ */
+@media(max-width:768px){
+  /* Panier page : 1 colonne, pas de sticky */
+  .panier-layout{grid-template-columns:1fr !important;gap:24px}
+  .panier-summary{position:static !important;top:auto}
+  .panier-item{flex-wrap:wrap;gap:14px}
+  .panier-item-visuals{width:100%;justify-content:flex-start}
+  .panier-item-name{font-size:.95rem}
+
+  /* Cart sidebar : plein écran */
+  .cart-sidebar{width:100vw !important;right:-100vw !important;height:100dvh}
 }
