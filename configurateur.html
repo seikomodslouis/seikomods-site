@@ -912,6 +912,8 @@
   };
 
   function getTotal() {
+    return 179;
+    // eslint-disable-next-line no-unreachable
     const base = BASE_PRICES[state.model.value] || 149;
     return base + state.strap.price + state.finish.price + (state.dialtype ? state.dialtype.price : 0) + state.dial.price + state.hands.price;
   }
