@@ -2417,5 +2417,50 @@
     // Tri initial : bestsellers en premier
     applyFilters();
   </script>
+
+  <script>
+  // Fix iOS : empêche la page de scroller horizontalement
+  // quand on swipe sur les filtres ou le carousel de produits
+  function lockHorizontalScroll(el) {
+    var startX, startY;
+    el.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+    el.addEventListener('touchmove', function(e) {
+      var dx = Math.abs(e.touches[0].clientX - startX);
+      var dy = Math.abs(e.touches[0].clientY - startY);
+      if (dx > dy) {
+        e.stopPropagation();
+        // Ne pas appeler preventDefault sur les scroll containers
+        // pour que le scroll interne fonctionne
+      }
+    }, { passive: true });
+  }
+
+  // Appliquer à tous les éléments scrollables horizontalement
+  document.querySelectorAll('.filters, #productsGrid').forEach(lockHorizontalScroll);
+
+  // Bloquer le scroll horizontal de la PAGE sur iOS
+  document.addEventListener('touchmove', function(e) {
+    // Si le touch vient d'un élément scrollable horizontal, laisser faire
+    var target = e.target;
+    while (target) {
+      if (target.id === 'productsGrid' || target.classList && target.classList.contains('filters')) return;
+      target = target.parentElement;
+    }
+    // Sinon bloquer le scroll horizontal de la page
+    if (e.touches.length === 1) {
+      var dx = Math.abs(e.touches[0].clientX - (window._touchStartX || 0));
+      var dy = Math.abs(e.touches[0].clientY - (window._touchStartY || 0));
+      if (dx > dy && dx > 5) e.preventDefault();
+    }
+  }, { passive: false });
+
+  document.addEventListener('touchstart', function(e) {
+    window._touchStartX = e.touches[0].clientX;
+    window._touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  </script>
 </body>
 </html>
