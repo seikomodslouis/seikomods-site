@@ -503,10 +503,15 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 
 /* ── Carousel horizontal produits (page collection) ─────────── */
 @media(max-width:768px){
+  /* Wrapper : empêche le débordement au niveau de la page */
+  #productsScrollWrapper{
+    overflow:hidden;
+    position:relative;
+  }
   #productsGrid{
     display:flex !important;
     flex-direction:row !important;
-    overflow-x:auto;
+    overflow-x:scroll;
     overflow-y:visible;
     scroll-snap-type:x mandatory;
     -webkit-overflow-scrolling:touch;
@@ -514,6 +519,8 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
     gap:12px;
     padding-bottom:16px;
     background:transparent;
+    /* Indique à iOS que le swipe horizontal appartient à ce conteneur */
+    touch-action:pan-x;
   }
   #productsGrid::-webkit-scrollbar{display:none}
   #productsGrid .product-card{
@@ -522,6 +529,8 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
     min-width:200px;
     scroll-snap-align:start;
     background:var(--white);
+    /* Empêche les cards d'intercepter le swipe */
+    touch-action:pan-x;
   }
 }
 @media(max-width:520px){
