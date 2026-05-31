@@ -164,7 +164,7 @@ p{color:var(--muted-light);line-height:1.75}
 .process-step p{font-size:.85rem;color:var(--muted)}
 
 /* ── Guarantees ──────────────────────────────── */
-.guarantees{display:flex;justify-content:center;gap:0;border-top:1px solid var(--border)}.guarantees .guarantee{flex:0 0 calc(100%/3);max-width:calc(100%/3)}
+.guarantees{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--border)}
 .guarantee{display:flex;align-items:flex-start;gap:14px;padding:28px 24px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
 .guarantee:last-child{border-right:none}
 .guarantee-icon{font-size:1.3rem;flex-shrink:0;margin-top:2px}
@@ -302,90 +302,184 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 /* ── Responsive ──────────────────────────────── */
 @media(max-width:1024px){
   .grid-4{grid-template-columns:repeat(2,1fr)}
+  /* Guarantees: passe en 2 colonnes — fonctionne maintenant que c'est display:grid */
   .guarantees{grid-template-columns:repeat(2,1fr)}
   .guarantees .guarantee:nth-child(2){border-right:none}
   .footer-grid{grid-template-columns:1fr 1fr}
   .config-wrapper{grid-template-columns:1fr}
-  .config-panel{position:static}
+  /* config-panel remonte en premier dès 1024px pour toujours rester en tête */
+  .config-panel{position:static;order:-1}
   .process-grid{grid-template-columns:1fr;border:1px solid var(--border)}
   .process-step{border-right:none;border-bottom:1px solid var(--border)}
   .process-step:last-child{border-bottom:none}
 }
+
 @media(max-width:768px){
+  /* ── Espacements ── */
   .section{padding:64px 0}
+  .section-sm{padding:48px 0}
+  .sh{margin-bottom:40px}
+
+  /* ── Nav ── */
   .nav-links{display:none}
   .nav-cta-btn{display:none}
   .nav-cta-btn#cartBtn{display:flex;padding:8px 10px;font-size:0;gap:0}
   .nav-cta-btn#cartBtn svg{width:18px;height:18px}
   .nav-toggle{display:flex}
+  /* Menu mobile */
+  .nav-mobile{gap:32px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+  .nav-mobile a{font-size:1.8rem}
+  /* Lien Panier dans le menu mobile : distinct des autres liens */
+  #cartBtnMobile{
+    font-family:var(--sans) !important;
+    font-size:.8rem !important;
+    font-weight:600;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--muted) !important;
+    border:1px solid var(--border);
+    padding:14px 32px;
+    text-align:center;
+    display:flex !important;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+  }
+
+  /* ── Grilles ── */
   .grid-3{grid-template-columns:1fr 1fr}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
   .reviews-grid{grid-template-columns:1fr}
+
+  /* ── Guarantees : 1 colonne ── */
+  .guarantees{grid-template-columns:1fr}
+  .guarantee{border-right:none;border-bottom:1px solid var(--border)}
+  .guarantee:last-child{border-bottom:none}
+
+  /* ── Footer ── */
   .footer-grid{grid-template-columns:1fr;gap:28px}
   .footer-bottom{flex-direction:column;gap:10px;text-align:center}
+  /* Zones tactiles footer links */
+  .footer-col li{margin-bottom:14px}
+  .footer-col a{display:inline-block;padding:2px 0}
+
+  /* ── Contact ── */
   .contact-layout{grid-template-columns:1fr}
+
+  /* ── Hero ── */
   .hero-stats{gap:28px}
+
+  /* ── Formulaires ── */
   .form-row{grid-template-columns:1fr}
-  .grid-4{grid-template-columns:repeat(2,1fr)}
-  .guarantees{grid-template-columns:1fr}
-  .guarantee{border-right:none}
-  /* Cart sidebar plein écran */
+
+  /* ── Cart sidebar plein écran sur mobile ── */
   .cart-sidebar{width:100vw;right:-100vw}
-  /* Page hero */
+
+  /* ── Page hero (sous-pages) ── */
   .page-hero{padding:110px 0 48px}
-  /* Panier page */
+
+  /* ── Panier ── */
+  .panier-layout{grid-template-columns:1fr}
   .panier-item{flex-wrap:wrap;gap:14px}
   .panier-item-visuals{width:100%;justify-content:flex-start}
-  /* Nav mobile */
-  .nav-mobile a{font-size:1.8rem}
-  /* Tap targets minimum 44px */
-  .btn,.filter-btn,.subfilter-btn,.bracelet-btn,.faq-q{min-height:44px}
-  /* Filtres scrollables horizontalement */
-  .filters{overflow-x:auto;flex-wrap:nowrap;padding-bottom:10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  /* Summary n'est plus sticky sur mobile */
+  .panier-summary{position:static;top:auto}
+
+  /* ── Filtres scrollables horizontalement ── */
+  .filters{
+    overflow-x:auto;
+    flex-wrap:nowrap;
+    padding-bottom:10px;
+    margin-bottom:24px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
   .filters::-webkit-scrollbar{display:none}
-  /* Configurateur */
+
+  /* ── Filter + sort (collection) ── */
+  .filter-sort-row{flex-direction:column;align-items:stretch !important;gap:12px}
+  #priceSort{width:100%;min-height:44px;padding:10px 14px}
+
+  /* ── Tap targets : minimum 44px (recommandation Apple/Google) ── */
+  .btn,.filter-btn,.subfilter-btn,.bracelet-btn,.faq-q,.option-card{min-height:44px}
+
+  /* ── Configurateur ── */
   .config-step{padding:20px 16px}
-  .config-panel{order:-1}
-  /* Process */
+  .config-steps{gap:16px}
+
+  /* ── Process ── */
   .process-step{padding:28px 20px}
 }
+
 @media(max-width:520px){
+  /* ── Tout en 1 colonne ── */
   .grid-4,.grid-3,.grid-2,.grid-4-gap{grid-template-columns:1fr}
+
+  /* ── Espacements ── */
   .section{padding:48px 0}
-  .section-sm{padding:40px 0}
+  .section-sm{padding:36px 0}
   .container{padding:0 16px}
-  /* Hero */
-  .hero{padding-top:80px}
-  .hero-sub{font-size:.95rem}
+  .sh{margin-bottom:28px}
+
+  /* ── Top banner : réduit pour rester sur 1 ligne à 375px ── */
+  .top-banner{font-size:.62rem;letter-spacing:.02em;padding:7px 12px}
+  /* Nav décalée en conséquence (banner ~28px au lieu de ~33px) */
+  .nav{top:30px}
+
+  /* ── Hero ── */
+  .hero{padding-top:90px;min-height:100svh;min-height:100dvh}
+  .hero-sub{font-size:.95rem;margin-bottom:28px}
   .hero-btns{flex-direction:column;align-items:stretch}
   .hero-btns .btn{width:100%;justify-content:center}
-  .hero-stats{flex-direction:column;gap:16px;padding-top:32px;margin-top:40px}
-  /* Page hero */
-  .page-hero{padding:90px 0 36px}
-  /* Product card actions empilées */
-  .product-card-actions{flex-direction:column}
-  .product-card-actions .btn{width:100%}
-  /* Nav mobile compact */
-  .nav-mobile a{font-size:1.5rem}
-  .nav-mobile{gap:28px;padding:32px 24px}
-  /* Panier */
-  .panier-item-img{width:64px;height:64px}
-  /* Stats */
+  .hero-stats{flex-direction:column;gap:16px;padding-top:28px;margin-top:36px}
   .stat-num{font-size:1.7rem}
-  /* Guarantees */
+
+  /* ── Page hero (sous-pages) ── */
+  .page-hero{padding:84px 0 32px}
+  .page-hero h1{font-size:clamp(1.8rem,8vw,2.6rem)}
+
+  /* ── Product cards ── */
+  .product-card-actions{flex-direction:column}
+  .product-card-actions .btn{width:100%;justify-content:center}
+
+  /* ── Nav mobile compact ── */
+  .nav-mobile{gap:22px;padding:28px 20px}
+  .nav-mobile a{font-size:1.4rem}
+
+  /* ── Panier items ── */
+  .panier-item-img{width:64px;height:64px}
+
+  /* ── Guarantees ── */
   .guarantee{padding:20px 16px}
-  /* Configurateur */
+  .guarantee-icon{display:none} /* icônes vides, autant enlever */
+
+  /* ── Configurateur ── */
   .options-grid{grid-template-columns:repeat(auto-fill,minmax(90px,1fr))}
+  .dial-grid{grid-template-columns:repeat(auto-fill,minmax(78px,1fr))}
   .config-summary-box{padding:16px}
   .config-preview-box{padding:20px}
-  /* Process */
-  .process-num{font-size:2.2rem}
+  .config-watch-img>#previewCaseImg{max-height:200px}
+
+  /* ── Process ── */
+  .process-num{font-size:2.2rem;margin-bottom:14px}
   .process-step{padding:24px 16px}
-  /* Reviews */
+
+  /* ── Reviews ── */
   .review-card{padding:20px}
-  /* Section header */
-  .sh{margin-bottom:36px}
-  /* Toast en bas, pleine largeur */
-  #toast{left:16px;right:16px;transform:translateY(20px);width:auto;white-space:normal;text-align:center}
+
+  /* ── Footer ── */
+  footer{padding-top:40px}
+
+  /* ── Toast : pleine largeur, au-dessus de la home bar ── */
+  #toast{
+    left:16px;
+    right:16px;
+    bottom:max(20px, calc(16px + env(safe-area-inset-bottom, 0px)));
+    transform:translateY(20px);
+    width:auto;
+    white-space:normal;
+    text-align:center;
+  }
   #toast.show{transform:translateY(0)}
 }
 
@@ -444,37 +538,46 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 .panier-item-img{width:80px;height:80px;object-fit:cover;border:1px solid var(--border)}
 .panier-img-label{font-size:.65rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
 .panier-summary{position:sticky;top:100px}
-@media(max-width:768px){.panier-layout{grid-template-columns:1fr}}
+/* panier-layout : responsive géré dans le bloc @media(max-width:768px) ci-dessus */
 
 /* ── Bouton retour en haut ───────────────────────────────────── */
-.back-to-top{position:fixed;bottom:28px;right:24px;z-index:900;width:44px;height:44px;background:var(--black);color:#fff;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.back-to-top{
+  position:fixed;
+  bottom:max(28px, calc(16px + env(safe-area-inset-bottom, 0px)));
+  right:24px;
+  z-index:900;
+  width:44px;height:44px;
+  background:var(--black);color:#fff;
+  border:none;border-radius:50%;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .3s;
+  box-shadow:0 4px 16px rgba(0,0,0,.2)
+}
 .back-to-top.visible{opacity:1;pointer-events:all}
 .back-to-top:hover{transform:translateY(-3px)}
 
-/* ── Mobile — améliorations supplémentaires ─────────────────── */
+/* ── Safe area insets (iPhone X et plus récents) ─────────────── */
+/* Evite que le contenu soit caché derrière la home bar */
+footer{padding-bottom:max(32px, calc(20px + env(safe-area-inset-bottom, 0px)))}
+.nav-mobile{padding-bottom:max(40px, calc(24px + env(safe-area-inset-bottom, 0px)))}
+.add-to-cart-btn{padding-bottom:max(16px, calc(10px + env(safe-area-inset-bottom, 0px)))}
 
-/* Ligne filtres + tri (collection) */
-.filter-sort-row{align-items:flex-start !important}
-@media(max-width:600px){
-  .filter-sort-row{flex-direction:column;align-items:stretch !important}
-  #priceSort{width:100%;padding:10px 14px !important}
-  /* Hero padding correct : banner ~33px + nav ~55px */
-  .hero{padding-top:92px}
-  /* Panier summary : plus de position sticky sur mobile */
-  .panier-summary{position:static;top:auto}
-  /* Nav mobile — lien panier distinct */
-  #cartBtnMobile{font-family:var(--sans) !important;font-size:1rem !important;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted) !important;border:1px solid var(--border);padding:12px 24px;width:100%;text-align:center;display:flex;justify-content:center;align-items:center;gap:8px;margin-top:4px}
-  /* Configurateur : config-preview-box image max-height */
-  .config-watch-img>#previewCaseImg{max-height:200px}
-  /* Dial grid sur mobile */
-  .dial-grid{grid-template-columns:repeat(auto-fill,minmax(78px,1fr))}
+/* ── Touch globaux ───────────────────────────────────────────── */
+/* Supprime le flash gris au tap sur tous les éléments */
+*{-webkit-tap-highlight-color:transparent}
+/* Supprime le délai 300ms au tap sur les éléments interactifs */
+button,a,.option-card,.filter-btn,.subfilter-btn,.bracelet-btn,.faq-q{touch-action:manipulation}
+/* Scroll iOS fluide */
+.cart-items,.filters,.nav-mobile{-webkit-overflow-scrolling:touch}
+
+/* ── Inputs : empêche zoom iOS (font-size doit être >= 16px) ─── */
+@media(max-width:768px){
+  input,textarea,select{font-size:16px !important}
 }
 
-/* ── Améliorations globales touch ───────────────────────────── */
-/* Évite le flash de sélection sur les boutons et liens tactiles */
-*{-webkit-tap-highlight-color:transparent}
-/* Assure que les éléments interactifs ont touch-action:manipulation */
-button,a,.option-card,.filter-btn,.subfilter-btn,.bracelet-btn,.faq-q{touch-action:manipulation}
-
-/* ── Scroll iOS fluide ──────────────────────────────────────── */
-.cart-items,.filters,.nav-mobile{-webkit-overflow-scrolling:touch}
+/* ── scroll-padding-top : compense la nav fixe pour les ancres ── */
+/* Calculé pour le cas mobile : banner(30px) + nav(~56px) + marge(8px) */
+@media(max-width:768px){
+  html{scroll-padding-top:100px}
+}

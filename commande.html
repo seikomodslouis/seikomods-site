@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Finaliser ma commande — SeikoMods</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://www.paypal.com/sdk/js?client-id=AdZgXB7RcBNrtt7LY2ccnoJMB_Tlkhv_mexq2WCPF4GCV0girpIuH0gyy_xpTX109KD6538zOpN1XwXy&currency=EUR" defer></script>
@@ -96,16 +96,16 @@
           <div class="form-row">
             <div class="form-group">
               <label>Prénom *</label>
-              <input type="text" name="prenom" placeholder="Votre prénom" required>
+              <input type="text" name="prenom" autocomplete="given-name" placeholder="Votre prénom" required>
             </div>
             <div class="form-group">
               <label>Nom *</label>
-              <input type="text" name="nom" placeholder="Votre nom" required>
+              <input type="text" name="nom" autocomplete="family-name" placeholder="Votre nom" required>
             </div>
           </div>
           <div class="form-group">
             <label>Email *</label>
-            <input type="email" name="email" placeholder="ton@email.com" required>
+            <input type="email" name="email" autocomplete="email" placeholder="ton@email.com" required>
           </div>
           <div class="form-group">
             <label>Instagram (optionnel)</label>
@@ -116,29 +116,29 @@
 
           <div class="form-group">
             <label>Adresse *</label>
-            <input type="text" name="adresse" placeholder="12 rue des Montres" required>
+            <input type="text" name="adresse" autocomplete="address-line1" placeholder="12 rue des Montres" required>
           </div>
           <div class="form-group">
             <label>Complément d'adresse</label>
-            <input type="text" name="adresse2" placeholder="Appartement, bâtiment...">
+            <input type="text" name="adresse2" autocomplete="address-line2" placeholder="Appartement, bâtiment...">
           </div>
           <div class="form-row">
             <div class="form-group">
               <label>Code postal *</label>
-              <input type="text" name="code_postal" placeholder="75001" required>
+              <input type="text" name="code_postal" autocomplete="postal-code" inputmode="numeric" placeholder="75001" required>
             </div>
             <div class="form-group">
               <label>Ville *</label>
-              <input type="text" name="ville" placeholder="Paris" required>
+              <input type="text" name="ville" autocomplete="address-level2" placeholder="Paris" required>
             </div>
           </div>
           <div class="form-group">
             <label>Pays *</label>
-            <input type="text" name="pays" placeholder="France" value="France" required>
+            <input type="text" name="pays" autocomplete="country-name" placeholder="France" value="France" required>
           </div>
           <div class="form-group">
             <label>Téléphone</label>
-            <input type="tel" name="telephone" placeholder="+33 6 00 00 00 00">
+            <input type="tel" name="telephone" autocomplete="tel" placeholder="+33 6 00 00 00 00">
           </div>
 
           <div class="form-group" style="margin-top:8px">

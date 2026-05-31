@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="robots" content="noindex">
   <title>Mon Panier — SeikoMods</title>
   <link rel="stylesheet" href="style.css">
@@ -209,13 +209,13 @@
       <div class="panier-item">
         ${imgs.collection ? `
         <div class="panier-item-visual-wrap" style="flex-shrink:0">
-          <img src="${imgs.collection}" alt="${item.name}" class="panier-item-img" style="width:100px;height:100px;object-fit:cover">
+          <img loading="lazy" src="${imgs.collection}" alt="${item.name}" class="panier-item-img" style="width:100px;height:100px;object-fit:cover">
         </div>` : ''}
         ${(imgs.dial || imgs.case || imgs.hands) ? `
         <div class="panier-item-visuals">
-          ${imgs.case  ? `<div class="panier-item-visual-wrap"><img src="${imgs.case}"  alt="Boîtier"  class="panier-item-img"><span class="panier-img-label">Boîtier</span></div>`  : ''}
-          ${imgs.dial  ? `<div class="panier-item-visual-wrap"><img src="${imgs.dial}"  alt="Cadran"   class="panier-item-img"><span class="panier-img-label">Cadran</span></div>`   : ''}
-          ${imgs.hands ? `<div class="panier-item-visual-wrap"><img src="${imgs.hands}" alt="Aiguilles" class="panier-item-img"><span class="panier-img-label">Aiguilles</span></div>` : ''}
+          ${imgs.case  ? `<div class="panier-item-visual-wrap"><img loading="lazy" src="${imgs.case}"  alt="Boîtier"  class="panier-item-img"><span class="panier-img-label">Boîtier</span></div>`  : ''}
+          ${imgs.dial  ? `<div class="panier-item-visual-wrap"><img loading="lazy" src="${imgs.dial}"  alt="Cadran"   class="panier-item-img"><span class="panier-img-label">Cadran</span></div>`   : ''}
+          ${imgs.hands ? `<div class="panier-item-visual-wrap"><img loading="lazy" src="${imgs.hands}" alt="Aiguilles" class="panier-item-img"><span class="panier-img-label">Aiguilles</span></div>` : ''}
         </div>` : ''}
         <div class="panier-item-info">
           <div class="panier-item-name">${item.name}</div>
