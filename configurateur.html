@@ -63,8 +63,8 @@
               <div class="opt-name">SeikoJust</div>
               <div class="opt-price">à partir de 149 €</div>
             </div>
-            <div class="option-card" data-step="model" data-value="royaloak" data-label="Royal Oak" data-price="20" data-img="images/royaloak-steel.png">
-              <div class="opt-name">Royal Oak</div>
+            <div class="option-card" data-step="model" data-value="seikooak" data-label="Seiko Oak" data-price="20" data-img="images/seikooak-steel.png">
+              <div class="opt-name">Seiko Oak</div>
               <div class="opt-price">à partir de 179 €</div>
             </div>
             <div class="option-card" data-step="model" data-value="gmt" data-label="GMT 40mm" data-price="10" data-img="images/40mm-steel-gmt-jubilee.png">
@@ -137,7 +137,7 @@
             <!-- Rempli dynamiquement par JS selon le modèle sélectionné -->
           </div>
           <p id="fondBoiteNote" style="font-size:.72rem;color:var(--muted);margin-top:12px;display:none">Fond de boite transparent ou non disponible.</p>
-          <p style="font-size:.72rem;color:var(--muted);margin-top:8px">Ce ne sont pas les vraies couleurs — rendez-vous sur <a id="collectionLink" href="collection.html?collection=royaloak" style="color:inherit;text-decoration:underline">Collection</a> pour un meilleur aperçu.</p>
+          <p style="font-size:.72rem;color:var(--muted);margin-top:8px">Ce ne sont pas les vraies couleurs — rendez-vous sur <a id="collectionLink" href="collection.html?collection=seikooak" style="color:inherit;text-decoration:underline">Collection</a> pour un meilleur aperçu.</p>
         </div>
 
         <!-- ÉTAPE 4 : TYPE DE CADRAN (SeikoJust uniquement) -->
@@ -190,18 +190,18 @@
               <div class="opt-name">Or Rose</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="hands" data-value="ro-argent" data-label="Royal Oak Argent" data-price="0" data-img="images/hands-royaloak-argent.jpg" data-model="royaloak">
-              <div class="dial-thumb-wrap"><img src="images/hands-royaloak-argent.jpg" alt="Royal Oak Argent" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+            <div class="option-card" data-step="hands" data-value="ro-argent" data-label="Seiko Oak Argent" data-price="0" data-img="images/hands-seikooak-argent.jpg" data-model="seikooak">
+              <div class="dial-thumb-wrap"><img src="images/hands-seikooak-argent.jpg" alt="Seiko Oak Argent" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Argent</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="hands" data-value="ro-or" data-label="Royal Oak Or" data-price="0" data-img="images/hands-royaloak-or.jpg" data-model="royaloak">
-              <div class="dial-thumb-wrap"><img src="images/hands-royaloak-or.jpg" alt="Royal Oak Or" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+            <div class="option-card" data-step="hands" data-value="ro-or" data-label="Seiko Oak Or" data-price="0" data-img="images/hands-seikooak-or.jpg" data-model="seikooak">
+              <div class="dial-thumb-wrap"><img src="images/hands-seikooak-or.jpg" alt="Seiko Oak Or" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Or</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="hands" data-value="ro-rosegold" data-label="Royal Oak Or Rose" data-price="0" data-img="images/hands-royaloak-rosegold.jpg" data-model="royaloak">
-              <div class="dial-thumb-wrap"><img src="images/hands-royaloak-rosegold.jpg" alt="Royal Oak Or Rose" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
+            <div class="option-card" data-step="hands" data-value="ro-rosegold" data-label="Seiko Oak Or Rose" data-price="0" data-img="images/hands-seikooak-rosegold.jpg" data-model="seikooak">
+              <div class="dial-thumb-wrap"><img src="images/hands-seikooak-rosegold.jpg" alt="Seiko Oak Or Rose" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Or Rose</div>
               <div class="opt-price">+0 €</div>
             </div>
@@ -345,7 +345,7 @@
   // ── CONFIG STATE ──
   const BASE_PRICES = {
     'seikojust-39': 149,
-    'royaloak': 179, 'gmt': 169,
+    'seikooak': 179, 'gmt': 169,
     'submariner': 149, 'nautilus': 189
   };
 
@@ -416,17 +416,17 @@
   // Pour les modèles sans type de cadran, pas de cadrans affichés
   DIAL_COLORS_BY_TYPE['standard'] = [];
 
-  // Cadrans Royal Oak par finition
+  // Cadrans Seiko Oak par finition
   const RO_DIALS = [
-    { value: 'ro-white',          label: 'Blanc',          price: 0, img: 'images/dial-royaloak-white.jpg' },
-    { value: 'ro-black',          label: 'Noir',           price: 0, img: 'images/dial-royaloak-black.jpg' },
-    { value: 'ro-blue',           label: 'Bleu',           price: 0, img: 'images/dial-royaloak-blue.jpg'  },
-    { value: 'ro-white-gold',     label: 'Blanc Or',       price: 0, img: 'images/dial-royaloak-white-gold.jpg' },
-    { value: 'ro-black-gold',     label: 'Noir Or',        price: 0, img: 'images/dial-royaloak-black-gold.jpg' },
-    { value: 'ro-blue-gold',      label: 'Bleu Or',        price: 0, img: 'images/dial-royaloak-blue-gold.jpg'  },
-    { value: 'ro-white-rosegold', label: 'Blanc Or Rose',  price: 0, img: 'images/dial-royaloak-white-rosegold.jpg' },
-    { value: 'ro-black-rosegold', label: 'Noir Or Rose',   price: 0, img: 'images/dial-royaloak-black-rosegold.jpg' },
-    { value: 'ro-blue-rosegold',  label: 'Bleu Or Rose',   price: 0, img: 'images/dial-royaloak-blue-rosegold.jpg'  },
+    { value: 'ro-white',          label: 'Blanc',          price: 0, img: 'images/dial-seikooak-white.jpg' },
+    { value: 'ro-black',          label: 'Noir',           price: 0, img: 'images/dial-seikooak-black.jpg' },
+    { value: 'ro-blue',           label: 'Bleu',           price: 0, img: 'images/dial-seikooak-blue.jpg'  },
+    { value: 'ro-white-gold',     label: 'Blanc Or',       price: 0, img: 'images/dial-seikooak-white-gold.jpg' },
+    { value: 'ro-black-gold',     label: 'Noir Or',        price: 0, img: 'images/dial-seikooak-black-gold.jpg' },
+    { value: 'ro-blue-gold',      label: 'Bleu Or',        price: 0, img: 'images/dial-seikooak-blue-gold.jpg'  },
+    { value: 'ro-white-rosegold', label: 'Blanc Or Rose',  price: 0, img: 'images/dial-seikooak-white-rosegold.jpg' },
+    { value: 'ro-black-rosegold', label: 'Noir Or Rose',   price: 0, img: 'images/dial-seikooak-black-rosegold.jpg' },
+    { value: 'ro-blue-rosegold',  label: 'Bleu Or Rose',   price: 0, img: 'images/dial-seikooak-blue-rosegold.jpg'  },
   ];
 
   const SUBMARINER_DIALS = [
@@ -491,10 +491,10 @@
   function renderDialColors(dialtypeValue) {
     const grid = document.getElementById('dialGrid');
     const dialStep = grid.closest('.config-step');
-    // Royal Oak : cadrans selon la finition choisie
+    // Seiko Oak : cadrans selon la finition choisie
     let dials;
-    if (state.model.value === 'royaloak') {
-      dials = state.strap.value === 'royaloak-classic' ? RO_DIALS : [];
+    if (state.model.value === 'seikooak') {
+      dials = state.strap.value === 'seikooak-classic' ? RO_DIALS : [];
     } else if (state.model.value === 'nautilus') {
       dials = NAUTILUS_DIALS;
     } else if (state.model.value === 'submariner') {
@@ -611,13 +611,13 @@
     'jubilee-steel':  { label: 'Jubilée',   price: 0,  icon: '⛓️' },
     'oyster-steel':   { label: 'Oyster',    price: 0,  icon: '⛓️' },
     'president':      { label: 'Président', price: 15, icon: '⛓️' },
-    'royaloak-classic':     { label: 'Classic',      price: 0,  icon: '' },
-    'royaloak-chronograph': { label: 'Chronograph',  price: 0,  icon: '' },
+    'seikooak-classic':     { label: 'Classic',      price: 0,  icon: '' },
+    'seikooak-chronograph': { label: 'Chronograph',  price: 0,  icon: '' },
   };
 
   const MODEL_STRAPS = {
     'seikojust-39': ['jubilee-steel', 'oyster-steel', 'president'],
-    'royaloak':    ['royaloak-classic', 'royaloak-chronograph'],
+    'seikooak':    ['seikooak-classic', 'seikooak-chronograph'],
     'gmt':         ['jubilee-steel', 'oyster-steel'],
     'submariner':  ['jubilee-steel', 'oyster-steel'],
     'seikona':     ['oyster-steel'],
@@ -700,21 +700,21 @@
   };
 
   const RO_CASE_PHOTOS = {
-    'royaloak-classic': {
-      'steel':     'images/royaloak-classic-steel.jpg',
-      'gold':      'images/royaloak-classic-gold.jpg',
-      'rose-gold': 'images/royaloak-classic-rosegold.jpg',
+    'seikooak-classic': {
+      'steel':     'images/seikooak-classic-steel.jpg',
+      'gold':      'images/seikooak-classic-gold.jpg',
+      'rose-gold': 'images/seikooak-classic-rosegold.jpg',
     },
-    'royaloak-chronograph': {
-      'steel':     'images/royaloak-chrono-steel.jpg',
-      'gold':      'images/royaloak-chrono-gold.jpg',
-      'rose-gold': 'images/royaloak-chrono-rosegold.jpg',
+    'seikooak-chronograph': {
+      'steel':     'images/seikooak-chrono-steel.jpg',
+      'gold':      'images/seikooak-chrono-gold.jpg',
+      'rose-gold': 'images/seikooak-chrono-rosegold.jpg',
     },
   };
 
   const RO_FINISHES_BY_STRAP = {
-    'royaloak-classic':     ['steel', 'gold', 'rose-gold'],
-    'royaloak-chronograph': ['steel', 'gold', 'rose-gold'],
+    'seikooak-classic':     ['steel', 'gold', 'rose-gold'],
+    'seikooak-chronograph': ['steel', 'gold', 'rose-gold'],
   };
 
   const SUB_CASE_PHOTOS = {
@@ -842,7 +842,7 @@
 
   const MODEL_FINISHES = {
     'seikojust-39': ['steel', 'gold', 'rose-gold', 'steel-gold', 'steel-rose-gold'],
-    'royaloak':    ['steel', 'gold', 'rose-gold'],
+    'seikooak':    ['steel', 'gold', 'rose-gold'],
     'gmt':         ['steel', 'steel-gold', 'steel-rose-gold', 'rose-gold'],
     'submariner':  ['steel', 'gold', 'steel-gold'],
     'nautilus':    ['steel', 'gold', 'rose-gold', 'steel-gold', 'steel-rose-gold']
@@ -854,7 +854,7 @@
     let finishes;
     if (modelValue === 'seikojust-39' && strapValue && DJ_FINISHES_BY_STRAP[strapValue]) {
       finishes = DJ_FINISHES_BY_STRAP[strapValue];
-    } else if (modelValue === 'royaloak' && strapValue && RO_FINISHES_BY_STRAP[strapValue]) {
+    } else if (modelValue === 'seikooak' && strapValue && RO_FINISHES_BY_STRAP[strapValue]) {
       finishes = RO_FINISHES_BY_STRAP[strapValue];
     } else if (modelValue === 'submariner' && strapValue && SUB_FINISHES_BY_STRAP[strapValue]) {
       finishes = SUB_FINISHES_BY_STRAP[strapValue];
@@ -869,7 +869,7 @@
       const f = FINISH_OPTIONS[key];
       // Photo boîtier si dispo, sinon swatch couleur
       const casePhoto = (modelValue === 'seikojust-39' && strapValue && DJ_CASE_PHOTOS[key]?.[strapValue])
-        || (modelValue === 'royaloak' && strapValue && RO_CASE_PHOTOS[strapValue]?.[key])
+        || (modelValue === 'seikooak' && strapValue && RO_CASE_PHOTOS[strapValue]?.[key])
         || (modelValue === 'nautilus' && NAUTILUS_CASE_PHOTOS[key])
         || (modelValue === 'submariner' && strapValue && SUB_CASE_PHOTOS[strapValue]?.[key])
         || (modelValue === 'gmt' && strapValue && GMT_CASE_PHOTOS[strapValue]?.[key])
@@ -900,8 +900,8 @@
           label: card.dataset.label,
           price: parseInt(card.dataset.price) || 0
         };
-        // Royal Oak / Nautilus : recharger les cadrans selon la nouvelle finition
-        if (state.model.value === 'royaloak' || state.model.value === 'nautilus') {
+        // Seiko Oak / Nautilus : recharger les cadrans selon la nouvelle finition
+        if (state.model.value === 'seikooak' || state.model.value === 'nautilus') {
           state.dial = { value: '', label: '—', price: 0, img: '' };
           renderDialColors('');
         }
@@ -922,7 +922,7 @@
 
   const MODEL_IMAGES = {
     'seikojust-39': 'images/seikojust-steel-jubilee.png',
-    'royaloak':    'images/royaloak-steel.png',
+    'seikooak':    'images/seikooak-steel.png',
     'gmt':         'images/40mm-steel-gmt-jubilee.png',
     'submariner':  'images/submariner-steel.png',
     'nautilus':    'images/nautilus-steel.png'
@@ -967,8 +967,8 @@
       state.strap = { value: 'nautilus-integrated', label: 'Intégré', price: 0, img: '' };
     }
     const isSeikoJust  = state.model.value === 'seikojust-39';
-    const isRoyalOak  = state.model.value === 'royaloak';
-    const isROClassic = isRoyalOak && state.strap.value === 'royaloak-classic';
+    const isRoyalOak  = state.model.value === 'seikooak';
+    const isROClassic = isRoyalOak && state.strap.value === 'seikooak-classic';
     const showHands   = isSeikoJust || isROClassic || isNautilus;
     const sizeSelected    = state.size && state.size.value !== '';
     const strapSelected   = state.strap.value !== '';
@@ -983,18 +983,18 @@
     // Affichage progressif : chaque étape n'apparaît qu'après la précédente
     document.getElementById('strapStep').style.display = (isModelSelected && !isNautilus && (!isSeikoJust || sizeSelected)) ? '' : 'none';
     document.getElementById('finishStep').style.display    = (isModelSelected && (isNautilus || strapSelected)) ? '' : 'none';
-    const isChronoRO = state.model.value === 'royaloak' && state.strap.value === 'royaloak-chronograph';
+    const isChronoRO = state.model.value === 'seikooak' && state.strap.value === 'seikooak-chronograph';
     document.getElementById('fondBoiteNote').style.display = (isModelSelected && !['seikona','santos'].includes(state.model.value) && !isChronoRO) ? '' : 'none';
     const collectionMap = {
       'seikojust-39': 'seikojust',
-      'royaloak':    'royaloak',
+      'seikooak':    'seikooak',
       'gmt':         'gmt',
       'submariner':  'gmt',
       'nautilus':    'nautilus',
       'santos':      'santos',
       'seikona':     'seikona'
     };
-    const collSlug = collectionMap[state.model.value] || 'royaloak';
+    const collSlug = collectionMap[state.model.value] || 'seikooak';
     document.getElementById('collectionLink').href = 'collection.html?collection=' + collSlug;
     document.getElementById('dialColorStep').style.display = (isModelSelected && finishSelected) ? '' : 'none';
 
@@ -1090,7 +1090,7 @@
     let caseImg = null;
     if (state.model.value === 'seikojust-39' && state.finish.value && state.strap.value) {
       caseImg = DJ_CASE_PHOTOS[state.finish.value]?.[state.strap.value] || null;
-    } else if (state.model.value === 'royaloak' && state.strap.value) {
+    } else if (state.model.value === 'seikooak' && state.strap.value) {
       caseImg = RO_CASE_PHOTOS[state.strap.value]?.[state.finish.value] || null;
     } else if (state.model.value === 'submariner' && state.strap.value) {
       caseImg = SUB_CASE_PHOTOS[state.strap.value]?.[state.finish.value] || null;
