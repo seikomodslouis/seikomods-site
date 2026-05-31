@@ -79,6 +79,7 @@
           <input type="hidden" name="subject" value="Nouvelle commande SeikoMods">
           <input type="hidden" name="commande" id="f-commande">
           <input type="hidden" name="prix_total" id="f-prix">
+          <input type="hidden" name="mode_paiement" id="f-paiement">
 
           <div class="form-row">
             <div class="form-group">
@@ -132,14 +133,20 @@
             <label>Message complémentaire</label>
             <textarea name="message" placeholder="Des souhaits particuliers ? Une couleur spécifique ? Pose toutes vos questions..."></textarea>
           </div>
-          <div style="margin-top:8px">
-            <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;padding:15px">
-              ✦ Envoyer ma commande
-            </button>
+          <div style="margin-top:24px">
+            <p style="font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:14px;text-align:center">Choisissez votre mode de paiement</p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <button type="button" id="btnPaypal" style="flex:1;min-width:140px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;background:#0070ba;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg>
+                PayPal
+              </button>
+              <button type="button" id="btnCard" style="flex:1;min-width:140px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;background:#1a1a1a;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                Carte bancaire
+              </button>
+            </div>
+            <p style="font-size:.72rem;text-align:center;margin-top:12px;color:var(--muted)">Paiement 100% sécurisé via PayPal</p>
           </div>
-          <p style="font-size:.75rem;text-align:center;margin-top:12px;color:var(--muted)">
-            Je te recontacte sous 24h pour confirmer et organiser le paiement sécurisé.
-          </p>
         </form>
       </div>
 
@@ -231,29 +238,61 @@
     document.getElementById('f-prix').value     = total + ' €';
   }
 
-  // Soumission du formulaire
-  const orderForm = document.getElementById('orderForm');
-  orderForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const data = new FormData(orderForm);
+  // ─── Paiement ───────────────────────────────────────────────────────────
+  // 👉 Remplace "paypal.me/TONPSEUDO" par ton vrai lien PayPal.me
+  const PAYPAL_LINK = 'https://www.paypal.me/seikomodslouis';
+
+  function submitOrder(modePaiement) {
+    const form = document.getElementById('orderForm');
+    // Valider le formulaire HTML5
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    document.getElementById('f-paiement').value = modePaiement;
+
+    const total = getCartTotal(getCart());
+    const data = new FormData(form);
+
+    // Désactiver les boutons pendant l'envoi
+    document.getElementById('btnPaypal').disabled = true;
+    document.getElementById('btnCard').disabled   = true;
+
     fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
       .then(res => res.json())
       .then(json => {
         if (json.success) {
           saveCart([]);
-          document.getElementById('cartContent').innerHTML = `
-            <div style="text-align:center;padding:80px 20px">
-              <div style="font-size:2rem;margin-bottom:16px">✦</div>
-              <h2 style="font-family:var(--serif);margin-bottom:12px">Commande envoyée !</h2>
-              <p style="color:var(--muted);margin-bottom:28px">Je te recontacte sous 24h pour confirmer et organiser le paiement.</p>
-              <a href="index.html" class="btn btn-gold">Retour à l'accueil</a>
-            </div>`;
+          if (modePaiement === 'paypal') {
+            // Redirection vers PayPal avec le montant pré-rempli
+            window.location.href = PAYPAL_LINK + '/' + total;
+          } else {
+            // Carte bancaire : confirmation + message
+            document.getElementById('cartContent').innerHTML = `
+              <div style="text-align:center;padding:80px 20px">
+                <div style="font-size:2rem;margin-bottom:16px">✦</div>
+                <h2 style="font-family:var(--serif);margin-bottom:12px">Commande reçue !</h2>
+                <p style="color:var(--muted);margin-bottom:8px">Je te recontacte sous 24h avec un lien de paiement sécurisé par carte bancaire.</p>
+                <p style="font-size:.8rem;color:var(--muted);margin-bottom:28px">Vérifie bien ta boîte mail (et tes spams).</p>
+                <a href="index.html" class="btn btn-gold">Retour à l'accueil</a>
+              </div>`;
+          }
         } else {
           alert('Une erreur est survenue. Réessaie ou contacte-moi sur Instagram.');
+          document.getElementById('btnPaypal').disabled = false;
+          document.getElementById('btnCard').disabled   = false;
         }
       })
-      .catch(() => alert('Une erreur est survenue. Vérifie votre connexion.'));
-  });
+      .catch(() => {
+        alert('Une erreur est survenue. Vérifie ta connexion.');
+        document.getElementById('btnPaypal').disabled = false;
+        document.getElementById('btnCard').disabled   = false;
+      });
+  }
+
+  document.getElementById('btnPaypal').addEventListener('click', () => submitOrder('paypal'));
+  document.getElementById('btnCard').addEventListener('click',   () => submitOrder('carte'));
 
   updateBadge();
   renderPage();
