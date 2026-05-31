@@ -6,6 +6,8 @@
   <title>Finaliser ma commande — SeikoMods</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://www.paypal.com/sdk/js?client-id=AdZgXB7RcBNrtt7LY2ccnoJMB_Tlkhv_mexq2WCPF4GCV0girpIuH0gyy_xpTX109KD6538zOpN1XwXy&currency=EUR" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init('yZKNFnOhqtQ7DNsXj');</script>
 </head>
 <body>
 
@@ -299,6 +301,21 @@
 
   function showConfirmation(modePaiement) {
     saveCart([]);
+
+    // Envoi mail de confirmation au client via EmailJS
+    const form = document.getElementById('orderForm');
+    const templateParams = {
+      email:      form.querySelector('[name="email"]').value,
+      prenom:     form.querySelector('[name="prenom"]').value,
+      commande:   document.getElementById('f-commande').value,
+      prix_total: document.getElementById('f-prix').value,
+      adresse:    form.querySelector('[name="adresse"]').value,
+      code_postal:form.querySelector('[name="code_postal"]').value,
+      ville:      form.querySelector('[name="ville"]').value,
+      pays:       form.querySelector('[name="pays"]').value,
+    };
+    emailjs.send('service_6mtr82s', 'template_yetpg2a', templateParams).catch(() => {});
+
     const msg = modePaiement === 'carte'
       ? 'Je vous recontacte sous 24h avec un lien de paiement sécurisé par carte bancaire.'
       : 'Votre paiement a bien été reçu. Votre montre sera assemblée et expédiée sous 10-15 jours.';
@@ -307,7 +324,7 @@
         <div style="font-size:2rem;margin-bottom:16px">✦</div>
         <h2 style="font-family:var(--serif);margin-bottom:12px">Commande confirmée !</h2>
         <p style="color:var(--muted);margin-bottom:8px">${msg}</p>
-        <p style="font-size:.8rem;color:var(--muted);margin-bottom:28px">Vérifiez votre boîte mail (et vos spams).</p>
+        <p style="font-size:.8rem;color:var(--muted);margin-bottom:28px">Un email de confirmation a été envoyé à ${templateParams.email}.</p>
         <a href="index.html" class="btn btn-gold">Retour à l'accueil</a>
       </div>`;
   }
