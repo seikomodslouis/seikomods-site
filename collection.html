@@ -45,14 +45,21 @@
 </div>
 <section class="section" style="padding-top:40px">
 <div class="container">
-<div class="filters" id="filters">
-<button class="filter-btn active" data-filter="all">Tout voir</button>
-<button class="filter-btn" data-filter="seikojust">SeikoJust</button>
-<button class="filter-btn" data-filter="seikooak">Seiko Oak</button>
-<button class="filter-btn" data-filter="gmt">gmtS / SeikoSub</button>
-<button class="filter-btn" data-filter="sautilus">Sautilus</button>
-<button class="filter-btn" data-filter="seikona">Seikona</button>
-<button class="filter-btn" data-filter="seikosantos">SeikoSantos</button>
+<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-filter="all">Tout voir</button>
+    <button class="filter-btn" data-filter="seikojust">SeikoJust</button>
+    <button class="filter-btn" data-filter="seikooak">Seiko Oak</button>
+    <button class="filter-btn" data-filter="gmt">gmtS / SeikoSub</button>
+    <button class="filter-btn" data-filter="sautilus">Sautilus</button>
+    <button class="filter-btn" data-filter="seikona">Seikona</button>
+    <button class="filter-btn" data-filter="seikosantos">SeikoSantos</button>
+  </div>
+  <select id="priceSort" style="padding:8px 14px;border:1px solid var(--border);border-radius:8px;font-size:.8rem;font-weight:600;letter-spacing:.05em;background:var(--white);color:var(--text);cursor:pointer">
+    <option value="default">Trier par prix</option>
+    <option value="asc">Prix croissant</option>
+    <option value="desc">Prix décroissant</option>
+  </select>
 </div>
 <div class="filters" id="subfilters" style="display:none;margin-top:12px;border-top:1px solid var(--border);padding-top:16px">
 <button class="subfilter-btn active" data-finish="all">Toutes finitions</button>
@@ -2027,13 +2034,26 @@
       const matchSeikoSantos = currentSeikoSantos === 'all' || card.dataset.seikosantos === currentSeikoSantos;
       card.style.display = (matchCol && matchFin && matchBra && matchVar && matchROC && matchGMT && matchSubColor && matchSubBracelet && matchGMTColor && matchGMTBracelet && matchNautVariant && matchNautColor && matchDayColor && matchDayBracelet && matchDial && matchSeikoSantos) ? '' : 'none';
     });
-    // Remettre les bestsellers en premier
+    // Tri par prix ou bestsellers en premier
     const visible = Array.from(cards).filter(c => c.style.display !== 'none');
-    const bestsellers = visible.filter(c => c.querySelector('.badge-bestseller'));
-    const others = visible.filter(c => !c.querySelector('.badge-bestseller'));
-    [...bestsellers, ...others].forEach(c => grid.appendChild(c));
+    const sortVal = document.getElementById('priceSort')?.value || 'default';
+    let sorted;
+    if (sortVal === 'asc' || sortVal === 'desc') {
+      sorted = visible.sort((a, b) => {
+        const priceA = parseInt(a.querySelector('.price')?.textContent) || 0;
+        const priceB = parseInt(b.querySelector('.price')?.textContent) || 0;
+        return sortVal === 'asc' ? priceA - priceB : priceB - priceA;
+      });
+    } else {
+      const bestsellers = visible.filter(c => c.querySelector('.badge-bestseller'));
+      const others = visible.filter(c => !c.querySelector('.badge-bestseller'));
+      sorted = [...bestsellers, ...others];
+    }
+    sorted.forEach(c => grid.appendChild(c));
     updateVisibleFilterBtns();
   }
+
+  document.getElementById('priceSort').addEventListener('change', () => applyFilters());
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
