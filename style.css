@@ -349,6 +349,8 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
   /* ── Grilles ── */
   .grid-3{grid-template-columns:1fr 1fr}
   .grid-4{grid-template-columns:repeat(2,1fr)}
+  /* productsGrid exception : carousel horizontal, pas de grid 2 colonnes */
+  #productsGrid{grid-template-columns:unset}
   .reviews-grid{grid-template-columns:1fr}
 
   /* ── Collection cards : ratio carré plus impactant en 2 cols ── */
@@ -425,7 +427,7 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 
 @media(max-width:520px){
   /* ── Tout en 1 colonne ── */
-  .grid-4,.grid-3,.grid-2,.grid-4-gap{grid-template-columns:1fr}
+  .grid-4:not(#productsGrid),.grid-3,.grid-2,.grid-4-gap{grid-template-columns:1fr}
 
   /* ── Espacements ── */
   .section{padding:48px 0}
@@ -496,6 +498,42 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 
   /* ── Formulaire commande : padding réduit ── */
   .order-form-section{padding:16px}
+}
+
+/* ── Carousel horizontal produits (page collection) ─────────── */
+@media(max-width:768px){
+  #productsGrid{
+    display:flex;
+    flex-direction:row;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    gap:12px;
+    padding:0 16px 16px;
+    margin:0 -16px; /* compense le container padding */
+    background:transparent;
+  }
+  #productsGrid::-webkit-scrollbar{display:none}
+  #productsGrid .product-card{
+    flex:0 0 72vw;
+    max-width:300px;
+    scroll-snap-align:start;
+    background:var(--white);
+  }
+}
+@media(max-width:520px){
+  #productsGrid .product-card{
+    flex:0 0 80vw;
+    max-width:280px;
+  }
+}
+@media(max-width:360px){
+  #productsGrid .product-card{
+    flex:0 0 85vw;
+    max-width:260px;
+  }
 }
 
 /* ── Très petits écrans (iPhone SE 1ère gen, vieux Android) ─── */
