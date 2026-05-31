@@ -59,8 +59,8 @@
             <h3>Choisissez votre modèle</h3>
           </div>
           <div class="options-grid">
-            <div class="option-card" data-step="model" data-value="datejust-39" data-label="DateJust" data-price="0" data-img="images/dayjust-steel-jubilee.png">
-              <div class="opt-name">DateJust</div>
+            <div class="option-card" data-step="model" data-value="seikojust-39" data-label="SeikoJust" data-price="0" data-img="images/seikojust-steel-jubilee.png">
+              <div class="opt-name">SeikoJust</div>
               <div class="opt-price">à partir de 149 €</div>
             </div>
             <div class="option-card" data-step="model" data-value="royaloak" data-label="Royal Oak" data-price="20" data-img="images/royaloak-steel.png">
@@ -98,7 +98,7 @@
           </div>
         </div>
 
-        <!-- ÉTAPE 1b : TAILLE (DateJust uniquement) -->
+        <!-- ÉTAPE 1b : TAILLE (SeikoJust uniquement) -->
         <div class="config-step" id="sizeStep" style="display:none">
           <div class="config-step-header">
             <div class="step-dot">2</div>
@@ -140,7 +140,7 @@
           <p style="font-size:.72rem;color:var(--muted);margin-top:8px">Ce ne sont pas les vraies couleurs — rendez-vous sur <a id="collectionLink" href="collection.html?collection=royaloak" style="color:inherit;text-decoration:underline">Collection</a> pour un meilleur aperçu.</p>
         </div>
 
-        <!-- ÉTAPE 4 : TYPE DE CADRAN (DateJust uniquement) -->
+        <!-- ÉTAPE 4 : TYPE DE CADRAN (SeikoJust uniquement) -->
         <div class="config-step" id="dialtypeStep" style="display:none">
           <div class="config-step-header">
             <div class="step-dot">4</div>
@@ -168,7 +168,7 @@
           <img id="dialLightboxImg" src="" alt="">
         </div>
 
-        <!-- ÉTAPE 6 : AIGUILLES (DateJust uniquement) -->
+        <!-- ÉTAPE 6 : AIGUILLES (SeikoJust uniquement) -->
         <div class="config-step" id="handsStep" style="display:none">
           <div class="config-step-header">
             <div class="step-dot" id="handsDot">6</div>
@@ -269,7 +269,7 @@
 
         <div class="config-summary-box">
           <h4>Récapitulatif</h4>
-          <div class="summary-line"><span class="lbl">Modèle</span><span class="val" id="s-modele">DateJust 39mm</span></div>
+          <div class="summary-line"><span class="lbl">Modèle</span><span class="val" id="s-modele">SeikoJust 39mm</span></div>
           <div class="summary-line" id="s-size-line" style="display:none"><span class="lbl">Taille</span><span class="val" id="s-size">—</span></div>
           <div class="summary-line"><span class="lbl">Finition</span><span class="val" id="s-finition">Acier</span></div>
           <div class="summary-line" id="s-dialtype-line"><span class="lbl">Type cadran</span><span class="val" id="s-dialtype">No Number Dial</span></div>
@@ -344,7 +344,7 @@
 
   // ── CONFIG STATE ──
   const BASE_PRICES = {
-    'datejust-39': 149,
+    'seikojust-39': 149,
     'royaloak': 179, 'gmt': 169,
     'submariner': 149, 'nautilus': 189
   };
@@ -553,7 +553,7 @@
   };
 
   const MODEL_DIALTYPES = {
-    'datejust-39': ['no-number', 'arabic', 'roman', 'wimbledon']
+    'seikojust-39': ['no-number', 'arabic', 'roman', 'wimbledon']
     // autres modèles : pas de type de cadran spécifique
   };
 
@@ -616,7 +616,7 @@
   };
 
   const MODEL_STRAPS = {
-    'datejust-39': ['jubilee-steel', 'oyster-steel', 'president'],
+    'seikojust-39': ['jubilee-steel', 'oyster-steel', 'president'],
     'royaloak':    ['royaloak-classic', 'royaloak-chronograph'],
     'gmt':         ['jubilee-steel', 'oyster-steel'],
     'submariner':  ['jubilee-steel', 'oyster-steel'],
@@ -663,7 +663,7 @@
     state.strap = { value: '', label: '—', price: 0 };
   }
 
-  // Photos boîtier DateJust par finition + bracelet
+  // Photos boîtier SeikoJust par finition + bracelet
   const DJ_CASE_PHOTOS = {
     'steel': {
       'jubilee-steel': 'images/dj-steel-jubilee.jpg',
@@ -692,7 +692,7 @@
     },
   };
 
-  // Finitions disponibles par bracelet pour la DateJust
+  // Finitions disponibles par bracelet pour la SeikoJust
   const DJ_FINISHES_BY_STRAP = {
     'jubilee-steel': ['steel', 'gold', 'rose-gold', 'steel-gold', 'steel-rose-gold'],
     'oyster-steel':  ['steel', 'gold', 'rose-gold', 'steel-gold', 'steel-rose-gold'],
@@ -841,7 +841,7 @@
   };
 
   const MODEL_FINISHES = {
-    'datejust-39': ['steel', 'gold', 'rose-gold', 'steel-gold', 'steel-rose-gold'],
+    'seikojust-39': ['steel', 'gold', 'rose-gold', 'steel-gold', 'steel-rose-gold'],
     'royaloak':    ['steel', 'gold', 'rose-gold'],
     'gmt':         ['steel', 'steel-gold', 'steel-rose-gold', 'rose-gold'],
     'submariner':  ['steel', 'gold', 'steel-gold'],
@@ -852,7 +852,7 @@
     const grid = document.getElementById('finishGrid');
     // Filtrer les finitions par bracelet si disponible
     let finishes;
-    if (modelValue === 'datejust-39' && strapValue && DJ_FINISHES_BY_STRAP[strapValue]) {
+    if (modelValue === 'seikojust-39' && strapValue && DJ_FINISHES_BY_STRAP[strapValue]) {
       finishes = DJ_FINISHES_BY_STRAP[strapValue];
     } else if (modelValue === 'royaloak' && strapValue && RO_FINISHES_BY_STRAP[strapValue]) {
       finishes = RO_FINISHES_BY_STRAP[strapValue];
@@ -868,7 +868,7 @@
     grid.innerHTML = finishes.map((key, i) => {
       const f = FINISH_OPTIONS[key];
       // Photo boîtier si dispo, sinon swatch couleur
-      const casePhoto = (modelValue === 'datejust-39' && strapValue && DJ_CASE_PHOTOS[key]?.[strapValue])
+      const casePhoto = (modelValue === 'seikojust-39' && strapValue && DJ_CASE_PHOTOS[key]?.[strapValue])
         || (modelValue === 'royaloak' && strapValue && RO_CASE_PHOTOS[strapValue]?.[key])
         || (modelValue === 'nautilus' && NAUTILUS_CASE_PHOTOS[key])
         || (modelValue === 'submariner' && strapValue && SUB_CASE_PHOTOS[strapValue]?.[key])
@@ -921,7 +921,7 @@
   }
 
   const MODEL_IMAGES = {
-    'datejust-39': 'images/dayjust-steel-jubilee.png',
+    'seikojust-39': 'images/seikojust-steel-jubilee.png',
     'royaloak':    'images/royaloak-steel.png',
     'gmt':         'images/40mm-steel-gmt-jubilee.png',
     'submariner':  'images/submariner-steel.png',
@@ -966,27 +966,27 @@
     if (isNautilus && state.strap.value === '') {
       state.strap = { value: 'nautilus-integrated', label: 'Intégré', price: 0, img: '' };
     }
-    const isDateJust  = state.model.value === 'datejust-39';
+    const isSeikoJust  = state.model.value === 'seikojust-39';
     const isRoyalOak  = state.model.value === 'royaloak';
     const isROClassic = isRoyalOak && state.strap.value === 'royaloak-classic';
-    const showHands   = isDateJust || isROClassic || isNautilus;
+    const showHands   = isSeikoJust || isROClassic || isNautilus;
     const sizeSelected    = state.size && state.size.value !== '';
     const strapSelected   = state.strap.value !== '';
     const finishSelected  = state.finish.value !== '';
     const dialSelected    = state.dial.value !== '';
 
-    // Taille (DateJust uniquement)
-    document.getElementById('sizeStep').style.display = isDateJust ? '' : 'none';
-    document.getElementById('s-size-line').style.display = isDateJust ? '' : 'none';
-    if (isDateJust) document.getElementById('s-size').textContent = state.size && state.size.value ? state.size.label : '—';
+    // Taille (SeikoJust uniquement)
+    document.getElementById('sizeStep').style.display = isSeikoJust ? '' : 'none';
+    document.getElementById('s-size-line').style.display = isSeikoJust ? '' : 'none';
+    if (isSeikoJust) document.getElementById('s-size').textContent = state.size && state.size.value ? state.size.label : '—';
 
     // Affichage progressif : chaque étape n'apparaît qu'après la précédente
-    document.getElementById('strapStep').style.display = (isModelSelected && !isNautilus && (!isDateJust || sizeSelected)) ? '' : 'none';
+    document.getElementById('strapStep').style.display = (isModelSelected && !isNautilus && (!isSeikoJust || sizeSelected)) ? '' : 'none';
     document.getElementById('finishStep').style.display    = (isModelSelected && (isNautilus || strapSelected)) ? '' : 'none';
     const isChronoRO = state.model.value === 'royaloak' && state.strap.value === 'royaloak-chronograph';
     document.getElementById('fondBoiteNote').style.display = (isModelSelected && !['daytona','santos'].includes(state.model.value) && !isChronoRO) ? '' : 'none';
     const collectionMap = {
-      'datejust-39': 'datejust',
+      'seikojust-39': 'seikojust',
       'royaloak':    'royaloak',
       'gmt':         'gmt',
       'submariner':  'gmt',
@@ -1002,7 +1002,7 @@
     document.querySelectorAll('[data-step="hands"]').forEach(card => {
       const forModel = card.dataset.model;
       if (!forModel) {
-        card.style.display = isDateJust ? '' : 'none';
+        card.style.display = isSeikoJust ? '' : 'none';
       } else {
         const models = forModel.split(' ');
         card.style.display = models.includes(state.model.value) ? '' : 'none';
@@ -1088,7 +1088,7 @@
       state.strap.value   !== '' ? state.strap.label   : null,
     ].filter(Boolean);
     let caseImg = null;
-    if (state.model.value === 'datejust-39' && state.finish.value && state.strap.value) {
+    if (state.model.value === 'seikojust-39' && state.finish.value && state.strap.value) {
       caseImg = DJ_CASE_PHOTOS[state.finish.value]?.[state.strap.value] || null;
     } else if (state.model.value === 'royaloak' && state.strap.value) {
       caseImg = RO_CASE_PHOTOS[state.strap.value]?.[state.finish.value] || null;
