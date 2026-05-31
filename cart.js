@@ -71,9 +71,10 @@ function renderCart() {
       <div class="cart-item-info">
         <h4>${item.name}</h4>
         <div class="cart-item-opts">
-          ${item.opts.bracelet ? `Bracelet: ${item.opts.bracelet}<br>` : ''}
-          ${item.opts.cadran   ? `Cadran: ${item.opts.cadran}<br>`    : ''}
-          ${item.opts.aiguilles? `Aiguilles: ${item.opts.aiguilles}`  : ''}
+          ${item.opts.finition  ? `Finition: ${item.opts.finition}<br>`  : ''}
+          ${item.opts.bracelet  ? `Bracelet: ${item.opts.bracelet}<br>` : ''}
+          ${item.opts.cadran    ? `Cadran: ${item.opts.cadran}<br>`    : ''}
+          ${item.opts.aiguilles ? `Aiguilles: ${item.opts.aiguilles}`  : ''}
         </div>
         <div class="cart-item-price">${item.price} €</div>
       </div>

@@ -1085,6 +1085,7 @@
       state.model.label,
       getTotal(),
       {
+        finition:  state.finish.value  !== '' ? state.finish.label  : null,
         bracelet:  state.strap.value   !== '' ? state.strap.label   : null,
         cadran:    state.dial.value    !== '' ? state.dial.label     : null,
         aiguilles: state.hands.value   !== '' ? state.hands.label   : null,

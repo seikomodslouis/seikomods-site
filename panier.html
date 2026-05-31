@@ -212,8 +212,9 @@
         <div class="panier-item-info">
           <div class="panier-item-name">${item.name}</div>
           <div class="panier-item-opts">
-            ${item.opts.bracelet  ? `<span>Bracelet : ${item.opts.bracelet}</span>` : ''}
-            ${item.opts.cadran    ? `<span>Cadran : ${item.opts.cadran}</span>`     : ''}
+            ${item.opts.finition  ? `<span>Finition : ${item.opts.finition}</span>`   : ''}
+            ${item.opts.bracelet  ? `<span>Bracelet : ${item.opts.bracelet}</span>`   : ''}
+            ${item.opts.cadran    ? `<span>Cadran : ${item.opts.cadran}</span>`       : ''}
             ${item.opts.aiguilles ? `<span>Aiguilles : ${item.opts.aiguilles}</span>` : ''}
           </div>
           <div class="panier-item-price">${item.price} €</div>
