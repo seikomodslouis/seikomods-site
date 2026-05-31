@@ -334,5 +334,12 @@
   }));
 </script>
 <script src="cart.js"></script>
+<script>
+  const btt = document.getElementById("backToTop");
+  if (btt) {
+    window.addEventListener("scroll", () => btt.classList.toggle("visible", window.scrollY > 400));
+    btt.addEventListener("click", () => window.scrollTo({top:0,behavior:"smooth"}));
+  }
+</script>
 </body>
 </html>

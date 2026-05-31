@@ -381,3 +381,8 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 .panier-img-label{font-size:.65rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
 .panier-summary{position:sticky;top:100px}
 @media(max-width:768px){.panier-layout{grid-template-columns:1fr}}
+
+/* ── Bouton retour en haut ───────────────────────────────────── */
+.back-to-top{position:fixed;bottom:28px;right:24px;z-index:900;width:44px;height:44px;background:var(--black);color:#fff;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.back-to-top.visible{opacity:1;pointer-events:all}
+.back-to-top:hover{transform:translateY(-3px)}
