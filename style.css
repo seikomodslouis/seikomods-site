@@ -30,8 +30,8 @@
 
 /* ── Reset ──────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;scroll-padding-top:90px;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-text-size-adjust:100%;position:relative}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none;transition:color var(--transition)}
 ul{list-style:none}
@@ -403,6 +403,8 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 
   /* ── Filtres scrollables horizontalement ── */
   .filters{
+    width:100%;
+    max-width:100%;
     overflow-x:scroll;
     flex-wrap:nowrap;
     padding-bottom:10px;
