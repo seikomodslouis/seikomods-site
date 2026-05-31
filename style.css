@@ -308,7 +308,9 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
 }
 @media(max-width:768px){
   .section{padding:64px 0}
-  .nav-links,.nav-cta-btn{display:none}
+  .nav-links{display:none}
+  .nav-cta-btn{display:none}
+  .nav-cta-btn#cartBtn{display:flex}
   .nav-toggle{display:flex}
   .grid-3{grid-template-columns:1fr 1fr}
   .reviews-grid{grid-template-columns:1fr}
