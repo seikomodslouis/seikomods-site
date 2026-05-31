@@ -79,8 +79,8 @@
               <div class="opt-name">Sautilus</div>
               <div class="opt-price">à partir de 189 €</div>
             </div>
-            <div class="option-card" data-step="model" data-value="santos" data-label="Santos" data-price="0" data-img="">
-              <div class="opt-name">Santos</div>
+            <div class="option-card" data-step="model" data-value="seikosantos" data-label="SeikoSantos" data-price="0" data-img="">
+              <div class="opt-name">SeikoSantos</div>
               <div class="opt-price">à partir de 149 €</div>
             </div>
             <div class="option-card" data-step="model" data-value="seikona" data-label="Seikona" data-price="0" data-img="">
@@ -984,14 +984,14 @@
     document.getElementById('strapStep').style.display = (isModelSelected && !isSautilus && (!isSeikoJust || sizeSelected)) ? '' : 'none';
     document.getElementById('finishStep').style.display    = (isModelSelected && (isSautilus || strapSelected)) ? '' : 'none';
     const isChronoRO = state.model.value === 'seikooak' && state.strap.value === 'seikooak-chronograph';
-    document.getElementById('fondBoiteNote').style.display = (isModelSelected && !['seikona','santos'].includes(state.model.value) && !isChronoRO) ? '' : 'none';
+    document.getElementById('fondBoiteNote').style.display = (isModelSelected && !['seikona','seikosantos'].includes(state.model.value) && !isChronoRO) ? '' : 'none';
     const collectionMap = {
       'seikojust-39': 'seikojust',
       'seikooak':    'seikooak',
       'gmt':         'gmt',
       'seikosub':  'gmt',
       'sautilus':    'sautilus',
-      'santos':      'santos',
+      'seikosantos':      'seikosantos',
       'seikona':     'seikona'
     };
     const collSlug = collectionMap[state.model.value] || 'seikooak';
