@@ -63,8 +63,12 @@
           <div class="config-summary-box">
             <h4>Récapitulatif</h4>
             <div id="panierSummaryLines"></div>
+            <div class="summary-line" style="padding:8px 0;border-top:1px solid var(--border);margin-top:8px">
+              <span class="lbl" style="color:var(--muted);font-size:.85rem">Livraison Colissimo</span>
+              <span class="val" style="color:var(--muted);font-size:.85rem">10 €</span>
+            </div>
             <div class="summary-total">
-              <span>Total estimé</span>
+              <span>Total</span>
               <span class="summary-price" id="panierTotal">0 €</span>
             </div>
           </div>
@@ -226,7 +230,7 @@
         <span class="val">${item.price} €</span>
       </div>
     `).join('');
-    document.getElementById('panierTotal').textContent = total + ' €';
+    document.getElementById('panierTotal').textContent = (total + 10) + ' €';
   }
 
   document.getElementById('checkoutBtn').addEventListener('click', goToCheckout);

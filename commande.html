@@ -61,8 +61,12 @@
       <div class="config-summary-box" style="margin-bottom:48px">
         <h4>Récapitulatif</h4>
         <div id="commandeItems"></div>
+        <div class="summary-line" style="padding:8px 0;border-top:1px solid var(--border);margin-top:8px">
+          <span style="color:var(--muted);font-size:.85rem">Livraison Colissimo</span>
+          <span style="color:var(--muted);font-size:.85rem">10 €</span>
+        </div>
         <div class="summary-total">
-          <span>Total estimé</span>
+          <span>Total</span>
           <span class="summary-price" id="commandeTotal">0 €</span>
         </div>
       </div>
@@ -263,7 +267,7 @@
     `).join('');
 
     const total = getCartTotal(cart);
-    document.getElementById('commandeTotal').textContent = total + ' €';
+    document.getElementById('commandeTotal').textContent = (total + 10) + ' €';
 
     // Pré-remplir champs cachés
     const commandeDesc = cart.map(item => {
