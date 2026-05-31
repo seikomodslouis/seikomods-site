@@ -1132,6 +1132,39 @@
   renderFinishes(state.model.value, state.strap.value);
   renderDialType(state.model.value);
   updateUI();
+
+  // ── Pré-sélection via paramètres URL ─────────────────────────
+  function autoSelect(step, value) {
+    const card = document.querySelector(`[data-step="${step}"][data-value="${value}"]`);
+    if (card) { card.click(); return true; }
+    return false;
+  }
+
+  (function preSelectFromURL() {
+    const p = new URLSearchParams(window.location.search);
+    const model  = p.get('model');
+    const strap  = p.get('strap');
+    const finish = p.get('finish');
+    if (!model) return;
+
+    // 1. Modèle
+    if (!autoSelect('model', model)) return;
+
+    // 2. Bracelet (rendu dynamiquement après sélection du modèle)
+    if (strap) {
+      // Attendre que renderStraps soit terminé
+      setTimeout(() => {
+        autoSelect('strap', strap);
+        // 3. Finition (rendu dynamiquement après sélection du bracelet)
+        if (finish) {
+          setTimeout(() => autoSelect('finish', finish), 50);
+        }
+      }, 50);
+    } else if (finish) {
+      // Sautilus : pas de bracelet, finition directe
+      setTimeout(() => autoSelect('finish', finish), 50);
+    }
+  })();
 </script>
   <script src="cart.js"></script>
 </body>
