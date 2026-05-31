@@ -324,7 +324,7 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
   /* ── Nav ── */
   .nav-links{display:none}
   .nav-cta-btn{display:none}
-  .nav-cta-btn#cartBtn{display:flex;padding:8px 10px;font-size:0;gap:0}
+  .nav-cta-btn#cartBtn{display:flex;padding:8px 10px;font-size:0;gap:0;margin-left:auto}
   .nav-cta-btn#cartBtn svg{width:18px;height:18px}
   .nav-toggle{display:flex}
   /* Menu mobile */
