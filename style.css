@@ -516,11 +516,12 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
     overflow-y:visible;
     scroll-snap-type:x mandatory;
     -webkit-overflow-scrolling:touch;
+    /* Empêche le scroll de se propager à la page */
+    overscroll-behavior-x:contain;
     scrollbar-width:none;
     gap:12px;
     padding-bottom:16px;
     background:transparent;
-    /* Indique à iOS que le swipe horizontal appartient à ce conteneur */
     touch-action:pan-x;
   }
   #productsGrid::-webkit-scrollbar{display:none}
@@ -530,7 +531,6 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
     min-width:200px;
     scroll-snap-align:start;
     background:var(--white);
-    /* Empêche les cards d'intercepter le swipe */
     touch-action:pan-x;
   }
 }
