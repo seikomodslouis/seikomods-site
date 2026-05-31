@@ -321,9 +321,12 @@
   });
 
   // ─── Bouton PayPal — affiche les boutons SDK après validation ──────────
+  let paypalRendered = false;
   document.getElementById('btnPaypal').addEventListener('click', () => {
     const form = document.getElementById('orderForm');
     if (!form.checkValidity()) { form.reportValidity(); return; }
+    if (paypalRendered) return;
+    paypalRendered = true;
 
     // Cacher le bouton, afficher les boutons SDK
     document.getElementById('btnPaypal').style.display = 'none';
