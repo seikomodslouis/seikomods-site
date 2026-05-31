@@ -286,7 +286,7 @@
       return item.name + (opts.length ? ' (' + opts.join(', ') + ')' : '');
     }).join(' | ');
     document.getElementById('f-commande').value = commandeDesc;
-    document.getElementById('f-prix').value     = total + ' €';
+    document.getElementById('f-prix').value     = (total + 10) + ' €';
   }
 
   // ─── Envoi du mail de confirmation (après paiement) ────────────────────
