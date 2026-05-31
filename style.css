@@ -351,6 +351,13 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
   .grid-4{grid-template-columns:repeat(2,1fr)}
   .reviews-grid{grid-template-columns:1fr}
 
+  /* ── Collection cards : ratio carré plus impactant en 2 cols ── */
+  .coll-card-inner{aspect-ratio:1}
+
+  /* ── Product cards : padding réduit pour 2 colonnes ── */
+  .product-card-body{padding:14px}
+  .product-card-body h3{font-size:.92rem}
+
   /* ── Guarantees : 1 colonne ── */
   .guarantees{grid-template-columns:1fr}
   .guarantee{border-right:none;border-bottom:1px solid var(--border)}
@@ -366,14 +373,16 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
   /* ── Contact ── */
   .contact-layout{grid-template-columns:1fr}
 
-  /* ── Hero ── */
+  /* ── Hero : dvh pour exclure le chrome du navigateur iOS ── */
+  .hero{min-height:100dvh}
   .hero-stats{gap:28px}
+
+  /* ── Cart sidebar : plein écran + hauteur dynamique ── */
+  .cart-sidebar{width:100vw;right:-100vw;height:100dvh}
 
   /* ── Formulaires ── */
   .form-row{grid-template-columns:1fr}
-
-  /* ── Cart sidebar plein écran sur mobile ── */
-  .cart-sidebar{width:100vw;right:-100vw}
+  .order-form-section{padding:20px 16px}
 
   /* ── Page hero (sous-pages) ── */
   .page-hero{padding:110px 0 48px}
@@ -384,6 +393,9 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
   .panier-item-visuals{width:100%;justify-content:flex-start}
   /* Summary n'est plus sticky sur mobile */
   .panier-summary{position:static;top:auto}
+
+  /* ── FAQ : questions plus lisibles ── */
+  .faq-q{font-size:.88rem}
 
   /* ── Filtres scrollables horizontalement ── */
   .filters{
@@ -481,6 +493,32 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
     text-align:center;
   }
   #toast.show{transform:translateY(0)}
+
+  /* ── Formulaire commande : padding réduit ── */
+  .order-form-section{padding:16px}
+}
+
+/* ── Très petits écrans (iPhone SE 1ère gen, vieux Android) ─── */
+@media(max-width:360px){
+  /* h1 légèrement réduit pour éviter le débordement */
+  h1{font-size:clamp(1.9rem,8.5vw,2.4rem)}
+  /* Davantage d'espace dans le container */
+  .container{padding:0 12px}
+  /* Nav mobile encore plus compact */
+  .nav-mobile{gap:18px;padding:24px 16px}
+  .nav-mobile a{font-size:1.3rem}
+  /* Garanties */
+  .guarantee{padding:16px 12px}
+  /* Product cards : body encore plus compact */
+  .product-card-body{padding:12px}
+  /* Filtres : boutons plus petits */
+  .filter-btn,.subfilter-btn,.bracelet-btn{padding:7px 12px;font-size:.66rem}
+  /* Config options : 2 colonnes fixes sur très petit écran */
+  .options-grid{grid-template-columns:1fr 1fr}
+  /* Process */
+  .process-step{padding:20px 12px}
+  /* Infos page : cards techniques */
+  .sh p{font-size:.9rem}
 }
 
 /* ── Panier ──────────────────────────────────────────────────── */
