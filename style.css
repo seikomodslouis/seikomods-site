@@ -323,9 +323,65 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
   .grid-4{grid-template-columns:repeat(2,1fr)}
   .guarantees{grid-template-columns:1fr}
   .guarantee{border-right:none}
+  /* Cart sidebar plein écran */
+  .cart-sidebar{width:100vw;right:-100vw}
+  /* Page hero */
+  .page-hero{padding:110px 0 48px}
+  /* Panier page */
+  .panier-item{flex-wrap:wrap;gap:14px}
+  .panier-item-visuals{width:100%;justify-content:flex-start}
+  /* Nav mobile */
+  .nav-mobile a{font-size:1.8rem}
+  /* Tap targets minimum 44px */
+  .btn,.filter-btn,.subfilter-btn,.bracelet-btn,.faq-q{min-height:44px}
+  /* Filtres scrollables horizontalement */
+  .filters{overflow-x:auto;flex-wrap:nowrap;padding-bottom:10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  /* Configurateur */
+  .config-step{padding:20px 16px}
+  .config-panel{order:-1}
+  /* Process */
+  .process-step{padding:28px 20px}
 }
 @media(max-width:520px){
   .grid-4,.grid-3,.grid-2,.grid-4-gap{grid-template-columns:1fr}
+  .section{padding:48px 0}
+  .section-sm{padding:40px 0}
+  .container{padding:0 16px}
+  /* Hero */
+  .hero{padding-top:80px}
+  .hero-sub{font-size:.95rem}
+  .hero-btns{flex-direction:column;align-items:stretch}
+  .hero-btns .btn{width:100%;justify-content:center}
+  .hero-stats{flex-direction:column;gap:16px;padding-top:32px;margin-top:40px}
+  /* Page hero */
+  .page-hero{padding:90px 0 36px}
+  /* Product card actions empilées */
+  .product-card-actions{flex-direction:column}
+  .product-card-actions .btn{width:100%}
+  /* Nav mobile compact */
+  .nav-mobile a{font-size:1.5rem}
+  .nav-mobile{gap:28px;padding:32px 24px}
+  /* Panier */
+  .panier-item-img{width:64px;height:64px}
+  /* Stats */
+  .stat-num{font-size:1.7rem}
+  /* Guarantees */
+  .guarantee{padding:20px 16px}
+  /* Configurateur */
+  .options-grid{grid-template-columns:repeat(auto-fill,minmax(90px,1fr))}
+  .config-summary-box{padding:16px}
+  .config-preview-box{padding:20px}
+  /* Process */
+  .process-num{font-size:2.2rem}
+  .process-step{padding:24px 16px}
+  /* Reviews */
+  .review-card{padding:20px}
+  /* Section header */
+  .sh{margin-bottom:36px}
+  /* Toast en bas, pleine largeur */
+  #toast{left:16px;right:16px;transform:translateY(20px);width:auto;white-space:normal;text-align:center}
+  #toast.show{transform:translateY(0)}
 }
 
 /* ── Panier ──────────────────────────────────────────────────── */

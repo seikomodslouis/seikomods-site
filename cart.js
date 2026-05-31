@@ -120,7 +120,7 @@ function closeCart() {
 // ── Compteur de la nav ───────────────────────────────────────
 function updateCartCount() {
   const count = cart.length;
-  ['cartBadge', 'cartCount'].forEach(id => {
+  ['cartBadge', 'cartBadgeMobile', 'cartCount'].forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
     el.textContent = count;
