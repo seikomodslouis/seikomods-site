@@ -63,6 +63,9 @@
 
         <!-- Récapitulatif + paiement -->
         <div class="panier-summary">
+          <div id="freeShippingBanner" style="display:none;background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:12px 14px;margin-bottom:12px;font-size:.82rem;color:#166534;font-weight:600;text-align:center">
+            🚚 Plus qu'une montre pour la livraison offerte !
+          </div>
           <div class="config-summary-box">
             <h4>Récapitulatif</h4>
             <div id="panierSummaryLines"></div>
@@ -230,6 +233,8 @@
     // Résumé
     const total = getCartTotal(cart);
     const shipping = cart.length >= 2 ? 0 : 10;
+    const banner = document.getElementById('freeShippingBanner');
+    if (banner) banner.style.display = cart.length === 1 ? 'block' : 'none';
     document.getElementById('panierSummaryLines').innerHTML = cart.map((item, i) => `
       <div class="summary-line">
         <span class="lbl">${item.name}</span>
