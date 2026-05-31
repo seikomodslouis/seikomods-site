@@ -68,7 +68,7 @@
             <div id="panierSummaryLines"></div>
             <div class="summary-line" style="padding:8px 0;border-top:1px solid var(--border);margin-top:8px">
               <span class="lbl" style="color:var(--muted);font-size:.85rem">Livraison Colissimo</span>
-              <span class="val" style="color:var(--muted);font-size:.85rem">10 €</span>
+              <span class="val" style="font-size:.85rem" id="panierShipping">10 €</span>
             </div>
             <div class="summary-total">
               <span>Total</span>
@@ -229,13 +229,22 @@
 
     // Résumé
     const total = getCartTotal(cart);
+    const shipping = cart.length >= 2 ? 0 : 10;
     document.getElementById('panierSummaryLines').innerHTML = cart.map((item, i) => `
       <div class="summary-line">
         <span class="lbl">${item.name}</span>
         <span class="val">${item.price} €</span>
       </div>
     `).join('');
-    document.getElementById('panierTotal').textContent = (total + 10) + ' €';
+    const shippingEl = document.getElementById('panierShipping');
+    if (shippingEl) {
+      if (shipping === 0) {
+        shippingEl.innerHTML = '<span style="color:green;font-weight:600">🎉 Offerte !</span>';
+      } else {
+        shippingEl.textContent = '10 €';
+      }
+    }
+    document.getElementById('panierTotal').textContent = (total + shipping) + ' €';
   }
 
   document.getElementById('checkoutBtn').addEventListener('click', goToCheckout);

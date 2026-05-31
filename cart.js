@@ -33,6 +33,14 @@ function getCartTotal() {
   return cart.reduce((sum, i) => sum + i.price, 0);
 }
 
+function getShipping() {
+  return cart.length >= 2 ? 0 : 10;
+}
+
+function getTotalWithShipping() {
+  return getCartTotal() + getShipping();
+}
+
 // ── Render du sidebar ────────────────────────────────────────
 function renderCart() {
   const container  = document.getElementById('cartItems');
@@ -84,7 +92,16 @@ function renderCart() {
 
   if (footer) {
     footer.style.display = 'block';
-    if (totalEl) totalEl.textContent = `${getCartTotal()} €`;
+    const shipping = getShipping();
+    const shippingEl = document.getElementById('cartShipping');
+    if (shippingEl) {
+      if (shipping === 0) {
+        shippingEl.innerHTML = '<span style="color:green;font-weight:600">🎉 Livraison offerte !</span>';
+      } else {
+        shippingEl.textContent = '10 €';
+      }
+    }
+    if (totalEl) totalEl.textContent = `${getTotalWithShipping()} €`;
   }
 }
 

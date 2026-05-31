@@ -68,7 +68,7 @@
         <div id="commandeItems"></div>
         <div class="summary-line" style="padding:8px 0;border-top:1px solid var(--border);margin-top:8px">
           <span style="color:var(--muted);font-size:.85rem">Livraison Colissimo</span>
-          <span style="color:var(--muted);font-size:.85rem">10 €</span>
+          <span style="font-size:.85rem" id="commandeShipping">10 €</span>
         </div>
         <div class="summary-total">
           <span>Total</span>
@@ -280,7 +280,16 @@
     `).join('');
 
     const total = getCartTotal(cart);
-    document.getElementById('commandeTotal').textContent = (total + 10) + ' €';
+    const shipping = cart.length >= 2 ? 0 : 10;
+    const shippingEl = document.getElementById('commandeShipping');
+    if (shippingEl) {
+      if (shipping === 0) {
+        shippingEl.innerHTML = '<span style="color:green;font-weight:600">🎉 Offerte !</span>';
+      } else {
+        shippingEl.textContent = '10 €';
+      }
+    }
+    document.getElementById('commandeTotal').textContent = (total + shipping) + ' €';
 
     // Pré-remplir champs cachés
     const commandeDesc = cart.map(item => {
@@ -291,7 +300,7 @@
       return item.name + (opts.length ? ' (' + opts.join(', ') + ')' : '');
     }).join(' | ');
     document.getElementById('f-commande').value = commandeDesc;
-    document.getElementById('f-prix').value     = (total + 10) + ' €';
+    document.getElementById('f-prix').value     = (total + shipping) + ' €';
   }
 
   // ─── Envoi du mail de confirmation (après paiement) ────────────────────
