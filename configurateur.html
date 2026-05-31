@@ -914,10 +914,11 @@
   function getTotal() {
     if (state.model.value === 'seikona') return 159;
     if (state.model.value === 'gmt') return 199;
+    if (state.model.value === 'seikojust-39') {
+      const steelFinishes = ['steel'];
+      return steelFinishes.includes(state.finish.value) ? 170 : 180;
+    }
     return 179;
-    // eslint-disable-next-line no-unreachable
-    const base = BASE_PRICES[state.model.value] || 149;
-    return base + state.strap.price + state.finish.price + (state.dialtype ? state.dialtype.price : 0) + state.dial.price + state.hands.price;
   }
 
   function updateUI() {
