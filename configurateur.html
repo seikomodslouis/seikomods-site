@@ -71,8 +71,8 @@
               <div class="opt-name">GMT 40mm</div>
               <div class="opt-price">à partir de 169 €</div>
             </div>
-            <div class="option-card" data-step="model" data-value="submariner" data-label="Submariner" data-price="0" data-img="images/submariner-steel.png">
-              <div class="opt-name">Submariner</div>
+            <div class="option-card" data-step="model" data-value="seikosub" data-label="SeikoSub" data-price="0" data-img="images/seikosub-steel.png">
+              <div class="opt-name">SeikoSub</div>
               <div class="opt-price">à partir de 149 €</div>
             </div>
             <div class="option-card" data-step="model" data-value="sautilus" data-label="Sautilus" data-price="30" data-img="images/sautilus-steel.png">
@@ -235,17 +235,17 @@
               <div class="opt-name">Or Rose</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="hands" data-value="sub-argent" data-label="Argent" data-price="0" data-img="images/hands-sub-argent.jpg" data-model="submariner gmt">
+            <div class="option-card" data-step="hands" data-value="sub-argent" data-label="Argent" data-price="0" data-img="images/hands-sub-argent.jpg" data-model="seikosub gmt">
               <div class="dial-thumb-wrap"><img src="images/hands-sub-argent.jpg" alt="Argent" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Argent</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="hands" data-value="sub-or" data-label="Or" data-price="0" data-img="images/hands-sub-or.jpg" data-model="submariner gmt">
+            <div class="option-card" data-step="hands" data-value="sub-or" data-label="Or" data-price="0" data-img="images/hands-sub-or.jpg" data-model="seikosub gmt">
               <div class="dial-thumb-wrap"><img src="images/hands-sub-or.jpg" alt="Or" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Or</div>
               <div class="opt-price">+0 €</div>
             </div>
-            <div class="option-card" data-step="hands" data-value="sub-or-rose" data-label="Or Rose" data-price="0" data-img="images/hands-sub-or-rose.jpg" data-model="submariner gmt">
+            <div class="option-card" data-step="hands" data-value="sub-or-rose" data-label="Or Rose" data-price="0" data-img="images/hands-sub-or-rose.jpg" data-model="seikosub gmt">
               <div class="dial-thumb-wrap"><img src="images/hands-sub-or-rose.jpg" alt="Or Rose" class="dial-thumb"><span class="dial-zoom">&#x2922;</span></div>
               <div class="opt-name">Or Rose</div>
               <div class="opt-price">+0 €</div>
@@ -346,7 +346,7 @@
   const BASE_PRICES = {
     'seikojust-39': 149,
     'seikooak': 179, 'gmt': 169,
-    'submariner': 149, 'sautilus': 189
+    'seikosub': 149, 'sautilus': 189
   };
 
   // Lightbox cadran
@@ -429,7 +429,7 @@
     { value: 'ro-blue-rosegold',  label: 'Bleu Or Rose',   price: 0, img: 'images/dial-seikooak-blue-rosegold.jpg'  },
   ];
 
-  const SUBMARINER_DIALS = [
+  const SEIKOSUB_DIALS = [
     { value: 'sub-blue',       label: 'Bleu',         price: 0, img: 'images/dial-sub-blue.jpg' },
     { value: 'sub-cyan',       label: 'Bleu Clair',   price: 0, img: 'images/dial-sub-cyan.jpg' },
     { value: 'sub-green',      label: 'Vert',         price: 0, img: 'images/dial-sub-green.jpg' },
@@ -497,8 +497,8 @@
       dials = state.strap.value === 'seikooak-classic' ? RO_DIALS : [];
     } else if (state.model.value === 'sautilus') {
       dials = SAUTILUS_DIALS;
-    } else if (state.model.value === 'submariner') {
-      dials = SUBMARINER_DIALS;
+    } else if (state.model.value === 'seikosub') {
+      dials = SEIKOSUB_DIALS;
     } else if (state.model.value === 'gmt') {
       dials = GMT_DIALS;
     } else if (state.model.value === 'seikona') {
@@ -619,7 +619,7 @@
     'seikojust-39': ['jubilee-steel', 'oyster-steel', 'president'],
     'seikooak':    ['seikooak-classic', 'seikooak-chronograph'],
     'gmt':         ['jubilee-steel', 'oyster-steel'],
-    'submariner':  ['jubilee-steel', 'oyster-steel'],
+    'seikosub':  ['jubilee-steel', 'oyster-steel'],
     'seikona':     ['oyster-steel'],
   };
   // Sautilus : pas de choix de bracelet, on pré-sélectionne automatiquement
@@ -719,27 +719,27 @@
 
   const SUB_CASE_PHOTOS = {
     'oyster-steel': {
-      'sub-black-steel':      'images/bracelet-submariner-oyster-steel.jpg',
-      'sub-black-gold':       'images/bracelet-submariner-oyster-gold.jpg',
-      'sub-black-steel-gold': 'images/bracelet-submariner-oyster-steel-gold.jpg',
-      'sub-green-steel':      'images/bracelet-submariner-oyster-green-steel.jpg',
-      'sub-green-gold':       'images/bracelet-submariner-oyster-green-gold.jpg',
-      'sub-green-steel-gold': 'images/bracelet-submariner-oyster-green-steel-gold.jpg',
-      'sub-blue-steel':       'images/bracelet-submariner-oyster-blue-steel.jpg',
-      'sub-blue-gold':        'images/bracelet-submariner-oyster-blue-gold.jpg',
-      'sub-blue-steel-gold':  'images/bracelet-submariner-oyster-blue-steel-gold.jpg',
-      'sub-blue-silver':      'images/bracelet-submariner-oyster-blue-silver.jpg',
+      'sub-black-steel':      'images/bracelet-seikosub-oyster-steel.jpg',
+      'sub-black-gold':       'images/bracelet-seikosub-oyster-gold.jpg',
+      'sub-black-steel-gold': 'images/bracelet-seikosub-oyster-steel-gold.jpg',
+      'sub-green-steel':      'images/bracelet-seikosub-oyster-green-steel.jpg',
+      'sub-green-gold':       'images/bracelet-seikosub-oyster-green-gold.jpg',
+      'sub-green-steel-gold': 'images/bracelet-seikosub-oyster-green-steel-gold.jpg',
+      'sub-blue-steel':       'images/bracelet-seikosub-oyster-blue-steel.jpg',
+      'sub-blue-gold':        'images/bracelet-seikosub-oyster-blue-gold.jpg',
+      'sub-blue-steel-gold':  'images/bracelet-seikosub-oyster-blue-steel-gold.jpg',
+      'sub-blue-silver':      'images/bracelet-seikosub-oyster-blue-silver.jpg',
     },
     'jubilee-steel': {
-      'sub-black-steel':      'images/bracelet-submariner-jubilee-black-steel.jpg',
+      'sub-black-steel':      'images/bracelet-seikosub-jubilee-black-steel.jpg',
       'sub-black-gold':       '',
-      'sub-black-steel-gold': 'images/bracelet-submariner-jubilee-black-steel-gold.jpg',
-      'sub-green-steel':      'images/bracelet-submariner-jubilee-green-steel.jpg',
+      'sub-black-steel-gold': 'images/bracelet-seikosub-jubilee-black-steel-gold.jpg',
+      'sub-green-steel':      'images/bracelet-seikosub-jubilee-green-steel.jpg',
       'sub-green-gold':       '',
-      'sub-green-steel-gold': 'images/bracelet-submariner-jubilee-green-steel-gold.jpg',
+      'sub-green-steel-gold': 'images/bracelet-seikosub-jubilee-green-steel-gold.jpg',
       'sub-blue-steel':       '',
       'sub-blue-gold':        '',
-      'sub-blue-steel-gold':  'images/bracelet-submariner-jubilee-blue-steel-gold.jpg',
+      'sub-blue-steel-gold':  'images/bracelet-seikosub-jubilee-blue-steel-gold.jpg',
       'sub-blue-silver':      '',
     },
   };
@@ -844,7 +844,7 @@
     'seikojust-39': ['steel', 'gold', 'rose-gold', 'steel-gold', 'steel-rose-gold'],
     'seikooak':    ['steel', 'gold', 'rose-gold'],
     'gmt':         ['steel', 'steel-gold', 'steel-rose-gold', 'rose-gold'],
-    'submariner':  ['steel', 'gold', 'steel-gold'],
+    'seikosub':  ['steel', 'gold', 'steel-gold'],
     'sautilus':    ['steel', 'gold', 'rose-gold', 'steel-gold', 'steel-rose-gold']
   };
 
@@ -856,7 +856,7 @@
       finishes = DJ_FINISHES_BY_STRAP[strapValue];
     } else if (modelValue === 'seikooak' && strapValue && RO_FINISHES_BY_STRAP[strapValue]) {
       finishes = RO_FINISHES_BY_STRAP[strapValue];
-    } else if (modelValue === 'submariner' && strapValue && SUB_FINISHES_BY_STRAP[strapValue]) {
+    } else if (modelValue === 'seikosub' && strapValue && SUB_FINISHES_BY_STRAP[strapValue]) {
       finishes = SUB_FINISHES_BY_STRAP[strapValue];
     } else if (modelValue === 'gmt' && strapValue && GMT_FINISHES_BY_STRAP[strapValue]) {
       finishes = GMT_FINISHES_BY_STRAP[strapValue];
@@ -871,7 +871,7 @@
       const casePhoto = (modelValue === 'seikojust-39' && strapValue && DJ_CASE_PHOTOS[key]?.[strapValue])
         || (modelValue === 'seikooak' && strapValue && RO_CASE_PHOTOS[strapValue]?.[key])
         || (modelValue === 'sautilus' && SAUTILUS_CASE_PHOTOS[key])
-        || (modelValue === 'submariner' && strapValue && SUB_CASE_PHOTOS[strapValue]?.[key])
+        || (modelValue === 'seikosub' && strapValue && SUB_CASE_PHOTOS[strapValue]?.[key])
         || (modelValue === 'gmt' && strapValue && GMT_CASE_PHOTOS[strapValue]?.[key])
         || (modelValue === 'seikona' && strapValue && SEIKONA_CASE_PHOTOS[strapValue]?.[key])
         || null;
@@ -924,7 +924,7 @@
     'seikojust-39': 'images/seikojust-steel-jubilee.png',
     'seikooak':    'images/seikooak-steel.png',
     'gmt':         'images/40mm-steel-gmt-jubilee.png',
-    'submariner':  'images/submariner-steel.png',
+    'seikosub':  'images/seikosub-steel.png',
     'sautilus':    'images/sautilus-steel.png'
   };
 
@@ -989,7 +989,7 @@
       'seikojust-39': 'seikojust',
       'seikooak':    'seikooak',
       'gmt':         'gmt',
-      'submariner':  'gmt',
+      'seikosub':  'gmt',
       'sautilus':    'sautilus',
       'santos':      'santos',
       'seikona':     'seikona'
@@ -1009,7 +1009,7 @@
       }
     });
     // Aiguilles : visible après le cadran
-    const showHandsProgressive = dialSelected && (showHands || ['submariner','gmt','seikona'].includes(state.model.value));
+    const showHandsProgressive = dialSelected && (showHands || ['seikosub','gmt','seikona'].includes(state.model.value));
     document.getElementById('handsStep').style.display = showHandsProgressive ? '' : 'none';
 
     document.getElementById('addToCartStep').style.display = (isModelSelected && dialSelected) ? '' : 'none';
@@ -1092,7 +1092,7 @@
       caseImg = DJ_CASE_PHOTOS[state.finish.value]?.[state.strap.value] || null;
     } else if (state.model.value === 'seikooak' && state.strap.value) {
       caseImg = RO_CASE_PHOTOS[state.strap.value]?.[state.finish.value] || null;
-    } else if (state.model.value === 'submariner' && state.strap.value) {
+    } else if (state.model.value === 'seikosub' && state.strap.value) {
       caseImg = SUB_CASE_PHOTOS[state.strap.value]?.[state.finish.value] || null;
     } else if (state.model.value === 'sautilus' && state.finish.value) {
       caseImg = SAUTILUS_CASE_PHOTOS[state.finish.value] || null;
