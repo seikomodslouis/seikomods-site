@@ -309,7 +309,7 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
   .footer-grid{grid-template-columns:1fr 1fr}
   .config-wrapper{grid-template-columns:1fr}
   /* config-panel remonte en premier dès 1024px pour toujours rester en tête */
-  .config-panel{position:static;order:-1}
+  .config-panel{position:static;order:2}
   .process-grid{grid-template-columns:1fr;border:1px solid var(--border)}
   .process-step{border-right:none;border-bottom:1px solid var(--border)}
   .process-step:last-child{border-bottom:none}
