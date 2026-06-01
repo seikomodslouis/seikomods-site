@@ -991,14 +991,6 @@
     if (hasDialType && state.dialtype) document.getElementById('s-dialtype').textContent = state.dialtype.label;
     // Afficher/masquer les steps selon le modèle sélectionné
     const isSeikona = state.model.value === 'seikona';
-    if (isSeikona) {
-      const overlay = document.getElementById('seikona-modal-overlay-config');
-        overlay.style.display = 'flex';
-        document.getElementById('seikona-modal-close-config').onclick = () => {
-          overlay.style.display = 'none';
-        };
-      }
-    }
     const isModelSelected = state.model.value !== '';
     const isSautilus = state.model.value === 'sautilus';
     // Sautilus : pas de choix bracelet, on pré-sélectionne automatiquement
