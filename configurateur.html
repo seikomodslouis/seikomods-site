@@ -1072,7 +1072,8 @@
 
 
     // Instagram button (lien direct vers le profil)
-    document.getElementById('instagramBtn').href = 'https://www.instagram.com/seikomods_louis/';
+    const instaBtn = document.getElementById('instagramBtn');
+    if (instaBtn) instaBtn.href = 'https://www.instagram.com/seikomods_louis/';
   }
 
   // Lightbox pour les aiguilles (statiques) — desktop uniquement
