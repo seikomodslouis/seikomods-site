@@ -1062,12 +1062,13 @@
     document.getElementById('instagramBtn').href = 'https://www.instagram.com/seikomods_louis/';
   }
 
-  // Lightbox pour les aiguilles (statiques)
+  // Lightbox pour les aiguilles (statiques) — desktop uniquement
   document.querySelectorAll('[data-step="hands"] .dial-thumb-wrap').forEach(wrap => {
     wrap.addEventListener('click', e => {
+      if (window.innerWidth <= 768) return; // mobile : la carte se sélectionne normalement
       e.stopPropagation();
       const img = wrap.closest('[data-img]')?.dataset.img;
-      if (img && window.innerWidth > 768) { document.getElementById('dialLightboxImg').src = img; lightbox.classList.add('open'); }
+      if (img) { document.getElementById('dialLightboxImg').src = img; lightbox.classList.add('open'); }
     });
   });
 
