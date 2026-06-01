@@ -700,4 +700,7 @@ button,a,.option-card,.filter-btn,.subfilter-btn,.bracelet-btn,.faq-q{touch-acti
 
   /* Cart sidebar : plein écran */
   .cart-sidebar{width:100vw !important;right:-100vw !important;height:100dvh}
+
+  /* A propos : photo centrée */
+  .about-photo-wrap{flex:0 0 100% !important;max-width:100% !important;display:flex;justify-content:center}
 }
