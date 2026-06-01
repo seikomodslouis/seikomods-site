@@ -546,7 +546,7 @@
       wrap.addEventListener('click', e => {
         e.stopPropagation();
         const img = wrap.closest('[data-img]')?.dataset.img;
-        if (img) { document.getElementById('dialLightboxImg').src = img; lightbox.classList.add('open'); }
+        if (img && window.innerWidth > 768) { document.getElementById('dialLightboxImg').src = img; lightbox.classList.add('open'); }
       });
     });
     state.dial = { value: '', label: '—', price: 0, img: '' };
@@ -917,7 +917,7 @@
         wrap.addEventListener('click', e => {
           e.stopPropagation();
           const img = card.dataset.img;
-          if (img) { document.getElementById('dialLightboxImg').src = img; lightbox.classList.add('open'); }
+          if (img && window.innerWidth > 768) { document.getElementById('dialLightboxImg').src = img; lightbox.classList.add('open'); }
         });
       }
     });
@@ -1065,7 +1065,7 @@
     wrap.addEventListener('click', e => {
       e.stopPropagation();
       const img = wrap.closest('[data-img]')?.dataset.img;
-      if (img) { document.getElementById('dialLightboxImg').src = img; lightbox.classList.add('open'); }
+      if (img && window.innerWidth > 768) { document.getElementById('dialLightboxImg').src = img; lightbox.classList.add('open'); }
     });
   });
 
