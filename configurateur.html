@@ -1237,6 +1237,59 @@
 </script>
   <script src="cart.js"></script>
 
+<!-- Aperçu mobile au tap -->
+<div id="mobilePreview" style="display:none;position:fixed;z-index:3000;pointer-events:none;transform:translateX(-50%);transition:opacity .15s ease">
+  <div style="background:#111;border-radius:12px;padding:8px;box-shadow:0 8px 32px rgba(0,0,0,.4)">
+    <img id="mobilePreviewImg" src="" alt="" style="width:120px;height:120px;object-fit:cover;border-radius:8px;display:block">
+    <div id="mobilePreviewLabel" style="color:#fff;font-size:.72rem;text-align:center;margin-top:6px;letter-spacing:.5px;font-family:var(--sans)"></div>
+  </div>
+  <div style="width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid #111;margin:0 auto"></div>
+</div>
+
+<script>
+(function() {
+  if (window.innerWidth > 768) return;
+
+  const preview = document.getElementById('mobilePreview');
+  const previewImg = document.getElementById('mobilePreviewImg');
+  const previewLabel = document.getElementById('mobilePreviewLabel');
+  let hideTimer = null;
+
+  function showPreview(card, e) {
+    const img = card.dataset.img;
+    const label = card.dataset.label;
+    if (!img) return;
+
+    previewImg.src = img;
+    previewLabel.textContent = label || '';
+
+    const rect = card.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const top = rect.top + window.scrollY - 160;
+
+    preview.style.left = Math.min(Math.max(cx, 80), window.innerWidth - 80) + 'px';
+    preview.style.top = Math.max(top, window.scrollY + 10) + 'px';
+    preview.style.opacity = '1';
+    preview.style.display = 'block';
+
+  }
+
+  function hidePreview() {
+    preview.style.opacity = '0';
+    setTimeout(() => { preview.style.display = 'none'; }, 150);
+  }
+
+  document.addEventListener('click', function(e) {
+    if (preview.style.display === 'block') {
+      hidePreview();
+      return;
+    }
+    const card = e.target.closest('.option-card[data-img]');
+    if (card && card.dataset.img) showPreview(card, e);
+  }, true);
+})();
+</script>
+
 <button class="back-to-top" id="backToTop" aria-label="Retour en haut"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg></button>
 <script>
   const btt = document.getElementById("backToTop");
