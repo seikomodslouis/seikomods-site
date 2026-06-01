@@ -252,6 +252,7 @@
 
         <!-- AJOUTER AU PANIER -->
         <div id="addToCartStep" style="display:none;margin-bottom:8px">
+          <div id="cartErrorMsg" style="display:none;background:#fff3f3;border:1px solid #f0c0c0;border-radius:10px;padding:12px 16px;margin-bottom:12px;font-size:.85rem;color:#c00;line-height:1.6"></div>
           <button class="btn btn-gold btn-full" id="addToCartBtn">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
             Ajouter au panier
@@ -1119,6 +1120,30 @@
 
   // Bouton Ajouter au panier
   document.getElementById('addToCartBtn').addEventListener('click', () => {
+    // Validation : vérifier que tous les éléments requis sont sélectionnés
+    const missing = [];
+    if (!state.model.value)   missing.push('un modèle');
+    const needsSize   = state.model.value === 'seikojust-39';
+    const needsStrap  = state.model.value !== 'sautilus';
+    const needsDialtype = !!MODEL_DIALTYPES[state.model.value];
+    const needsHands  = ['seikojust-39','seikooak','sautilus','seikosub','gmt','seikona'].includes(state.model.value)
+                        && !(state.model.value === 'seikooak' && state.strap.value === 'seikooak-chronograph');
+    if (needsSize   && !state.size?.value)     missing.push('une taille');
+    if (needsStrap  && !state.strap.value)     missing.push('un bracelet');
+    if (!state.finish.value)                   missing.push('une finition');
+    if (needsDialtype && !state.dialtype.value) missing.push('un type de cadran');
+    if (!state.dial.value)                     missing.push('un cadran');
+    if (needsHands  && !state.hands.value)     missing.push('des aiguilles');
+
+    const errorEl = document.getElementById('cartErrorMsg');
+    if (missing.length > 0) {
+      errorEl.style.display = 'block';
+      errorEl.innerHTML = '⚠️ Il manque encore ' + missing.join(', ') + ' pour compléter votre montre.';
+      errorEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
+    }
+    errorEl.style.display = 'none';
+
     const details = [
       state.finish.value  !== '' ? state.finish.label  : null,
       state.dialtype.value!== '' ? state.dialtype.label: null,
