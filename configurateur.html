@@ -1279,13 +1279,17 @@
     setTimeout(() => { preview.style.display = 'none'; }, 150);
   }
 
+  const PREVIEW_STEPS = ['dial', 'finish', 'hands'];
+
   document.addEventListener('click', function(e) {
     if (preview.style.display === 'block') {
       hidePreview();
       return;
     }
     const card = e.target.closest('.option-card[data-img]');
-    if (card && card.dataset.img) showPreview(card, e);
+    if (card && card.dataset.img && PREVIEW_STEPS.includes(card.dataset.step)) {
+      showPreview(card, e);
+    }
   }, true);
 })();
 </script>
