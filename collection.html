@@ -2164,12 +2164,11 @@
       if (seikosantosBtns[0]) seikosantosBtns[0].classList.add('active');
       currentSeikoSantos = 'all';
       daycolorfilters.style.display = currentCollection === 'seikona' ? 'flex' : 'none';
-      if (currentCollection === 'seikona' && !sessionStorage.getItem('seikonaWarned')) {
+      if (currentCollection === 'seikona') {
         const overlay = document.getElementById('seikona-modal-overlay');
         overlay.style.display = 'flex';
         document.getElementById('seikona-modal-close').onclick = () => {
           overlay.style.display = 'none';
-          sessionStorage.setItem('seikonaWarned', '1');
         };
       }
       daybraceletfilters.style.display = 'none';
