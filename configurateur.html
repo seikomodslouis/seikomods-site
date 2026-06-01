@@ -1264,10 +1264,14 @@
     previewLabel.textContent = card.dataset.label || '';
 
     const rect = card.getBoundingClientRect();
+    const previewWidth = 136; // 120px image + 2*8px padding
     const cx = rect.left + rect.width / 2;
-    const top = rect.top - 160;
+    const top = rect.top - 170;
 
-    preview.style.left = Math.min(Math.max(cx, 80), window.innerWidth - 80) + 'px';
+    // Clamp pour que le preview ne déborde jamais sur les bords
+    const clampedLeft = Math.min(Math.max(cx, previewWidth / 2 + 8), window.innerWidth - previewWidth / 2 - 8);
+
+    preview.style.left = clampedLeft + 'px';
     preview.style.top = Math.max(top, 10) + 'px';
     preview.style.display = 'block';
     preview.style.opacity = '1';
