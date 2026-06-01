@@ -1137,6 +1137,7 @@
     } else if (state.model.value === 'seikona' && state.strap.value) {
       caseImg = SEIKONA_CASE_PHOTOS[state.strap.value]?.[state.finish.value] || null;
     }
+    const cartBtn = document.getElementById('addToCartBtn');
     addToCart(
       state.model.label,
       getTotal(),
@@ -1150,7 +1151,8 @@
         dial:  state.dial.img   || null,
         case:  caseImg,
         hands: state.hands.img  || null,
-      }
+      },
+      cartBtn
     );
   });
 

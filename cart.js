@@ -13,13 +13,24 @@ function saveCart() {
 }
 
 // ── Ajouter un article ───────────────────────────────────────
-function addToCart(name, price, opts = {}, imgs = {}) {
+function addToCart(name, price, opts = {}, imgs = {}, triggerBtn = null) {
   const item = { id: Date.now(), name, price, opts, imgs };
   cart.push(item);
   saveCart();
   showToast(`✓ "${name}" ajouté au panier`);
-  // Mettre à jour le badge nav
   updateCartCount();
+  // Animation de confirmation sur le bouton cliqué
+  if (triggerBtn) {
+    const original = triggerBtn.innerHTML;
+    triggerBtn.innerHTML = '✓ Ajouté';
+    triggerBtn.classList.add('btn-added');
+    triggerBtn.disabled = true;
+    setTimeout(() => {
+      triggerBtn.innerHTML = original;
+      triggerBtn.classList.remove('btn-added');
+      triggerBtn.disabled = false;
+    }, 900);
+  }
 }
 
 // ── Supprimer un article ─────────────────────────────────────

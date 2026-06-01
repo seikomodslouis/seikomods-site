@@ -2392,7 +2392,7 @@
           const priceText = card.querySelector('.price')?.textContent.trim() || '0 €';
           const price     = parseInt(priceText.replace(/[^\d]/g, ''), 10) || 0;
           const imgSrc    = btn.dataset.img || null;
-          addToCart(name, price, {}, { collection: imgSrc });
+          addToCart(name, price, {}, { collection: imgSrc }, btn);
         });
       });
     });

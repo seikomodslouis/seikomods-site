@@ -427,7 +427,7 @@
           const name   = btn.dataset.name  || btn.closest('.product-card-body')?.querySelector('h3')?.textContent.trim() || 'Montre';
           const price  = parseInt(btn.dataset.price) || 0;
           const imgSrc = btn.dataset.img || null;
-          addToCart(name, price, {}, { collection: imgSrc });
+          addToCart(name, price, {}, { collection: imgSrc }, btn);
         });
       });
     });
