@@ -1240,7 +1240,7 @@
 <!-- Aperçu mobile au tap -->
 <div id="mobilePreview" style="display:none;position:fixed;z-index:3000;pointer-events:none;transform:translateX(-50%);transition:opacity .15s ease">
   <div style="background:#111;border-radius:12px;padding:8px;box-shadow:0 8px 32px rgba(0,0,0,.4);position:relative">
-    <button onclick="document.getElementById('mobilePreview').style.display='none'" style="position:absolute;top:4px;right:4px;background:rgba(255,255,255,.15);border:none;color:#fff;width:22px;height:22px;border-radius:50%;font-size:.85rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;pointer-events:all">✕</button>
+    <button onclick="window.hideMobilePreview()" style="position:absolute;top:4px;right:4px;background:rgba(255,255,255,.15);border:none;color:#fff;width:22px;height:22px;border-radius:50%;font-size:.85rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;pointer-events:all">✕</button>
     <img id="mobilePreviewImg" src="" alt="" style="width:120px;height:120px;object-fit:cover;border-radius:8px;display:block">
     <div id="mobilePreviewLabel" style="color:#fff;font-size:.72rem;text-align:center;margin-top:6px;letter-spacing:.5px;font-family:var(--sans)"></div>
   </div>
@@ -1254,15 +1254,14 @@
   const preview = document.getElementById('mobilePreview');
   const previewImg = document.getElementById('mobilePreviewImg');
   const previewLabel = document.getElementById('mobilePreviewLabel');
-  let hideTimer = null;
+  const PREVIEW_STEPS = ['dial', 'finish', 'hands'];
 
-  function showPreview(card, e) {
+  function showPreview(card) {
     const img = card.dataset.img;
-    const label = card.dataset.label;
     if (!img) return;
 
     previewImg.src = img;
-    previewLabel.textContent = label || '';
+    previewLabel.textContent = card.dataset.label || '';
 
     const rect = card.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
@@ -1270,28 +1269,27 @@
 
     preview.style.left = Math.min(Math.max(cx, 80), window.innerWidth - 80) + 'px';
     preview.style.top = Math.max(top, 10) + 'px';
-    preview.style.opacity = '1';
     preview.style.display = 'block';
-
+    preview.style.opacity = '1';
   }
 
-  function hidePreview() {
-    preview.style.opacity = '0';
-    setTimeout(() => { preview.style.display = 'none'; }, 150);
-  }
+  window.hideMobilePreview = function() {
+    preview.style.display = 'none';
+  };
 
-  const PREVIEW_STEPS = ['dial', 'finish', 'hands'];
-
+  // Clic sur une carte éligible → montrer aperçu (sans bloquer la sélection)
   document.addEventListener('click', function(e) {
-    if (preview.style.display === 'block') {
-      hidePreview();
-      return;
-    }
-    const card = e.target.closest('.option-card[data-img]');
+    // Ignorer les clics sur le bouton fermer
+    if (e.target.closest('#mobilePreview button')) return;
+
+    const card = e.target.closest('.option-card');
     if (card && card.dataset.img && PREVIEW_STEPS.includes(card.dataset.step)) {
-      showPreview(card, e);
+      showPreview(card);
+    } else if (!e.target.closest('#mobilePreview')) {
+      // Clic en dehors du preview → fermer
+      preview.style.display = 'none';
     }
-  }, true);
+  });
 })();
 </script>
 
