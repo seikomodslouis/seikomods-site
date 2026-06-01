@@ -1,0 +1,7 @@
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="500" height="500" fill="white"/>
+  <line x1="60" y1="195" x2="440" y2="195" stroke="#111111" stroke-width="1.5"/>
+  <text x="250" y="255" text-anchor="middle" font-family="Georgia, serif" font-size="62" font-weight="700" letter-spacing="4" fill="#111111">Seiko<tspan font-style="italic" font-weight="400">Mods</tspan></text>
+  <line x1="60" y1="275" x2="440" y2="275" stroke="#111111" stroke-width="1.5"/>
+  <text x="250" y="300" text-anchor="middle" font-family="Georgia, serif" font-size="12" letter-spacing="6" fill="#111111">ARTISAN HORLOGER · FRANCE</text>
+</svg>
