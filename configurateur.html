@@ -1265,10 +1265,10 @@
 
     const rect = card.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
-    const top = rect.top + window.scrollY - 160;
+    const top = rect.top - 160;
 
     preview.style.left = Math.min(Math.max(cx, 80), window.innerWidth - 80) + 'px';
-    preview.style.top = Math.max(top, window.scrollY + 10) + 'px';
+    preview.style.top = Math.max(top, 10) + 'px';
     preview.style.opacity = '1';
     preview.style.display = 'block';
 
