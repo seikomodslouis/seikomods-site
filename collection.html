@@ -2216,6 +2216,11 @@
       seikooakColorBtns.forEach(b => b.classList.remove('active'));
       if (seikooakColorBtns[0]) seikooakColorBtns[0].classList.add('active');
       seikooakcolorfilters.style.display = currentVariant === 'all' ? 'none' : 'flex';
+      if (currentVariant === 'chronograph') {
+        const overlay = document.getElementById('seikona-modal-overlay');
+        overlay.style.display = 'flex';
+        document.getElementById('seikona-modal-close').onclick = () => { overlay.style.display = 'none'; };
+      }
       applyFilters();
     });
   });
@@ -2259,6 +2264,11 @@
       sautilusColorBtns.forEach(b => b.classList.remove('active'));
       if (sautilusColorBtns[0]) sautilusColorBtns[0].classList.add('active');
       sautiluscolorfilters.style.display = (currentNautVariant !== 'all') ? 'flex' : 'none';
+      if (currentNautVariant === 'chronograph') {
+        const overlay = document.getElementById('seikona-modal-overlay');
+        overlay.style.display = 'flex';
+        document.getElementById('seikona-modal-close').onclick = () => { overlay.style.display = 'none'; };
+      }
       applyFilters();
     });
   });
