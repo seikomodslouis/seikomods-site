@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://seikomodslouis.github.io/seikomods/</loc>
+    <loc>https://seikomods-louis.fr/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://seikomodslouis.github.io/seikomods/collection.html</loc>
+    <loc>https://seikomods-louis.fr/collection.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://seikomodslouis.github.io/seikomods/configurateur.html</loc>
+    <loc>https://seikomods-louis.fr/configurateur.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://seikomodslouis.github.io/seikomods/contact.html</loc>
+    <loc>https://seikomods-louis.fr/contact.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://seikomodslouis.github.io/seikomods/a-propos.html</loc>
+    <loc>https://seikomods-louis.fr/a-propos.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://seikomodslouis.github.io/seikomods/infos.html</loc>
+    <loc>https://seikomods-louis.fr/infos.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://seikomodslouis.github.io/seikomods/cgv.html</loc>
+    <loc>https://seikomods-louis.fr/cgv.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://seikomodslouis.github.io/seikomods/mentions-legales.html</loc>
+    <loc>https://seikomods-louis.fr/mentions-legales.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://seikomodslouis.github.io/seikomods/confidentialite.html</loc>
+    <loc>https://seikomods-louis.fr/confidentialite.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
