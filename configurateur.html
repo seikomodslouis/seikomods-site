@@ -541,12 +541,13 @@
         updateUI();
       });
     });
-    // Bind lightbox
+    // Bind lightbox (desktop uniquement — sur mobile on laisse le clic sélectionner la carte)
     grid.querySelectorAll('.dial-thumb-wrap').forEach(wrap => {
       wrap.addEventListener('click', e => {
+        if (window.innerWidth <= 768) return; // mobile : pas de stopPropagation, la carte se sélectionne normalement
         e.stopPropagation();
         const img = wrap.closest('[data-img]')?.dataset.img;
-        if (img && window.innerWidth > 768) { document.getElementById('dialLightboxImg').src = img; lightbox.classList.add('open'); }
+        if (img) { document.getElementById('dialLightboxImg').src = img; lightbox.classList.add('open'); }
       });
     });
     state.dial = { value: '', label: '—', price: 0, img: '' };
@@ -915,9 +916,10 @@
       const wrap = card.querySelector('.dial-thumb-wrap');
       if (wrap) {
         wrap.addEventListener('click', e => {
+          if (window.innerWidth <= 768) return; // mobile : la carte se sélectionne normalement
           e.stopPropagation();
           const img = card.dataset.img;
-          if (img && window.innerWidth > 768) { document.getElementById('dialLightboxImg').src = img; lightbox.classList.add('open'); }
+          if (img) { document.getElementById('dialLightboxImg').src = img; lightbox.classList.add('open'); }
         });
       }
     });
