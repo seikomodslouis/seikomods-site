@@ -204,7 +204,7 @@
 <button id="seikona-modal-close" style="position:absolute;top:14px;left:16px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:#666;line-height:1;">✕</button>
 <div style="font-size:3rem;margin-bottom:16px;">⚠️</div>
 <h2 style="font-size:1.4rem;margin-bottom:12px;color:#333;">Étanchéité non garantie</h2>
-<p style="color:#666;line-height:1.7;font-size:0.95rem;">Les montres Seikona sont équipées de boutons de chronographe qui peuvent compromettre l'étanchéité. Le lavage des mains et les projections d'eau sont déconseillés.</p>
+<p id="chrono-modal-text" style="color:#666;line-height:1.7;font-size:0.95rem;">Les montres Seikona sont équipées de boutons de chronographe qui peuvent compromettre l'étanchéité. Le lavage des mains et les projections d'eau sont déconseillés.</p>
 </div>
 </div>
 <div id="productsScrollWrapper"><div class="grid-4" id="productsGrid">
@@ -1989,6 +1989,12 @@
   const seikosantosBtns = document.querySelectorAll('#seikosantosfilters .seikosantos-btn');
   const cards = document.querySelectorAll('[data-collection]');
   let currentCollection = 'all';
+  function showChronoModal(nom) {
+    document.getElementById('chrono-modal-text').textContent = 'Les montres ' + nom + ' sont équipées de boutons de chronographe qui peuvent compromettre l\'étanchéité. Le lavage des mains et les projections d\'eau sont déconseillés.';
+    const overlay = document.getElementById('seikona-modal-overlay');
+    overlay.style.display = 'flex';
+    document.getElementById('seikona-modal-close').onclick = () => { overlay.style.display = 'none'; };
+  }
   let currentFinish = 'all';
   let currentBracelet = 'all';
   let currentVariant = 'all';
@@ -2164,13 +2170,7 @@
       if (seikosantosBtns[0]) seikosantosBtns[0].classList.add('active');
       currentSeikoSantos = 'all';
       daycolorfilters.style.display = currentCollection === 'seikona' ? 'flex' : 'none';
-      if (currentCollection === 'seikona') {
-        const overlay = document.getElementById('seikona-modal-overlay');
-        overlay.style.display = 'flex';
-        document.getElementById('seikona-modal-close').onclick = () => {
-          overlay.style.display = 'none';
-        };
-      }
+      if (currentCollection === 'seikona') { showChronoModal('Seikona'); }
       daybraceletfilters.style.display = 'none';
       dayColorBtns.forEach(b => b.classList.remove('active'));
       if (dayColorBtns[0]) dayColorBtns[0].classList.add('active');
@@ -2216,11 +2216,7 @@
       seikooakColorBtns.forEach(b => b.classList.remove('active'));
       if (seikooakColorBtns[0]) seikooakColorBtns[0].classList.add('active');
       seikooakcolorfilters.style.display = currentVariant === 'all' ? 'none' : 'flex';
-      if (currentVariant === 'chronograph') {
-        const overlay = document.getElementById('seikona-modal-overlay');
-        overlay.style.display = 'flex';
-        document.getElementById('seikona-modal-close').onclick = () => { overlay.style.display = 'none'; };
-      }
+      if (currentVariant === 'chronograph') { showChronoModal('Seiko Oak Chronographe'); }
       applyFilters();
     });
   });
@@ -2264,11 +2260,7 @@
       sautilusColorBtns.forEach(b => b.classList.remove('active'));
       if (sautilusColorBtns[0]) sautilusColorBtns[0].classList.add('active');
       sautiluscolorfilters.style.display = (currentNautVariant !== 'all') ? 'flex' : 'none';
-      if (currentNautVariant === 'chronograph') {
-        const overlay = document.getElementById('seikona-modal-overlay');
-        overlay.style.display = 'flex';
-        document.getElementById('seikona-modal-close').onclick = () => { overlay.style.display = 'none'; };
-      }
+      if (currentNautVariant === 'chronograph') { showChronoModal('Sautilus Chronographe'); }
       applyFilters();
     });
   });
