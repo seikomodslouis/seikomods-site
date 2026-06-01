@@ -1238,13 +1238,13 @@
   <script src="cart.js"></script>
 
 <!-- Aperçu mobile au tap -->
-<div id="mobilePreview" style="display:none;position:fixed;z-index:3000;pointer-events:none;transform:translateX(-50%);transition:opacity .15s ease">
-  <div style="background:#111;border-radius:12px;padding:8px;box-shadow:0 8px 32px rgba(0,0,0,.4);position:relative">
-    <button onclick="window.hideMobilePreview()" style="position:absolute;top:4px;right:4px;background:rgba(255,255,255,.15);border:none;color:#fff;width:22px;height:22px;border-radius:50%;font-size:.85rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;pointer-events:all">✕</button>
-    <img id="mobilePreviewImg" src="" alt="" style="width:120px;height:120px;object-fit:cover;border-radius:8px;display:block">
-    <div id="mobilePreviewLabel" style="color:#fff;font-size:.72rem;text-align:center;margin-top:6px;letter-spacing:.5px;font-family:var(--sans)"></div>
+<div id="mobilePreview" style="display:none;position:fixed;z-index:3000;pointer-events:none;transition:opacity .15s ease">
+  <div style="background:#111;border-radius:16px;padding:12px;box-shadow:0 12px 48px rgba(0,0,0,.5);position:relative">
+    <button onclick="window.hideMobilePreview()" style="position:absolute;top:8px;right:8px;background:rgba(255,255,255,.15);border:none;color:#fff;width:26px;height:26px;border-radius:50%;font-size:.9rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;pointer-events:all">✕</button>
+    <img id="mobilePreviewImg" src="" alt="" style="width:220px;height:220px;object-fit:contain;background:#fff;border-radius:12px;display:block">
+    <div id="mobilePreviewLabel" style="color:#fff;font-size:.82rem;text-align:center;margin-top:10px;letter-spacing:.5px;font-family:var(--sans);font-weight:500"></div>
   </div>
-  <div style="width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid #111;margin:0 auto"></div>
+  <div style="width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-top:10px solid #111;margin:0 auto"></div>
 </div>
 
 <script>
@@ -1264,13 +1264,14 @@
     previewLabel.textContent = card.dataset.label || '';
 
     const rect = card.getBoundingClientRect();
-    const previewWidth = 136; // 120px image + 2*8px padding
+    const previewWidth = 136;
     const cx = rect.left + rect.width / 2;
     const top = rect.top - 170;
 
-    // Clamp pour que le preview ne déborde jamais sur les bords
-    const clampedLeft = Math.min(Math.max(cx, previewWidth / 2 + 8), window.innerWidth - previewWidth / 2 - 8);
-
+    // Désactiver le translateX(-50%) et positionner manuellement
+    const halfW = previewWidth / 2;
+    const clampedLeft = Math.min(Math.max(cx - halfW, 8), window.innerWidth - previewWidth - 8);
+    preview.style.transform = 'none';
     preview.style.left = clampedLeft + 'px';
     preview.style.top = Math.max(top, 10) + 'px';
     preview.style.display = 'block';
