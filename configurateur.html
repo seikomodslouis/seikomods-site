@@ -1108,6 +1108,11 @@
         renderStraps(card.dataset.value);
         renderFinishes(card.dataset.value, state.strap.value);
         renderDialType(card.dataset.value);
+        if (card.dataset.value === 'seikona') {
+          const overlay = document.getElementById('seikona-modal-overlay-config');
+          overlay.style.display = 'flex';
+          document.getElementById('seikona-modal-close-config').onclick = () => { overlay.style.display = 'none'; };
+        }
       }
       if (step === 'size') {
         state.strap = { value: '', label: '—', price: 0 };
