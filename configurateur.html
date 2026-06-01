@@ -1281,6 +1281,13 @@
     preview.style.display = 'none';
   };
 
+  // Fermer le preview au scroll
+  window.addEventListener('scroll', function() {
+    if (preview.style.display === 'block') {
+      preview.style.display = 'none';
+    }
+  }, { passive: true });
+
   // Clic sur une carte éligible → montrer aperçu (sans bloquer la sélection)
   document.addEventListener('click', function(e) {
     // Ignorer les clics sur le bouton fermer
