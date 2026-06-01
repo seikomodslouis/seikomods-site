@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://louislacarrere.github.io/seikomods/sitemap.xml
+Disallow: /panier.html
+Disallow: /commande.html
+
+Sitemap: https://seikomodslouis.github.io/seikomods/sitemap.xml
