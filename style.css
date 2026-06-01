@@ -464,7 +464,7 @@ footer{background:var(--black);color:var(--white);padding:64px 0 32px}
   .hero-sub{font-size:.95rem;margin-bottom:28px}
   .hero-btns{flex-direction:column;align-items:stretch}
   .hero-btns .btn{width:100%;justify-content:center}
-  .hero-stats{flex-direction:column;gap:16px;padding-top:28px;margin-top:36px}
+  .hero-stats{flex-direction:column;gap:16px;padding-top:28px;margin-top:36px;align-items:center;text-align:center}
   .stat-num{font-size:1.7rem}
 
   /* ── Page hero (sous-pages) ── */
