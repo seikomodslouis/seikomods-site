@@ -2,10 +2,16 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 module.exports = async (req, res) => {
   // CORS
-  const allowedOrigins = ['https://seikomods-louis.fr', 'https://seikomods-site.vercel.app'];
   const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
+  const allowedOrigins = [
+    'https://seikomods-louis.fr',
+    'http://seikomods-louis.fr',
+    'https://www.seikomods-louis.fr',
+    'http://www.seikomods-louis.fr',
+    'https://seikomods-site.vercel.app',
+  ];
+  if (!origin || allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin || '*');
   }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
