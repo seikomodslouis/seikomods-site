@@ -3,5 +3,6 @@ Allow: /
 
 Disallow: /panier.html
 Disallow: /commande.html
+Disallow: /merci.html
 
-Sitemap: https://seikomodslouis.github.io/seikomods/sitemap.xml
+Sitemap: https://seikomods-louis.fr/sitemap.xml
