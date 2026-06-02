@@ -112,16 +112,33 @@
       .then(data => {
         if (!data.email) return;
         const nameParts = (data.name || '').split(' ');
+        const adresse = data.address?.line1 || '';
+        const cp      = data.address?.postal_code || '';
+        const ville   = data.address?.city || '';
+        const pays    = data.address?.country || 'FR';
+
+        // Email de confirmation au client via EmailJS
         emailjs.send('service_6mtr82s', 'template_yetpg2a', {
           email:       data.email,
           prenom:      nameParts[0] || data.name,
           commande:    data.commande,
           prix_total:  data.total,
-          adresse:     data.address?.line1 || '',
-          code_postal: data.address?.postal_code || '',
-          ville:       data.address?.city || '',
-          pays:        data.address?.country || 'FR',
+          adresse, code_postal: cp, ville, pays,
         }).catch(() => {});
+
+        // Email de notification à toi via web3forms
+        const formData = new FormData();
+        formData.append('access_key', 'da5772b9-47e9-4634-8d86-c1ef1849bf18');
+        formData.append('subject', '🎉 Nouvelle commande SeikoMods — ' + data.total);
+        formData.append('from_name', 'SeikoMods Checkout');
+        formData.append('email', data.email);
+        formData.append('Commande', data.commande);
+        formData.append('Client', data.name);
+        formData.append('Email client', data.email);
+        formData.append('Téléphone', data.phone || '—');
+        formData.append('Adresse', [adresse, cp, ville, pays].filter(Boolean).join(', '));
+        formData.append('Total', data.total);
+        fetch('https://api.web3forms.com/submit', { method: 'POST', body: formData }).catch(() => {});
       })
       .catch(() => {});
   }
