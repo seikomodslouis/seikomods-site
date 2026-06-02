@@ -49,7 +49,17 @@ module.exports = async (req, res) => {
       quantity: 1,
     }));
 
-    // Frais de livraison temporairement désactivés pour test
+    // Frais de livraison (offerts à partir de 2 articles)
+    if (items.length < 2) {
+      line_items.push({
+        price_data: {
+          currency: 'eur',
+          product_data: { name: 'Livraison' },
+          unit_amount: 1000, // 10€
+        },
+        quantity: 1,
+      });
+    }
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
