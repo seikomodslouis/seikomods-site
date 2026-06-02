@@ -88,7 +88,7 @@
           <h3>Finalisez votre commande</h3>
         </div>
         <p style="margin-bottom:24px;font-size:.88rem;color:var(--muted)">
-          Remplissez le formulaire et je vous recontacte sous 24h pour confirmer et organiser le paiement.
+          Remplissez vos coordonnées pour finaliser votre commande via PayPal.
         </p>
         <form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
           <input type="hidden" name="access_key" value="da5772b9-47e9-4634-8d86-c1ef1849bf18">
@@ -150,32 +150,16 @@
             <textarea name="message" placeholder="Des souhaits particuliers ? Une couleur spécifique ? Pose toutes vos questions..."></textarea>
           </div>
           <div style="margin-top:24px">
-            <p style="font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:14px;text-align:center">Choisissez votre mode de paiement</p>
+            <p style="font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-bottom:14px;text-align:center">Payer par PayPal</p>
 
-            <!-- Boutons custom -->
-            <div style="display:flex;gap:12px;flex-wrap:wrap">
-              <button type="button" id="btnPaypal" style="flex:1;min-width:140px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;background:#0070ba;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg>
-                PayPal
-              </button>
-              <button type="button" id="btnCard" style="flex:1;min-width:140px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;background:#1a1a1a;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                Carte bancaire
-              </button>
-            </div>
+            <!-- Bouton PayPal uniquement -->
+            <button type="button" id="btnPaypal" style="width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;background:#0070ba;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg>
+              Payer avec PayPal
+            </button>
 
-            <!-- Boutons PayPal SDK — s'affichent après clic -->
+            <!-- Bouton PayPal SDK — s'affiche après clic -->
             <div id="paypal-button-container" style="display:none;margin-top:12px"></div>
-            <div id="card-button-container" style="display:none;margin-top:12px"></div>
-
-            <!-- Notice carte bancaire via PayPal -->
-            <div id="card-paypal-notice" style="display:none;margin-top:14px;padding:12px 16px;background:#f0f7ff;border:1px solid #c0d9f0;border-radius:10px;text-align:center">
-              <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:6px">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="#0070ba"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788.06-.26.76-4.852.816-5.09a.932.932 0 0 1 .923-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.777-4.471z"/></svg>
-                <span style="font-size:.82rem;font-weight:700;color:#0070ba">Paiement sécurisé par PayPal</span>
-              </div>
-              <p style="font-size:.78rem;color:#444;margin:0;line-height:1.5">Vos coordonnées bancaires sont saisies directement sur les serveurs de PayPal. Nous n'avons à aucun moment accès à vos informations de carte.</p>
-            </div>
 
             <p style="font-size:.72rem;text-align:center;margin-top:12px;color:var(--muted)">🔒 Paiement 100% sécurisé · Garantie 1 an · Livraison Colissimo suivie</p>
           </div>
@@ -403,18 +387,6 @@
     document.getElementById('card-button-container').style.display = 'none';
     document.getElementById('card-paypal-notice').style.display = 'none';
     renderPaypalButton('paypal-button-container', paypal.FUNDING.PAYPAL);
-  });
-
-  // ─── Bouton Carte bancaire ──────────────────────────────────────────────
-  let cardRendered = false;
-  document.getElementById('btnCard').addEventListener('click', () => {
-    const form = document.getElementById('orderForm');
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-    document.getElementById('card-paypal-notice').style.display = 'block';
-    if (cardRendered) return;
-    cardRendered = true;
-    document.getElementById('paypal-button-container').style.display = 'none';
-    renderPaypalButton('card-button-container', paypal.FUNDING.CARD);
   });
 
   updateBadge();
