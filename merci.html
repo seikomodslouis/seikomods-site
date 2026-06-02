@@ -6,6 +6,8 @@
   <meta name="robots" content="noindex">
   <title>Commande confirmée — SeikoMods</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init('yZKNFnOhqtQ7DNsXj');</script>
 </head>
 <body>
 <div class="top-banner">🚚 Livraison offerte à partir de 2 montres achetées</div>
@@ -99,6 +101,30 @@
     toggle.classList.toggle('open');
     mobile.classList.toggle('open');
   });
+
+  // Récupérer la session Stripe et envoyer l'email de confirmation
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id');
+
+  if (sessionId) {
+    fetch('https://seikomods-site.vercel.app/api/get-session?session_id=' + sessionId)
+      .then(r => r.json())
+      .then(data => {
+        if (!data.email) return;
+        const nameParts = (data.name || '').split(' ');
+        emailjs.send('service_6mtr82s', 'template_yetpg2a', {
+          email:       data.email,
+          prenom:      nameParts[0] || data.name,
+          commande:    data.commande,
+          prix_total:  data.total,
+          adresse:     data.address?.line1 || '',
+          code_postal: data.address?.postal_code || '',
+          ville:       data.address?.city || '',
+          pays:        data.address?.country || 'FR',
+        }).catch(() => {});
+      })
+      .catch(() => {});
+  }
 </script>
 </body>
 </html>
