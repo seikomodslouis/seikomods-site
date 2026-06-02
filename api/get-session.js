@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
 
   try {
     const session = await stripe.checkout.sessions.retrieve(session_id, {
-      expand: ['line_items', 'shipping_details'],
+      expand: ['line_items', 'line_items.data.price.product'],
     });
 
     res.status(200).json({
@@ -32,7 +32,10 @@ module.exports = async (req, res) => {
       address: session.shipping_details?.address || session.customer_details?.address || {},
       items: session.line_items?.data?.map(i => i.description || i.price?.product?.name || i.description) || [],
       total: (session.amount_total / 100).toFixed(2) + ' €',
-      commande: session.line_items?.data?.map(i => i.description).filter(Boolean).join(' | ') || 'SeikoMod custom',
+      commande: session.line_items?.data?.map(i => {
+        const desc = i.price?.product?.description || i.description || '';
+        return i.description ? `${i.description}${desc ? ' ('+desc+')' : ''}` : (desc || 'SeikoMod custom');
+      }).filter(Boolean).join(' | ') || 'SeikoMod custom',
     });
   } catch (err) {
     res.status(500).json({ error: err.message });

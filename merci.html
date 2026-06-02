@@ -106,7 +106,11 @@
   const params = new URLSearchParams(window.location.search);
   const sessionId = params.get('session_id');
 
-  if (sessionId) {
+  // Éviter le double envoi si le client recharge la page
+  const alreadySent = sessionStorage.getItem('email_sent_' + sessionId);
+
+  if (sessionId && !alreadySent) {
+    sessionStorage.setItem('email_sent_' + sessionId, '1');
     fetch('https://seikomods-site.vercel.app/api/get-session?session_id=' + sessionId)
       .then(r => r.json())
       .then(data => {

@@ -384,8 +384,6 @@
     if (!form.checkValidity()) { form.reportValidity(); return; }
     if (paypalRendered) return;
     paypalRendered = true;
-    document.getElementById('card-button-container').style.display = 'none';
-    document.getElementById('card-paypal-notice').style.display = 'none';
     renderPaypalButton('paypal-button-container', paypal.FUNDING.PAYPAL);
   });
 
