@@ -149,49 +149,43 @@ function showToast(msg) {
   setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
-// ── Checkout PayPal ──────────────────────────────────────────
-function goToCheckout() {
+// ── Checkout Stripe ──────────────────────────────────────────
+const VERCEL_API_URL = 'https://seikomods-site.vercel.app/api/create-checkout';
+
+async function goToCheckout() {
   if (cart.length === 0) { showToast('Votre panier est vide !'); return; }
 
-  const total = getCartTotal();
-  const desc  = cart.map(i => i.name).join(' + ');
+  const btn = document.getElementById('checkoutBtn');
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Chargement...';
+  }
 
-  // ⚠️  REMPLACE "TON_PAYPAL_EMAIL" par ton email PayPal
-  const paypalEmail = 'seikomods.louis@gmail.com';
+  try {
+    const response = await fetch(VERCEL_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: cart }),
+    });
 
-  // Crée un formulaire PayPal dynamique
-  const form = document.createElement('form');
-  form.method = 'post';
-  form.action = 'https://www.paypal.com/cgi-bin/webscr';
-  form.target = '_blank';
+    const data = await response.json();
 
-  const fields = {
-    cmd:           '_xclick',
-    business:      paypalEmail,
-    item_name:     desc,
-    amount:        total.toFixed(2),
-    currency_code: 'EUR',
-    return:        window.location.origin + '/merci.html',
-    cancel_return: window.location.href,
-    no_shipping:   '1',
-  };
+    if (!response.ok) throw new Error(data.error || 'Erreur serveur');
 
-  Object.entries(fields).forEach(([name, value]) => {
-    const input = document.createElement('input');
-    input.type  = 'hidden';
-    input.name  = name;
-    input.value = value;
-    form.appendChild(input);
-  });
+    // Vider le panier et rediriger vers Stripe
+    cart = [];
+    saveCart();
+    closeCart();
+    window.location.href = data.url;
 
-  document.body.appendChild(form);
-  form.submit();
-  document.body.removeChild(form);
-
-  // Vider le panier après commande
-  cart = [];
-  saveCart();
-  closeCart();
+  } catch (err) {
+    console.error('Checkout error:', err);
+    showToast('Erreur lors du paiement. Réessayez.');
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = 'Commander';
+    }
+  }
 }
 
 // ── Init sur chaque page ─────────────────────────────────────
