@@ -49,8 +49,13 @@ module.exports = async (req, res) => {
       quantity: 1,
     }));
 
-    // Frais de livraison (offerts à partir de 2 articles)
-    if (items.length < 2) {
+    // Compter les commandes payées pour les 10 premières livraisons offertes
+    const payments = await stripe.paymentIntents.list({ limit: 100 });
+    const paidCount = payments.data.filter(p => p.status === 'succeeded').length;
+    const freeShipping = paidCount < 10;
+
+    // Frais de livraison (offerts pour les 10 premières commandes, puis à partir de 2 articles)
+    if (!freeShipping && items.length < 2) {
       line_items.push({
         price_data: {
           currency: 'eur',
