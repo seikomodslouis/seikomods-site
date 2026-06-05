@@ -1053,7 +1053,8 @@
     const isSeikoJust  = state.model.value === 'seikojust-39';
     const isRoyalOak  = state.model.value === 'seikooak';
     const isROClassic = isRoyalOak && state.strap.value === 'seikooak-classic';
-    const showHands   = isSeikoJust || isROClassic || isSautilus;
+    const isGmt       = state.model.value === 'gmt';
+    const showHands   = isSeikoJust || isROClassic || isSautilus || isGmt;
     const sizeSelected    = state.size && state.size.value !== '';
     const strapSelected   = state.strap.value !== '';
     const finishSelected  = state.finish.value !== '';
