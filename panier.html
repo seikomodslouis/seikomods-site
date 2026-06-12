@@ -72,6 +72,9 @@
         <!-- Récapitulatif + paiement -->
         <div class="panier-summary">
           <div id="freeShippingBanner" style="display:none;background:#f0fdf4;border:1px solid #86efac;border-radius:10px;padding:12px 14px;margin-bottom:12px;font-size:.82rem;color:#166534;font-weight:600;text-align:center">
+            🎉 Livraison offerte ! Offre de lancement
+          </div>
+          <div id="freeShippingHintBanner" style="display:none;background:#fffbeb;border:1px solid #fcd34d;border-radius:10px;padding:12px 14px;margin-bottom:12px;font-size:.82rem;color:#92400e;font-weight:600;text-align:center">
             🚚 Plus qu'une montre pour la livraison offerte !
           </div>
           <div class="config-summary-box">
@@ -250,9 +253,15 @@
 
     // Résumé
     const total = getCartTotal(cart);
-    const shipping = cart.length >= 2 ? 0 : 10;
-    const banner = document.getElementById('freeShippingBanner');
-    if (banner) banner.style.display = cart.length === 1 ? 'block' : 'none';
+    const freeByQty = cart.length >= 2;
+    const shipping = (globalFreeShipping || freeByQty) ? 0 : 10;
+
+    // Bannières
+    const bannerLaunch = document.getElementById('freeShippingBanner');
+    const bannerHint   = document.getElementById('freeShippingHintBanner');
+    if (bannerLaunch) bannerLaunch.style.display = globalFreeShipping ? 'block' : 'none';
+    if (bannerHint)   bannerHint.style.display   = (!globalFreeShipping && cart.length === 1) ? 'block' : 'none';
+
     document.getElementById('panierSummaryLines').innerHTML = cart.map((item, i) => `
       <div class="summary-line">
         <span class="lbl">${item.name}</span>
@@ -271,6 +280,17 @@
   }
 
   const VERCEL_API_URL = 'https://seikomods-site.vercel.app/api/create-checkout';
+  const VERCEL_SHIPPING_URL = 'https://seikomods-site.vercel.app/api/shipping-status';
+
+  // Vérifier si la livraison est offerte (10 premières commandes)
+  let globalFreeShipping = false;
+  fetch(VERCEL_SHIPPING_URL)
+    .then(r => r.json())
+    .then(data => {
+      globalFreeShipping = data.freeShipping || false;
+      renderPage();
+    })
+    .catch(() => { /* silencieux si l'API est indisponible */ });
 
   // Stripe checkout
   document.getElementById('checkoutBtn').addEventListener('click', async () => {
