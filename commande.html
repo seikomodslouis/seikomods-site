@@ -321,9 +321,11 @@
     const total = getCartTotal(cart);
     document.getElementById('commandeSubtotal').textContent = total + ' €';
     const shipping = shippingMethod === 'accelerated' ? 8 : 0;
-    const discount = shippingMethod === 'standard' ? 10 : 0;
+    const discount = shippingMethod === 'standard' ? 10 * cart.length : 0;
     const discountLine = document.getElementById('commandeDiscountLine');
     if (discountLine) discountLine.style.display = discount > 0 ? 'flex' : 'none';
+    const discountEl = document.getElementById('commandeDiscount');
+    if (discountEl) discountEl.textContent = '-' + discount + ' €';
     const shippingEl = document.getElementById('commandeShipping');
     if (shippingEl) {
       if (shipping === 0) {
