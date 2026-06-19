@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const { items } = req.body;
+    const { items, shippingMethod } = req.body;
 
     if (!items || items.length === 0) {
       return res.status(400).json({ error: 'Panier vide' });
@@ -49,18 +49,13 @@ module.exports = async (req, res) => {
       quantity: 1,
     }));
 
-    // Compter les commandes payées pour les 10 premières livraisons offertes
-    const payments = await stripe.paymentIntents.list({ limit: 100 });
-    const paidCount = payments.data.filter(p => p.status === 'succeeded').length;
-    const freeShipping = paidCount < 10;
-
-    // Frais de livraison (offerts pour les 10 premières commandes, puis à partir de 2 articles)
-    if (!freeShipping && items.length < 2) {
+    // Livraison standard offerte · livraison accélérée +8€
+    if (shippingMethod === 'accelerated') {
       line_items.push({
         price_data: {
           currency: 'eur',
-          product_data: { name: 'Livraison' },
-          unit_amount: 1000, // 10€
+          product_data: { name: 'Livraison accélérée (10 à 12 jours)' },
+          unit_amount: 800, // 8€
         },
         quantity: 1,
       });
