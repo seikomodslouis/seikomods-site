@@ -75,6 +75,10 @@
       <div class="config-summary-box" style="margin-bottom:24px">
         <h4>Récapitulatif</h4>
         <div id="commandeItems"></div>
+        <div class="summary-line" style="padding:8px 0;border-top:1px solid var(--border);margin-top:8px;font-weight:600">
+          <span>Sous-total</span>
+          <span class="val" id="commandeSubtotal">0 €</span>
+        </div>
       </div>
 
       <div style="margin-bottom:24px">
@@ -311,6 +315,7 @@
     `).join('');
 
     const total = getCartTotal(cart);
+    document.getElementById('commandeSubtotal').textContent = total + ' €';
     const shipping = shippingMethod === 'accelerated' ? 8 : 0;
     const shippingEl = document.getElementById('commandeShipping');
     if (shippingEl) {
