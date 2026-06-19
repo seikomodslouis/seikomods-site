@@ -321,7 +321,7 @@
     const total = getCartTotal(cart);
     document.getElementById('commandeSubtotal').textContent = total + ' €';
     const shipping = shippingMethod === 'accelerated' ? 10 : 0;
-    const discount = shippingMethod === 'standard' ? 10 * cart.length : 0;
+    const discount = shippingMethod === 'standard' ? 5 * cart.length : 0;
     const discountLine = document.getElementById('commandeDiscountLine');
     if (discountLine) discountLine.style.display = discount > 0 ? 'flex' : 'none';
     const discountEl = document.getElementById('commandeDiscount');
@@ -355,7 +355,7 @@
     document.getElementById('f-prix').value     = Math.max(0, total - discount + shipping) + ' €';
     const livraisonEl = document.getElementById('f-livraison');
     if (livraisonEl) {
-      livraisonEl.value = shippingMethod === 'accelerated' ? 'Accélérée (10 à 15 jours, +10€)' : 'Standard (15 à 25 jours, -10€ offerte)';
+      livraisonEl.value = shippingMethod === 'accelerated' ? 'Accélérée (10 à 15 jours, +10€)' : 'Standard (15 à 25 jours, -5€/montre offerte)';
     }
   }
 

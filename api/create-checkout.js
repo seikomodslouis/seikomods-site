@@ -61,9 +61,9 @@ module.exports = async (req, res) => {
         quantity: 1,
       });
     } else {
-      // Réduction de 10€ par montre pour la livraison standard (coupon réutilisable par quantité)
-      const amountOff = 1000 * items.length; // 10€ par montre, en centimes
-      const couponId = `LIVRAISON_STANDARD_${items.length}`;
+      // Réduction de 5€ par montre pour la livraison standard (coupon réutilisable par quantité)
+      const amountOff = 500 * items.length; // 5€ par montre, en centimes
+      const couponId = `LIVRAISON_STANDARD_5_${items.length}`;
       try {
         try {
           await stripe.coupons.retrieve(couponId);
