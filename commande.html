@@ -355,7 +355,7 @@
     document.getElementById('f-prix').value     = Math.max(0, total - discount + shipping) + ' €';
     const livraisonEl = document.getElementById('f-livraison');
     if (livraisonEl) {
-      livraisonEl.value = shippingMethod === 'accelerated' ? 'Accélérée (10 à 12 jours, +8€)' : 'Standard (15 à 25 jours, -10€ offerte)';
+      livraisonEl.value = shippingMethod === 'accelerated' ? 'Accélérée (10 à 15 jours, +10€)' : 'Standard (15 à 25 jours, -10€ offerte)';
     }
   }
 

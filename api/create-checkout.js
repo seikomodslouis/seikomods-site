@@ -55,8 +55,8 @@ module.exports = async (req, res) => {
       line_items.push({
         price_data: {
           currency: 'eur',
-          product_data: { name: 'Livraison accélérée (10 à 12 jours)' },
-          unit_amount: 800, // 8€
+          product_data: { name: 'Livraison accélérée (10 à 15 jours)' },
+          unit_amount: 1000, // 10€
         },
         quantity: 1,
       });
