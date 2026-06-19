@@ -70,7 +70,7 @@ module.exports = async (req, res) => {
       allow_promotion_codes: true,
       locale: 'fr',
       shipping_address_collection: {
-        allowed_countries: ['FR', 'BE', 'CH', 'LU', 'MC'],
+        allowed_countries: ['FR'],
       },
       phone_number_collection: { enabled: true },
     });
