@@ -113,6 +113,11 @@
   // Éviter le double envoi si le client recharge la page
   const alreadySent = sessionStorage.getItem('email_sent_' + sessionId);
 
+  // Paiement confirmé (on est sur la page de succès Stripe) : on vide le panier
+  if (sessionId) {
+    localStorage.removeItem('seikomods_cart');
+  }
+
   if (sessionId && !alreadySent) {
     sessionStorage.setItem('email_sent_' + sessionId, '1');
     fetch('https://seikomods-site.vercel.app/api/get-session?session_id=' + sessionId)

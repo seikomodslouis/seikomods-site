@@ -327,7 +327,9 @@
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
-      saveCart([]);
+      // Le panier n'est PAS vidé ici : il ne sera vidé qu'une fois le paiement
+      // confirmé (sur merci.html). Ainsi, si le client revient en arrière
+      // depuis Stripe, son panier est toujours là.
       window.location.href = data.url;
     } catch (err) {
       showToast('Erreur lors du paiement. Réessayez.');
