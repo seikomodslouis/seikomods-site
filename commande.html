@@ -89,7 +89,7 @@
               <span style="display:block;font-weight:600;font-size:.9rem">Livraison standard</span>
               <span style="display:block;font-size:.75rem;color:var(--muted);margin-top:2px">15 à 25 jours</span>
             </span>
-            <span style="font-weight:700;font-size:.9rem"><span style="text-decoration:line-through;color:var(--muted);font-weight:400;margin-right:6px">10 €</span><span style="color:green">Offerte</span></span>
+            <span style="font-weight:700;font-size:.9rem"><span style="color:green">Offerte</span></span>
           </button>
           <button type="button" class="shipping-option" data-method="accelerated" style="display:flex;justify-content:space-between;align-items:center;width:100%;padding:13px 16px;border:2px solid var(--border);border-radius:10px;background:#fff;cursor:pointer;text-align:left;font-family:inherit">
             <span>
@@ -102,6 +102,10 @@
       </div>
 
       <div class="config-summary-box" style="margin-bottom:48px">
+        <div class="summary-line" id="commandeDiscountLine" style="padding:8px 0;display:none">
+          <span style="color:var(--muted);font-size:.85rem">Réduction livraison standard</span>
+          <span style="font-size:.85rem;color:green" id="commandeDiscount">-10 €</span>
+        </div>
         <div class="summary-line" style="padding:8px 0">
           <span style="color:var(--muted);font-size:.85rem">Livraison</span>
           <span style="font-size:.85rem" id="commandeShipping">Offerte</span>
@@ -317,6 +321,9 @@
     const total = getCartTotal(cart);
     document.getElementById('commandeSubtotal').textContent = total + ' €';
     const shipping = shippingMethod === 'accelerated' ? 8 : 0;
+    const discount = shippingMethod === 'standard' ? 10 : 0;
+    const discountLine = document.getElementById('commandeDiscountLine');
+    if (discountLine) discountLine.style.display = discount > 0 ? 'flex' : 'none';
     const shippingEl = document.getElementById('commandeShipping');
     if (shippingEl) {
       if (shipping === 0) {
@@ -325,7 +332,7 @@
         shippingEl.textContent = shipping + ' €';
       }
     }
-    document.getElementById('commandeTotal').textContent = (total + shipping) + ' €';
+    document.getElementById('commandeTotal').textContent = Math.max(0, total - discount + shipping) + ' €';
 
     // Mise en avant visuelle de l'option sélectionnée
     document.querySelectorAll('.shipping-option').forEach(btn => {
@@ -343,10 +350,10 @@
       return item.name + (opts.length ? ' (' + opts.join(', ') + ')' : '');
     }).join(' | ');
     document.getElementById('f-commande').value = commandeDesc;
-    document.getElementById('f-prix').value     = (total + shipping) + ' €';
+    document.getElementById('f-prix').value     = Math.max(0, total - discount + shipping) + ' €';
     const livraisonEl = document.getElementById('f-livraison');
     if (livraisonEl) {
-      livraisonEl.value = shippingMethod === 'accelerated' ? 'Accélérée (10 à 12 jours, +8€)' : 'Standard (15 à 25 jours, offerte)';
+      livraisonEl.value = shippingMethod === 'accelerated' ? 'Accélérée (10 à 12 jours, +8€)' : 'Standard (15 à 25 jours, -10€ offerte)';
     }
   }
 

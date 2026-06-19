@@ -49,7 +49,8 @@ module.exports = async (req, res) => {
       quantity: 1,
     }));
 
-    // Livraison standard offerte · livraison accélérée +8€
+    // Livraison standard : -10€ sur la commande · livraison accélérée : +8€
+    let discounts;
     if (shippingMethod === 'accelerated') {
       line_items.push({
         price_data: {
@@ -59,6 +60,25 @@ module.exports = async (req, res) => {
         },
         quantity: 1,
       });
+    } else {
+      // Réduction de 10€ pour la livraison standard (coupon réutilisable)
+      const couponId = 'LIVRAISON_STANDARD_10';
+      try {
+        try {
+          await stripe.coupons.retrieve(couponId);
+        } catch (e) {
+          await stripe.coupons.create({
+            id: couponId,
+            amount_off: 1000, // 10€
+            currency: 'eur',
+            duration: 'once',
+            name: 'Réduction livraison standard',
+          });
+        }
+        discounts = [{ coupon: couponId }];
+      } catch (e) {
+        console.error('Coupon error:', e);
+      }
     }
 
     const session = await stripe.checkout.sessions.create({
@@ -67,7 +87,8 @@ module.exports = async (req, res) => {
       mode: 'payment',
       success_url: `${req.headers.origin || 'https://seikomods-louis.fr'}/merci.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.origin || 'https://seikomods-louis.fr'}/panier.html`,
-      allow_promotion_codes: true,
+      // allow_promotion_codes et discounts sont mutuellement exclusifs côté Stripe
+      ...(discounts ? { discounts } : { allow_promotion_codes: true }),
       locale: 'fr',
       shipping_address_collection: {
         allowed_countries: ['FR'],
