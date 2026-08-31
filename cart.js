@@ -62,7 +62,7 @@ function renderCart() {
   if (cart.length === 0) {
     container.innerHTML = `
       <div class="cart-empty" style="text-align:center;padding:3rem 1rem">
-        <div style="font-size:3rem;margin-bottom:1rem;opacity:.3">🛍</div>
+        <div style="font-size:3rem;margin-bottom:1rem;opacity:.3"></div>
         <p style="color:var(--muted)">Votre panier est vide</p>
         <a href="configurateur.html" class="btn btn-outline" style="margin-top:1rem;display:inline-flex">
           ✦ Créer ma montre
@@ -107,7 +107,7 @@ function renderCart() {
     const shippingEl = document.getElementById('cartShipping');
     if (shippingEl) {
       if (shipping === 0) {
-        shippingEl.innerHTML = '<span style="color:green;font-weight:600">🎉 Livraison offerte !</span>';
+        shippingEl.innerHTML = '<span style="color:green;font-weight:600">Livraison offerte !</span>';
       } else {
         shippingEl.textContent = '10 €';
       }

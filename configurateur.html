@@ -40,7 +40,7 @@
   </script>
 </head>
 <body>
-<div class="top-banner">🚚 Livraison — 15 à 25 jours · 4,99 €</div>
+<div class="top-banner">Livraison — 15 à 25 jours · 4,99 €</div>
 
 
 <nav class="nav scrolled" id="navbar">
@@ -70,7 +70,7 @@
   <a href="contact.html">Contact</a>
   <a href="a-propos.html">À propos</a>
   <a href="configurateur.html" class="btn btn-gold" style="margin-top:12px">✦ Créer la mienne</a>
-  <a href="panier.html" id="cartBtnMobile" style="position:relative">🛒 Panier<span class="cart-badge" id="cartBadgeMobile" style="display:none">0</span></a>
+  <a href="panier.html" id="cartBtnMobile" style="position:relative">Panier<span class="cart-badge" id="cartBadgeMobile" style="display:none">0</span></a>
 </div>
 
 <div class="page-hero">
@@ -122,7 +122,7 @@
           <div id="seikona-modal-overlay-config" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;align-items:center;justify-content:center;">
             <div style="background:#fff;border-radius:16px;padding:40px 36px;max-width:480px;width:90%;position:relative;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
               <button id="seikona-modal-close-config" style="position:absolute;top:14px;left:16px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:#666;line-height:1;">✕</button>
-              <div style="font-size:3rem;margin-bottom:16px;">⚠️</div>
+              <div style="font-size:3rem;margin-bottom:16px;">!</div>
               <h2 style="font-size:1.4rem;margin-bottom:12px;color:#333;">Étanchéité non garantie</h2>
               <p style="color:#666;line-height:1.7;font-size:0.95rem;">Les montres Seikona sont équipées de boutons de chronographe qui peuvent compromettre l'étanchéité. Le lavage des mains et les projections d'eau sont déconseillés.</p>
             </div>
@@ -307,7 +307,7 @@
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
             Ajouter au panier
           </button>
-          <p style="font-size:.72rem;color:var(--muted);text-align:center;margin-top:10px">🔒 Paiement sécurisé · PayPal & Carte bancaire</p>
+          <p style="font-size:.72rem;color:var(--muted);text-align:center;margin-top:10px">Paiement sécurisé · PayPal & Carte bancaire</p>
         </div>
 
 
@@ -330,7 +330,7 @@
             <span class="summary-price" id="s-prix">149 €</span>
           </div>
           <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);text-align:center;font-size:.72rem;color:var(--muted)">
-            🔒 Paiement sécurisé<br>PayPal & Carte bancaire
+            Paiement sécurisé<br>PayPal & Carte bancaire
           </div>
         </div>
 
@@ -381,7 +381,7 @@
     </div>
     <div class="footer-bottom">
       <span>© 2026 SeikoMods. Tous droits réservés.</span>
-      <span>Fait avec ❤️ en France</span>
+      <span>Fait en France</span>
     </div>
   </div>
 </footer>
@@ -1190,7 +1190,7 @@
     const errorEl = document.getElementById('cartErrorMsg');
     if (missing.length > 0) {
       errorEl.style.display = 'block';
-      errorEl.innerHTML = '⚠️ Il manque encore ' + missing.join(', ') + ' pour compléter votre montre.';
+      errorEl.innerHTML = '! Il manque encore ' + missing.join(', ') + ' pour compléter votre montre.';
       errorEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       return;
     }
