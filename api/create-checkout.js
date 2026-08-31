@@ -49,38 +49,15 @@ module.exports = async (req, res) => {
       quantity: 1,
     }));
 
-    // Livraison standard : -10€ sur la commande · livraison accélérée : +8€
-    let discounts;
-    if (shippingMethod === 'accelerated') {
-      line_items.push({
-        price_data: {
-          currency: 'eur',
-          product_data: { name: 'Livraison accélérée (10 à 15 jours)' },
-          unit_amount: 1000, // 10€
-        },
-        quantity: 1,
-      });
-    } else {
-      // Réduction de 5€ par montre pour la livraison standard (coupon réutilisable par quantité)
-      const amountOff = 500 * items.length; // 5€ par montre, en centimes
-      const couponId = `LIVRAISON_STANDARD_5_${items.length}`;
-      try {
-        try {
-          await stripe.coupons.retrieve(couponId);
-        } catch (e) {
-          await stripe.coupons.create({
-            id: couponId,
-            amount_off: amountOff,
-            currency: 'eur',
-            duration: 'once',
-            name: `Réduction livraison standard (${items.length} montre${items.length > 1 ? 's' : ''})`,
-          });
-        }
-        discounts = [{ coupon: couponId }];
-      } catch (e) {
-        console.error('Coupon error:', e);
-      }
-    }
+    // Frais de livraison fixes : 4,99 €
+    line_items.push({
+      price_data: {
+        currency: 'eur',
+        product_data: { name: 'Livraison (15 à 25 jours)' },
+        unit_amount: 499, // 4,99€
+      },
+      quantity: 1,
+    });
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -88,8 +65,7 @@ module.exports = async (req, res) => {
       mode: 'payment',
       success_url: `${req.headers.origin || 'https://seikomods-louis.fr'}/merci.html?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.origin || 'https://seikomods-louis.fr'}/panier.html`,
-      // allow_promotion_codes et discounts sont mutuellement exclusifs côté Stripe
-      ...(discounts ? { discounts } : { allow_promotion_codes: true }),
+      allow_promotion_codes: true,
       locale: 'fr',
       shipping_address_collection: {
         allowed_countries: ['FR'],
