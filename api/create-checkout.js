@@ -1,4 +1,5 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const { lookupCollectionPrice, getConfiguratorPrice } = require('./_catalog');
 
 module.exports = async (req, res) => {
   // CORS
@@ -31,23 +32,47 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'Panier vide' });
     }
 
-    // Construire les line_items Stripe depuis le panier
-    const line_items = items.map(item => ({
-      price_data: {
-        currency: 'eur',
-        product_data: {
-          name: item.name,
-          description: [
-            item.opts?.finition  ? `Finition: ${item.opts.finition}`   : '',
-            item.opts?.bracelet  ? `Bracelet: ${item.opts.bracelet}`   : '',
-            item.opts?.cadran    ? `Cadran: ${item.opts.cadran}`       : '',
-            item.opts?.aiguilles ? `Aiguilles: ${item.opts.aiguilles}` : '',
-          ].filter(Boolean).join(' · ') || undefined,
-        },
-        unit_amount: Math.round(item.price * 100), // centimes
-      },
-      quantity: 1,
-    }));
+    // ── Prix : jamais celui envoyé par le client, toujours recalculé côté serveur ──
+    // (le client pourrait envoyer un prix falsifié via les outils de dev du navigateur)
+    let line_items;
+    try {
+      line_items = items.map(item => {
+        const isConfigurator = item.opts && Object.prototype.hasOwnProperty.call(item.opts, 'finition');
+
+        const authoritativePrice = isConfigurator
+          ? getConfiguratorPrice(item.name, item.opts.finition)
+          : lookupCollectionPrice(item.name);
+
+        if (authoritativePrice === null || authoritativePrice === undefined) {
+          const err = new Error(`Produit non reconnu : "${item.name}"`);
+          err.statusCode = 400;
+          throw err;
+        }
+
+        return {
+          price_data: {
+            currency: 'eur',
+            product_data: {
+              name: item.name,
+              description: [
+                item.opts?.finition  ? `Finition: ${item.opts.finition}`   : '',
+                item.opts?.bracelet  ? `Bracelet: ${item.opts.bracelet}`   : '',
+                item.opts?.cadran    ? `Cadran: ${item.opts.cadran}`       : '',
+                item.opts?.aiguilles ? `Aiguilles: ${item.opts.aiguilles}` : '',
+              ].filter(Boolean).join(' · ') || undefined,
+            },
+            unit_amount: Math.round(authoritativePrice * 100), // centimes
+          },
+          quantity: 1,
+        };
+      });
+    } catch (validationErr) {
+      if (validationErr.statusCode === 400) {
+        console.warn('Rejected checkout — unrecognized product:', validationErr.message);
+        return res.status(400).json({ error: 'Un article du panier n\'a pas pu être vérifié. Merci de reconfigurer votre montre et réessayer.' });
+      }
+      throw validationErr;
+    }
 
     // Frais de livraison fixes : 4,99 €
     line_items.push({
