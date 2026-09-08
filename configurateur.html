@@ -996,20 +996,13 @@
   };
 
   function getTotal() {
-    const finish = state.finish.value;
-
     // Prix fixe quelle que soit la finition du boîtier
     if (state.model.value === 'seikojust-39') return 169;
     if (state.model.value === 'seikooak')     return 169;
     if (state.model.value === 'sautilus')     return 169;
     if (state.model.value === 'seikona')      return 159;
     if (state.model.value === 'gmt')          return 219;
-
-    if (state.model.value === 'seikosub') {
-      const subSteel = ['sub-black-steel', 'sub-green-steel', 'sub-blue-steel', 'sub-blue-silver'];
-      if (!finish || subSteel.includes(finish)) return 185;
-      return 190;
-    }
+    if (state.model.value === 'seikosub')     return 189;
 
     return 179;
   }

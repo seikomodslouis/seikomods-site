@@ -71,20 +71,20 @@ const COLLECTION_CATALOG = {
   'gmtS Oyster Noir': 219,
   'gmtS Jubilee Or Rose': 219,
   'gmtS Oyster Or Rose': 219,
-  'SeikoSub Or Noir': 190,
-  'SeikoSub Or Bleu': 190,
-  'SeikoSub Acier Or Noir': 190,
-  'SeikoSub Acier Or Bleu': 190,
-  'SeikoSub Bicolore': 185,
-  'SeikoSub Jubilee Sprite': 185,
-  'SeikoSub Oyster Batman': 185,
-  'SeikoSub Oyster Noir': 185,
-  'SeikoSub Oyster Bleu': 185,
-  'SeikoSub Oyster Vert': 185,
-  'SeikoSub Or Rose Bleu': 190,
-  'SeikoSub Or Rose Noir': 190,
-  'SeikoSub Acier Or Rose Bleu': 190,
-  'SeikoSub Acier Or Rose Noir': 190,
+  'SeikoSub Or Noir': 189,
+  'SeikoSub Or Bleu': 189,
+  'SeikoSub Acier Or Noir': 189,
+  'SeikoSub Acier Or Bleu': 189,
+  'SeikoSub Bicolore': 189,
+  'SeikoSub Jubilee Sprite': 189,
+  'SeikoSub Oyster Batman': 189,
+  'SeikoSub Oyster Noir': 189,
+  'SeikoSub Oyster Bleu': 189,
+  'SeikoSub Oyster Vert': 189,
+  'SeikoSub Or Rose Bleu': 189,
+  'SeikoSub Or Rose Noir': 189,
+  'SeikoSub Acier Or Rose Bleu': 189,
+  'SeikoSub Acier Or Rose Noir': 189,
   'Seikona Acier Noir Arabic': 159,
   'Seikona Acier Blanc Arabic': 159,
   'Seikona Acier Noir Or Rose': 159,
@@ -145,18 +145,9 @@ function lookupCollectionPrice(name) {
   return null;
 }
 
-// ---- Configurateur (prix calculé à partir du modèle, et de la finition pour SeikoSub) ----
-// Reproduit exactement la logique de getTotal() dans configurateur.html.
-const SUB_BASE_FINISHES = new Set([
-  'Acier · Lunette Noire',
-  'Acier · Lunette Verte',
-  'Acier · Lunette Bleue',
-  'Argent · Lunette Bleue',
-]);
-
+// ---- Configurateur : prix fixe par modèle, indépendant de la finition ----
 function getConfiguratorPrice(modelLabel, finishLabel) {
   switch (modelLabel) {
-    // Prix fixe quelle que soit la finition du boîtier
     case 'SeikoJust':
       return 169;
     case 'Seiko Oak':
@@ -168,7 +159,7 @@ function getConfiguratorPrice(modelLabel, finishLabel) {
     case 'gmtS':
       return 219;
     case 'SeikoSub':
-      return (!finishLabel || SUB_BASE_FINISHES.has(finishLabel)) ? 185 : 190;
+      return 189;
     default:
       return null; // modèle inconnu → rejeté par l'appelant
   }
