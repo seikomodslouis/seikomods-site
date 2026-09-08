@@ -62,15 +62,15 @@ const COLLECTION_CATALOG = {
   'Seiko Oak Chrono · Or Rose Noir': 165,
   'Seiko Oak Chrono · Acier Blanc': 159,
   'Seiko Oak Chrono · Or Rose Vert': 165,
-  'gmtS Jubilee Acier Or Vert': 220,
-  'gmtS Oyster Acier Or Noir': 220,
-  'gmtS Jubilee Acier Or Noir': 220,
-  'gmtS Oyster Acier Or Gris': 220,
-  'gmtS Jubilee Acier Or Rose': 220,
-  'gmtS Oyster Acier Or Rose': 220,
-  'gmtS Oyster Noir': 215,
-  'gmtS Jubilee Or Rose': 220,
-  'gmtS Oyster Or Rose': 220,
+  'gmtS Jubilee Acier Or Vert': 219,
+  'gmtS Oyster Acier Or Noir': 219,
+  'gmtS Jubilee Acier Or Noir': 219,
+  'gmtS Oyster Acier Or Gris': 219,
+  'gmtS Jubilee Acier Or Rose': 219,
+  'gmtS Oyster Acier Or Rose': 219,
+  'gmtS Oyster Noir': 219,
+  'gmtS Jubilee Or Rose': 219,
+  'gmtS Oyster Or Rose': 219,
   'SeikoSub Or Noir': 190,
   'SeikoSub Or Bleu': 190,
   'SeikoSub Acier Or Noir': 190,
@@ -145,13 +145,8 @@ function lookupCollectionPrice(name) {
   return null;
 }
 
-// ---- Configurateur (prix calculé à partir du modèle, et de la finition pour GMT/SeikoSub) ----
+// ---- Configurateur (prix calculé à partir du modèle, et de la finition pour SeikoSub) ----
 // Reproduit exactement la logique de getTotal() dans configurateur.html.
-const GMT_PREMIUM_FINISHES = new Set([
-  'Or · Lunette Noire',
-  'Acier Or · Lunette Noire',
-  'Acier Or Rose · Lunette Marron/Noire',
-]);
 const SUB_BASE_FINISHES = new Set([
   'Acier · Lunette Noire',
   'Acier · Lunette Verte',
@@ -170,10 +165,10 @@ function getConfiguratorPrice(modelLabel, finishLabel) {
       return 169;
     case 'Seikona':
       return 159;
+    case 'gmtS':
+      return 219;
     case 'SeikoSub':
       return (!finishLabel || SUB_BASE_FINISHES.has(finishLabel)) ? 185 : 190;
-    case 'gmtS':
-      return (finishLabel && GMT_PREMIUM_FINISHES.has(finishLabel)) ? 220 : 215;
     default:
       return null; // modèle inconnu → rejeté par l'appelant
   }
