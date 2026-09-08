@@ -165,19 +165,18 @@ const SEIKONA_BASE_FINISHES = new Set([
 ]);
 
 function getConfiguratorPrice(modelLabel, finishLabel) {
-  const isBaseFinish = !finishLabel || finishLabel === 'Acier';
-
   switch (modelLabel) {
+    // Prix fixe quelle que soit la finition du boîtier
     case 'SeikoJust':
-      return isBaseFinish ? 170 : 175;
+      return 169;
     case 'Seiko Oak':
-      return isBaseFinish ? 170 : 180;
+      return 169;
     case 'Sautilus':
-      return isBaseFinish ? 170 : 180;
+      return 169;
+    case 'Seikona':
+      return 159;
     case 'SeikoSub':
       return (!finishLabel || SUB_BASE_FINISHES.has(finishLabel)) ? 185 : 190;
-    case 'Seikona':
-      return (!finishLabel || SEIKONA_BASE_FINISHES.has(finishLabel)) ? 160 : 165;
     case 'gmtS':
       return (finishLabel && GMT_PREMIUM_FINISHES.has(finishLabel)) ? 220 : 215;
     default:

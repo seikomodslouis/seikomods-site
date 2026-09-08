@@ -998,10 +998,11 @@
   function getTotal() {
     const finish = state.finish.value;
 
-    if (state.model.value === 'seikojust-39') {
-      if (!finish || finish === 'steel') return 170;
-      return 175;
-    }
+    // Prix fixe quelle que soit la finition du boîtier
+    if (state.model.value === 'seikojust-39') return 169;
+    if (state.model.value === 'seikooak')     return 169;
+    if (state.model.value === 'sautilus')     return 169;
+    if (state.model.value === 'seikona')      return 159;
 
     if (state.model.value === 'seikosub') {
       const subSteel = ['sub-black-steel', 'sub-green-steel', 'sub-blue-steel', 'sub-blue-silver'];
@@ -1009,26 +1010,10 @@
       return 190;
     }
 
-    if (state.model.value === 'seikona') {
-      const seikonaSteel = ['seikona-steel-black', 'seikona-steel-silver', 'seikona-steel-brown'];
-      if (!finish || seikonaSteel.includes(finish)) return 160;
-      return 165;
-    }
-
     if (state.model.value === 'gmt') {
       const gmtGold = ['gmt-gold-black', 'gmt-steel-gold-black', 'gmt-steel-rosegold-brown-black', 'gmt-jubilee-steel-gold-black'];
       if (!finish || !gmtGold.includes(finish)) return 215;
       return 220;
-    }
-
-    if (state.model.value === 'seikooak') {
-      if (!finish || finish === 'steel') return 170;
-      return 180;
-    }
-
-    if (state.model.value === 'sautilus') {
-      if (!finish || finish === 'steel') return 170;
-      return 180;
     }
 
     return 179;
