@@ -45,7 +45,7 @@ const COLLECTION_CATALOG = {
   'SeikoJust Acier Or Jubilee Wimbledon Gris': 169,
   'Seiko Oak Acier Noir': 169,
   'Seiko Oak Acier Ice Blue': 169,
-  'Seiko Oak Acier Squelette Noir': 169,
+  'Seiko Oak Acier Squelette Noir': 189,
   'Seiko Oak Acier Teal': 169,
   'Seiko Oak Acier Bleu': 169,
   'Seiko Oak Or Rose Noir': 169,
