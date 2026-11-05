@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Créez votre Seiko mod sur mesure : choisissez modèle, finition boîtier, cadran et bracelet. Assemblée à la main en France par un artisan. À partir de 159€.">
+  <meta name="description" content="Créez votre Seiko mod sur mesure : choisissez modèle, finition boîtier, cadran et bracelet. Assemblée à la main en France par un artisan. À partir de 169€.">
   <title>Configurateur Montre Seiko Custom Sur Mesure | SeikoMods</title>
   <meta property="og:type" content="website">
   <meta property="og:title" content="Configurez votre Montre Seiko Custom Sur Mesure — SeikoMods">
-  <meta property="og:description" content="Créez votre Seiko mod sur mesure : choisissez modèle, finition boîtier, cadran et bracelet. Assemblée à la main en France par un artisan. À partir de 159€.">
+  <meta property="og:description" content="Créez votre Seiko mod sur mesure : choisissez modèle, finition boîtier, cadran et bracelet. Assemblée à la main en France par un artisan. À partir de 169€.">
   <meta property="og:url" content="https://seikomods-louis.fr/configurateur.html">
   <meta property="og:image" content="https://seikomods-louis.fr/images/creation-1.jpg">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:site_name" content="SeikoMods">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Configurez votre Montre Seiko Custom — SeikoMods">
-  <meta name="twitter:description" content="Créez votre Seiko mod sur mesure à partir de 159€. Assemblée à la main en France.">
+  <meta name="twitter:description" content="Créez votre Seiko mod sur mesure à partir de 169€. Assemblée à la main en France.">
   <meta name="twitter:image" content="https://seikomods-louis.fr/images/creation-1.jpg">
   <link rel="canonical" href="https://seikomods-louis.fr/configurateur.html">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -27,7 +27,7 @@
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Configurateur de montre Seiko custom — SeikoMods",
-    "description": "Configurez votre montre Seiko sur mesure : choisissez votre modèle, finition, cadran et bracelet. Assemblée à la main en France à partir de 159€.",
+    "description": "Configurez votre montre Seiko sur mesure : choisissez votre modèle, finition, cadran et bracelet. Assemblée à la main en France à partir de 169€.",
     "url": "https://seikomods-louis.fr/configurateur.html",
     "breadcrumb": {
       "@type": "BreadcrumbList",
@@ -327,7 +327,7 @@
           <div class="summary-line"><span class="lbl">Bracelet</span><span class="val" id="s-bracelet">Jubilee acier</span></div>
           <div class="summary-total" id="summaryTotal" style="display:none">
             <span>Total estimé</span>
-            <span class="summary-price" id="s-prix">149 €</span>
+            <span class="summary-price" id="s-prix">169 €</span>
           </div>
           <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);text-align:center;font-size:.72rem;color:var(--muted)">
             Paiement sécurisé<br>PayPal & Carte bancaire
@@ -992,12 +992,12 @@
 
   function getTotal() {
     // Prix fixe quelle que soit la finition du boîtier
-    if (state.model.value === 'seikojust-39') return 169;
-    if (state.model.value === 'seikooak')     return 169;
-    if (state.model.value === 'sautilus')     return 169;
-    if (state.model.value === 'seikona')      return 159;
-    if (state.model.value === 'gmt')          return 219;
-    if (state.model.value === 'seikosub')     return 189;
+    if (state.model.value === 'seikojust-39') return 189;
+    if (state.model.value === 'seikooak')     return state.strap.value === 'seikooak-chronograph' ? 169 : 189;
+    if (state.model.value === 'sautilus')     return 189;
+    if (state.model.value === 'seikona')      return 169;
+    if (state.model.value === 'gmt')          return 229;
+    if (state.model.value === 'seikosub')     return 199;
 
     return 179;
   }

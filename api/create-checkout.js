@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
         const isConfigurator = item.opts && Object.prototype.hasOwnProperty.call(item.opts, 'finition');
 
         const authoritativePrice = isConfigurator
-          ? getConfiguratorPrice(item.name, item.opts.finition)
+          ? getConfiguratorPrice(item.name, item.opts.finition, item.opts.bracelet)
           : lookupCollectionPrice(item.name);
 
         if (authoritativePrice === null || authoritativePrice === undefined) {
