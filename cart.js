@@ -44,8 +44,9 @@ function getCartTotal() {
   return cart.reduce((sum, i) => sum + i.price, 0);
 }
 
+// Livraison fixe : 4,99 € (identique au serveur Stripe)
 function getShipping() {
-  return cart.length >= 2 ? 0 : 10;
+  return 4.99;
 }
 
 function getTotalWithShipping() {
@@ -106,13 +107,9 @@ function renderCart() {
     const shipping = getShipping();
     const shippingEl = document.getElementById('cartShipping');
     if (shippingEl) {
-      if (shipping === 0) {
-        shippingEl.innerHTML = '<span style="color:green;font-weight:600">Livraison offerte !</span>';
-      } else {
-        shippingEl.textContent = '10 €';
-      }
+      shippingEl.textContent = '4,99 €';
     }
-    if (totalEl) totalEl.textContent = `${getTotalWithShipping()} €`;
+    if (totalEl) totalEl.textContent = `${getTotalWithShipping().toFixed(2).replace('.', ',')} €`;
   }
 }
 
