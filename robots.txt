@@ -2,7 +2,6 @@ User-agent: *
 Allow: /
 
 Disallow: /panier.html
-Disallow: /commande.html
 Disallow: /merci.html
 
 Sitemap: https://seikomods-louis.fr/sitemap.xml
