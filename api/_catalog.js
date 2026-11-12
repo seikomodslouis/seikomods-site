@@ -62,15 +62,15 @@ const COLLECTION_CATALOG = {
   'Seiko Oak Chrono · Or Rose Noir': 169,
   'Seiko Oak Chrono · Acier Blanc': 169,
   'Seiko Oak Chrono · Or Rose Vert': 169,
-  'gmtS Jubilee Acier Or Vert': 229,
-  'gmtS Oyster Acier Or Noir': 229,
-  'gmtS Jubilee Acier Or Noir': 229,
-  'gmtS Oyster Acier Or Gris': 229,
-  'gmtS Jubilee Acier Or Rose': 229,
-  'gmtS Oyster Acier Or Rose': 229,
-  'gmtS Oyster Noir': 229,
-  'gmtS Jubilee Or Rose': 229,
-  'gmtS Oyster Or Rose': 229,
+  'gmtS Jubilee Acier Or Vert': 300,
+  'gmtS Oyster Acier Or Noir': 300,
+  'gmtS Jubilee Acier Or Noir': 300,
+  'gmtS Oyster Acier Or Gris': 300,
+  'gmtS Jubilee Acier Or Rose': 300,
+  'gmtS Oyster Acier Or Rose': 300,
+  'gmtS Oyster Noir': 300,
+  'gmtS Jubilee Or Rose': 300,
+  'gmtS Oyster Or Rose': 300,
   'SeikoSub Or Noir': 199,
   'SeikoSub Or Bleu': 199,
   'SeikoSub Acier Or Noir': 199,
@@ -158,7 +158,7 @@ function getConfiguratorPrice(modelLabel, finishLabel, braceletLabel) {
     case 'Seikona':
       return 169;
     case 'gmtS':
-      return 229;
+      return 300;
     case 'SeikoSub':
       return 199;
     default:
